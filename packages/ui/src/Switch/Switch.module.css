@@ -1,0 +1,105 @@
+/* Switch, from Figma Components / Switch (1125:29). The track carries the state; the thumb
+   slides from start to end. data-state="hover|focus" shows a state without interaction. */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--layout-tiny);
+  color: var(--color-foreground-high-emphasis);
+  cursor: pointer;
+}
+
+.label {
+  font: var(--text-ui-text-regular);
+}
+
+.track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: none;
+  box-sizing: border-box;
+  inline-size: var(--_w);
+  block-size: var(--_h);
+  padding: var(--space-micro);
+  border-radius: var(--radius-full);
+  background: var(--_track);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line, transparent), var(--_ring, 0 0 #0000);
+  transition:
+    background-color var(--motion-fade-default),
+    padding var(--motion-fade-default),
+    box-shadow var(--motion-fade-default);
+  --_track: var(--color-surface-level-3);
+  --_thumb: var(--color-on-primary);
+}
+
+.switch[data-size='medium'] .track {
+  --_w: calc(var(--space-xxlarge) + var(--space-tiny));
+  --_h: var(--line-height-base);
+  --_t: var(--line-height-text-small);
+}
+
+.switch[data-size='large'] .track {
+  --_w: calc(var(--space-xxlarge) + var(--space-xlarge));
+  --_h: var(--space-xxlarge);
+  --_t: var(--line-height-base);
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.thumb {
+  inline-size: var(--_t);
+  block-size: var(--_t);
+  margin-inline-end: auto;
+  border-radius: var(--radius-full);
+  background: var(--_thumb);
+  transition: margin var(--motion-fade-default);
+}
+
+/* Active: the thumb moves to the end. */
+.track:has(.input:checked) {
+  --_track: var(--color-primary);
+}
+
+.track:has(.input:checked) .thumb {
+  margin-inline: auto 0;
+}
+
+/* Hover (off): soft track, the thumb steps 2px in. */
+.switch:is(:hover, [data-state='hover']) .track:has(.input:not(:checked, :disabled)) {
+  --_track: var(--color-primary-soft);
+  padding-inline: calc(var(--space-micro) + var(--space-atom));
+}
+
+/* Figma has no focus state; keyboard focus uses the focus ring. */
+.track:has(.input:focus-visible),
+.switch[data-state='focus'] .track {
+  --_ring: var(--shadow-focus-primary);
+}
+
+/* Error */
+.switch[data-error] .track {
+  --_track: var(--color-error-soft);
+  --_thumb: var(--color-on-error);
+}
+
+.switch[data-error] .track:has(.input:checked) {
+  --_track: var(--color-error);
+}
+
+/* Disabled */
+.switch:has(.input:disabled) {
+  cursor: not-allowed;
+}
+
+.track:has(.input:disabled) {
+  --_track: var(--color-surface-level-1);
+  --_line: var(--color-surface-level-3);
+  --_thumb: var(--color-surface-level-3);
+}

@@ -1,0 +1,175 @@
+/* Chip, from Figma Components / Chip (76:36872): an optional key part, the text with icons, and
+   an optional remove button, on a full-radius pill. Figma has no hover, focus or disabled state;
+   keyboard focus uses the focus ring. */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: var(--_py) var(--_px);
+  border-radius: var(--radius-full);
+  font: var(--_font);
+  white-space: nowrap;
+  color: var(--_fg);
+  background: var(--_bg);
+}
+
+.body {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--_gap);
+  padding: var(--_body-py) var(--_body-px);
+  border-radius: var(--radius-full);
+}
+
+button.body {
+  cursor: pointer;
+}
+
+.key {
+  display: inline-flex;
+  padding: var(--_key-py) var(--_key-px);
+  border-radius: var(--radius-full);
+  font: var(--_key-font);
+  color: var(--_key-fg);
+  background: var(--_key-bg);
+}
+
+.icon,
+.remove {
+  display: inline-flex;
+  flex: none;
+}
+
+.icon > svg,
+.remove > svg {
+  inline-size: var(--_icon);
+  block-size: var(--_icon);
+}
+
+.remove {
+  all: unset;
+  display: inline-flex;
+  padding-inline-end: var(--space-micro);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+
+.body:focus-visible,
+.remove:focus-visible {
+  box-shadow: var(--shadow-focus-primary);
+}
+
+/* Sizes. The key text is Neue Haas 14 Medium in Figma, outside the type scale; the bold UI
+   style of each size stands in for it. */
+.chip[data-size='medium'] {
+  --_py: var(--space-micro);
+  --_px: var(--space-micro);
+  --_body-py: var(--space-micro);
+  --_body-px: var(--space-small);
+  --_gap: var(--space-micro);
+  --_font: var(--text-ui-text-regular);
+  --_icon: var(--space-large);
+  --_key-py: var(--space-micro);
+  --_key-px: var(--space-small);
+  --_key-font: var(--text-ui-text-bold);
+}
+
+.chip[data-size='small'] {
+  --_py: var(--space-micro);
+  --_px: calc(var(--space-micro) + var(--space-atom));
+  --_body-py: 0;
+  --_body-px: var(--space-tiny);
+  --_gap: var(--space-micro);
+  --_font: var(--text-ui-text-regular);
+  --_icon: var(--line-height-text-small);
+  --_key-py: var(--space-atom);
+  --_key-px: var(--space-tiny);
+  --_key-font: var(--text-ui-text-small-bold);
+}
+
+.chip[data-size='tiny'] {
+  --_py: 0;
+  --_px: var(--space-atom);
+  --_body-py: var(--space-micro);
+  --_body-px: var(--space-micro);
+  --_gap: var(--space-micro);
+  --_font: var(--text-ui-text-small-regular);
+  --_icon: var(--line-height-footnote);
+  --_key-py: var(--space-atom);
+  --_key-px: var(--space-tiny);
+  --_key-font: var(--text-ui-text-small-bold);
+}
+
+.chip[data-size='micro'] {
+  --_py: 0;
+  --_px: var(--space-atom);
+  --_body-py: var(--space-atom);
+  --_body-px: var(--space-micro);
+  --_gap: var(--space-atom);
+  --_font: var(--text-ui-footnote-regular);
+  --_icon: var(--line-height-footnote);
+  --_key-py: 0;
+  --_key-px: var(--space-micro);
+  --_key-font: var(--text-ui-footnote-bold);
+}
+
+/* Tones. Unselected: soft background, shade text, shade key with soft text. */
+.chip {
+  --_bg: var(--_soft);
+  --_fg: var(--_shade);
+  --_key-bg: var(--_shade);
+  --_key-fg: var(--_soft);
+}
+
+.chip[data-tone='primary'] {
+  --_c: var(--color-primary);
+  --_on: var(--color-on-primary);
+  --_soft: var(--color-primary-soft);
+  --_shade: var(--color-primary-shade);
+}
+
+.chip[data-tone='success'] {
+  --_c: var(--color-success);
+  --_on: var(--color-on-success);
+  --_soft: var(--color-success-soft);
+  --_shade: var(--color-success-shade);
+}
+
+.chip[data-tone='error'] {
+  --_c: var(--color-error);
+  --_on: var(--color-on-error);
+  --_soft: var(--color-error-soft);
+  --_shade: var(--color-error-shade);
+}
+
+.chip[data-tone='warning'] {
+  --_c: var(--color-warning);
+  --_on: var(--color-on-warning);
+  --_soft: var(--color-warning-soft);
+  --_shade: var(--color-warning-shade);
+}
+
+/* Default is neutral; selected, it turns primary soft. */
+.chip[data-tone='default'] {
+  --_bg: var(--color-surface-level-3);
+  --_fg: var(--color-foreground-high-emphasis);
+}
+
+/* Selected: the tone with its on-color. Figma keeps the neutral key in every selected chip. */
+.chip[data-selected] {
+  --_bg: var(--_c);
+  --_fg: var(--_on);
+}
+
+.chip[data-tone='default'][data-selected] {
+  --_bg: var(--color-primary-soft);
+  --_fg: var(--color-primary);
+}
+
+.chip[data-tone='default'],
+.chip[data-selected] {
+  --_key-bg: var(--color-surface-level-4);
+  --_key-fg: var(--color-foreground-high-emphasis);
+}

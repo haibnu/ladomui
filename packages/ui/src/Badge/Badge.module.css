@@ -1,0 +1,139 @@
+/* Badge, from Figma Components / Badge (1394:3). Outline by default; data-filled uses the tone
+   as the background. The 1px line is drawn inside, as in Figma. */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--_gap);
+  box-sizing: border-box;
+  padding: var(--_py) var(--_px);
+  border-radius: var(--badge-radius);
+  font: var(--_font);
+  white-space: nowrap;
+  color: var(--_fg);
+  background: var(--_bg);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line);
+  --_bg: var(--color-surface-level-1);
+  --_line: var(--_c);
+  --_fg: var(--_c);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.icon > svg {
+  inline-size: var(--_icon);
+  block-size: var(--_icon);
+}
+
+/* Sizes */
+.badge[data-size='medium'] {
+  --_py: var(--space-tiny);
+  --_px: var(--space-medium);
+  --_gap: var(--space-tiny);
+  --_font: var(--text-ui-text-regular);
+  --_icon: var(--line-height-text-small);
+}
+
+.badge[data-size='small'] {
+  --_py: var(--space-micro);
+  --_px: var(--space-small);
+  --_gap: var(--space-tiny);
+  --_font: var(--text-ui-text-regular);
+  --_icon: var(--line-height-text-small);
+}
+
+.badge[data-size='tiny'] {
+  --_py: var(--space-micro);
+  --_px: var(--space-tiny);
+  --_gap: var(--space-micro);
+  --_font: var(--text-ui-text-small-regular);
+  --_icon: var(--line-height-footnote);
+}
+
+/* Micro wraps the text in 4px side padding and pads each icon on its outer side only. */
+.badge[data-size='micro'] {
+  --_py: var(--space-atom);
+  --_px: var(--space-atom);
+  --_gap: 0;
+  --_font: var(--text-ui-text-small-regular);
+  --_icon: calc(var(--space-tiny) + var(--space-atom));
+  /* Figma: the outline Micro badges have no fill. */
+  --_bg: transparent;
+}
+
+.badge[data-size='micro'] .text {
+  padding-inline: var(--space-micro);
+}
+
+.badge[data-size='micro'] .icon:first-child {
+  padding-inline-start: var(--layout-micro);
+}
+
+.badge[data-size='micro'] .icon:last-child {
+  padding-inline-end: var(--layout-micro);
+}
+
+/* Tones: --_c is the line and text color in outline, the background in filled. */
+.badge[data-tone='primary'] {
+  --_c: var(--color-primary);
+  --_on: var(--color-on-primary);
+}
+
+/* Figma uses the on-color for the outline text of Secondary and Tertiary. */
+.badge[data-tone='secondary'] {
+  --_c: var(--color-secondary);
+  --_on: var(--color-on-secondary);
+  --_fg: var(--_on);
+}
+
+.badge[data-tone='tertiary'] {
+  --_c: var(--color-tertiary);
+  --_on: var(--color-on-tertiary);
+  --_fg: var(--_on);
+}
+
+.badge[data-tone='error'] {
+  --_c: var(--color-error);
+  --_on: var(--color-on-error);
+}
+
+.badge[data-tone='success'] {
+  --_c: var(--color-success);
+  --_on: var(--color-on-success);
+}
+
+.badge[data-tone='warning'] {
+  --_c: var(--color-warning);
+  --_on: var(--color-on-warning);
+}
+
+.badge[data-filled] {
+  --_bg: var(--_c);
+  --_fg: var(--_on);
+}
+
+/* Default: a neutral outline, or high-emphasis fill with level-2 text. */
+.badge[data-tone='default'] {
+  --_line: var(--color-surface-level-4);
+  --_fg: var(--color-foreground-high-emphasis);
+}
+
+.badge[data-tone='default'][data-size='micro'] {
+  --_line: var(--color-foreground-ghost-emphasis);
+}
+
+.badge[data-tone='default'][data-filled] {
+  --_bg: var(--color-foreground-high-emphasis);
+  --_line: transparent;
+  --_fg: var(--color-foreground-level-2);
+}
+
+/* Disabled looks the same filled or not. */
+.badge[data-tone][data-disabled] {
+  --_bg: var(--color-surface-level-3);
+  --_line: transparent;
+  --_fg: var(--color-foreground-low-emphasis);
+}

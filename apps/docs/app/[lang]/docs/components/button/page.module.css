@@ -1,0 +1,136 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-small);
+}
+
+.figmaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-micro);
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-medium-emphasis);
+  text-decoration: none;
+}
+
+.figmaLink:hover {
+  color: var(--color-foreground-high-emphasis);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-small);
+}
+
+/* Playground */
+.playground {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--grid-column-2);
+  border: var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--color-surface-level-1);
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  min-block-size: var(--grid-column-2);
+  padding: var(--space-xxlarge);
+  background: var(--color-surface-background);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-small);
+  padding: var(--space-medium);
+  border-inline-start: var(--border);
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.controls > label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-micro);
+}
+
+.controls select,
+.controls input:not([type='checkbox']) {
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-high-emphasis);
+  padding: var(--space-micro) var(--space-tiny);
+  background: var(--color-surface-level-2);
+  border: var(--border);
+  border-radius: var(--radius-form-element-small);
+}
+
+.toggles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-micro);
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tiny);
+}
+
+.output {
+  grid-column: 1 / -1;
+  padding: var(--space-medium);
+  border-block-start: var(--border);
+}
+
+.outputTitle {
+  margin: 0 0 var(--space-tiny);
+  font: var(--text-ui-caption-small);
+  text-transform: var(--text-ui-caption-small-text-transform);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.note {
+  margin: var(--space-tiny) 0 0;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+/* State matrix */
+.matrixWrap {
+  overflow-x: auto;
+  margin-block: var(--space-small) var(--space-xlarge);
+  padding: var(--space-medium);
+  background: var(--color-surface-level-1);
+  border: var(--border);
+  border-radius: var(--radius-card);
+}
+
+.matrix {
+  border-collapse: separate;
+  border-spacing: var(--space-small) var(--space-tiny);
+}
+
+.matrix th {
+  font: var(--text-ui-caption-small);
+  text-transform: var(--text-ui-caption-small-text-transform);
+  color: var(--color-foreground-low-emphasis);
+  text-align: start;
+  white-space: nowrap;
+}
+
+@media (width < 768px) {
+  .playground {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .controls {
+    border-inline-start: none;
+    border-block-start: var(--border);
+  }
+}

@@ -1,0 +1,223 @@
+/* Building blocks for component pages. */
+
+/* Designer / Developer switch (stand-in for the future Segment component). */
+.segment {
+  display: inline-flex;
+  gap: var(--space-atom);
+  padding: var(--space-atom);
+  background: var(--color-surface-level-3);
+  border-radius: var(--radius-form-element);
+}
+
+.segmentItem {
+  padding: var(--space-micro) var(--space-medium);
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-medium-emphasis);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-form-element-small);
+  cursor: pointer;
+}
+
+.segmentItem[aria-checked='true'] {
+  font: var(--text-ui-text-bold);
+  color: var(--color-foreground-high-emphasis);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-depth-sm);
+}
+
+.segmentItem:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+/* Code */
+.code {
+  position: relative;
+}
+
+.code pre {
+  margin: 0;
+  padding: var(--space-medium);
+  padding-inline-end: var(--space-xxlarge);
+  overflow-x: auto;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-high-emphasis);
+  background: var(--color-surface-level-2);
+  border: var(--border);
+  border-radius: var(--radius-card-inner);
+}
+
+.copy {
+  position: absolute;
+  inset-block-start: var(--space-tiny);
+  inset-inline-end: var(--space-tiny);
+  display: inline-flex;
+  padding: var(--space-micro);
+  color: var(--color-foreground-low-emphasis);
+  background: var(--color-surface-level-1);
+  border: var(--border);
+  border-radius: var(--radius-form-element-small);
+  cursor: pointer;
+}
+
+.copy:hover {
+  color: var(--color-foreground-high-emphasis);
+}
+
+/* Example: preview + code */
+.example {
+  margin-block: var(--space-small) var(--space-xlarge);
+  border: var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-small);
+  padding: var(--space-xlarge);
+  background: var(--color-surface-level-1);
+}
+
+.preview[data-stack] {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.exampleCode pre {
+  border: none;
+  border-block-start: var(--border);
+  border-radius: 0;
+}
+
+/* Tables */
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font: var(--text-ui-text-small-regular);
+}
+
+.table th {
+  text-align: start;
+  font: var(--text-ui-caption-small);
+  text-transform: var(--text-ui-caption-small-text-transform);
+  color: var(--color-foreground-low-emphasis);
+  padding: var(--space-tiny) var(--space-small);
+  border-block-end: var(--border);
+}
+
+.table td {
+  padding: var(--space-tiny) var(--space-small);
+  border-block-end: var(--border);
+  vertical-align: top;
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.table td code {
+  overflow-wrap: anywhere;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  margin-block: var(--space-small) var(--space-xlarge);
+}
+
+/* Component page toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-small);
+}
+
+.figmaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-micro);
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-medium-emphasis);
+  text-decoration: none;
+}
+
+.figmaLink:hover {
+  color: var(--color-foreground-high-emphasis);
+}
+
+/* Playground shell shared by component pages */
+.playground {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--grid-column-2);
+  border: var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--color-surface-level-1);
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  min-block-size: var(--grid-column-2);
+  padding: var(--space-xxlarge);
+  background: var(--color-surface-background);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-small);
+  padding: var(--space-medium);
+  border-inline-start: var(--border);
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.controls > label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-micro);
+}
+
+.controls select,
+.controls input:not([type='checkbox']) {
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-high-emphasis);
+  padding: var(--space-micro) var(--space-tiny);
+  background: var(--color-surface-level-2);
+  border: var(--border);
+  border-radius: var(--radius-form-element-small);
+}
+
+.controls .check {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-tiny);
+}
+
+.output {
+  grid-column: 1 / -1;
+  padding: var(--space-medium);
+  border-block-start: var(--border);
+}
+
+.outputTitle {
+  margin: 0 0 var(--space-tiny);
+  font: var(--text-ui-caption-small);
+  text-transform: var(--text-ui-caption-small-text-transform);
+  color: var(--color-foreground-low-emphasis);
+}
+
+@media (width < 768px) {
+  .playground {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .controls {
+    border-inline-start: none;
+    border-block-start: var(--border);
+  }
+}

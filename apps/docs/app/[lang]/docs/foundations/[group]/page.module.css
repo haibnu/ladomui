@@ -1,0 +1,129 @@
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-medium);
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.sectionTitle {
+  text-transform: capitalize;
+}
+
+.count {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.table {
+  width: 100%;
+  /* Fixed layout so wide previews (e.g. a 1328px grid bar) cannot widen the columns. */
+  table-layout: fixed;
+  border-collapse: collapse;
+  background: var(--color-surface-level-1);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-depth-none);
+}
+
+.table th {
+  text-align: start;
+  font: var(--text-ui-caption-small);
+  text-transform: var(--text-ui-caption-small-text-transform);
+  color: var(--color-foreground-low-emphasis);
+  padding: var(--space-small) var(--space-medium);
+  border-block-end: var(--border);
+}
+
+.table th:nth-child(1),
+.table th:nth-child(2) {
+  inline-size: 38%;
+}
+
+.table td {
+  padding: var(--space-small) var(--space-medium);
+  border-block-end: var(--border);
+  vertical-align: middle;
+}
+
+.table tr {
+  scroll-margin-block-start: var(--space-landing-section-v-gutter);
+}
+
+.table tr:target td {
+  background: var(--color-surface-level-3);
+}
+
+.table tr:last-child td {
+  border-block-end: none;
+}
+
+.table code {
+  font: var(--text-ui-text-small-regular);
+  overflow-wrap: anywhere;
+}
+
+.source {
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-low-emphasis);
+  margin-block-start: var(--space-atom);
+}
+
+.modes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mode {
+  font: var(--text-ui-footnote-bold);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.swatch {
+  display: block;
+  inline-size: var(--space-xxlarge);
+  block-size: var(--space-xxlarge);
+  border-radius: var(--radius-form-element-small);
+  box-shadow: var(--shadow-depth-none);
+}
+
+.bar {
+  display: block;
+  max-inline-size: 100%;
+  block-size: var(--space-tiny);
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+.box {
+  display: block;
+  inline-size: var(--space-xxlarge);
+  block-size: var(--space-xxlarge);
+  background: var(--color-surface-level-1);
+  border-radius: var(--radius-form-element-small);
+}
+
+/* Narrow screens: stack the cells of each row. */
+@media (width < 768px) {
+  .table,
+  .table tbody {
+    display: block;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tr {
+    display: block;
+    padding-block: var(--space-tiny);
+    border-block-end: var(--border);
+  }
+
+  .table td {
+    display: block;
+    border: none;
+    padding-block: var(--space-micro);
+  }
+}

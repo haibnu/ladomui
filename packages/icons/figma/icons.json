@@ -1,0 +1,3446 @@
+[
+  {
+    "id": "2001:1959",
+    "name": "placeholder",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1962",
+    "name": "setting",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1965",
+    "name": "delete",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1968",
+    "name": "password",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1971",
+    "name": "statistic",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:950",
+    "name": "menu",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1974",
+    "name": "info",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1977",
+    "name": "warning",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1980",
+    "name": "error",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1983",
+    "name": "success",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1986",
+    "name": "check",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2010:14224",
+    "name": "map",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2010:15279",
+    "name": "map current",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2010:14226",
+    "name": "map pin",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2010:14234",
+    "name": "Report",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2010:14231",
+    "name": "map layers",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:914",
+    "name": "search",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19052",
+    "name": "trip",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19040",
+    "name": "save list",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19042",
+    "name": "save",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19044",
+    "name": "saved",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": [
+      0
+    ]
+  },
+  {
+    "id": "2020:19047",
+    "name": "currency-tl",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19049",
+    "name": "currency-dollar",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19051",
+    "name": "currency-euro",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19208",
+    "name": "price-dollar",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19226",
+    "name": "contribute",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2020:19241",
+    "name": "profile",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1006",
+    "name": "edit",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "rename",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2074:5403",
+    "name": "message",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:941",
+    "name": "notification active",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:944",
+    "name": "notification",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:953",
+    "name": "logout",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:932",
+    "name": "question",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "faq, sss",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27197",
+    "name": "shopping",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27228",
+    "name": "restaurant",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27241",
+    "name": "grocery",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27252",
+    "name": "wc",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "restroom",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27302",
+    "name": "park",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27312",
+    "name": "parking",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27369",
+    "name": "mosque",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27370",
+    "name": "church",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27371",
+    "name": "pray",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1204",
+    "name": "image",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:894",
+    "name": "image library",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "gallery",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2181:17906",
+    "name": "add photo",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2181:17925",
+    "name": "share",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:729",
+    "name": "star",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2182:17993",
+    "name": "star filled",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2182:17994",
+    "name": "star half filled",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2182:17995",
+    "name": "star half",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:917",
+    "name": "Icon/return list",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1078",
+    "name": "Icon/automation",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1066",
+    "name": "Icon/channel sms",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:947",
+    "name": "Icon/news",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:956",
+    "name": "Icon/key",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:908",
+    "name": "Icon/show",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1028",
+    "name": "Icon/data",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "warehouse",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:962",
+    "name": "Icon/hide",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:997",
+    "name": "Icon/folder",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1072",
+    "name": "Icon/channel email",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1069",
+    "name": "Icon/channel mobile push",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1064",
+    "name": "Icon/channel web push",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:995",
+    "name": "Icon/folder full",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1003",
+    "name": "Icon/export",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:911",
+    "name": "Icon/send email",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "send, gönder, mail, eposta",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1075",
+    "name": "Icon/campaign",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:935",
+    "name": "Icon/phone",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:965",
+    "name": "Icon/folder system",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1080",
+    "name": "Icon/apps",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1031",
+    "name": "Icon/dashboard",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:968",
+    "name": "Icon/folder open",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1083",
+    "name": "Icon/home",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:885",
+    "name": "Icon/tour - education",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1110",
+    "name": "Icon/analytics",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:959",
+    "name": "Icon/insight - tips",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:974",
+    "name": "Icon/file",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1052",
+    "name": "Icon/collapse",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:888",
+    "name": "Icon/activity",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1034",
+    "name": "Icon/content",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1009",
+    "name": "Icon/data space",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:971",
+    "name": "Icon/file video",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1000",
+    "name": "Icon/external link",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:891",
+    "name": "Icon/failed",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1036",
+    "name": "Icon/channel in-app",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1011",
+    "name": "Icon/channel call center",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:977",
+    "name": "Icon/file pdf",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:920",
+    "name": "Icon/remove",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1038",
+    "name": "Icon/channel social ads",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1014",
+    "name": "Icon/intelligence",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:980",
+    "name": "Icon/recurring",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1113",
+    "name": "Icon/add",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:897",
+    "name": "Icon/product",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1041",
+    "name": "Icon/channel display ads",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1017",
+    "name": "Icon/desicion",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:982",
+    "name": "Icon/end",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1098",
+    "name": "Icon/coupon",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1058",
+    "name": "Icon/close",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:899",
+    "name": "Icon/transactions",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1043",
+    "name": "Icon/channel web",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1019",
+    "name": "Icon/time",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:985",
+    "name": "Icon/category affinity",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1101",
+    "name": "Icon/dots",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1061",
+    "name": "Icon/clear",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:902",
+    "name": "Icon/experience",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1045",
+    "name": "Icon/channel mobile web",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1022",
+    "name": "Icon/split",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:987",
+    "name": "Icon/lifetime value",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1104",
+    "name": "Icon/thumb up - like",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:923",
+    "name": "Icon/refresh - preperad",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:905",
+    "name": "Icon/paid social",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1047",
+    "name": "Icon/channel atm kiosk",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1025",
+    "name": "Icon/audience",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:989",
+    "name": "Icon/discount",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1107",
+    "name": "Icon/thumb down - dislike",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:926",
+    "name": "Icon/lock",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:686",
+    "name": "Icon/credit card",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:879",
+    "name": "Icon/branch",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:876",
+    "name": "Icon/sms content",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:992",
+    "name": "Icon/device mobile",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:929",
+    "name": "Icon/device tablet",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1149",
+    "name": "Icon/webhook",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:689",
+    "name": "Icon/device unknown",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:882",
+    "name": "Icon/download",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "indir, all dowload, download fail",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1118",
+    "name": "Icon/device desktop",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1121",
+    "name": "Icon/filter",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1127",
+    "name": "Icon/token",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1130",
+    "name": "Icon/list",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:692",
+    "name": "Icon/table",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1124",
+    "name": "Icon/emoji",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1055",
+    "name": "Icon/collapse",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1049",
+    "name": "Icon/expand",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:695",
+    "name": "Icon/undo",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:861",
+    "name": "Icon/copy",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:735",
+    "name": "Icon/duplicate",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:829",
+    "name": "Icon/move",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:838",
+    "name": "Icon/remote segment",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:851",
+    "name": "Icon/event",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:698",
+    "name": "Icon/drag move",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:864",
+    "name": "Icon/channel onsite",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:738",
+    "name": "Icon/security - shield solid",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:832",
+    "name": "Icon/browser lock",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "private",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:846",
+    "name": "Icon/pos",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:853",
+    "name": "Icon/group",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:701",
+    "name": "Icon/web mobile devices",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:866",
+    "name": "Icon/cloud",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:835",
+    "name": "Icon/editor bold",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:848",
+    "name": "Icon/editor italic",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:855",
+    "name": "Icon/editor underline",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:703",
+    "name": "Icon/form builder",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:869",
+    "name": "Icon/responsive",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:740",
+    "name": "Icon/file excel",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:767",
+    "name": "Icon/file empty",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:826",
+    "name": "Icon/file docs",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:858",
+    "name": "Icon/file zip",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:706",
+    "name": "Icon/design editor",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:871",
+    "name": "Icon/sort a to z",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:743",
+    "name": "Icon/sort z to a",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:805",
+    "name": "Icon/gsm",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:770",
+    "name": "Icon/file ppt",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:874",
+    "name": "Icon/start date",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:709",
+    "name": "Icon/date time",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:746",
+    "name": "Icon/end date",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:808",
+    "name": "Icon/add folder",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:779",
+    "name": "Icon/sql",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:773",
+    "name": "Icon/stop",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:712",
+    "name": "Icon/denided",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1133",
+    "name": "Icon/cancel",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:748",
+    "name": "Icon/device",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:811",
+    "name": "Icon/add tag",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:782",
+    "name": "Icon/tag",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:776",
+    "name": "Icon/join",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:717",
+    "name": "Icon/sidebar",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:750",
+    "name": "Icon/lead",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:798",
+    "name": "Icon/icon microsoft dynamics",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:715",
+    "name": "Icon/in app send",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1136",
+    "name": "Icon/onsite send",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:753",
+    "name": "Icon/onsite content",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:813",
+    "name": "Icon/channel push",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:785",
+    "name": "Icon/push send",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:800",
+    "name": "Icon/push content",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:720",
+    "name": "Icon/icon mixpanel",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:755",
+    "name": "Icon/order",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:815",
+    "name": "Icon/user event aggregate",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:787",
+    "name": "Icon/revenue",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:802",
+    "name": "Icon/channel whatsapp",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:723",
+    "name": "Icon/one time",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1138",
+    "name": "Icon/full screen",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "expand",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:758",
+    "name": "Icon/minimize screen",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "Shrink",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:817",
+    "name": "Icon/versions",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:790",
+    "name": "Icon/public",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "earth\nworld",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:840",
+    "name": "Icon/remote table",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1141",
+    "name": "Icon/optimize",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "expand",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:761",
+    "name": "Icon/redo",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "Shrink",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:820",
+    "name": "Icon/history",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:793",
+    "name": "Icon/random",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "earth\nworld",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:843",
+    "name": "Icon/engagement",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1144",
+    "name": "Icon/ai symbol",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "expand",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:764",
+    "name": "Icon/story",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "Shrink",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:823",
+    "name": "Icon/mute",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:795",
+    "name": "Icon/unmute",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "earth\nworld",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:732",
+    "name": "Icon/light",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1146",
+    "name": "Icon/dark",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "expand",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1166",
+    "name": "Icon/ab testing",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1279",
+    "name": "Icon/contact",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "user",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1284",
+    "name": "Icon/api",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1289",
+    "name": "Icon/apple",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1168",
+    "name": "Icon/automated job",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1282",
+    "name": "Icon/bounced",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "user",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1276",
+    "name": "Icon/attribute",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1287",
+    "name": "Icon/channel",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1292",
+    "name": "Icon/code editor",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1295",
+    "name": "Icon/completed",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1171",
+    "name": "Icon/contact info",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1174",
+    "name": "Icon/contacts",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1199",
+    "name": "Icon/customization tag",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1216",
+    "name": "Icon/data import",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1230",
+    "name": "Icon/data table",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 1,
+    "strokeWeights": [
+      1.5
+    ]
+  },
+  {
+    "id": "2001:1256",
+    "name": "Icon/date range",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1298",
+    "name": "Icon/drag drop edit",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1177",
+    "name": "Icon/email content",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1179",
+    "name": "Icon/website",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1221",
+    "name": "Icon/data export",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1232",
+    "name": "Icon/exclude",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1273",
+    "name": "Icon/facebook",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1301",
+    "name": "Icon/file upload",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1181",
+    "name": "Icon/in-app content",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1202",
+    "name": "Icon/freq capping",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1224",
+    "name": "Icon/google",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": [
+      0
+    ]
+  },
+  {
+    "id": "2001:1235",
+    "name": "Icon/android",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1259",
+    "name": "Icon/huawei",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1304",
+    "name": "Icon/hourly capping",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1183",
+    "name": "Icon/interactive segment",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1227",
+    "name": "Icon/list contact",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1238",
+    "name": "Icon/message cache",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1261",
+    "name": "Icon/mobile numbers",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1307",
+    "name": "Icon/mobile push content",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1185",
+    "name": "Icon/mobile push send",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1207",
+    "name": "Icon/monthly send",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1321",
+    "name": "Icon/oracle",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1309",
+    "name": "Icon/pause",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1187",
+    "name": "Icon/play",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1210",
+    "name": "Icon/person",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1324",
+    "name": "Icon/ready",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1241",
+    "name": "Icon/recent items",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 1,
+    "strokeWeights": [
+      1.5
+    ]
+  },
+  {
+    "id": "2001:1271",
+    "name": "Icon/recent sends",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 1,
+    "strokeWeights": [
+      1.5
+    ]
+  },
+  {
+    "id": "2001:1312",
+    "name": "Icon/report",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1190",
+    "name": "Icon/roles",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "description": "Management, Permission",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1213",
+    "name": "Icon/row",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1327",
+    "name": "Icon/running",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1243",
+    "name": "Icon/segment",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1315",
+    "name": "Icon/sends",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1193",
+    "name": "Icon/sftp",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1196",
+    "name": "Icon/stack",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1337",
+    "name": "Icon/text editor",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1318",
+    "name": "Icon/today guide",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1332",
+    "name": "Icon/total size",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1330",
+    "name": "Icon/total table",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1334",
+    "name": "Icon/tracking",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1251",
+    "name": "Icon/unsubscribed mail",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1248",
+    "name": "Icon/unsubscribed mobile",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1246",
+    "name": "Icon/web push content",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1254",
+    "name": "Icon/web push send",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:938",
+    "name": "Icon/overview",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1116",
+    "name": "Icon/ai",
+    "group": "Icon / Frame 57 / Frame 58 / common",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1990",
+    "name": "arrow left",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1993",
+    "name": "arrow top",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1996",
+    "name": "arrow right",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1999",
+    "name": "arrow bottom",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:2002",
+    "name": "collapse left",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:2005",
+    "name": "collapse up",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:2008",
+    "name": "collapse right",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:2011",
+    "name": "collapse bottom",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1086",
+    "name": "back",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1089",
+    "name": "forward",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1092",
+    "name": "down",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1095",
+    "name": "top",
+    "group": "Icon / Frame 57 / Frame 59 / direction",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:2015",
+    "name": "charge station",
+    "group": "Icon / Frame 57 / Frame 60 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:2018",
+    "name": "green energy",
+    "group": "Icon / Frame 57 / Frame 60 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:2021",
+    "name": "ac charge",
+    "group": "Icon / Frame 57 / Frame 60 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:2024",
+    "name": "dc charge",
+    "group": "Icon / Frame 57 / Frame 60 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2069:33469",
+    "name": "connector ccs 2",
+    "group": "Icon / Frame 57 / Frame 60 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2069:33362",
+    "name": "connector type 2",
+    "group": "Icon / Frame 57 / Frame 60 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2069:33490",
+    "name": "connector tesla",
+    "group": "Icon / Frame 57 / Frame 60 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2178:27212",
+    "name": "EV",
+    "group": "Icon / Frame 57 / Frame 60 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1409",
+    "name": "Brands / Google Chrome Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 42,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1559",
+    "name": "Brands / Facebook Ads Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1522",
+    "name": "Brands / Shopify Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 3,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1561",
+    "name": "Brands / Google Adsense Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 3,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1565",
+    "name": "Brands / Google 360 Suit Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 14,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1602",
+    "name": "Brands / Youtube Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1624",
+    "name": "Brands / Slack Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1664",
+    "name": "Brands / Linkedin Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1666",
+    "name": "Brands / Instagram Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1594",
+    "name": "Brands / Facebook Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1585",
+    "name": "Brands / Google Tag Manager Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1582",
+    "name": "Brands / Google Analytics Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "4129:17931",
+    "name": "twitter-X Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1609",
+    "name": "Brands / Figma Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 5,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1615",
+    "name": "Brands / Github Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1617",
+    "name": "Brands / Storybook Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1654",
+    "name": "Brands / Gmail Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 5,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1696",
+    "name": "Brands / Apple Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1709",
+    "name": "Brands / Google Play Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1735",
+    "name": "Brands / Microsoft Dynamics 365 Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1800",
+    "name": "Brands / WhatsApp Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1805",
+    "name": "Brands / Mixpanel Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1790",
+    "name": "Brands / Infobip Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 3,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1832",
+    "name": "Brands / Zenvia Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1836",
+    "name": "Brands / Twilio Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1847",
+    "name": "Brands / Youtube Negative Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1853",
+    "name": "Brands / Linkedin Negative Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1857",
+    "name": "Brands / Survey Monkey Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1871",
+    "name": "Brands / Amazon Redshift Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "16x18",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1867",
+    "name": "Brands /  BigQuery Symbol",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1917",
+    "name": "Brands / Amazon",
+    "group": "Icon / Frame 57 / Frame 62 / electric",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1354",
+    "name": "Flags / TR",
+    "group": "Icon / Frame 57 / Frame 61 / electric",
+    "size": "24x24",
+    "shapes": 5,
+    "stroked": 0,
+    "strokeWeights": [
+      0
+    ]
+  },
+  {
+    "id": "2001:1362",
+    "name": "Flags / EN",
+    "group": "Icon / Frame 57 / Frame 61 / electric",
+    "size": "24x24",
+    "shapes": 6,
+    "stroked": 0,
+    "strokeWeights": [
+      0
+    ]
+  },
+  {
+    "id": "2001:1400",
+    "name": "Brands / AI",
+    "group": "Bounds / Group 4",
+    "size": "24x24",
+    "shapes": 5,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1406",
+    "name": "Brands / Insight",
+    "group": "Bounds / Group 4",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1461",
+    "name": "Brands / Google Chrome",
+    "group": "Bounds / Group 4",
+    "size": "24x24",
+    "shapes": 43,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1516",
+    "name": "Brands / Shopify",
+    "group": "Bounds / Group 4",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1529",
+    "name": "Brands / Segmentify",
+    "group": "Bounds / Group 5",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1532",
+    "name": "Brands / Google Ads Symbol",
+    "group": "Bounds / Group 5",
+    "size": "24x24",
+    "shapes": 5,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1538",
+    "name": "Brands / Facebook Ads",
+    "group": "Bounds / Group 5",
+    "size": "24x24",
+    "shapes": 2,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1590",
+    "name": "Brands / Twitter - X Symbol",
+    "group": "Bounds / Group 7",
+    "size": "24x24",
+    "shapes": 0,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1597",
+    "name": "Brands / Youtube",
+    "group": "Bounds / Group 7",
+    "size": "24x24",
+    "shapes": 3,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1620",
+    "name": "Brands / Storybook",
+    "group": "Bounds / Group 8",
+    "size": "24x24",
+    "shapes": 3,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1629",
+    "name": "Brands / Slack",
+    "group": "Bounds / Group 8",
+    "size": "24x24",
+    "shapes": 5,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1637",
+    "name": "Brands / Gmail",
+    "group": "Bounds / Group 9",
+    "size": "24x24",
+    "shapes": 11,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1652",
+    "name": "Brands / Github",
+    "group": "Bounds / Group 9",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1662",
+    "name": "Brands / Linkedin",
+    "group": "Bounds / Group 9",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1670",
+    "name": "Brands / Apple Pay",
+    "group": "Bounds / Group 10",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1674",
+    "name": "Brands / Github Octocat",
+    "group": "Bounds / Group 10",
+    "size": "24x24",
+    "shapes": 20,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1700",
+    "name": "Brands / Google Play",
+    "group": "Bounds / Group 10",
+    "size": "24x24",
+    "shapes": 5,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1716",
+    "name": "Brands / Google",
+    "group": "Bounds / Group 10",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1724",
+    "name": "Brands / Neto Symbol",
+    "group": "Bounds / Group 11",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1726",
+    "name": "Brands / Growth Symbol",
+    "group": "Bounds / Group 11",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1728",
+    "name": "Brands / Mageto Symbol",
+    "group": "Bounds / Group 11",
+    "size": "24x24",
+    "shapes": 0,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1729",
+    "name": "Brands / Mixpanel",
+    "group": "Bounds / Group 11",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1738",
+    "name": "Brands / Microsoft Dynamics 365",
+    "group": "Bounds / Group 11",
+    "size": "24x24",
+    "shapes": 22,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1763",
+    "name": "Brands / CM",
+    "group": "Bounds / Group 12",
+    "size": "24x24",
+    "shapes": 3,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1767",
+    "name": "Brands / Infobip",
+    "group": "Bounds / Group 12",
+    "size": "24x24",
+    "shapes": 16,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1794",
+    "name": "Brands / WhatsApp",
+    "group": "Bounds / Group 12",
+    "size": "24x24",
+    "shapes": 5,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1813",
+    "name": "Brands / Salesforce",
+    "group": "Bounds / Group 13",
+    "size": "24x24",
+    "shapes": 4,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1821",
+    "name": "Brands / Google Ads",
+    "group": "Bounds / Group 13",
+    "size": "24x24",
+    "shapes": 7,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1834",
+    "name": "Brands / Zenvia",
+    "group": "Bounds / Group 13",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1838",
+    "name": "Brands / Twilio",
+    "group": "Bounds / Group 13",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1842",
+    "name": "Brands / Typeform",
+    "group": "Bounds / Group 14",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1845",
+    "name": "Brands / Amazon Redshift",
+    "group": "Bounds / Group 14",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1855",
+    "name": "Brands / Survey Monkey",
+    "group": "Bounds / Group 14",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1861",
+    "name": "Brands / Microsoft Azure",
+    "group": "Bounds / Group 15",
+    "size": "24x15",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1863",
+    "name": "Brands / MySQL",
+    "group": "Bounds / Group 15",
+    "size": "23x12",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1865",
+    "name": "Brands / Oracle",
+    "group": "Bounds / Group 15",
+    "size": "22x3",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1869",
+    "name": "Brands /  BigQuery",
+    "group": "Bounds / Group 15",
+    "size": "24x8",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1875",
+    "name": "Brands / Android",
+    "group": "Bounds / Group 16",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1877",
+    "name": "Brands / Huawei",
+    "group": "Bounds / Group 16",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1879",
+    "name": "Brands / Facebook Custom Audience",
+    "group": "Bounds / Group 16",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1881",
+    "name": "Brands / Criteo",
+    "group": "Bounds / Group 16",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1883",
+    "name": "Brands / Belogic",
+    "group": "Bounds / Group 16",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1885",
+    "name": "Brans / SQL Server",
+    "group": "Bounds / Group 16",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1889",
+    "name": "Brands / Programattik",
+    "group": "Bounds / Group 17",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1891",
+    "name": "Brands / Microsoft Dynamics CRM",
+    "group": "Bounds / Group 17",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1893",
+    "name": "Brands / İleti Yönetim Sistemi",
+    "group": "Bounds / Group 17",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1895",
+    "name": "Brands / segmentify",
+    "group": "Bounds / Group 17",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1897",
+    "name": "Brands / pisano",
+    "group": "Bounds / Group 17",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1899",
+    "name": "Brands / Apps Flyer",
+    "group": "Bounds / Group 17",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1903",
+    "name": "Brands / Zoho",
+    "group": "Bounds / Group 18",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1905",
+    "name": "Brands / Zadesk",
+    "group": "Bounds / Group 18",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1907",
+    "name": "Brands / Oracle Autonomous Data Warehouse",
+    "group": "Bounds / Group 18",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1909",
+    "name": "Brands / Webinstats",
+    "group": "Bounds / Group 18",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1911",
+    "name": "Brands / theadx",
+    "group": "Bounds / Group 18",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1913",
+    "name": "Brands / Adjust",
+    "group": "Bounds / Group 18",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1924",
+    "name": "Brands / Twitter - X Negative Symbol",
+    "group": "Bounds / Group 19",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1926",
+    "name": "Brands / Magento",
+    "group": "Bounds / Group 19",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1928",
+    "name": "Brands / SAP",
+    "group": "Bounds / Group 19",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1930",
+    "name": "Brands / CBOT",
+    "group": "Bounds / Group 19",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1932",
+    "name": "Brands / Karix",
+    "group": "Bounds / Group 19",
+    "size": "24x24",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1950",
+    "name": "Brands / Apple Symbol",
+    "size": "24x24",
+    "shapes": 0,
+    "stroked": 0,
+    "strokeWeights": []
+  },
+  {
+    "id": "2001:1952",
+    "name": ".Icon Preview",
+    "size": "129x88",
+    "shapes": 1,
+    "stroked": 0,
+    "strokeWeights": []
+  }
+]

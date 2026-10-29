@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@ladom/icons": "workspace:*",
     "@ladom/tokens": "workspace:*"
   },
   "peerDependencies": {

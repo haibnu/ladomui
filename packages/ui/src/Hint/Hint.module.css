@@ -1,0 +1,66 @@
+/* Hint, from Figma Components / Hint (1137:183): a round badge with a 12px glyph and a short text. */
+
+.hint {
+  display: flex;
+  align-items: center;
+  gap: var(--_gap);
+  color: var(--_fg);
+}
+
+.hint[data-size='medium'] {
+  /* Figma uses 12px for Default and Information and 16px for the others; code uses 12px for all. */
+  --_gap: var(--layout-small);
+  --_badge: var(--line-height-base);
+  font: var(--text-ui-text-regular);
+}
+
+.hint[data-size='small'] {
+  --_gap: var(--layout-tiny);
+  --_badge: var(--line-height-text-small);
+  font: var(--text-ui-text-small-regular);
+}
+
+.hint[data-with-form] {
+  padding-block-start: var(--space-form-ingroup-gutter);
+}
+
+.badge {
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--_badge);
+  block-size: var(--_badge);
+  border-radius: var(--radius-full);
+  color: var(--_glyph);
+  background: var(--_badge-bg);
+}
+
+.hint[data-tone='default'] {
+  --_fg: var(--color-foreground-medium-emphasis);
+  --_badge-bg: var(--color-surface-level-3);
+  --_glyph: var(--color-foreground-medium-emphasis);
+}
+
+.hint[data-tone='info'] {
+  --_fg: var(--color-on-info);
+  --_badge-bg: var(--color-info);
+  --_glyph: var(--color-on-info);
+}
+
+.hint[data-tone='error'] {
+  --_fg: var(--color-error);
+  --_badge-bg: var(--color-error);
+  --_glyph: var(--color-on-error);
+}
+
+.hint[data-tone='success'] {
+  --_fg: var(--color-success);
+  --_badge-bg: var(--color-success);
+  --_glyph: var(--color-on-success);
+}
+
+.hint[data-tone='warning'] {
+  --_fg: var(--color-warning);
+  --_badge-bg: var(--color-warning);
+  --_glyph: var(--color-foreground-level-2);
+}

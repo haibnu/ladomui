@@ -1,68 +1,266 @@
 {
-  "$description": "Code-side additions to the Figma export. Every text style in styles.json must resolve fontFamily, fontStyle, fontSize and lineHeight to a variable; this file supplies the bindings Figma is missing and the variables that do not exist there yet. Values must equal the style's current Figma values (the build checks this).",
+  "$description": "Code-side additions to the Figma export: variables Figma uses as raw values or lacks, and bindings for text styles that Figma leaves unbound. Every text style in styles.json must resolve fontFamily, fontStyle, fontSize and lineHeight to a variable. Values must equal the current Figma values (the build checks the text styles).",
   "fontFamily": "Hanken Grotesk",
   "newVariables": [
-    { "name": "design-tokens/typography/weight/regular", "value": "Regular" },
-
-    { "name": "design-tokens/typography/size/title", "value": 32 },
-    { "name": "design-tokens/typography/size/page-title", "value": 18 },
-    { "name": "design-tokens/typography/size/h1", "value": 40 },
-    { "name": "design-tokens/typography/size/h2", "value": 32 },
-    { "name": "design-tokens/typography/size/h3", "value": 24 },
-    { "name": "design-tokens/typography/size/h4", "value": 20 },
-    { "name": "design-tokens/typography/size/h5", "value": 18 },
-    { "name": "design-tokens/typography/size/h6", "value": 16 },
-    { "name": "design-tokens/typography/size/hero", "value": 48 },
-    { "name": "design-tokens/typography/size/hero-xl", "value": 64 },
-
-    { "name": "design-tokens/typography/line-height/title", "value": 48 },
-    { "name": "design-tokens/typography/line-height/paragraphy", "value": "AUTO" },
-    { "name": "design-tokens/typography/line-height/h1", "value": 56 },
-    { "name": "design-tokens/typography/line-height/h2", "value": 48 },
-    { "name": "design-tokens/typography/line-height/h3", "value": 32 },
-    { "name": "design-tokens/typography/line-height/h4", "value": 28 },
-    { "name": "design-tokens/typography/line-height/h5", "value": 24 },
-    { "name": "design-tokens/typography/line-height/h6", "value": 24 },
-    { "name": "design-tokens/typography/line-height/hero", "value": 64 },
-    { "name": "design-tokens/typography/line-height/hero-xl", "value": 80 }
+    {
+      "name": "design-tokens/typography/weight/regular",
+      "value": "Regular"
+    },
+    {
+      "name": "design-tokens/typography/size/title",
+      "value": 32
+    },
+    {
+      "name": "design-tokens/typography/size/page-title",
+      "value": 18
+    },
+    {
+      "name": "design-tokens/typography/size/h1",
+      "value": 40
+    },
+    {
+      "name": "design-tokens/typography/size/h2",
+      "value": 32
+    },
+    {
+      "name": "design-tokens/typography/size/h3",
+      "value": 24
+    },
+    {
+      "name": "design-tokens/typography/size/h4",
+      "value": 20
+    },
+    {
+      "name": "design-tokens/typography/size/h5",
+      "value": 18
+    },
+    {
+      "name": "design-tokens/typography/size/h6",
+      "value": 16
+    },
+    {
+      "name": "design-tokens/typography/size/hero",
+      "value": 48
+    },
+    {
+      "name": "design-tokens/typography/size/hero-xl",
+      "value": 64
+    },
+    {
+      "name": "design-tokens/typography/line-height/title",
+      "value": 48
+    },
+    {
+      "name": "design-tokens/typography/line-height/paragraphy",
+      "value": "AUTO"
+    },
+    {
+      "name": "design-tokens/typography/line-height/h1",
+      "value": 56
+    },
+    {
+      "name": "design-tokens/typography/line-height/h2",
+      "value": 48
+    },
+    {
+      "name": "design-tokens/typography/line-height/h3",
+      "value": 32
+    },
+    {
+      "name": "design-tokens/typography/line-height/h4",
+      "value": 28
+    },
+    {
+      "name": "design-tokens/typography/line-height/h5",
+      "value": 24
+    },
+    {
+      "name": "design-tokens/typography/line-height/h6",
+      "value": 24
+    },
+    {
+      "name": "design-tokens/typography/line-height/hero",
+      "value": 64
+    },
+    {
+      "name": "design-tokens/typography/line-height/hero-xl",
+      "value": 80
+    },
+    {
+      "name": "design-tokens/radius/r-checkbox",
+      "value": 6
+    },
+    {
+      "name": "component-tokens/loader/track-height",
+      "value": 5
+    }
   ],
   "styles": {
-    "ui/title": { "fontFamily": "font-name", "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/title", "lineHeight": "design-tokens/typography/line-height/title" },
-    "ui/card title": { "fontFamily": "font-name", "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/text-lead", "lineHeight": "design-tokens/typography/line-height/base" },
-    "ui/label": { "fontFamily": "font-name", "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/base-size", "lineHeight": "design-tokens/typography/line-height/base" },
-    "ui/CAPTION": { "fontFamily": "font-name", "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/text-small", "lineHeight": "design-tokens/typography/line-height/text small" },
-
-    "ui/text small/bold": { "lineHeight": "design-tokens/typography/line-height/text small" },
-    "ui/footnote/bold": { "lineHeight": "design-tokens/typography/line-height/footnote" },
-    "ui/CAPTION Small": { "lineHeight": "design-tokens/typography/line-height/footnote" },
-    "ui/page title": { "fontSize": "design-tokens/typography/size/page-title", "lineHeight": "design-tokens/typography/line-height/base" },
-    "ui/button": { "fontStyle": "design-tokens/typography/weight/normal" },
-    "content/paragraphy/regular": { "lineHeight": "design-tokens/typography/line-height/paragraphy" },
-    "content/paragraphy/bold": { "lineHeight": "design-tokens/typography/line-height/paragraphy" },
-
-    "content/H1/Regular": { "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/h1", "lineHeight": "design-tokens/typography/line-height/h1" },
-    "content/H1/Semibold": { "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/h1", "lineHeight": "design-tokens/typography/line-height/h1" },
-    "content/H1/Bold": { "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/h1", "lineHeight": "design-tokens/typography/line-height/h1" },
-    "content/H2/Regular": { "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/h2", "lineHeight": "design-tokens/typography/line-height/h2" },
-    "content/H2/Semibold": { "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/h2", "lineHeight": "design-tokens/typography/line-height/h2" },
-    "content/H2/Bold": { "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/h2", "lineHeight": "design-tokens/typography/line-height/h2" },
-    "content/H3/Regular": { "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/h3", "lineHeight": "design-tokens/typography/line-height/h3" },
-    "content/H3/Semibold": { "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/h3", "lineHeight": "design-tokens/typography/line-height/h3" },
-    "content/H3/Bold": { "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/h3", "lineHeight": "design-tokens/typography/line-height/h3" },
-    "content/H4/Regular": { "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/h4", "lineHeight": "design-tokens/typography/line-height/h4" },
-    "content/H4/Semibold": { "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/h4", "lineHeight": "design-tokens/typography/line-height/h4" },
-    "content/H4/Bold": { "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/h4", "lineHeight": "design-tokens/typography/line-height/h4" },
-    "content/H5/Regular": { "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/h5", "lineHeight": "design-tokens/typography/line-height/h5" },
-    "content/H5/Semibold": { "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/h5", "lineHeight": "design-tokens/typography/line-height/h5" },
-    "content/H5/Bold": { "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/h5", "lineHeight": "design-tokens/typography/line-height/h5" },
-    "content/H6/Regular": { "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/h6", "lineHeight": "design-tokens/typography/line-height/h6" },
-    "content/H6/Semibold": { "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/h6", "lineHeight": "design-tokens/typography/line-height/h6" },
-    "content/H6/Bold": { "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/h6", "lineHeight": "design-tokens/typography/line-height/h6" },
-    "content/Hero/Regular": { "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/hero", "lineHeight": "design-tokens/typography/line-height/hero" },
-    "content/Hero/Semibold": { "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/hero", "lineHeight": "design-tokens/typography/line-height/hero" },
-    "content/Hero/Bold": { "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/hero", "lineHeight": "design-tokens/typography/line-height/hero" },
-    "content/Hero XL/Regular": { "fontStyle": "design-tokens/typography/weight/regular", "fontSize": "design-tokens/typography/size/hero-xl", "lineHeight": "design-tokens/typography/line-height/hero-xl" },
-    "content/Hero XL/Semibold": { "fontStyle": "design-tokens/typography/weight/normal", "fontSize": "design-tokens/typography/size/hero-xl", "lineHeight": "design-tokens/typography/line-height/hero-xl" },
-    "content/Hero XL/Bold": { "fontStyle": "design-tokens/typography/weight/bold", "fontSize": "design-tokens/typography/size/hero-xl", "lineHeight": "design-tokens/typography/line-height/hero-xl" }
+    "ui/title": {
+      "fontFamily": "font-name",
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/title",
+      "lineHeight": "design-tokens/typography/line-height/title"
+    },
+    "ui/card title": {
+      "fontFamily": "font-name",
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/text-lead",
+      "lineHeight": "design-tokens/typography/line-height/base"
+    },
+    "ui/label": {
+      "fontFamily": "font-name",
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/base-size",
+      "lineHeight": "design-tokens/typography/line-height/base"
+    },
+    "ui/CAPTION": {
+      "fontFamily": "font-name",
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/text-small",
+      "lineHeight": "design-tokens/typography/line-height/text small"
+    },
+    "ui/text small/bold": {
+      "lineHeight": "design-tokens/typography/line-height/text small"
+    },
+    "ui/footnote/bold": {
+      "lineHeight": "design-tokens/typography/line-height/footnote"
+    },
+    "ui/CAPTION Small": {
+      "lineHeight": "design-tokens/typography/line-height/footnote"
+    },
+    "ui/page title": {
+      "fontSize": "design-tokens/typography/size/page-title",
+      "lineHeight": "design-tokens/typography/line-height/base"
+    },
+    "ui/button": {
+      "fontStyle": "design-tokens/typography/weight/normal"
+    },
+    "content/paragraphy/regular": {
+      "lineHeight": "design-tokens/typography/line-height/paragraphy"
+    },
+    "content/paragraphy/bold": {
+      "lineHeight": "design-tokens/typography/line-height/paragraphy"
+    },
+    "content/H1/Regular": {
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/h1",
+      "lineHeight": "design-tokens/typography/line-height/h1"
+    },
+    "content/H1/Semibold": {
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/h1",
+      "lineHeight": "design-tokens/typography/line-height/h1"
+    },
+    "content/H1/Bold": {
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/h1",
+      "lineHeight": "design-tokens/typography/line-height/h1"
+    },
+    "content/H2/Regular": {
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/h2",
+      "lineHeight": "design-tokens/typography/line-height/h2"
+    },
+    "content/H2/Semibold": {
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/h2",
+      "lineHeight": "design-tokens/typography/line-height/h2"
+    },
+    "content/H2/Bold": {
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/h2",
+      "lineHeight": "design-tokens/typography/line-height/h2"
+    },
+    "content/H3/Regular": {
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/h3",
+      "lineHeight": "design-tokens/typography/line-height/h3"
+    },
+    "content/H3/Semibold": {
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/h3",
+      "lineHeight": "design-tokens/typography/line-height/h3"
+    },
+    "content/H3/Bold": {
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/h3",
+      "lineHeight": "design-tokens/typography/line-height/h3"
+    },
+    "content/H4/Regular": {
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/h4",
+      "lineHeight": "design-tokens/typography/line-height/h4"
+    },
+    "content/H4/Semibold": {
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/h4",
+      "lineHeight": "design-tokens/typography/line-height/h4"
+    },
+    "content/H4/Bold": {
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/h4",
+      "lineHeight": "design-tokens/typography/line-height/h4"
+    },
+    "content/H5/Regular": {
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/h5",
+      "lineHeight": "design-tokens/typography/line-height/h5"
+    },
+    "content/H5/Semibold": {
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/h5",
+      "lineHeight": "design-tokens/typography/line-height/h5"
+    },
+    "content/H5/Bold": {
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/h5",
+      "lineHeight": "design-tokens/typography/line-height/h5"
+    },
+    "content/H6/Regular": {
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/h6",
+      "lineHeight": "design-tokens/typography/line-height/h6"
+    },
+    "content/H6/Semibold": {
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/h6",
+      "lineHeight": "design-tokens/typography/line-height/h6"
+    },
+    "content/H6/Bold": {
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/h6",
+      "lineHeight": "design-tokens/typography/line-height/h6"
+    },
+    "content/Hero/Regular": {
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/hero",
+      "lineHeight": "design-tokens/typography/line-height/hero"
+    },
+    "content/Hero/Semibold": {
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/hero",
+      "lineHeight": "design-tokens/typography/line-height/hero"
+    },
+    "content/Hero/Bold": {
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/hero",
+      "lineHeight": "design-tokens/typography/line-height/hero"
+    },
+    "content/Hero XL/Regular": {
+      "fontStyle": "design-tokens/typography/weight/regular",
+      "fontSize": "design-tokens/typography/size/hero-xl",
+      "lineHeight": "design-tokens/typography/line-height/hero-xl"
+    },
+    "content/Hero XL/Semibold": {
+      "fontStyle": "design-tokens/typography/weight/normal",
+      "fontSize": "design-tokens/typography/size/hero-xl",
+      "lineHeight": "design-tokens/typography/line-height/hero-xl"
+    },
+    "content/Hero XL/Bold": {
+      "fontStyle": "design-tokens/typography/weight/bold",
+      "fontSize": "design-tokens/typography/size/hero-xl",
+      "lineHeight": "design-tokens/typography/line-height/hero-xl"
+    }
   }
 }

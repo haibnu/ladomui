@@ -1,0 +1,172 @@
+/* Loader, from Figma Components / Loader (1780:103): a spinning refresh icon (infinite), a
+   progress bar (finite) and the spinning brand keycap (brand). Figma gives no duration or easing
+   for the spin; it uses 1s per turn, like the Button loader. */
+
+/* Tones: --_c is the spinner circle and the bar fill, --_soft the bar track. */
+.infinite[data-tone='primary'],
+.finite[data-tone='primary'] {
+  --_c: var(--color-primary);
+  --_on: var(--color-on-primary);
+  --_soft: var(--color-primary-soft);
+}
+
+.infinite[data-tone='secondary'],
+.finite[data-tone='secondary'] {
+  --_c: var(--color-secondary);
+  --_on: var(--color-on-secondary);
+  --_soft: var(--color-secondary-soft);
+}
+
+.infinite[data-tone='tertiary'],
+.finite[data-tone='tertiary'] {
+  --_c: var(--color-tertiary);
+  --_on: var(--color-on-tertiary);
+  --_soft: var(--color-tertiary-soft);
+}
+
+.infinite[data-tone='success'],
+.finite[data-tone='success'] {
+  --_c: var(--color-success);
+  --_on: var(--color-on-success);
+  --_soft: var(--color-success-soft);
+}
+
+.infinite[data-tone='error'],
+.finite[data-tone='error'] {
+  --_c: var(--color-error);
+  --_on: var(--color-on-error);
+  --_soft: var(--color-error-soft);
+}
+
+.infinite[data-tone='warning'],
+.finite[data-tone='warning'] {
+  --_c: var(--color-warning);
+  --_on: var(--color-on-warning);
+  --_soft: var(--color-warning-soft);
+}
+
+.infinite[data-tone='info'],
+.finite[data-tone='info'] {
+  --_c: var(--color-info);
+  --_on: var(--color-on-info);
+  --_soft: var(--color-info-soft);
+}
+
+/* Infinite: a 24px circle with the 16px icon. */
+.infinite {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--space-xlarge);
+  block-size: var(--space-xlarge);
+  border-radius: var(--radius-full);
+  color: var(--_on);
+  background: var(--_c);
+  animation: spin 1s linear infinite;
+}
+
+/* The secondary spinner sits on the soft color in Figma. */
+.infinite[data-tone='secondary'] {
+  background: var(--_soft);
+}
+
+/* Finite: the bar fills its container; the texts sit 8px below its top. */
+.finite {
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+}
+
+.bar {
+  display: block;
+  overflow: hidden;
+  block-size: var(--loader-track-height);
+  border-radius: var(--radius-full);
+  background: var(--_soft);
+}
+
+.fill {
+  display: block;
+  block-size: 100%;
+  border-radius: var(--radius-full);
+  background: var(--_c);
+  transition: inline-size var(--motion-fade-default);
+}
+
+.texts {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-block-start: calc(var(--space-tiny) - var(--loader-track-height));
+}
+
+.value {
+  grid-column: 2;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.amount {
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  gap: var(--space-micro);
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.loaded {
+  color: var(--color-foreground-high-emphasis);
+}
+
+/* Brand: the keycap turns 180° in the Figma steps (T0-T8), then again to a full turn. */
+.brand {
+  display: inline-block;
+  flex: none;
+  inline-size: var(--space-xlarge);
+  block-size: var(--space-xlarge);
+  animation: brand 2s linear infinite;
+}
+
+.brand > svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+@keyframes spin {
+  to {
+    rotate: 1turn;
+  }
+}
+
+@keyframes brand {
+  0% { rotate: 0deg; }
+  6.25% { rotate: 15deg; }
+  12.5% { rotate: 30deg; }
+  18.75% { rotate: 60deg; }
+  25% { rotate: 90deg; }
+  31.25% { rotate: 105deg; }
+  37.5% { rotate: 135deg; }
+  43.75% { rotate: 165deg; }
+  50% { rotate: 180deg; }
+  56.25% { rotate: 195deg; }
+  62.5% { rotate: 210deg; }
+  68.75% { rotate: 240deg; }
+  75% { rotate: 270deg; }
+  81.25% { rotate: 285deg; }
+  87.5% { rotate: 315deg; }
+  93.75% { rotate: 345deg; }
+  100% { rotate: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .infinite,
+  .brand {
+    animation: none;
+  }
+
+  .fill {
+    transition: none;
+  }
+}

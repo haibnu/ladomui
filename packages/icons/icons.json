@@ -1,0 +1,2569 @@
+{
+  "ab-testing": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1166",
+      "name": "Icon/ab testing"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "device-landline-phone",
+      "topology-star-ring-3"
+    ]
+  },
+  "ac-charge": {
+    "tabler": "bolt",
+    "category": "electric",
+    "figma": {
+      "id": "2001:2021",
+      "name": "ac charge"
+    }
+  },
+  "activity": {
+    "tabler": "activity-heartbeat",
+    "category": "common",
+    "figma": {
+      "id": "2001:888",
+      "name": "Icon/activity"
+    }
+  },
+  "add": {
+    "tabler": "plus",
+    "category": "common",
+    "figma": {
+      "id": "2001:1113",
+      "name": "Icon/add"
+    }
+  },
+  "add-folder": {
+    "tabler": "folder-plus",
+    "category": "common",
+    "figma": {
+      "id": "2001:808",
+      "name": "Icon/add folder"
+    }
+  },
+  "add-photo": {
+    "tabler": "camera-plus",
+    "category": "common",
+    "figma": {
+      "id": "2181:17906",
+      "name": "add photo"
+    }
+  },
+  "add-tag": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:811",
+      "name": "Icon/add tag"
+    }
+  },
+  "ai": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1116",
+      "name": "Icon/ai"
+    }
+  },
+  "ai-symbol": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1144",
+      "name": "Icon/ai symbol"
+    }
+  },
+  "analytics": {
+    "tabler": "chart-histogram",
+    "category": "common",
+    "figma": {
+      "id": "2001:1110",
+      "name": "Icon/analytics"
+    }
+  },
+  "android": {
+    "tabler": "brand-android",
+    "category": "common",
+    "figma": {
+      "id": "2001:1235",
+      "name": "Icon/android"
+    }
+  },
+  "api": {
+    "tabler": "api",
+    "category": "common",
+    "figma": {
+      "id": "2001:1284",
+      "name": "Icon/api"
+    }
+  },
+  "apple": {
+    "tabler": "brand-apple",
+    "style": "filled",
+    "category": "common",
+    "figma": {
+      "id": "2001:1289",
+      "name": "Icon/apple"
+    }
+  },
+  "apps": {
+    "tabler": "apps",
+    "category": "common",
+    "figma": {
+      "id": "2001:1080",
+      "name": "Icon/apps"
+    }
+  },
+  "arrow-bottom": {
+    "tabler": "chevron-down",
+    "category": "direction",
+    "figma": {
+      "id": "2001:1999",
+      "name": "arrow bottom"
+    }
+  },
+  "arrow-left": {
+    "tabler": "chevron-left",
+    "category": "direction",
+    "figma": {
+      "id": "2001:1990",
+      "name": "arrow left"
+    }
+  },
+  "arrow-right": {
+    "tabler": "chevron-right",
+    "category": "direction",
+    "figma": {
+      "id": "2001:1996",
+      "name": "arrow right"
+    }
+  },
+  "arrow-top": {
+    "tabler": "chevron-up",
+    "category": "direction",
+    "figma": {
+      "id": "2001:1993",
+      "name": "arrow top"
+    }
+  },
+  "attribute": {
+    "tabler": "file-database",
+    "category": "common",
+    "figma": {
+      "id": "2001:1276",
+      "name": "Icon/attribute"
+    }
+  },
+  "audience": {
+    "tabler": "users-group",
+    "category": "common",
+    "figma": {
+      "id": "2001:1025",
+      "name": "Icon/audience"
+    }
+  },
+  "automated-job": {
+    "tabler": "brightness-auto",
+    "category": "common",
+    "figma": {
+      "id": "2001:1168",
+      "name": "Icon/automated job"
+    }
+  },
+  "automation": {
+    "tabler": "sitemap",
+    "category": "common",
+    "figma": {
+      "id": "2001:1078",
+      "name": "Icon/automation"
+    }
+  },
+  "back": {
+    "tabler": "arrow-narrow-left",
+    "category": "direction",
+    "figma": {
+      "id": "2001:1086",
+      "name": "back"
+    }
+  },
+  "bounced": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1282",
+      "name": "Icon/bounced"
+    },
+    "candidates": [
+      "bus",
+      "brand-youtube (filled)",
+      "bus-off"
+    ]
+  },
+  "branch": {
+    "tabler": "git-branch",
+    "category": "common",
+    "figma": {
+      "id": "2001:879",
+      "name": "Icon/branch"
+    }
+  },
+  "browser-lock": {
+    "tabler": "lock-square",
+    "category": "common",
+    "figma": {
+      "id": "2001:832",
+      "name": "Icon/browser lock"
+    }
+  },
+  "campaign": {
+    "tabler": "speakerphone",
+    "category": "common",
+    "figma": {
+      "id": "2001:1075",
+      "name": "Icon/campaign"
+    }
+  },
+  "cancel": {
+    "tabler": "circle-x",
+    "category": "common",
+    "figma": {
+      "id": "2001:1133",
+      "name": "Icon/cancel"
+    }
+  },
+  "category-affinity": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:985",
+      "name": "Icon/category affinity"
+    },
+    "candidates": [
+      "brand-alipay",
+      "square-half",
+      "columns-2"
+    ]
+  },
+  "channel": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1287",
+      "name": "Icon/channel"
+    },
+    "candidates": [
+      "cone (filled)",
+      "building-mosque",
+      "sailboat"
+    ]
+  },
+  "channel-atm-kiosk": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1047",
+      "name": "Icon/channel atm kiosk"
+    },
+    "candidates": [
+      "device-sim-1",
+      "play-card-5",
+      "play-card-9"
+    ]
+  },
+  "channel-call-center": {
+    "tabler": "headset",
+    "category": "common",
+    "figma": {
+      "id": "2001:1011",
+      "name": "Icon/channel call center"
+    }
+  },
+  "channel-display-ads": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1041",
+      "name": "Icon/channel display ads"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "bus (filled)",
+      "brand-tripadvisor"
+    ]
+  },
+  "channel-email": {
+    "tabler": "mail",
+    "category": "common",
+    "figma": {
+      "id": "2001:1072",
+      "name": "Icon/channel email"
+    }
+  },
+  "channel-in-app": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1036",
+      "name": "Icon/channel in-app"
+    },
+    "candidates": [
+      "messages (filled)",
+      "contrast-2 (filled)",
+      "vocabulary-off"
+    ]
+  },
+  "channel-mobile-push": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1069",
+      "name": "Icon/channel mobile push"
+    },
+    "candidates": [
+      "report-money",
+      "skull",
+      "manual-gearbox (filled)"
+    ]
+  },
+  "channel-mobile-web": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1045",
+      "name": "Icon/channel mobile web"
+    },
+    "candidates": [
+      "brand-signal",
+      "brand-signal (filled)",
+      "device-landline-phone"
+    ]
+  },
+  "channel-onsite": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:864",
+      "name": "Icon/channel onsite"
+    },
+    "candidates": [
+      "columns-2 (filled)",
+      "square-arrow-up (filled)",
+      "square-arrow-down (filled)"
+    ]
+  },
+  "channel-push": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:813",
+      "name": "Icon/channel push"
+    },
+    "candidates": [
+      "bell-ringing",
+      "topology-ring-3",
+      "currency"
+    ]
+  },
+  "channel-sms": {
+    "tabler": "message",
+    "category": "common",
+    "figma": {
+      "id": "2001:1066",
+      "name": "Icon/channel sms"
+    }
+  },
+  "channel-social-ads": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1038",
+      "name": "Icon/channel social ads"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "favicon (filled)",
+      "e-passport"
+    ]
+  },
+  "channel-web": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1043",
+      "name": "Icon/channel web"
+    },
+    "candidates": [
+      "brand-nexo",
+      "square-letter-p (filled)",
+      "square-letter-z (filled)"
+    ]
+  },
+  "channel-web-push": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1064",
+      "name": "Icon/channel web push"
+    },
+    "candidates": [
+      "picture-in-picture-top",
+      "tabs",
+      "vocabulary"
+    ]
+  },
+  "channel-whatsapp": {
+    "tabler": "brand-whatsapp",
+    "category": "common",
+    "figma": {
+      "id": "2001:802",
+      "name": "Icon/channel whatsapp"
+    }
+  },
+  "charge-station": {
+    "tabler": "charging-pile",
+    "category": "electric",
+    "figma": {
+      "id": "2001:2015",
+      "name": "charge station"
+    }
+  },
+  "check": {
+    "tabler": "check",
+    "category": "common",
+    "figma": {
+      "id": "2001:1986",
+      "name": "check"
+    }
+  },
+  "church": {
+    "tabler": "building-church",
+    "category": "common",
+    "figma": {
+      "id": "2178:27370",
+      "name": "church"
+    }
+  },
+  "clear": {
+    "tabler": "alert-square-rounded",
+    "style": "filled",
+    "category": "common",
+    "figma": {
+      "id": "2001:1061",
+      "name": "Icon/clear"
+    }
+  },
+  "close": {
+    "tabler": "x",
+    "category": "common",
+    "figma": {
+      "id": "2001:1058",
+      "name": "Icon/close"
+    }
+  },
+  "cloud": {
+    "tabler": "brand-onedrive",
+    "category": "common",
+    "figma": {
+      "id": "2001:866",
+      "name": "Icon/cloud"
+    }
+  },
+  "code-editor": {
+    "tabler": "code",
+    "category": "common",
+    "figma": {
+      "id": "2001:1292",
+      "name": "Icon/code editor"
+    }
+  },
+  "collapse": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1052",
+      "name": "Icon/collapse"
+    },
+    "candidates": [
+      "diamonds",
+      "oval",
+      "letter-c"
+    ]
+  },
+  "collapse-2": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1055",
+      "name": "Icon/collapse"
+    },
+    "candidates": [
+      "letter-x",
+      "currency-nano",
+      "letter-k"
+    ]
+  },
+  "collapse-bottom": {
+    "tabler": "circle-chevron-down",
+    "category": "direction",
+    "figma": {
+      "id": "2001:2011",
+      "name": "collapse bottom"
+    }
+  },
+  "collapse-left": {
+    "tabler": "circle-chevron-left",
+    "category": "direction",
+    "figma": {
+      "id": "2001:2002",
+      "name": "collapse left"
+    }
+  },
+  "collapse-right": {
+    "tabler": "circle-chevron-right",
+    "category": "direction",
+    "figma": {
+      "id": "2001:2008",
+      "name": "collapse right"
+    }
+  },
+  "collapse-up": {
+    "tabler": "circle-chevron-up",
+    "category": "direction",
+    "figma": {
+      "id": "2001:2005",
+      "name": "collapse up"
+    }
+  },
+  "completed": {
+    "tabler": "circle-check",
+    "category": "common",
+    "figma": {
+      "id": "2001:1295",
+      "name": "Icon/completed"
+    }
+  },
+  "connector-ccs-2": {
+    "source": "figma",
+    "category": "electric",
+    "figma": {
+      "id": "2069:33469",
+      "name": "connector ccs 2"
+    }
+  },
+  "connector-tesla": {
+    "source": "figma",
+    "category": "electric",
+    "figma": {
+      "id": "2069:33490",
+      "name": "connector tesla"
+    }
+  },
+  "connector-type-2": {
+    "source": "figma",
+    "category": "electric",
+    "figma": {
+      "id": "2069:33362",
+      "name": "connector type 2"
+    }
+  },
+  "contact": {
+    "tabler": "user",
+    "category": "common",
+    "figma": {
+      "id": "2001:1279",
+      "name": "Icon/contact"
+    }
+  },
+  "contact-info": {
+    "tabler": "user-exclamation",
+    "category": "common",
+    "figma": {
+      "id": "2001:1171",
+      "name": "Icon/contact info"
+    }
+  },
+  "contacts": {
+    "tabler": "users-group",
+    "category": "common",
+    "figma": {
+      "id": "2001:1174",
+      "name": "Icon/contacts"
+    }
+  },
+  "content": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1034",
+      "name": "Icon/content"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "device-imac-x",
+      "device-imac-share"
+    ]
+  },
+  "contribute": {
+    "tabler": "square-rounded-plus",
+    "category": "common",
+    "figma": {
+      "id": "2020:19226",
+      "name": "contribute"
+    }
+  },
+  "copy": {
+    "tabler": "copy",
+    "category": "common",
+    "figma": {
+      "id": "2001:861",
+      "name": "Icon/copy"
+    }
+  },
+  "coupon": {
+    "tabler": "ticket",
+    "category": "common",
+    "figma": {
+      "id": "2001:1098",
+      "name": "Icon/coupon"
+    }
+  },
+  "credit-card": {
+    "tabler": "credit-card",
+    "category": "common",
+    "figma": {
+      "id": "2001:686",
+      "name": "Icon/credit card"
+    }
+  },
+  "currency-dollar": {
+    "tabler": "currency-dollar",
+    "category": "common",
+    "figma": {
+      "id": "2020:19049",
+      "name": "currency-dollar"
+    }
+  },
+  "currency-euro": {
+    "tabler": "currency-euro",
+    "category": "common",
+    "figma": {
+      "id": "2020:19051",
+      "name": "currency-euro"
+    }
+  },
+  "currency-tl": {
+    "tabler": "currency-lira",
+    "category": "common",
+    "figma": {
+      "id": "2020:19047",
+      "name": "currency-tl"
+    }
+  },
+  "customization-tag": {
+    "tabler": "code-dots",
+    "category": "common",
+    "figma": {
+      "id": "2001:1199",
+      "name": "Icon/customization tag"
+    }
+  },
+  "dark": {
+    "tabler": "moon",
+    "category": "common",
+    "figma": {
+      "id": "2001:1146",
+      "name": "Icon/dark"
+    }
+  },
+  "dashboard": {
+    "tabler": "layout",
+    "category": "common",
+    "figma": {
+      "id": "2001:1031",
+      "name": "Icon/dashboard"
+    }
+  },
+  "data": {
+    "tabler": "database",
+    "category": "common",
+    "figma": {
+      "id": "2001:1028",
+      "name": "Icon/data"
+    }
+  },
+  "data-export": {
+    "tabler": "database-import",
+    "category": "common",
+    "figma": {
+      "id": "2001:1221",
+      "name": "Icon/data export"
+    }
+  },
+  "data-import": {
+    "tabler": "database-import",
+    "category": "common",
+    "figma": {
+      "id": "2001:1216",
+      "name": "Icon/data import"
+    }
+  },
+  "data-space": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1009",
+      "name": "Icon/data space"
+    },
+    "candidates": [
+      "sitemap",
+      "fidget-spinner (filled)",
+      "sitemap (filled)"
+    ]
+  },
+  "data-table": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1230",
+      "name": "Icon/data table"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "keyboard-off",
+      "keyboard"
+    ]
+  },
+  "date-range": {
+    "tabler": "calendar-week",
+    "category": "common",
+    "figma": {
+      "id": "2001:1256",
+      "name": "Icon/date range"
+    }
+  },
+  "date-time": {
+    "tabler": "calendar-clock",
+    "category": "common",
+    "figma": {
+      "id": "2001:709",
+      "name": "Icon/date time"
+    }
+  },
+  "dc-charge": {
+    "source": "figma",
+    "category": "electric",
+    "figma": {
+      "id": "2001:2024",
+      "name": "dc charge"
+    }
+  },
+  "delete": {
+    "tabler": "trash-x",
+    "category": "common",
+    "figma": {
+      "id": "2001:1965",
+      "name": "delete"
+    }
+  },
+  "denided": {
+    "tabler": "ban",
+    "category": "common",
+    "figma": {
+      "id": "2001:712",
+      "name": "Icon/denided"
+    }
+  },
+  "desicion": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1017",
+      "name": "Icon/desicion"
+    },
+    "candidates": [
+      "pentagon-number-4",
+      "pentagon-number-9",
+      "pentagon-number-8"
+    ]
+  },
+  "design-editor": {
+    "tabler": "color-picker",
+    "category": "common",
+    "figma": {
+      "id": "2001:706",
+      "name": "Icon/design editor"
+    }
+  },
+  "device": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:748",
+      "name": "Icon/device"
+    },
+    "candidates": [
+      "favicon (filled)",
+      "brand-youtube (filled)",
+      "brand-signal (filled)"
+    ]
+  },
+  "device-desktop": {
+    "tabler": "device-desktop",
+    "category": "common",
+    "figma": {
+      "id": "2001:1118",
+      "name": "Icon/device desktop"
+    }
+  },
+  "device-mobile": {
+    "tabler": "device-mobile",
+    "category": "common",
+    "figma": {
+      "id": "2001:992",
+      "name": "Icon/device mobile"
+    }
+  },
+  "device-tablet": {
+    "tabler": "device-tablet",
+    "category": "common",
+    "figma": {
+      "id": "2001:929",
+      "name": "Icon/device tablet"
+    }
+  },
+  "device-unknown": {
+    "tabler": "device-desktop-question",
+    "category": "common",
+    "figma": {
+      "id": "2001:689",
+      "name": "Icon/device unknown"
+    }
+  },
+  "discount": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:989",
+      "name": "Icon/discount"
+    }
+  },
+  "dots": {
+    "tabler": "dots",
+    "category": "common",
+    "figma": {
+      "id": "2001:1101",
+      "name": "Icon/dots"
+    }
+  },
+  "down": {
+    "tabler": "arrow-narrow-down",
+    "category": "direction",
+    "figma": {
+      "id": "2001:1092",
+      "name": "down"
+    }
+  },
+  "download": {
+    "tabler": "download",
+    "category": "common",
+    "figma": {
+      "id": "2001:882",
+      "name": "Icon/download"
+    }
+  },
+  "drag-drop-edit": {
+    "tabler": "hand-grab",
+    "category": "common",
+    "figma": {
+      "id": "2001:1298",
+      "name": "Icon/drag drop edit"
+    }
+  },
+  "drag-move": {
+    "tabler": "grip-vertical",
+    "category": "common",
+    "figma": {
+      "id": "2001:698",
+      "name": "Icon/drag move"
+    }
+  },
+  "duplicate": {
+    "tabler": "duplicate",
+    "category": "common",
+    "figma": {
+      "id": "2001:735",
+      "name": "Icon/duplicate"
+    }
+  },
+  "edit": {
+    "tabler": "edit",
+    "category": "common",
+    "figma": {
+      "id": "2001:1006",
+      "name": "edit"
+    }
+  },
+  "editor-bold": {
+    "tabler": "letter-b",
+    "category": "common",
+    "figma": {
+      "id": "2001:835",
+      "name": "Icon/editor bold"
+    }
+  },
+  "editor-italic": {
+    "tabler": "italic",
+    "category": "common",
+    "figma": {
+      "id": "2001:848",
+      "name": "Icon/editor italic"
+    }
+  },
+  "editor-underline": {
+    "tabler": "underline",
+    "category": "common",
+    "figma": {
+      "id": "2001:855",
+      "name": "Icon/editor underline"
+    }
+  },
+  "email-content": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1177",
+      "name": "Icon/email content"
+    },
+    "candidates": [
+      "wiper-wash",
+      "info-hexagon (filled)",
+      "columns-3 (filled)"
+    ]
+  },
+  "emoji": {
+    "tabler": "mood-wink-2",
+    "category": "common",
+    "figma": {
+      "id": "2001:1124",
+      "name": "Icon/emoji"
+    }
+  },
+  "end": {
+    "tabler": "flag-bolt",
+    "category": "common",
+    "figma": {
+      "id": "2001:982",
+      "name": "Icon/end"
+    }
+  },
+  "end-date": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:746",
+      "name": "Icon/end date"
+    },
+    "candidates": [
+      "book-clone",
+      "brand-pnpm",
+      "bus-off"
+    ]
+  },
+  "engagement": {
+    "tabler": "click",
+    "category": "common",
+    "figma": {
+      "id": "2001:843",
+      "name": "Icon/engagement"
+    }
+  },
+  "error": {
+    "tabler": "alert-circle",
+    "category": "common",
+    "figma": {
+      "id": "2001:1980",
+      "name": "error"
+    }
+  },
+  "ev": {
+    "source": "figma",
+    "category": "electric",
+    "figma": {
+      "id": "2178:27212",
+      "name": "EV"
+    }
+  },
+  "event": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:851",
+      "name": "Icon/event"
+    },
+    "candidates": [
+      "glass-champagne",
+      "gender-demigirl",
+      "ribbon-health"
+    ]
+  },
+  "exclude": {
+    "tabler": "layers-difference",
+    "category": "common",
+    "figma": {
+      "id": "2001:1232",
+      "name": "Icon/exclude"
+    }
+  },
+  "expand": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1049",
+      "name": "Icon/expand"
+    }
+  },
+  "experience": {
+    "tabler": "microscope",
+    "category": "common",
+    "figma": {
+      "id": "2001:902",
+      "name": "Icon/experience"
+    }
+  },
+  "export": {
+    "tabler": "database-export",
+    "category": "common",
+    "figma": {
+      "id": "2001:1003",
+      "name": "Icon/export"
+    }
+  },
+  "external-link": {
+    "tabler": "external-link",
+    "category": "common",
+    "figma": {
+      "id": "2001:1000",
+      "name": "Icon/external link"
+    }
+  },
+  "facebook": {
+    "tabler": "brand-facebook",
+    "style": "filled",
+    "category": "common",
+    "figma": {
+      "id": "2001:1273",
+      "name": "Icon/facebook"
+    }
+  },
+  "failed": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:891",
+      "name": "Icon/failed"
+    },
+    "candidates": [
+      "crop-16-9",
+      "code-variable",
+      "brand-peanut"
+    ]
+  },
+  "file": {
+    "tabler": "file",
+    "category": "common",
+    "figma": {
+      "id": "2001:974",
+      "name": "Icon/file"
+    }
+  },
+  "file-docs": {
+    "tabler": "file-type-doc",
+    "category": "common",
+    "figma": {
+      "id": "2001:826",
+      "name": "Icon/file docs"
+    }
+  },
+  "file-empty": {
+    "tabler": "file",
+    "category": "common",
+    "figma": {
+      "id": "2001:767",
+      "name": "Icon/file empty"
+    }
+  },
+  "file-excel": {
+    "tabler": "file-type-xls",
+    "category": "common",
+    "figma": {
+      "id": "2001:740",
+      "name": "Icon/file excel"
+    }
+  },
+  "file-pdf": {
+    "tabler": "file-type-pdf",
+    "category": "common",
+    "figma": {
+      "id": "2001:977",
+      "name": "Icon/file pdf"
+    }
+  },
+  "file-ppt": {
+    "tabler": "file-type-ppt",
+    "category": "common",
+    "figma": {
+      "id": "2001:770",
+      "name": "Icon/file ppt"
+    }
+  },
+  "file-upload": {
+    "tabler": "cloud-upload",
+    "category": "common",
+    "figma": {
+      "id": "2001:1301",
+      "name": "Icon/file upload"
+    }
+  },
+  "file-video": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:971",
+      "name": "Icon/file video"
+    },
+    "candidates": [
+      "file-rss",
+      "file-word",
+      "file-x"
+    ]
+  },
+  "file-zip": {
+    "tabler": "file-type-zip",
+    "category": "common",
+    "figma": {
+      "id": "2001:858",
+      "name": "Icon/file zip"
+    }
+  },
+  "filter": {
+    "tabler": "filter",
+    "category": "common",
+    "figma": {
+      "id": "2001:1121",
+      "name": "Icon/filter"
+    }
+  },
+  "folder": {
+    "tabler": "folder",
+    "category": "common",
+    "figma": {
+      "id": "2001:997",
+      "name": "Icon/folder"
+    }
+  },
+  "folder-full": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:995",
+      "name": "Icon/folder full"
+    },
+    "candidates": [
+      "scale-outline",
+      "bowling",
+      "ad-circle-off"
+    ]
+  },
+  "folder-open": {
+    "tabler": "folder-open",
+    "category": "common",
+    "figma": {
+      "id": "2001:968",
+      "name": "Icon/folder open"
+    }
+  },
+  "folder-system": {
+    "tabler": "folder-code",
+    "category": "common",
+    "figma": {
+      "id": "2001:965",
+      "name": "Icon/folder system"
+    }
+  },
+  "form-builder": {
+    "tabler": "forms",
+    "category": "common",
+    "figma": {
+      "id": "2001:703",
+      "name": "Icon/form builder"
+    }
+  },
+  "forward": {
+    "tabler": "arrow-narrow-right",
+    "category": "direction",
+    "figma": {
+      "id": "2001:1089",
+      "name": "forward"
+    }
+  },
+  "freq-capping": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1202",
+      "name": "Icon/freq capping"
+    },
+    "candidates": [
+      "caret-up (filled)",
+      "caret-up",
+      "text-regex-plus"
+    ]
+  },
+  "full-screen": {
+    "tabler": "window-maximize",
+    "category": "common",
+    "figma": {
+      "id": "2001:1138",
+      "name": "Icon/full screen"
+    }
+  },
+  "google": {
+    "tabler": "brand-google",
+    "style": "filled",
+    "category": "common",
+    "figma": {
+      "id": "2001:1224",
+      "name": "Icon/google"
+    }
+  },
+  "green-energy": {
+    "tabler": "leaf",
+    "category": "electric",
+    "figma": {
+      "id": "2001:2018",
+      "name": "green energy"
+    }
+  },
+  "grocery": {
+    "tabler": "cherry",
+    "category": "common",
+    "figma": {
+      "id": "2178:27241",
+      "name": "grocery"
+    }
+  },
+  "group": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:853",
+      "name": "Icon/group"
+    }
+  },
+  "gsm": {
+    "tabler": "device-mobile",
+    "category": "common",
+    "figma": {
+      "id": "2001:805",
+      "name": "Icon/gsm"
+    }
+  },
+  "hide": {
+    "tabler": "eye-off",
+    "category": "common",
+    "figma": {
+      "id": "2001:962",
+      "name": "Icon/hide"
+    }
+  },
+  "history": {
+    "tabler": "file-time",
+    "category": "common",
+    "figma": {
+      "id": "2001:820",
+      "name": "Icon/history"
+    }
+  },
+  "home": {
+    "tabler": "home",
+    "category": "common",
+    "figma": {
+      "id": "2001:1083",
+      "name": "Icon/home"
+    }
+  },
+  "hourly-capping": {
+    "tabler": "clock-play",
+    "category": "common",
+    "figma": {
+      "id": "2001:1304",
+      "name": "Icon/hourly capping"
+    }
+  },
+  "huawei": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1259",
+      "name": "Icon/huawei"
+    }
+  },
+  "icon-microsoft-dynamics": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:798",
+      "name": "Icon/icon microsoft dynamics"
+    }
+  },
+  "icon-mixpanel": {
+    "tabler": "brand-mixpanel",
+    "category": "common",
+    "figma": {
+      "id": "2001:720",
+      "name": "Icon/icon mixpanel"
+    }
+  },
+  "image": {
+    "tabler": "photo",
+    "category": "common",
+    "figma": {
+      "id": "2001:1204",
+      "name": "image"
+    }
+  },
+  "image-library": {
+    "tabler": "library-photo",
+    "category": "common",
+    "figma": {
+      "id": "2001:894",
+      "name": "image library"
+    }
+  },
+  "in-app-content": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1181",
+      "name": "Icon/in-app content"
+    },
+    "candidates": [
+      "brand-cakephp",
+      "exposure (filled)",
+      "contrast-2 (filled)"
+    ]
+  },
+  "in-app-send": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:715",
+      "name": "Icon/in app send"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "exposure (filled)",
+      "brand-elastic"
+    ]
+  },
+  "info": {
+    "tabler": "info-circle",
+    "category": "common",
+    "figma": {
+      "id": "2001:1974",
+      "name": "info"
+    }
+  },
+  "insight-tips": {
+    "tabler": "bulb",
+    "category": "common",
+    "figma": {
+      "id": "2001:959",
+      "name": "Icon/insight - tips"
+    }
+  },
+  "intelligence": {
+    "tabler": "brain",
+    "category": "common",
+    "figma": {
+      "id": "2001:1014",
+      "name": "Icon/intelligence"
+    }
+  },
+  "interactive-segment": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1183",
+      "name": "Icon/interactive segment"
+    }
+  },
+  "join": {
+    "tabler": "arrows-join",
+    "category": "common",
+    "figma": {
+      "id": "2001:776",
+      "name": "Icon/join"
+    }
+  },
+  "key": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:956",
+      "name": "Icon/key"
+    },
+    "candidates": [
+      "pencil (filled)",
+      "ruler-2",
+      "sword"
+    ]
+  },
+  "lead": {
+    "tabler": "chess-king",
+    "category": "common",
+    "figma": {
+      "id": "2001:750",
+      "name": "Icon/lead"
+    }
+  },
+  "lifetime-value": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:987",
+      "name": "Icon/lifetime value"
+    },
+    "candidates": [
+      "plane-arrival (filled)",
+      "squares (filled)",
+      "plane-arrival"
+    ]
+  },
+  "light": {
+    "tabler": "brightness-up",
+    "category": "common",
+    "figma": {
+      "id": "2001:732",
+      "name": "Icon/light"
+    }
+  },
+  "list": {
+    "tabler": "list-numbers",
+    "category": "common",
+    "figma": {
+      "id": "2001:1130",
+      "name": "Icon/list"
+    }
+  },
+  "list-contact": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1227",
+      "name": "Icon/list contact"
+    }
+  },
+  "lock": {
+    "tabler": "shield-lock",
+    "category": "common",
+    "figma": {
+      "id": "2001:926",
+      "name": "Icon/lock"
+    }
+  },
+  "logout": {
+    "tabler": "logout",
+    "category": "common",
+    "figma": {
+      "id": "2001:953",
+      "name": "logout"
+    }
+  },
+  "map": {
+    "tabler": "map",
+    "category": "common",
+    "figma": {
+      "id": "2010:14224",
+      "name": "map"
+    }
+  },
+  "map-current": {
+    "tabler": "location",
+    "category": "common",
+    "figma": {
+      "id": "2010:15279",
+      "name": "map current"
+    }
+  },
+  "map-layers": {
+    "tabler": "stack",
+    "category": "common",
+    "figma": {
+      "id": "2010:14231",
+      "name": "map layers"
+    }
+  },
+  "map-pin": {
+    "tabler": "map-pin",
+    "category": "common",
+    "figma": {
+      "id": "2010:14226",
+      "name": "map pin"
+    }
+  },
+  "menu": {
+    "tabler": "menu-2",
+    "category": "common",
+    "figma": {
+      "id": "2001:950",
+      "name": "menu"
+    }
+  },
+  "message": {
+    "tabler": "mail",
+    "category": "common",
+    "figma": {
+      "id": "2074:5403",
+      "name": "message"
+    }
+  },
+  "message-cache": {
+    "tabler": "mail-opened",
+    "category": "common",
+    "figma": {
+      "id": "2001:1238",
+      "name": "Icon/message cache"
+    }
+  },
+  "minimize-screen": {
+    "tabler": "arrows-diagonal-minimize-2",
+    "category": "common",
+    "figma": {
+      "id": "2001:758",
+      "name": "Icon/minimize screen"
+    }
+  },
+  "mobile-numbers": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1261",
+      "name": "Icon/mobile numbers"
+    },
+    "candidates": [
+      "brand-signal",
+      "device-ipad-horizontal-off",
+      "bowling"
+    ]
+  },
+  "mobile-push-content": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1307",
+      "name": "Icon/mobile push content"
+    },
+    "candidates": [
+      "chart-cohort",
+      "messages (filled)",
+      "tournament"
+    ]
+  },
+  "mobile-push-send": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1185",
+      "name": "Icon/mobile push send"
+    },
+    "candidates": [
+      "tournament",
+      "chart-cohort",
+      "brand-crunchbase"
+    ]
+  },
+  "monthly-send": {
+    "tabler": "calendar-week",
+    "category": "common",
+    "figma": {
+      "id": "2001:1207",
+      "name": "Icon/monthly send"
+    }
+  },
+  "mosque": {
+    "tabler": "building-mosque",
+    "category": "common",
+    "figma": {
+      "id": "2178:27369",
+      "name": "mosque"
+    }
+  },
+  "move": {
+    "tabler": "folder-symlink",
+    "category": "common",
+    "figma": {
+      "id": "2001:829",
+      "name": "Icon/move"
+    }
+  },
+  "mute": {
+    "tabler": "volume-3",
+    "category": "common",
+    "figma": {
+      "id": "2001:823",
+      "name": "Icon/mute"
+    }
+  },
+  "news": {
+    "tabler": "news",
+    "category": "common",
+    "figma": {
+      "id": "2001:947",
+      "name": "Icon/news"
+    }
+  },
+  "notification": {
+    "tabler": "bell",
+    "category": "common",
+    "figma": {
+      "id": "2001:944",
+      "name": "notification"
+    }
+  },
+  "notification-active": {
+    "tabler": "bell-ringing",
+    "category": "common",
+    "figma": {
+      "id": "2001:941",
+      "name": "notification active"
+    }
+  },
+  "one-time": {
+    "tabler": "send",
+    "category": "common",
+    "figma": {
+      "id": "2001:723",
+      "name": "Icon/one time"
+    }
+  },
+  "onsite-content": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:753",
+      "name": "Icon/onsite content"
+    },
+    "candidates": [
+      "columns-2 (filled)",
+      "alert-square (filled)",
+      "square (filled)"
+    ]
+  },
+  "onsite-send": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1136",
+      "name": "Icon/onsite send"
+    },
+    "candidates": [
+      "columns-2 (filled)",
+      "square-arrow-up (filled)",
+      "square-letter-l (filled)"
+    ]
+  },
+  "optimize": {
+    "tabler": "device-analytics",
+    "category": "common",
+    "figma": {
+      "id": "2001:1141",
+      "name": "Icon/optimize"
+    }
+  },
+  "oracle": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1321",
+      "name": "Icon/oracle"
+    }
+  },
+  "order": {
+    "tabler": "package",
+    "category": "common",
+    "figma": {
+      "id": "2001:755",
+      "name": "Icon/order"
+    }
+  },
+  "overview": {
+    "tabler": "layout-2",
+    "category": "common",
+    "figma": {
+      "id": "2001:938",
+      "name": "Icon/overview"
+    }
+  },
+  "paid-social": {
+    "tabler": "device-imac-dollar",
+    "category": "common",
+    "figma": {
+      "id": "2001:905",
+      "name": "Icon/paid social"
+    }
+  },
+  "park": {
+    "tabler": "trees",
+    "category": "common",
+    "figma": {
+      "id": "2178:27302",
+      "name": "park"
+    }
+  },
+  "parking": {
+    "tabler": "parking",
+    "category": "common",
+    "figma": {
+      "id": "2178:27312",
+      "name": "parking"
+    }
+  },
+  "password": {
+    "tabler": "lock",
+    "category": "common",
+    "figma": {
+      "id": "2001:1968",
+      "name": "password"
+    }
+  },
+  "pause": {
+    "tabler": "player-pause",
+    "category": "common",
+    "figma": {
+      "id": "2001:1309",
+      "name": "Icon/pause"
+    }
+  },
+  "person": {
+    "tabler": "user",
+    "category": "common",
+    "figma": {
+      "id": "2001:1210",
+      "name": "Icon/person"
+    }
+  },
+  "phone": {
+    "tabler": "phone",
+    "category": "common",
+    "figma": {
+      "id": "2001:935",
+      "name": "Icon/phone"
+    }
+  },
+  "placeholder": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1959",
+      "name": "placeholder"
+    }
+  },
+  "play": {
+    "tabler": "player-play",
+    "category": "common",
+    "figma": {
+      "id": "2001:1187",
+      "name": "Icon/play"
+    }
+  },
+  "pos": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:846",
+      "name": "Icon/pos"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "alert-square (filled)",
+      "help-square (filled)"
+    ]
+  },
+  "pray": {
+    "tabler": "pray",
+    "category": "common",
+    "figma": {
+      "id": "2178:27371",
+      "name": "pray"
+    }
+  },
+  "price-dollar": {
+    "tabler": "receipt-2",
+    "category": "common",
+    "figma": {
+      "id": "2020:19208",
+      "name": "price-dollar"
+    }
+  },
+  "product": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:897",
+      "name": "Icon/product"
+    },
+    "candidates": [
+      "panorama-vertical",
+      "hourglass-empty",
+      "hourglass-low"
+    ]
+  },
+  "profile": {
+    "tabler": "user-circle",
+    "category": "common",
+    "figma": {
+      "id": "2020:19241",
+      "name": "profile"
+    }
+  },
+  "public": {
+    "tabler": "world",
+    "category": "common",
+    "figma": {
+      "id": "2001:790",
+      "name": "Icon/public"
+    }
+  },
+  "push-content": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:800",
+      "name": "Icon/push content"
+    },
+    "candidates": [
+      "blur",
+      "brand-laravel",
+      "contrast-2 (filled)"
+    ]
+  },
+  "push-send": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:785",
+      "name": "Icon/push send"
+    },
+    "candidates": [
+      "camper",
+      "vocabulary",
+      "brand-kick"
+    ]
+  },
+  "question": {
+    "tabler": "question-mark",
+    "category": "common",
+    "figma": {
+      "id": "2001:932",
+      "name": "question"
+    }
+  },
+  "random": {
+    "tabler": "arrow-fork-triple",
+    "category": "common",
+    "figma": {
+      "id": "2001:793",
+      "name": "Icon/random"
+    }
+  },
+  "ready": {
+    "tabler": "rocket",
+    "category": "common",
+    "figma": {
+      "id": "2001:1324",
+      "name": "Icon/ready"
+    }
+  },
+  "recent-items": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1241",
+      "name": "Icon/recent items"
+    },
+    "candidates": [
+      "brand-signal",
+      "cloud-network",
+      "vs"
+    ]
+  },
+  "recent-sends": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1271",
+      "name": "Icon/recent sends"
+    },
+    "candidates": [
+      "brand-bluesky",
+      "brand-youtube (filled)",
+      "brand-oauth"
+    ]
+  },
+  "recurring": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:980",
+      "name": "Icon/recurring"
+    },
+    "candidates": [
+      "square-toggle",
+      "viewfinder",
+      "circle-half"
+    ]
+  },
+  "redo": {
+    "tabler": "arrow-forward-up",
+    "category": "common",
+    "figma": {
+      "id": "2001:761",
+      "name": "Icon/redo"
+    }
+  },
+  "refresh": {
+    "tabler": "refresh",
+    "category": "common",
+    "figma": {
+      "id": "1780:103",
+      "name": "Loader / Icon/refresh - preperad"
+    }
+  },
+  "refresh-preperad": {
+    "tabler": "refresh",
+    "category": "common",
+    "figma": {
+      "id": "2001:923",
+      "name": "Icon/refresh - preperad"
+    }
+  },
+  "remote-segment": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:838",
+      "name": "Icon/remote segment"
+    },
+    "candidates": [
+      "current-location (filled)",
+      "current-location",
+      "brand-codepen"
+    ]
+  },
+  "remote-table": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:840",
+      "name": "Icon/remote table"
+    }
+  },
+  "remove": {
+    "tabler": "minus",
+    "category": "common",
+    "figma": {
+      "id": "2001:920",
+      "name": "Icon/remove"
+    }
+  },
+  "report": {
+    "tabler": "flag",
+    "category": "common",
+    "figma": {
+      "id": "2010:14234",
+      "name": "Report"
+    }
+  },
+  "report-chart": {
+    "tabler": "graph",
+    "category": "common",
+    "figma": {
+      "id": "2001:1312",
+      "name": "Icon/report"
+    }
+  },
+  "responsive": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:869",
+      "name": "Icon/responsive"
+    },
+    "candidates": [
+      "keyboard",
+      "brand-signal",
+      "brand-signal (filled)"
+    ]
+  },
+  "restaurant": {
+    "tabler": "tools-kitchen-2",
+    "category": "common",
+    "figma": {
+      "id": "2178:27228",
+      "name": "restaurant"
+    }
+  },
+  "return-list": {
+    "tabler": "corner-up-left-double",
+    "category": "common",
+    "figma": {
+      "id": "2001:917",
+      "name": "Icon/return list"
+    }
+  },
+  "revenue": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:787",
+      "name": "Icon/revenue"
+    }
+  },
+  "roles": {
+    "tabler": "user-circle",
+    "category": "common",
+    "figma": {
+      "id": "2001:1190",
+      "name": "Icon/roles"
+    }
+  },
+  "row": {
+    "tabler": "layout-rows",
+    "category": "common",
+    "figma": {
+      "id": "2001:1213",
+      "name": "Icon/row"
+    }
+  },
+  "running": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1327",
+      "name": "Icon/running"
+    }
+  },
+  "save": {
+    "tabler": "bookmark-plus",
+    "category": "common",
+    "figma": {
+      "id": "2020:19042",
+      "name": "save"
+    }
+  },
+  "save-list": {
+    "tabler": "bookmark",
+    "category": "common",
+    "figma": {
+      "id": "2020:19040",
+      "name": "save list"
+    }
+  },
+  "saved": {
+    "tabler": "bookmark",
+    "style": "filled",
+    "category": "common",
+    "figma": {
+      "id": "2020:19044",
+      "name": "saved"
+    }
+  },
+  "search": {
+    "tabler": "search",
+    "category": "common",
+    "figma": {
+      "id": "2001:914",
+      "name": "search"
+    }
+  },
+  "security-shield-solid": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:738",
+      "name": "Icon/security - shield solid"
+    },
+    "candidates": [
+      "guitar-pick (filled)",
+      "help-square-rounded (filled)",
+      "device-imac (filled)"
+    ]
+  },
+  "segment": {
+    "tabler": "user-hexagon",
+    "category": "common",
+    "figma": {
+      "id": "2001:1243",
+      "name": "Icon/segment"
+    }
+  },
+  "send-email": {
+    "tabler": "brand-telegram",
+    "category": "common",
+    "figma": {
+      "id": "2001:911",
+      "name": "Icon/send email"
+    }
+  },
+  "sends": {
+    "tabler": "mail-forward",
+    "category": "common",
+    "figma": {
+      "id": "2001:1315",
+      "name": "Icon/sends"
+    }
+  },
+  "setting": {
+    "tabler": "adjustments-horizontal",
+    "category": "common",
+    "figma": {
+      "id": "2001:1962",
+      "name": "setting"
+    }
+  },
+  "sftp": {
+    "tabler": "cloud-network",
+    "category": "common",
+    "figma": {
+      "id": "2001:1193",
+      "name": "Icon/sftp"
+    }
+  },
+  "share": {
+    "tabler": "share-2",
+    "category": "common",
+    "figma": {
+      "id": "2181:17925",
+      "name": "share"
+    }
+  },
+  "shopping": {
+    "tabler": "shopping-cart",
+    "category": "common",
+    "figma": {
+      "id": "2178:27197",
+      "name": "shopping"
+    }
+  },
+  "show": {
+    "tabler": "eye",
+    "category": "common",
+    "figma": {
+      "id": "2001:908",
+      "name": "Icon/show"
+    }
+  },
+  "sidebar": {
+    "tabler": "layout-sidebar",
+    "category": "common",
+    "figma": {
+      "id": "2001:717",
+      "name": "Icon/sidebar"
+    }
+  },
+  "sms-content": {
+    "tabler": "device-mobile-message",
+    "category": "common",
+    "figma": {
+      "id": "2001:876",
+      "name": "Icon/sms content"
+    }
+  },
+  "sort-a-to-z": {
+    "tabler": "sort-ascending-letters",
+    "category": "common",
+    "figma": {
+      "id": "2001:871",
+      "name": "Icon/sort a to z"
+    }
+  },
+  "sort-z-to-a": {
+    "tabler": "sort-descending-letters",
+    "category": "common",
+    "figma": {
+      "id": "2001:743",
+      "name": "Icon/sort z to a"
+    }
+  },
+  "split": {
+    "tabler": "arrows-split-2",
+    "category": "common",
+    "figma": {
+      "id": "2001:1022",
+      "name": "Icon/split"
+    }
+  },
+  "sql": {
+    "tabler": "sql",
+    "category": "common",
+    "figma": {
+      "id": "2001:779",
+      "name": "Icon/sql"
+    }
+  },
+  "stack": {
+    "tabler": "stack-2",
+    "category": "common",
+    "figma": {
+      "id": "2001:1196",
+      "name": "Icon/stack"
+    }
+  },
+  "star": {
+    "tabler": "star",
+    "category": "common",
+    "figma": {
+      "id": "2001:729",
+      "name": "star"
+    }
+  },
+  "star-filled": {
+    "tabler": "star",
+    "style": "filled",
+    "category": "common",
+    "figma": {
+      "id": "2182:17993",
+      "name": "star filled"
+    }
+  },
+  "star-half": {
+    "tabler": "star-half",
+    "category": "common",
+    "figma": {
+      "id": "2182:17995",
+      "name": "star half"
+    }
+  },
+  "star-half-filled": {
+    "tabler": "star-half",
+    "style": "filled",
+    "category": "common",
+    "figma": {
+      "id": "2182:17994",
+      "name": "star half filled"
+    }
+  },
+  "start-date": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:874",
+      "name": "Icon/start date"
+    },
+    "candidates": [
+      "book-clone",
+      "brand-pnpm",
+      "copy (filled)"
+    ]
+  },
+  "statistic": {
+    "tabler": "chart-bar-popular",
+    "category": "common",
+    "figma": {
+      "id": "2001:1971",
+      "name": "statistic"
+    }
+  },
+  "stop": {
+    "tabler": "hand-stop",
+    "category": "common",
+    "figma": {
+      "id": "2001:773",
+      "name": "Icon/stop"
+    }
+  },
+  "story": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:764",
+      "name": "Icon/story"
+    },
+    "candidates": [
+      "wash-dryclean",
+      "percentage-0",
+      "circle"
+    ]
+  },
+  "success": {
+    "tabler": "circle-check",
+    "category": "common",
+    "figma": {
+      "id": "2001:1983",
+      "name": "success"
+    }
+  },
+  "table": {
+    "tabler": "border-all",
+    "category": "common",
+    "figma": {
+      "id": "2001:692",
+      "name": "Icon/table"
+    }
+  },
+  "tag": {
+    "tabler": "tag",
+    "category": "common",
+    "figma": {
+      "id": "2001:782",
+      "name": "Icon/tag"
+    }
+  },
+  "text-editor": {
+    "tabler": "text-resize",
+    "category": "common",
+    "figma": {
+      "id": "2001:1337",
+      "name": "Icon/text editor"
+    }
+  },
+  "thumb-down-dislike": {
+    "tabler": "thumb-down",
+    "category": "common",
+    "figma": {
+      "id": "2001:1107",
+      "name": "Icon/thumb down - dislike"
+    }
+  },
+  "thumb-up-like": {
+    "tabler": "thumb-up",
+    "category": "common",
+    "figma": {
+      "id": "2001:1104",
+      "name": "Icon/thumb up - like"
+    }
+  },
+  "time": {
+    "tabler": "clock-hour-4",
+    "category": "common",
+    "figma": {
+      "id": "2001:1019",
+      "name": "Icon/time"
+    }
+  },
+  "today-guide": {
+    "tabler": "map-pin-2",
+    "category": "common",
+    "figma": {
+      "id": "2001:1318",
+      "name": "Icon/today guide"
+    }
+  },
+  "token": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1127",
+      "name": "Icon/token"
+    }
+  },
+  "top": {
+    "tabler": "arrow-narrow-up",
+    "category": "direction",
+    "figma": {
+      "id": "2001:1095",
+      "name": "top"
+    }
+  },
+  "total-size": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1332",
+      "name": "Icon/total size"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "keyboard (filled)",
+      "device-gamepad (filled)"
+    ]
+  },
+  "total-table": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1330",
+      "name": "Icon/total table"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "device-gamepad (filled)",
+      "brand-signal"
+    ]
+  },
+  "tour-education": {
+    "tabler": "book",
+    "category": "common",
+    "figma": {
+      "id": "2001:885",
+      "name": "Icon/tour - education"
+    }
+  },
+  "tracking": {
+    "source": "figma",
+    "category": "common",
+    "figma": {
+      "id": "2001:1334",
+      "name": "Icon/tracking"
+    }
+  },
+  "transactions": {
+    "tabler": "transaction-dollar",
+    "category": "common",
+    "figma": {
+      "id": "2001:899",
+      "name": "Icon/transactions"
+    }
+  },
+  "trip": {
+    "tabler": "car",
+    "category": "common",
+    "figma": {
+      "id": "2020:19052",
+      "name": "trip"
+    }
+  },
+  "undo": {
+    "tabler": "arrow-back-up",
+    "category": "common",
+    "figma": {
+      "id": "2001:695",
+      "name": "Icon/undo"
+    }
+  },
+  "unmute": {
+    "tabler": "volume",
+    "category": "common",
+    "figma": {
+      "id": "2001:795",
+      "name": "Icon/unmute"
+    }
+  },
+  "unsubscribed-mail": {
+    "tabler": "mail-minus",
+    "category": "common",
+    "figma": {
+      "id": "2001:1251",
+      "name": "Icon/unsubscribed mail"
+    }
+  },
+  "unsubscribed-mobile": {
+    "tabler": "device-mobile-x",
+    "category": "common",
+    "figma": {
+      "id": "2001:1248",
+      "name": "Icon/unsubscribed mobile"
+    }
+  },
+  "user-event-aggregate": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:815",
+      "name": "Icon/user event aggregate"
+    },
+    "candidates": [
+      "message-2-pin",
+      "variable-plus",
+      "ruler-measure-2"
+    ]
+  },
+  "versions": {
+    "tabler": "versions",
+    "category": "common",
+    "figma": {
+      "id": "2001:817",
+      "name": "Icon/versions"
+    }
+  },
+  "warning": {
+    "tabler": "alert-triangle",
+    "category": "common",
+    "figma": {
+      "id": "2001:1977",
+      "name": "warning"
+    }
+  },
+  "wc": {
+    "tabler": "badge-wc",
+    "category": "common",
+    "figma": {
+      "id": "2178:27252",
+      "name": "wc"
+    }
+  },
+  "web-mobile-devices": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:701",
+      "name": "Icon/web mobile devices"
+    },
+    "candidates": [
+      "device-tv-old",
+      "brand-signal (filled)",
+      "brand-signal"
+    ]
+  },
+  "web-push-content": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1246",
+      "name": "Icon/web push content"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "align-box-bottom-right (filled)",
+      "align-box-right-bottom (filled)"
+    ]
+  },
+  "web-push-send": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1254",
+      "name": "Icon/web push send"
+    },
+    "candidates": [
+      "brand-signal (filled)",
+      "certificate-off",
+      "align-box-bottom-right (filled)"
+    ]
+  },
+  "webhook": {
+    "tabler": "webhook",
+    "category": "common",
+    "figma": {
+      "id": "2001:1149",
+      "name": "Icon/webhook"
+    }
+  },
+  "website": {
+    "pending": true,
+    "category": "common",
+    "figma": {
+      "id": "2001:1179",
+      "name": "Icon/website"
+    },
+    "candidates": [
+      "brand-pnpm",
+      "wash-tumble-off",
+      "brand-alipay"
+    ]
+  }
+}
