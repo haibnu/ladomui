@@ -14,3 +14,4 @@ export { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type Avat
 export { Cell, CellActions, CellHelper, CellSearch, type CellHelperProps, type CellProps, type CellSize } from './Cell/Cell';
 export { Dropdown, type DropdownProps } from './Dropdown/Dropdown';
 export { Selectbox, type SelectboxOption, type SelectboxProps, type SelectboxSize } from './Selectbox/Selectbox';
+export { Segment, type SegmentOption, type SegmentProps, type SegmentSize } from './Segment/Segment';
