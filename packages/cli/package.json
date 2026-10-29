@@ -12,7 +12,7 @@
   },
   "type": "module",
   "bin": {
-    "ladom-ui": "./bin/ladom-ui.mjs"
+    "ladom-ui": "bin/ladom-ui.mjs"
   },
   "files": [
     "bin",
