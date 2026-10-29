@@ -7,7 +7,7 @@ React design system built from the Figma file "Ladom UI Design System v1.0".
 | `packages/tokens` (`@ladom/tokens`) | Design tokens as CSS variables, generated from the Figma export |
 | `packages/icons` (`@ladom/icons`) | Icon components: semantic names mapped to Tabler icons, plus custom icons from Figma |
 | `packages/ui` (`@ladom/ui`) | React components (CSS Modules, no framework dependency) |
-| `apps/docs` (`@ladom/docs`) | Next.js documentation and preview site |
+| `apps/docs` (`@ladom/docs`) | Next.js documentation site for ui.ladom.co, in English (`/en`) and Turkish (`/tr`) |
 
 ## Getting started
 

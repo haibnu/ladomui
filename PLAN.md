@@ -18,6 +18,7 @@ Figma file: https://www.figma.com/design/VCJ6ew9Vk1gAqfnvQ1gfOz/Ladom-UI-Design-
   - Component page: title and description, Preview / Code tabs with copy, installation, one example per variant, API reference (props table).
   - Foundations pages per token group (colors, typography, spacing, radius, depth, grid, motion) and an icon gallery with search.
   - Built with the design system's own tokens and components; light and dark.
+  - English and Turkish (`/en`, `/tr`); a language selector comes later.
 
 ## Figma file map (page: node id)
 Tokens: Typography 20:466, Colors 57:17380, Grid 1588:0, z-index 2580:0, Radius 105:246, Spacing 1143:266, Animation 2575:31, Depth 1087:5, Border 2675:8811
