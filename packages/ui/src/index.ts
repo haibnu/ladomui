@@ -1,2 +1,1 @@
-// Components are exported from here as they are built (Phase 3+).
-export {};
+export { Button, type ButtonProps, type ButtonSize, type ButtonTone } from './Button/Button';

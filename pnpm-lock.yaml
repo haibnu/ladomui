@@ -65,6 +65,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@ladom/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@ladom/tokens':
         specifier: workspace:*
         version: link:../tokens

@@ -1,0 +1,347 @@
+/* Button, from Figma Components / Button (1088:61). Every value comes from a token;
+   the variants only switch which tokens the private --_ properties point to.
+   data-state="hover|pressed|focus" shows a state without interaction (docs, visual tests). */
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--_radius);
+  padding: var(--_pad-y) var(--_pad-x);
+  font: var(--_font);
+  color: var(--_fg);
+  background: var(--_bg);
+  box-shadow: var(--_shadow);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fade-default),
+    box-shadow var(--motion-fade-default),
+    color var(--motion-fade-default);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--layout-tiny);
+}
+
+.texts {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--layout-micro);
+}
+
+.subtitle {
+  font: var(--_font-sub);
+  color: var(--_sub);
+}
+
+.button:focus-visible {
+  outline: none;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+/* Sizes (👕 Size) */
+.button[data-size='large'] {
+  --_pad-y: var(--layout-small);
+  --_pad-x: var(--layout-xlarge);
+  --_radius: var(--radius-form-element);
+  --_font: var(--text-ui-text-lead-bold);
+  --_font-sub: var(--text-ui-text-lead-regular);
+}
+
+.button[data-size='medium'] {
+  --_pad-y: var(--layout-tiny);
+  --_pad-x: var(--layout-default);
+  --_radius: var(--radius-form-element);
+  --_font: var(--text-ui-text-bold);
+  --_font-sub: var(--text-ui-text-regular);
+}
+
+.button[data-size='small'] {
+  --_pad-y: var(--layout-tiny);
+  --_pad-x: var(--layout-small);
+  --_radius: var(--radius-form-element-small);
+  --_font: var(--text-ui-text-small-bold);
+  --_font-sub: var(--text-ui-text-small-regular);
+}
+
+.button[data-size='tiny'] {
+  --_pad-y: var(--layout-micro);
+  --_pad-x: var(--layout-tiny);
+  --_radius: var(--radius-form-element-small);
+  --_font: var(--text-ui-text-small-bold);
+  --_font-sub: var(--text-ui-text-small-regular);
+}
+
+/* Icon Button: round, square padding. Large and medium center a 20px icon in a 24px box. */
+.button[data-icon-only] {
+  --_radius: var(--radius-full);
+}
+
+.button[data-icon-only][data-size='large'] {
+  --_pad-x: var(--layout-small);
+  --_pad-y: var(--layout-small);
+}
+
+.button[data-icon-only][data-size='medium'],
+.button[data-icon-only][data-size='small'] {
+  --_pad-x: var(--layout-tiny);
+  --_pad-y: var(--layout-tiny);
+}
+
+.button[data-icon-only][data-size='tiny'] {
+  --_pad-x: var(--layout-micro);
+  --_pad-y: var(--layout-micro);
+}
+
+.button[data-icon-only]:is([data-size='large'], [data-size='medium']) .content {
+  inline-size: var(--line-height-base);
+  block-size: var(--line-height-base);
+}
+
+/* Tones (💅 Style): the color family each variant reads from. */
+.button[data-tone='primary'] {
+  --_c: var(--color-primary);
+  --_c-natural: var(--color-primary-natural);
+  --_c-shade: var(--color-primary-shade);
+  --_c-tint: var(--color-primary-tint);
+  --_c-soft: var(--color-primary-soft);
+  --_on: var(--color-on-primary);
+  --_on-tint: var(--color-on-primary-tint);
+}
+
+.button[data-tone='secondary'] {
+  --_c: var(--color-secondary);
+  --_c-natural: var(--color-secondary-natural);
+  --_c-shade: var(--color-secondary-shade);
+  --_c-tint: var(--color-secondary-tint);
+  --_c-soft: var(--color-secondary-soft);
+  --_on: var(--color-on-secondary);
+  --_on-tint: var(--color-on-secondary-tint);
+}
+
+.button[data-tone='tertiary'] {
+  --_c: var(--color-tertiary);
+  --_c-natural: var(--color-tertiary-natural);
+  --_c-shade: var(--color-tertiary-shade);
+  --_c-tint: var(--color-tertiary-tint);
+  --_c-soft: var(--color-tertiary-soft);
+  --_on: var(--color-on-tertiary);
+  --_on-tint: var(--color-on-tertiary-tint);
+}
+
+.button[data-tone='success'] {
+  --_c: var(--color-success);
+  --_c-natural: var(--color-success-natural);
+  --_c-shade: var(--color-success-shade);
+  --_c-tint: var(--color-success-tint);
+  --_c-soft: var(--color-success-soft);
+  --_on: var(--color-on-success);
+  --_on-tint: var(--color-on-success-tint);
+}
+
+.button[data-tone='error'] {
+  --_c: var(--color-error);
+  --_c-natural: var(--color-error-natural);
+  --_c-shade: var(--color-error-shade);
+  --_c-tint: var(--color-error-tint);
+  --_c-soft: var(--color-error-soft);
+  --_on: var(--color-on-error);
+  --_on-tint: var(--color-on-error-tint);
+}
+
+.button[data-tone='warning'] {
+  --_c: var(--color-warning);
+  --_c-natural: var(--color-warning-natural);
+  --_c-shade: var(--color-warning-shade);
+  --_c-tint: var(--color-warning-tint);
+  --_c-soft: var(--color-warning-soft);
+  --_on: var(--color-on-warning);
+  --_on-tint: var(--color-on-warning-tint);
+}
+
+.button[data-tone='info'] {
+  --_c: var(--color-info);
+  --_c-natural: var(--color-info-natural);
+  --_c-shade: var(--color-info-shade);
+  --_c-tint: var(--color-info-tint);
+  --_c-soft: var(--color-info-soft);
+  --_on: var(--color-on-info);
+  --_on-tint: var(--color-on-info-tint);
+}
+
+/* Solid (🎛 Type=Button) */
+.button[data-variant='solid'] {
+  --_bg: var(--_c);
+  --_fg: var(--_on);
+  --_sub: var(--_on-tint);
+  --_shadow: none;
+  /* Focus keeps the fill and adds a 3px outside line; the line color differs per tone. */
+  --_focus-bg: var(--_c);
+  --_focus-shadow: 0 0 0 3px var(--_focus-line);
+  --_focus-line: var(--_c-natural);
+  --_disabled-fg: var(--_c-tint);
+}
+
+.button[data-variant='solid'][data-tone='primary'] {
+  --_shadow: var(--shadow-button-default);
+  --_focus-bg: var(--_c-tint);
+  --_focus-shadow: var(--shadow-focus-primary);
+}
+
+.button[data-variant='solid'][data-tone='secondary'] {
+  --_shadow: var(--shadow-button-secondary-default);
+}
+
+.button[data-variant='solid'][data-tone='tertiary'] {
+  --_shadow: inset 0 0 0 2px var(--color-tertiary-tint), var(--shadow-button-default);
+  --_focus-line: var(--_c-tint);
+  --_disabled-fg: var(--_c-shade);
+}
+
+.button[data-variant='solid']:is([data-tone='success'], [data-tone='error']) {
+  --_focus-line: var(--_c-tint);
+}
+
+.button[data-variant='solid']:is(:hover, [data-state='hover']) {
+  --_bg: var(--_c-natural);
+  --_shadow: none;
+}
+
+.button[data-variant='solid']:is(:active, [data-state='pressed']) {
+  --_bg: var(--_c-shade);
+  --_shadow: none;
+}
+
+.button[data-variant='solid']:is(:focus-visible, [data-state='focus']) {
+  --_bg: var(--_focus-bg);
+  --_shadow: var(--_focus-shadow);
+}
+
+.button[data-variant='solid']:disabled {
+  --_bg: var(--_c-soft);
+  --_fg: var(--_disabled-fg);
+  --_sub: var(--_disabled-fg);
+  --_shadow: none;
+}
+
+/* Ghost (🎛 Type=Ghost): no fill until hovered. */
+.button[data-variant='ghost'] {
+  --_bg: transparent;
+  --_fg: var(--_c);
+  --_sub: var(--_c);
+  --_shadow: none;
+  --_hover-bg: var(--_c-soft);
+  --_active-bg: var(--_c-tint);
+  --_focus-bg: var(--color-surface-level-1);
+  --_focus-shadow: 0 0 0 3px var(--_c-tint);
+}
+
+.button[data-variant='ghost']:is([data-tone='primary'], [data-tone='tertiary']) {
+  --_hover-bg: var(--color-surface-level-2);
+  --_active-bg: var(--color-surface-level-3);
+}
+
+.button[data-variant='ghost'][data-tone='primary'] {
+  --_focus-shadow: var(--shadow-focus-primary);
+}
+
+.button[data-variant='ghost'][data-tone='secondary'] {
+  --_fg: var(--_on);
+  --_sub: var(--_on);
+  --_hover-bg: var(--_c-natural);
+  --_active-bg: var(--_c-shade);
+  --_focus-shadow: var(--shadow-focus-secondary);
+}
+
+.button[data-variant='ghost'][data-tone='tertiary'] {
+  --_focus-bg: transparent;
+  --_focus-shadow: 0 0 0 3px var(--color-surface-level-3), var(--shadow-focus-tertiary);
+}
+
+.button[data-variant='ghost'][data-tone='error'] {
+  --_focus-shadow: var(--shadow-focus-error);
+}
+
+.button[data-variant='ghost']:is(:hover, [data-state='hover']) {
+  --_bg: var(--_hover-bg);
+}
+
+.button[data-variant='ghost']:is(:active, [data-state='pressed']) {
+  --_bg: var(--_active-bg);
+}
+
+.button[data-variant='ghost']:is(:focus-visible, [data-state='focus']) {
+  --_bg: var(--_focus-bg);
+  --_shadow: var(--_focus-shadow);
+}
+
+.button[data-variant='ghost']:disabled {
+  --_bg: transparent;
+  --_fg: var(--_c-tint);
+  --_sub: var(--_c-tint);
+}
+
+/* Loading: soft fill, label kept for size but hidden, spinning loader in the middle. */
+.button[data-loading] {
+  cursor: progress;
+}
+
+.button[data-loading][data-variant='solid'] {
+  --_bg: var(--_c-soft);
+  --_shadow: none;
+}
+
+.button[data-loading][data-variant='ghost'] {
+  --_bg: transparent;
+}
+
+.button[data-loading][data-variant='ghost'][data-icon-only] {
+  --_bg: var(--color-surface-level-2);
+}
+
+.button[data-loading] .content {
+  visibility: hidden;
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  color: var(--_on);
+  background: var(--_c);
+  animation: spin 1s linear infinite;
+}
+
+/* The secondary loader sits on its own soft color in Figma. */
+.button[data-tone='secondary'] .loader {
+  background: var(--_c-soft);
+}
+
+@keyframes spin {
+  to {
+    rotate: 1turn;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .loader {
+    animation: none;
+  }
+}
