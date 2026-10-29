@@ -4,35 +4,43 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboa
 import { useRouter } from 'next/navigation';
 import { IconSearch, iconNames } from '@ladom/icons';
 import meta from '@ladom/tokens/tokens.json';
-import { nav } from './nav';
+import { getDictionary, href, type Locale } from '@/i18n';
+import { getNav } from './nav';
+import { useLocale } from './useLocale';
 import styles from './shell.module.css';
 
-type Result = { kind: 'Page' | 'Token' | 'Icon'; title: string; detail?: string; href: string };
+type Kind = 'Page' | 'Token' | 'Icon';
+type Result = { kind: Kind; title: string; detail?: string; href: string };
 
-const index: Result[] = [
-  ...nav.flatMap((s) => s.items.filter((i) => i.href).map((i) => ({ kind: 'Page' as const, title: i.title, detail: s.title, href: i.href! }))),
-  ...meta.groups.flatMap((g) =>
-    [...g.variables.map((v) => v.name), ...g.tokens.map((t) => t.name)].map((name) => ({
-      kind: 'Token' as const,
-      title: name,
-      detail: g.title,
-      href: `/docs/foundations/${g.id}#${name.slice(2)}`,
-    })),
-  ),
-  ...iconNames.map((name) => ({ kind: 'Icon' as const, title: name, href: `/docs/foundations/icons#icon-${name}` })),
-];
+function buildIndex(lang: Locale): Result[] {
+  const t = getDictionary(lang);
+  return [
+    ...getNav(lang).flatMap((s) => s.items.filter((i) => i.href).map((i) => ({ kind: 'Page' as const, title: i.title, detail: s.title, href: i.href! }))),
+    ...meta.groups.flatMap((g) =>
+      [...g.variables.map((v) => v.name), ...g.tokens.map((tk) => tk.name)].map((name) => ({
+        kind: 'Token' as const,
+        title: name,
+        detail: t.groups[g.id]?.title ?? g.title,
+        href: href(lang, `/docs/foundations/${g.id}#${name.slice(2)}`),
+      })),
+    ),
+    ...iconNames.map((name) => ({ kind: 'Icon' as const, title: name, href: href(lang, `/docs/foundations/icons#icon-${name}`) })),
+  ];
+}
 
 export function Search() {
   const router = useRouter();
+  const { lang, t } = useLocale();
   const dialog = useRef<HTMLDialogElement>(null);
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
+  const index = useMemo(() => buildIndex(lang), [lang]);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return index.filter((r) => r.kind === 'Page');
     return index.filter((r) => r.title.toLowerCase().includes(q)).slice(0, 50);
-  }, [query]);
+  }, [query, index]);
 
   const open = () => {
     setQuery('');
@@ -65,9 +73,9 @@ export function Search() {
 
   return (
     <>
-      <button type="button" className={styles.searchButton} onClick={open}>
+      <button type="button" className={styles.searchButton} onClick={open} aria-label={t.search.label}>
         <IconSearch size={16} />
-        <span className={styles.searchLabel}>Quick search…</span>
+        <span className={styles.searchLabel}>{t.topBar.search}</span>
         <kbd className={styles.kbd}>⌘K</kbd>
       </button>
       <dialog ref={dialog} className={styles.searchDialog} onClick={(e) => e.target === dialog.current && dialog.current?.close()}>
@@ -76,23 +84,27 @@ export function Search() {
           <input
             className={styles.searchInput}
             autoFocus
-            placeholder="Search pages, tokens and icons"
+            placeholder={t.search.placeholder}
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
               setActive(0);
             }}
             onKeyDown={onKeyDown}
-            aria-label="Search"
+            aria-label={t.search.label}
           />
           <kbd className={styles.kbd}>Esc</kbd>
         </div>
         <ul className={styles.searchResults} role="listbox">
-          {results.length === 0 && <li className={styles.searchEmpty}>No results for “{query}”.</li>}
+          {results.length === 0 && (
+            <li className={styles.searchEmpty}>
+              {t.search.empty} “{query}”
+            </li>
+          )}
           {results.map((r, i) => (
             <li key={`${r.kind}-${r.href}`} role="option" aria-selected={i === active}>
               <button type="button" className={styles.searchResult} data-active={i === active || undefined} onMouseEnter={() => setActive(i)} onClick={() => go(r)}>
-                <span className={styles.searchKind}>{r.kind}</span>
+                <span className={styles.searchKind}>{t.search.kinds[r.kind]}</span>
                 <span className={styles.searchTitle}>{r.title}</span>
                 {r.detail && <span className={styles.searchDetail}>{r.detail}</span>}
               </button>

@@ -393,7 +393,7 @@ a.navLink:hover {
 
   .sidebar,
   .searchLabel,
-  .topLink {
+  .topLink:not(.langLink) {
     display: none;
   }
 

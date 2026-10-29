@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useLocale } from './useLocale';
 import styles from './shell.module.css';
 
 type Heading = { id: string; text: string; level: number };
@@ -9,6 +10,7 @@ type Heading = { id: string; text: string; level: number };
 // "On this page": the h2/h3 headings with an id inside the page content.
 export function Toc() {
   const pathname = usePathname();
+  const { t } = useLocale();
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [active, setActive] = useState<string>();
 
@@ -28,8 +30,8 @@ export function Toc() {
 
   if (!headings.length) return null;
   return (
-    <nav className={styles.toc} aria-label="On this page">
-      <p className={styles.navTitle}>On this page</p>
+    <nav className={styles.toc} aria-label={t.nav.onThisPage}>
+      <p className={styles.navTitle}>{t.nav.onThisPage}</p>
       <ul className={styles.tocList}>
         {headings.map((h) => (
           <li key={h.id} data-level={h.level}>

@@ -2,13 +2,16 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { nav } from './nav';
+import { getNav } from './nav';
+import { useLocale } from './useLocale';
 import styles from './shell.module.css';
 
 export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
+  const { lang, t } = useLocale();
+  const nav = getNav(lang);
   return (
-    <nav className={styles.sidebarNav} aria-label="Documentation">
+    <nav className={styles.sidebarNav} aria-label={t.topBar.docs}>
       {nav.map((section) => (
         <div key={section.title} className={styles.navSection}>
           <p className={styles.navTitle}>{section.title}</p>
@@ -29,7 +32,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
                 <li key={item.title}>
                   <span className={styles.navLink} aria-disabled="true">
                     {item.title}
-                    {item.soon && <span className={styles.soon}>Soon</span>}
+                    {item.soon && <span className={styles.soon}>{t.nav.soon}</span>}
                   </span>
                 </li>
               ),

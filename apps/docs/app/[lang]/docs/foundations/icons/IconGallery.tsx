@@ -3,12 +3,14 @@
 import { useMemo, useState } from 'react';
 import { iconNames, type IconName } from '@ladom/icons';
 import { iconMeta, icons } from '@ladom/icons/all';
+import { useLocale } from '@/components/useLocale';
 import styles from './page.module.css';
 
 const componentName = (name: string) => `Icon${name.split('-').map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join('')}`;
 
 export function IconGallery() {
   const [query, setQuery] = useState('');
+  const { t } = useLocale();
 
   const groups = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -29,16 +31,18 @@ export function IconGallery() {
       <input
         className={styles.search}
         type="search"
-        placeholder={`Search ${iconNames.length} icons`}
+        placeholder={t.icons.search(iconNames.length)}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        aria-label="Search icons"
+        aria-label={t.icons.searchLabel}
       />
-      {groups.length === 0 && <p className={styles.empty}>No icons match “{query}”.</p>}
+      {groups.length === 0 && <p className={styles.empty}>
+          {t.icons.empty} “{query}”
+        </p>}
       {groups.map(([category, names]) => (
         <section key={category}>
           <h2 id={category} className={styles.heading}>
-            {category} <span className={styles.count}>{names.length}</span>
+            {t.icons.categories[category] ?? category} <span className={styles.count}>{names.length}</span>
           </h2>
           <ul className={styles.grid}>
             {names.map((name) => {
@@ -48,7 +52,7 @@ export function IconGallery() {
                 <li key={name} id={`icon-${name}`} className={styles.tile} title={`${componentName(name)} · ${m.source === 'figma' ? 'custom (Figma)' : `tabler: ${m.tabler}`}`}>
                   <Icon size={24} />
                   <span className={styles.name}>{name}</span>
-                  {m.source === 'figma' && <span className={styles.badge}>custom</span>}
+                  {m.source === 'figma' && <span className={styles.badge}>{t.icons.custom}</span>}
                 </li>
               );
             })}

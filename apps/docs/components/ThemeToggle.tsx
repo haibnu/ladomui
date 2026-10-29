@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { IconDark, IconLight } from '@ladom/icons';
+import { useLocale } from './useLocale';
 import styles from './shell.module.css';
 
 export const THEME_KEY = 'ladom-theme';
@@ -11,6 +12,7 @@ export const themeInitScript = `try{if(localStorage.getItem('${THEME_KEY}')==='d
 
 export function ThemeToggle() {
   const [dark, setDark] = useState(false);
+  const { t } = useLocale();
 
   useEffect(() => setDark(document.documentElement.getAttribute('data-theme') === 'dark'), []);
 
@@ -28,7 +30,7 @@ export function ThemeToggle() {
 
   const Icon = dark ? IconLight : IconDark;
   return (
-    <button type="button" className={styles.iconButton} onClick={toggle} aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}>
+    <button type="button" className={styles.iconButton} onClick={toggle} aria-label={dark ? t.topBar.toLight : t.topBar.toDark}>
       <Icon size={20} />
     </button>
   );

@@ -2,32 +2,24 @@ import type { Metadata } from 'next';
 import type { CSSProperties, ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import meta from '@ladom/tokens/tokens.json';
-import { DocPage } from '../../../../components/DocPage';
+import { DocPage } from '@/components/DocPage';
+import { getDictionary, type Dictionary, type Locale } from '@/i18n';
 import { ModeSwitcher } from './ModeSwitcher';
 import styles from './page.module.css';
 
 type Group = (typeof meta.groups)[number];
 type Row = { name: string; figma?: string; source?: string; added?: boolean; description?: string; values: Partial<Record<string, string>> };
 
-const DESCRIPTIONS: Record<string, string> = {
-  color: 'Theme colors from the Figma 02 Theme collection. Light is the default; Dark is opt-in.',
-  typography: 'Font, sizes, weights and line heights, and every Figma text style as a font shorthand.',
-  space: 'Spacing scale, semantic spacing and the layout density scale (Comfort / Narrow).',
-  radius: 'Corner radius for layouts, cards and form elements.',
-  size: 'Modal widths and page content widths.',
-  grid: 'Column widths and the column grids used in Figma.',
-  border: 'The default line and its color.',
-  shadow: 'Depth, focus rings and lines from the Figma effect styles.',
-  motion: 'Durations and transitions from the Figma Animation page.',
-};
 
 export function generateStaticParams() {
   return meta.groups.map((g) => ({ group: g.id }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ group: string }> }): Promise<Metadata> {
-  const { group: id } = await params;
-  return { title: meta.groups.find((g) => g.id === id)?.title };
+type Props = { params: Promise<{ lang: string; group: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang, group: id } = await params;
+  return { title: getDictionary(lang as Locale).groups[id]?.title };
 }
 
 // Color sections in the order of the Figma Colors page; other groups keep their natural order.
@@ -40,16 +32,16 @@ const sectionRank = (group: Group, section: string) => {
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 // Section of a row: the Figma folder of a variable (surface, radius, size...), or the style folder of a token.
-function sectionOf(group: Group, row: Row): string {
+function sectionOf(group: Group, row: Row, t: Dictionary): string {
   if (row.figma) {
     const path = row.figma.split(' / ')[1]!.split('/');
-    return path.length > 1 ? path[path.length - 2]! : group.title;
+    return path.length > 1 ? path[path.length - 2]! : (t.groups[group.id]?.title ?? group.title);
   }
   const source = row.source ?? '';
-  if (group.id === 'typography') return `Text styles: ${source.split('/')[0]}`;
+  if (group.id === 'typography') return `${t.foundations.textStyles}: ${source.split('/')[0]}`;
   if (group.id === 'shadow') return source.split('/')[0] ?? 'Effects';
   if (group.id === 'grid') return `${source}`;
-  return group.title;
+  return t.groups[group.id]?.title ?? group.title;
 }
 
 function Preview({ group, name }: { group: string; name: string }): ReactNode {
@@ -100,20 +92,21 @@ function Values({ values }: { values: Row['values'] }) {
   );
 }
 
-export default async function FoundationPage({ params }: { params: Promise<{ group: string }> }) {
-  const { group: id } = await params;
+export default async function FoundationPage({ params }: Props) {
+  const { lang, group: id } = await params;
+  const t = getDictionary(lang as Locale);
   const group = meta.groups.find((g) => g.id === id);
   if (!group) notFound();
 
   const rows: Row[] = [...group.variables, ...group.tokens.map((t) => ({ name: t.name, source: t.source, values: { '': t.value } }))];
   const sections = new Map<string, Row[]>();
   for (const row of rows) {
-    const s = sectionOf(group, row);
+    const s = sectionOf(group, row, t);
     sections.set(s, [...(sections.get(s) ?? []), row]);
   }
 
   return (
-    <DocPage eyebrow="Foundations" title={group.title} description={DESCRIPTIONS[group.id]}>
+    <DocPage eyebrow={t.nav.foundations} title={t.groups[group.id]?.title ?? group.title} description={t.groups[group.id]?.description}>
       <ModeSwitcher />
       {[...sections].sort(([a], [b]) => sectionRank(group, a) - sectionRank(group, b)).map(([section, list]) => (
         <section key={section}>
@@ -123,9 +116,9 @@ export default async function FoundationPage({ params }: { params: Promise<{ gro
           <table className={styles.table}>
             <thead>
               <tr>
-                <th>Token</th>
-                <th>Value</th>
-                <th>Preview</th>
+                <th>{t.foundations.token}</th>
+                <th>{t.foundations.value}</th>
+                <th>{t.foundations.preview}</th>
               </tr>
             </thead>
             <tbody>
@@ -135,7 +128,7 @@ export default async function FoundationPage({ params }: { params: Promise<{ gro
                     <code>{row.name}</code>
                     <div className={styles.source}>
                       {row.figma ?? row.source}
-                      {row.added && ' · added in code'}
+                      {row.added && ` · ${t.foundations.addedInCode}`}
                     </div>
                     {row.description && <div className={styles.source}>{row.description}</div>}
                   </td>
