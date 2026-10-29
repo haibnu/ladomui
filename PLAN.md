@@ -11,6 +11,13 @@ Figma file: https://www.figma.com/design/VCJ6ew9Vk1gAqfnvQ1gfOz/Ladom-UI-Design-
 - Mobile components (Tab Bar, Bottomsheet, NavigationBar, iOS Base Components) are out of scope for now.
 - Complex interactive components (Dropdown, Popover, Tooltip, Date Picker...) use Radix UI primitives, styled to match Figma.
 - Work starts on the local machine (Claude Code + Figma desktop app), because Figma variable/selection tools and asset export need it.
+- Icons: Tabler Icons behind a semantic icon layer. `packages/icons` maps each Ladom icon name to exactly one Tabler icon; components are generated from the `@tabler/icons` SVGs, and only mapped icons can be used.
+- Docs: a public documentation website at **ui.ladom.co**, modelled on alignui.com (structure, not branding):
+  - Landing page: hero, short pitch, get-started CTA, component showcase.
+  - Docs layout: top bar (logo, version, search ⌘K, theme toggle, GitHub), left sidebar (Getting Started, Foundations, Components by category), right "On this page" table of contents.
+  - Component page: title and description, Preview / Code tabs with copy, installation, one example per variant, API reference (props table).
+  - Foundations pages per token group (colors, typography, spacing, radius, depth, grid, motion) and an icon gallery with search.
+  - Built with the design system's own tokens and components; light and dark.
 
 ## Figma file map (page: node id)
 Tokens: Typography 20:466, Colors 57:17380, Grid 1588:0, z-index 2580:0, Radius 105:246, Spacing 1143:266, Animation 2575:31, Depth 1087:5, Border 2675:8811
@@ -23,9 +30,10 @@ Molecules: Alert 2109:14790, Accordion 2119:50032, Navigation 2196:16006, Toast 
 ladomui/
 ├── packages/
 │   ├── tokens/   # Figma tokens -> CSS variables + TS
+│   ├── icons/    # Semantic icon names -> Tabler icons, React components
 │   └── ui/       # React components
 ├── apps/
-│   └── docs/     # Next.js preview / documentation site
+│   └── docs/     # Next.js documentation website (ui.ladom.co)
 ├── CLAUDE.md
 └── PLAN.md
 ```
@@ -34,13 +42,14 @@ pnpm workspace, TypeScript.
 ## Phases
 1. Scaffold: pnpm workspace, TypeScript, Next.js docs app, CLAUDE.md, README.
 2. Tokens: Colors, Typography, Spacing, Radius, Border, Depth, Animation, z-index, Grid. Token page in docs.
-3. Basic components: Button, Input, Label, Hint, Checkbox, Radio, Switch, Badge, Chips, Avatar, Loader.
+3. Icons and docs site shell: `packages/icons` (Figma icon names mapped to Tabler), then the docs website layout (landing, sidebar, search, theme toggle, foundations pages, icon gallery) so every component lands as a page.
+   Basic components: Button, Input, Label, Hint, Checkbox, Radio, Switch, Badge, Chips, Avatar, Loader, each with its docs page.
 4. Complex components: Dropdown, Selectbox, Tab, Segment, Tooltip, Popover, Date/Time Picker, Stepper, Uploader, Breadcrumb, Cell, Item Selector.
 5. Molecules: Alert, Toast, Accordion, Navigation.
-6. Integration: install guide for another Next.js project, add to Claude Design.
+6. Integration: install guide for another Next.js project, add to Claude Design, deploy the docs to ui.ladom.co.
 
 Each component is checked against a Figma screenshot before commit. Small commits.
 
 ## Open
-- Are colors/spacing defined as Figma Variables in the file? (Local variables panel)
-- Icons and assets must be exported from Figma and added to the repo.
+- Brand logos (Brands / *) and flags on the Icons page are not Tabler icons; where they live (icons package or assets) is undecided.
+- Hosting for ui.ladom.co (e.g. Vercel) and DNS for the subdomain.
