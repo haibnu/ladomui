@@ -12,7 +12,7 @@ export function TopBar({ withMenu = false }: { withMenu?: boolean }) {
     <header className={styles.topBar}>
       <div className={styles.topBarStart}>
         {withMenu && <MobileNav />}
-        <Link href="/" className={styles.brand} aria-label="Ladom UI home">
+        <Link href="/" className={styles.brand}>
           <Logo />
         </Link>
       </div>
