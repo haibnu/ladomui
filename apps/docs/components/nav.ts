@@ -14,6 +14,8 @@ const PLANNED_MOLECULES = ['Accordion', 'Alert', 'Navigation', 'Toast'];
 // Components that have a page, by their path segment.
 const BUILT: Record<string, string> = { Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Date Picker': 'date-picker', Dropdown: 'dropdown', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', 'Time Picker': 'time-picker', Tooltip: 'tooltip', Uploader: 'uploader' };
 
+const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', Alert: 'alert', Navigation: 'navigation', Toast: 'toast' };
+
 export function getNav(lang: Locale): NavSection[] {
   const t = getDictionary(lang);
   return [
@@ -37,7 +39,12 @@ export function getNav(lang: Locale): NavSection[] {
         BUILT[title] ? { title, href: href(lang, `/docs/components/${BUILT[title]}`) } : { title, soon: true },
       ),
     },
-    { title: t.nav.molecules, items: PLANNED_MOLECULES.map((title) => ({ title, soon: true })) },
+    {
+      title: t.nav.molecules,
+      items: PLANNED_MOLECULES.map((title) =>
+        BUILT_MOLECULES[title] ? { title, href: href(lang, `/docs/molecules/${BUILT_MOLECULES[title]}`) } : { title, soon: true },
+      ),
+    },
   ];
 }
 
