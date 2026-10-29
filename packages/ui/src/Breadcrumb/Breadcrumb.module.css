@@ -1,0 +1,79 @@
+/* Breadcrumb, from Figma Components / Breadcrumb (4748:15272): a surface/level-2 pill with the
+   back button and a 16px round toggle; the path opens in a Dropdown 4px below, 16px in. */
+
+.breadcrumb {
+  position: relative;
+  display: inline-flex;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-micro);
+  min-block-size: var(--space-xxlarge);
+  padding-inline: var(--space-tiny);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-level-2);
+}
+
+.pill:has(.back) {
+  padding-inline-start: 0;
+}
+
+.back {
+  border-radius: var(--radius-full);
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+  border: none;
+  border-radius: var(--radius-full);
+  color: var(--color-primary);
+  background: var(--color-surface-level-4);
+  cursor: pointer;
+  transition: background-color var(--motion-fade-default);
+}
+
+.toggle > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.toggle:hover {
+  background: var(--color-surface-level-1);
+}
+
+.toggle:focus-visible {
+  outline: none;
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.toggle[data-open] {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+}
+
+.menu {
+  position: absolute;
+  inset-block-start: calc(100% + var(--space-micro));
+  inset-inline-start: var(--space-medium);
+  min-inline-size: calc(6 * var(--space-xxlarge) + var(--space-xlarge));
+}
+
+.link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-form-element-small);
+  outline: none;
+}
+
+.link:focus-visible {
+  box-shadow: var(--shadow-focus-primary);
+}
