@@ -109,7 +109,6 @@ import { IconFormBuilder } from './icons/IconFormBuilder';
 import { IconForward } from './icons/IconForward';
 import { IconFullScreen } from './icons/IconFullScreen';
 import { IconGoogle } from './icons/IconGoogle';
-import { IconGraphReport } from './icons/IconGraphReport';
 import { IconGreenEnergy } from './icons/IconGreenEnergy';
 import { IconGrocery } from './icons/IconGrocery';
 import { IconGroup } from './icons/IconGroup';
@@ -175,6 +174,7 @@ import { IconRefreshPreperad } from './icons/IconRefreshPreperad';
 import { IconRemoteTable } from './icons/IconRemoteTable';
 import { IconRemove } from './icons/IconRemove';
 import { IconReport } from './icons/IconReport';
+import { IconReportChart } from './icons/IconReportChart';
 import { IconRestaurant } from './icons/IconRestaurant';
 import { IconReturnList } from './icons/IconReturnList';
 import { IconRevenue } from './icons/IconRevenue';
@@ -339,7 +339,6 @@ export const icons = {
   'forward': IconForward,
   'full-screen': IconFullScreen,
   'google': IconGoogle,
-  'graph-report': IconGraphReport,
   'green-energy': IconGreenEnergy,
   'grocery': IconGrocery,
   'group': IconGroup,
@@ -405,6 +404,7 @@ export const icons = {
   'remote-table': IconRemoteTable,
   'remove': IconRemove,
   'report': IconReport,
+  'report-chart': IconReportChart,
   'restaurant': IconRestaurant,
   'return-list': IconReturnList,
   'revenue': IconRevenue,
@@ -1105,12 +1105,6 @@ export const iconMeta: Record<IconName, { category: string; source: 'tabler' | '
     "tabler": "brand-google",
     "figma": "Icon/google"
   },
-  "graph-report": {
-    "category": "common",
-    "source": "tabler",
-    "tabler": "graph",
-    "figma": "Icon/report"
-  },
   "green-energy": {
     "category": "electric",
     "source": "tabler",
@@ -1492,6 +1486,12 @@ export const iconMeta: Record<IconName, { category: string; source: 'tabler' | '
     "source": "tabler",
     "tabler": "flag",
     "figma": "Report"
+  },
+  "report-chart": {
+    "category": "common",
+    "source": "tabler",
+    "tabler": "graph",
+    "figma": "Icon/report"
   },
   "restaurant": {
     "category": "common",

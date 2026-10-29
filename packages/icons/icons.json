@@ -1239,14 +1239,6 @@
       "name": "Icon/google"
     }
   },
-  "graph-report": {
-    "tabler": "graph",
-    "category": "common",
-    "figma": {
-      "id": "2001:1312",
-      "name": "Icon/report"
-    }
-  },
   "green-energy": {
     "tabler": "leaf",
     "category": "electric",
@@ -1986,6 +1978,14 @@
     "figma": {
       "id": "2010:14234",
       "name": "Report"
+    }
+  },
+  "report-chart": {
+    "tabler": "graph",
+    "category": "common",
+    "figma": {
+      "id": "2001:1312",
+      "name": "Icon/report"
     }
   },
   "responsive": {

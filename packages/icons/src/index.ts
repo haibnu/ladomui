@@ -110,7 +110,6 @@ export { IconFormBuilder } from './icons/IconFormBuilder';
 export { IconForward } from './icons/IconForward';
 export { IconFullScreen } from './icons/IconFullScreen';
 export { IconGoogle } from './icons/IconGoogle';
-export { IconGraphReport } from './icons/IconGraphReport';
 export { IconGreenEnergy } from './icons/IconGreenEnergy';
 export { IconGrocery } from './icons/IconGrocery';
 export { IconGroup } from './icons/IconGroup';
@@ -176,6 +175,7 @@ export { IconRefreshPreperad } from './icons/IconRefreshPreperad';
 export { IconRemoteTable } from './icons/IconRemoteTable';
 export { IconRemove } from './icons/IconRemove';
 export { IconReport } from './icons/IconReport';
+export { IconReportChart } from './icons/IconReportChart';
 export { IconRestaurant } from './icons/IconRestaurant';
 export { IconReturnList } from './icons/IconReturnList';
 export { IconRevenue } from './icons/IconRevenue';
@@ -340,7 +340,6 @@ export const iconNames = [
   "forward",
   "full-screen",
   "google",
-  "graph-report",
   "green-energy",
   "grocery",
   "group",
@@ -406,6 +405,7 @@ export const iconNames = [
   "remote-table",
   "remove",
   "report",
+  "report-chart",
   "restaurant",
   "return-list",
   "revenue",
