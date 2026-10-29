@@ -16,7 +16,10 @@ const CODE = {
   add: `npx ladom-ui add button input form-field`,
   pro: `LADOM_UI_KEY=ldm_pro_… npx ladom-ui add accordion navigation`,
   icons: `npx ladom-ui icons share calendar`,
-  update: `npx ladom-ui add button --overwrite`,
+  update: `npx ladom-ui list      # shows (update available)
+npx ladom-ui update    # updates the files you have not changed
+npx ladom-ui diff button
+npx ladom-ui update button --overwrite`,
   layout: `// app/layout.tsx
 import { Hanken_Grotesk } from 'next/font/google';
 import '@/components/ladom/tokens/index.css';
@@ -106,7 +109,7 @@ const COPY = {
     icons: 'More icons',
     iconsText: 'Components bring the icons they use. For your own code, copy more by name:',
     update: 'Updating',
-    updateText: 'Running add again only writes files you have not changed; it lists the rest. Use --overwrite to replace them.',
+    updateText: 'Updates are not pushed to your project; you pull them. The CLI remembers every file it wrote, so update replaces the files you have not touched and keeps the ones you changed. diff shows how your copy differs from the latest; --overwrite takes the latest anyway.',
     modes: '5. Themes and modes',
     modesText: 'Set the modes on <html>. Device modes follow the window width (Mobile below 768px, Tablet below 1280px) unless data-device forces one.',
     styling: 'Your own styles',
@@ -156,7 +159,7 @@ const COPY = {
     icons: 'Daha fazla ikon',
     iconsText: 'Bileşenler kullandıkları ikonları getirir. Kendi kodunuz için adıyla daha fazlasını kopyalayın:',
     update: 'Güncelleme',
-    updateText: 'add’i yeniden çalıştırmak yalnızca değiştirmediğiniz dosyaları yazar; diğerlerini listeler. Onları değiştirmek için --overwrite kullanın.',
+    updateText: 'Güncellemeler projenize kendiliğinden gelmez; siz çekersiniz. CLI yazdığı her dosyayı hatırlar: update dokunmadığınız dosyaları yeniler, değiştirdiklerinizi korur. diff kopyanızın son sürümden farkını gösterir; --overwrite yine de son sürümü alır.',
     modes: '5. Temalar ve modlar',
     modesText: 'Modları <html> üzerine verin. Cihaz modları, data-device biri zorlamadıkça pencere genişliğini izler (768px altı Mobile, 1280px altı Tablet).',
     styling: 'Kendi stilleriniz',
