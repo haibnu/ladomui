@@ -4,12 +4,15 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./typography.css": "./css/typography.css"
+    "./index.css": "./css/index.css",
+    "./*.css": "./css/*.css",
+    "./tokens.json": "./meta/tokens.json"
   },
   "files": [
-    "css"
+    "css",
+    "meta"
   ],
   "scripts": {
-    "build": "node scripts/build-typography.mjs"
+    "build": "node scripts/build.mjs"
   }
 }
