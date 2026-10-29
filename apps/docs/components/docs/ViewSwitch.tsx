@@ -6,7 +6,6 @@ import { useLocale } from '../useLocale';
 
 // Component pages have two audiences: designers (anatomy, variants, tokens, Figma) and
 // developers (API, code, accessibility). The choice is remembered across pages.
-// TODO: replace the switch with the Segment component from @ladom/ui once it is built.
 export type View = 'designer' | 'developer';
 const VIEW_KEY = 'ladom-docs-view';
 export const CONTENT_CHANGE = 'ladom:content-change';
