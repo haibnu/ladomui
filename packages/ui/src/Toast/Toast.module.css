@@ -1,0 +1,118 @@
+/* Toast, from Figma Molecules / Toast (2110:46469): the Alert layout on a raised surface/level-1
+   card with the form level 1 shadow; Mobile is the inverted background, hugging its text. */
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--layout-small);
+  box-sizing: border-box;
+  inline-size: min(100%, calc(10 * var(--space-xxlarge) + var(--space-xlarge)));
+  padding: var(--layout-tiny) var(--layout-small) var(--layout-tiny) var(--layout-default);
+  border-radius: var(--radius-card);
+  color: var(--color-foreground-high-emphasis);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-form-level-1);
+  --_icon: var(--color-primary);
+  --_muted: var(--color-foreground-medium-emphasis);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  padding-block: var(--layout-tiny);
+  color: var(--_icon);
+}
+
+.icon > svg {
+  inline-size: var(--space-xlarge);
+  block-size: var(--space-xlarge);
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--layout-micro);
+  min-inline-size: 0;
+  padding-block: var(--layout-tiny);
+}
+
+.title {
+  font: var(--text-ui-text-bold);
+}
+
+.description {
+  font: var(--text-ui-text-small-regular);
+  color: var(--_muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-form-gutter);
+  padding-block-start: var(--space-form-ingroup-gutter);
+}
+
+.close {
+  display: inline-flex;
+  flex: none;
+  padding-block: var(--layout-micro);
+}
+
+.toast[data-tone='info'] {
+  --_icon: var(--color-info);
+}
+
+.toast[data-tone='success'] {
+  --_icon: var(--color-success);
+}
+
+.toast[data-tone='error'] {
+  --_icon: var(--color-error);
+}
+
+.toast[data-tone='warning'] {
+  --_icon: var(--color-warning);
+}
+
+.toast[data-device='mobile'] {
+  inline-size: auto;
+  color: var(--color-foreground-level-2);
+  background: var(--color-surface-background-invert);
+}
+
+/* Figma: the Mobile close icon is tertiary/tertiary, light on the dark toast. */
+.toast[data-device='mobile'] .close > button {
+  --_fg: var(--color-tertiary);
+}
+
+/* The stack of ToastProvider: bottom center, newest last. */
+.stack {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: var(--space-xlarge);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-tiny);
+  padding-inline: var(--space-medium);
+  pointer-events: none;
+}
+
+.stack > * {
+  pointer-events: auto;
+  animation: enter var(--motion-swipe-y);
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    translate: 0 var(--space-medium);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack > * {
+    animation: none;
+  }
+}
