@@ -19,7 +19,8 @@ Ladom UI is the design system of Ladom products, built 1:1 from the Figma file "
 ```bash
 npx ladom-ui init                      # ladom-ui.json + tokens in components/ladom
 npx ladom-ui add button input selectbox  # components, the parts they need, their icons
-npx ladom-ui list                      # every component and its tier
+npx ladom-ui list                      # every component, its tier and updates
+npx ladom-ui update                    # updates the files you have not changed
 ```
 Pro components (marked Pro on ui.ladom.co) need `LADOM_UI_KEY` set to a license key; never write the key into files. If it is missing, tell the user instead of rebuilding the component.
 ```tsx
