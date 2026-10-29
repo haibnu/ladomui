@@ -31,6 +31,13 @@ React design system built from the Figma file "Ladom UI Design System v1.0" (fil
 - Docs chrome lives in `apps/docs/components/`; import with `@/components/...`.
 - The logo (`components/Logo.tsx`) is rebuilt from the "Ladom UI" heading on ladom.co; do not replace it with the Figma Brand component.
 
+## Releasing and deploying
+- The packages are published to npm as `@ladom/tokens`, `@ladom/icons` and `@ladom/ui` (MIT). The workspace uses the sources; `publishConfig` points the published exports at `dist/`, which `prepack` builds with `scripts/bundle-package.mjs` (icons bundled; components compiled file by file so each keeps its `'use client'` and the CSS Modules stay for the app's bundler). Bump the versions, then `pnpm release` (needs an npm login with access to the `@ladom` scope).
+- The docs deploy on Vercel: project `ladom-ui` in the "Ladom's Projects" team, root `apps/docs`, domain ui.ladom.co (DNS on Cloudflare: a CNAME to Vercel). Pushes deploy; `main` is production.
+- `skills/ladom-ui/SKILL.md` is the Claude Code skill for projects that use Ladom UI; keep it in step with the components.
+- The claude.ai design system (https://claude.ai/artifact/GMGcccbEoBzuj6Q9Q5ZJdD) is built with `scripts/claude-design/` (see its README); re-sync it after token or component changes.
+
 ## Commands
 - `pnpm install`, then `pnpm dev` (builds tokens, starts the docs app).
 - `pnpm build`, `pnpm typecheck`.
+- `pnpm release` publishes the packages to npm.

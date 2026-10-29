@@ -20,6 +20,11 @@ Figma file: https://www.figma.com/design/VCJ6ew9Vk1gAqfnvQ1gfOz/Ladom-UI-Design-
   - Built with the design system's own tokens and components; light and dark.
   - English and Turkish (`/en`, `/tr`); a language selector comes later.
 
+## Phase 6 decisions
+- Distribution: public npm, `@ladom/*` scope, MIT license; version 0.1.0 first.
+- Hosting: Vercel project `ladom-ui` (team "Ladom's Projects"), root `apps/docs`, domain ui.ladom.co.
+- Claude: a claude.ai design system built from the repo (`scripts/claude-design/`) and a Claude Code skill (`skills/ladom-ui`).
+
 ## Figma file map (page: node id)
 Tokens: Typography 20:466, Colors 57:17380, Grid 1588:0, z-index 2580:0, Radius 105:246, Spacing 1143:266, Animation 2575:31, Depth 1087:5, Border 2675:8811
 Foundation: Assets 2015:17870, Icons 2001:2
@@ -53,4 +58,4 @@ Each component is checked against a Figma screenshot before commit. Small commit
 
 ## Open
 - Brand logos (Brands / *) and flags on the Icons page are not Tabler icons; where they live (icons package or assets) is undecided.
-- Hosting for ui.ladom.co (e.g. Vercel) and DNS for the subdomain.
+- DNS for ui.ladom.co: a CNAME on Cloudflare to Vercel (see Decisions).

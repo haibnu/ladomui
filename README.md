@@ -9,6 +9,14 @@ React design system built from the Figma file "Ladom UI Design System v1.0".
 | `packages/ui` (`@ladom/ui`) | React components (CSS Modules, no framework dependency) |
 | `apps/docs` (`@ladom/docs`) | Next.js documentation site for ui.ladom.co, in English (`/en`) and Turkish (`/tr`) |
 
+## Using Ladom UI in an app
+
+```bash
+npm install @ladom/ui @ladom/tokens @ladom/icons
+```
+
+The guide is at https://ui.ladom.co/en/docs/installation. Claude Code users can copy `skills/ladom-ui` into their project's `.claude/skills`.
+
 ## Getting started
 
 Requires Node 20.9+ and pnpm 10.
@@ -44,5 +52,11 @@ import { IconPhone } from '@ladom/icons';
 ```
 
 Icons take the current text color. The docs app lists every icon at `/icons`.
+
+## Releasing
+
+Bump the package versions, then run `pnpm release` (npm login with access to `@ladom`). The docs deploy to https://ui.ladom.co on Vercel on every push to `main`.
+
+Licensed under the [MIT license](LICENSE).
 
 See [PLAN.md](PLAN.md) for scope and phases.
