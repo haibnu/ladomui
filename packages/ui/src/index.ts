@@ -8,3 +8,5 @@ export { ChoiceGroup, type ChoiceGroupProps } from './ChoiceGroup/ChoiceGroup';
 export { Radio, type RadioProps } from './Radio/Radio';
 export { Switch, type SwitchProps } from './Switch/Switch';
 export { Badge, type BadgeProps, type BadgeSize, type BadgeTone } from './Badge/Badge';
+export { Badge, type BadgeProps, type BadgeSize, type BadgeTone } from './Badge/Badge';
+export { Loader, type LoaderProps, type LoaderTone } from './Loader/Loader';
