@@ -1,0 +1,31 @@
+.group {
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-inline-size: 0;
+}
+
+.group[data-spacing] {
+  padding-block-end: var(--space-form-gutter);
+}
+
+/* Same as Label with Form Element. */
+.legend {
+  padding: var(--space-micro) 0;
+}
+
+.legend > span {
+  font: var(--text-ui-text-small-regular);
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-form-gutter);
+  padding-block: var(--layout-tiny);
+}
+
+.options[data-orientation='vertical'] {
+  flex-direction: column;
+  gap: var(--layout-tiny);
+}

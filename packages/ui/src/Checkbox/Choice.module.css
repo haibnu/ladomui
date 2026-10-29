@@ -1,0 +1,177 @@
+/* Checkbox (1182:3) and Radio Button (1343:3): a native input, visually hidden, drives the box.
+   data-state="hover|focus" shows a state without interaction. */
+
+.choice {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--layout-tiny);
+  color: var(--color-foreground-high-emphasis);
+  cursor: pointer;
+}
+
+.choice[data-fluid] {
+  display: flex;
+}
+
+.choice[data-spacing] {
+  padding-block-end: var(--space-form-gutter);
+}
+
+.control {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--_frame);
+  block-size: var(--_frame);
+}
+
+.choice[data-size='medium'] {
+  --_frame: var(--line-height-base);
+  --_box: calc(var(--line-height-base) - 2 * var(--space-atom));
+}
+
+.choice[data-size='small'] {
+  --_frame: calc(var(--line-height-base) - 2 * var(--space-atom));
+  --_box: var(--line-height-text-small);
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.box {
+  display: grid;
+  place-items: center;
+  inline-size: var(--_box);
+  block-size: var(--_box);
+  color: var(--color-on-primary);
+  background: var(--color-surface-level-1);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line), var(--_ring, 0 0 #0000);
+  transition:
+    background-color var(--motion-fade-default),
+    box-shadow var(--motion-fade-default);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font: var(--text-ui-text-regular);
+}
+
+/* Small uses the form label style (12/16 with 4px above and below). */
+.choice[data-size='small'] .label {
+  font: var(--text-ui-text-small-regular);
+  padding-block: var(--space-micro);
+}
+
+/* Checkbox */
+.choice[data-kind='checkbox'] .box {
+  border-radius: var(--radius-checkbox);
+  --_line: var(--color-surface-level-4);
+}
+
+.check,
+.dash {
+  display: none;
+}
+
+.choice[data-kind='checkbox'] .input:checked + .box,
+.choice[data-indeterminate] .box {
+  background: var(--color-primary);
+  --_line: transparent;
+}
+
+.choice:not([data-indeterminate]) .input:checked + .box .check,
+.choice[data-indeterminate] .box .dash {
+  display: block;
+}
+
+/* Radio */
+.choice[data-kind='radio'] .box {
+  border-radius: var(--radius-full);
+  --_line: var(--color-foreground-medium-emphasis);
+}
+
+.dot {
+  display: none;
+  inline-size: calc(var(--_box) / 2);
+  block-size: calc(var(--_box) / 2);
+  border-radius: var(--radius-full);
+  background: var(--color-on-primary);
+  box-shadow: var(--shadow-depth-md);
+}
+
+.choice[data-kind='radio'] .input:checked + .box {
+  background: var(--color-primary);
+  --_line: transparent;
+}
+
+.choice[data-kind='radio'] .input:checked + .box .dot {
+  display: block;
+}
+
+/* States */
+.choice:not([data-indeterminate]):is(:hover, [data-state='hover']) .input:not(:checked, :disabled) + .box {
+  --_line: var(--color-primary);
+}
+
+/* Figma has a focus state for Checkbox only; Radio uses the same ring for keyboard users. */
+.input:focus-visible + .box,
+.choice[data-state='focus'] .box {
+  --_ring: var(--shadow-focus-primary);
+}
+
+.input:focus-visible:not(:checked) + .box,
+.choice[data-state='focus'] .input:not(:checked) + .box {
+  --_line: var(--color-primary);
+}
+
+.choice[data-error]:not([data-indeterminate]) .input:not(:checked) + .box {
+  --_line: var(--color-error);
+}
+
+.choice[data-error] .input:focus-visible + .box,
+.choice[data-error][data-state='focus'] .box {
+  --_ring: var(--shadow-focus-error);
+}
+
+/* Disabled */
+.choice:has(.input:disabled) {
+  cursor: not-allowed;
+}
+
+.choice[data-kind='checkbox']:not([data-indeterminate]) .input:disabled:not(:checked) + .box {
+  background: var(--color-surface-level-2);
+  --_line: var(--color-surface-level-4);
+}
+
+.choice[data-kind='checkbox'] .input:disabled:checked + .box,
+.choice[data-indeterminate] .input:disabled + .box {
+  background: var(--color-primary-tint);
+}
+
+.choice[data-kind='radio'] .input:disabled + .box {
+  background: var(--color-surface-level-3);
+  --_line: var(--color-surface-level-4);
+}
+
+.choice[data-kind='radio'] .input:disabled:checked + .box .dot {
+  /* Figma: a 12px (Medium) / 8px (Small) low-emphasis dot without shadow. */
+  inline-size: calc(var(--_box) * 0.6);
+  block-size: calc(var(--_box) * 0.6);
+  background: var(--color-foreground-low-emphasis);
+  box-shadow: none;
+}
+
+.choice[data-size='small'][data-kind='radio'] .input:disabled:checked + .box .dot {
+  inline-size: calc(var(--_box) / 2);
+  block-size: calc(var(--_box) / 2);
+}
