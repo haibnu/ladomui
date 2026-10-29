@@ -1,31 +1,14 @@
 {
   "name": "@ladom/tokens",
-  "version": "0.1.0",
-  "license": "MIT",
-  "author": "Ladom (https://ladom.co)",
-  "homepage": "https://ui.ladom.co",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/haibnu/ladomui.git",
-    "directory": "packages/tokens"
-  },
-  "description": "Ladom UI design tokens as CSS variables, generated from the Figma file.",
+  "version": "0.0.0",
+  "private": true,
   "type": "module",
   "exports": {
     "./index.css": "./css/index.css",
     "./*.css": "./css/*.css",
     "./tokens.json": "./meta/tokens.json"
   },
-  "files": [
-    "css",
-    "meta",
-    "README.md",
-    "LICENSE"
-  ],
   "scripts": {
     "build": "node scripts/build.mjs"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
