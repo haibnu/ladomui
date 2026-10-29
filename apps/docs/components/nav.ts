@@ -12,7 +12,7 @@ const PLANNED_COMPONENTS = [
 ];
 const PLANNED_MOLECULES = ['Accordion', 'Alert', 'Navigation', 'Toast'];
 // Components that have a page, by their path segment.
-const BUILT: Record<string, string> = { Avatar: 'avatar', Badge: 'badge', Button: 'button', Checkbox: 'checkbox', Chips: 'chips', Hint: 'hint', Input: 'input', Label: 'label', Loader: 'loader', Radio: 'radio', Switch: 'switch' };
+const BUILT: Record<string, string> = { Avatar: 'avatar', Badge: 'badge', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', Dropdown: 'dropdown', Hint: 'hint', Input: 'input', Label: 'label', Loader: 'loader', Radio: 'radio', Selectbox: 'selectbox', Switch: 'switch' };
 
 export function getNav(lang: Locale): NavSection[] {
   const t = getDictionary(lang);
