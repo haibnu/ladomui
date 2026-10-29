@@ -20,13 +20,8 @@ export { Uploader, formatFileSize, type UploaderFile, type UploaderProps } from 
 export { Calendar, DatePicker, type CalendarProps, type DatePickerProps, type DatePreset, type DateRange } from './DatePicker/DatePicker';
 export { TimePicker, type TimePickerProps, type TimeValue } from './TimePicker/TimePicker';
 export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
-export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
-export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcrumb/Breadcrumb';
-export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
-export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcrumb/Breadcrumb';
-export { Stepper, type StepperProps } from './Stepper/Stepper';
-export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
 export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcrumb/Breadcrumb';
 export { Stepper, type StepperProps } from './Stepper/Stepper';
 export { Tooltip, type TooltipProps } from './Tooltip/Tooltip';
+export { Popover, type PopoverProps } from './Popover/Popover';
 export type { Placement } from './Floating/placement';
