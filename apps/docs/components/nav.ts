@@ -12,7 +12,7 @@ const PLANNED_COMPONENTS = [
 ];
 const PLANNED_MOLECULES = ['Accordion', 'Alert', 'Navigation', 'Toast'];
 // Components that have a page, by their path segment.
-const BUILT: Record<string, string> = { Button: 'button', Hint: 'hint', Input: 'input', Label: 'label' };
+const BUILT: Record<string, string> = { Button: 'button', Checkbox: 'checkbox', Hint: 'hint', Input: 'input', Label: 'label', Radio: 'radio', Switch: 'switch' };
 
 export function getNav(lang: Locale): NavSection[] {
   const t = getDictionary(lang);
