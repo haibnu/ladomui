@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
     // The license link in every copied file.
     { source: '/license', has: [{ type: 'header', key: 'accept-language', value: 'tr(?:[-,;].*)?' }], destination: '/tr/docs/license', permanent: false },
     { source: '/license', destination: '/en/docs/license', permanent: false },
+    // Alert and Toast were molecules.
+    { source: '/:lang(en|tr)/docs/molecules/:name(alert|toast)', destination: '/:lang/docs/components/:name', permanent: true },
     // Pages from before the languages.
     { source: '/docs/:path*', destination: '/en/docs/:path*', permanent: true },
     { source: '/tokens', destination: '/en/docs/foundations/color', permanent: true },

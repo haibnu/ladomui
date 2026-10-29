@@ -77,7 +77,7 @@ export default async function ToastPage({ params }: Props) {
   const c = COPY[lang];
   return (
     <ViewProvider>
-      <DocPage eyebrow={t.nav.molecules} title="Toast" description={c.description}>
+      <DocPage eyebrow={t.nav.components} title="Toast" description={c.description}>
         <ComponentToolbar lang={lang} figmaNode="2110:46469" />
 
         <h2 id="playground">{t.component.playground}</h2>

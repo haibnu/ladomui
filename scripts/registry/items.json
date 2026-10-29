@@ -28,8 +28,8 @@
     "stepper": { "folder": "Stepper", "tier": "free", "description": "Shows where the user is in a flow of steps." },
     "tooltip": { "folder": "Tooltip", "tier": "free", "description": "A short label on hover and keyboard focus." },
     "popover": { "folder": "Popover", "tier": "free", "description": "A small non-modal dialog that opens from a button." },
-    "alert": { "folder": "Alert", "tier": "pro", "description": "An inline message about the page." },
-    "toast": { "folder": "Toast", "tier": "pro", "description": "A short message after an action, with ToastProvider and useToast." },
+    "alert": { "folder": "Alert", "tier": "free", "description": "An inline message about the page." },
+    "toast": { "folder": "Toast", "tier": "free", "description": "A short message after an action, with ToastProvider and useToast." },
     "accordion": { "folder": "Accordion", "tier": "pro", "description": "A card whose content opens and closes under its title." },
     "navigation": { "folder": "Navigation", "tier": "pro", "description": "PageHeader, AppHeader and PublicHeader." }
   }
