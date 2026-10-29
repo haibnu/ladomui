@@ -170,6 +170,7 @@ import { IconQuestion } from './icons/IconQuestion';
 import { IconRandom } from './icons/IconRandom';
 import { IconReady } from './icons/IconReady';
 import { IconRedo } from './icons/IconRedo';
+import { IconRefresh } from './icons/IconRefresh';
 import { IconRefreshPreperad } from './icons/IconRefreshPreperad';
 import { IconRemoteTable } from './icons/IconRemoteTable';
 import { IconRemove } from './icons/IconRemove';
@@ -400,6 +401,7 @@ export const icons = {
   'random': IconRandom,
   'ready': IconReady,
   'redo': IconRedo,
+  'refresh': IconRefresh,
   'refresh-preperad': IconRefreshPreperad,
   'remote-table': IconRemoteTable,
   'remove': IconRemove,
@@ -1463,6 +1465,12 @@ export const iconMeta: Record<IconName, { category: string; source: 'tabler' | '
     "source": "tabler",
     "tabler": "arrow-forward-up",
     "figma": "Icon/redo"
+  },
+  "refresh": {
+    "category": "common",
+    "source": "tabler",
+    "tabler": "refresh",
+    "figma": "Loader / Icon/refresh - preperad"
   },
   "refresh-preperad": {
     "category": "common",

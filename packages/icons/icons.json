@@ -1935,6 +1935,14 @@
       "name": "Icon/redo"
     }
   },
+  "refresh": {
+    "tabler": "refresh",
+    "category": "common",
+    "figma": {
+      "id": "1780:103",
+      "name": "Loader / Icon/refresh - preperad"
+    }
+  },
   "refresh-preperad": {
     "tabler": "refresh",
     "category": "common",

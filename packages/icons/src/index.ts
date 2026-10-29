@@ -171,6 +171,7 @@ export { IconQuestion } from './icons/IconQuestion';
 export { IconRandom } from './icons/IconRandom';
 export { IconReady } from './icons/IconReady';
 export { IconRedo } from './icons/IconRedo';
+export { IconRefresh } from './icons/IconRefresh';
 export { IconRefreshPreperad } from './icons/IconRefreshPreperad';
 export { IconRemoteTable } from './icons/IconRemoteTable';
 export { IconRemove } from './icons/IconRemove';
@@ -401,6 +402,7 @@ export const iconNames = [
   "random",
   "ready",
   "redo",
+  "refresh",
   "refresh-preperad",
   "remote-table",
   "remove",
