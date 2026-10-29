@@ -1,0 +1,59 @@
+/* Time Picker, from Figma Components / Time Picker (6:1395): scrolling columns of 24px items,
+   seven tall, split by surface/level-3 lines, in a panel with the form level 1 shadow. */
+
+.picker {
+  display: inline-flex;
+  padding: var(--space-tiny) var(--space-small) var(--space-tiny) 0;
+  border-radius: var(--radius-layout-base);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-form-level-1);
+}
+
+.column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  max-block-size: calc(7 * var(--line-height-base) + 2 * var(--space-tiny));
+  padding: var(--space-tiny) var(--space-small);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-level-4) var(--color-surface-level-3);
+  outline: none;
+}
+
+.column + .column {
+  border-inline-start: var(--border-width) solid var(--color-surface-level-3);
+}
+
+.column:focus-visible {
+  border-radius: var(--radius-form-element-small);
+  box-shadow: inset var(--shadow-focus-primary);
+}
+
+.item {
+  flex: none;
+  padding: var(--space-micro) var(--space-tiny);
+  border-radius: calc(var(--radius-form-element-small) / 2);
+  font: var(--text-ui-text-small-regular);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-foreground-high-emphasis);
+  cursor: pointer;
+  user-select: none;
+}
+
+.item:hover {
+  background: var(--color-surface-level-3);
+}
+
+.item[aria-selected='true'] {
+  color: var(--color-on-secondary);
+  background: var(--color-secondary);
+}
+
+.item[aria-disabled='true'] {
+  color: var(--color-foreground-low-emphasis);
+  background: none;
+  cursor: not-allowed;
+}

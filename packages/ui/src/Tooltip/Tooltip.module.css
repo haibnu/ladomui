@@ -1,0 +1,16 @@
+/* Tooltip, from Figma Components / Tooltip (1199:126): surface/level-3 with a level-4 line,
+   8px 12px padding, small text. */
+
+.tooltip {
+  box-sizing: border-box;
+  max-inline-size: calc(6 * var(--space-xxlarge) + var(--space-tiny));
+  padding: var(--space-tiny) var(--space-small);
+  border-radius: var(--radius-form-element-small);
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-high-emphasis);
+  background: var(--_bg);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line);
+  pointer-events: none;
+  --_bg: var(--color-surface-level-3);
+  --_line: var(--color-surface-level-4);
+}

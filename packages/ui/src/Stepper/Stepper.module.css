@@ -1,0 +1,59 @@
+/* Stepper, from Figma Components / Stepper (2496:6853): 24px numbered circles, 8px apart; the
+   current step grows into a primary soft pill with its title. */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tiny);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-inline-size: var(--space-xlarge);
+  block-size: var(--space-xlarge);
+  border-radius: var(--radius-full);
+  font: var(--text-ui-text-small-bold);
+  color: var(--_fg);
+  background: var(--_bg);
+}
+
+.number {
+  min-inline-size: var(--space-xlarge);
+  text-align: center;
+}
+
+.step[data-state='next'] {
+  --_bg: var(--color-surface-level-3);
+  --_fg: var(--color-foreground-medium-emphasis);
+}
+
+.step[data-state='success'] {
+  --_bg: var(--color-success);
+  --_fg: var(--color-on-success);
+}
+
+.step[data-state='current'] {
+  block-size: var(--space-xxlarge);
+  padding: var(--space-tiny) var(--space-small) var(--space-tiny) var(--space-micro);
+  --_bg: var(--color-primary-soft);
+  --_fg: var(--color-primary);
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.visuallyHidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

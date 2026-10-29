@@ -1,0 +1,112 @@
+/* Segment, from Figma Components / Segment (1229:1786): items on a surface/level-3 track; the
+   chosen item is a raised surface/level-1 pill with primary text. */
+
+.segment {
+  display: inline-flex;
+  inline-size: fit-content;
+  gap: var(--space-micro);
+  box-sizing: border-box;
+  padding: var(--space-micro);
+  border-radius: var(--_radius);
+  background: var(--color-surface-level-3);
+}
+
+.segment[data-size='medium'] {
+  --_radius: var(--radius-form-element);
+  --_px: var(--space-small);
+  --_gap: var(--layout-small);
+  --_icon: var(--line-height-text-small);
+  --_info: var(--space-small);
+  font: var(--text-ui-text-regular);
+}
+
+.segment[data-size='small'] {
+  --_radius: var(--radius-form-element-small);
+  --_px: var(--space-tiny);
+  --_gap: var(--space-tiny);
+  --_icon: var(--line-height-footnote);
+  --_info: var(--space-tiny);
+  font: var(--text-ui-text-small-regular);
+}
+
+.segment[data-fluid] {
+  display: flex;
+  inline-size: auto;
+}
+
+.segment[data-fluid] .item {
+  flex: 1;
+}
+
+.segment[data-spacing] {
+  margin-block-end: var(--space-form-gutter);
+}
+
+.item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--_gap);
+  padding: var(--space-micro) var(--_px);
+  border-radius: var(--radius-form-element-small);
+  white-space: nowrap;
+  color: var(--color-foreground-high-emphasis);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fade-default),
+    box-shadow var(--motion-fade-default);
+}
+
+/* Info items sit closer to their icon: 8px Medium, 4px Small. */
+.item:has(.info) {
+  gap: calc(var(--_gap) - var(--space-micro));
+}
+
+/* Small badge items pad 2px so the 20px badge fits the 24px item. */
+.segment[data-size='small'] .item:has([data-size='micro']) {
+  padding-block: var(--space-atom);
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.icon {
+  display: inline-flex;
+}
+
+.icon > svg {
+  inline-size: var(--_icon);
+  block-size: var(--_icon);
+}
+
+.info {
+  inline-size: var(--_info);
+  block-size: var(--_info);
+}
+
+.item:has(.input:checked) {
+  color: var(--color-primary);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-card-style-1);
+}
+
+.item:has(.input:focus-visible) {
+  box-shadow: var(--shadow-focus-primary);
+}
+
+/* Disabled */
+.segment[data-disabled] {
+  background: var(--color-surface-level-2);
+  box-shadow: inset 0 0 0 var(--border-width) var(--color-surface-level-4);
+}
+
+.segment .item[data-disabled] {
+  color: var(--color-foreground-low-emphasis);
+  cursor: not-allowed;
+}

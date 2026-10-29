@@ -1,0 +1,188 @@
+/* Selectbox, from Figma Components / Selectbox (1163:3). Unlike Input, the resting box has no
+   line, only the card style 1 shadow. The list opens 4px under the box. */
+
+.selectbox {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.selectbox[data-fluid] {
+  display: block;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  gap: var(--_gap);
+  box-sizing: border-box;
+  inline-size: 100%;
+  margin: 0;
+  padding: var(--_py) var(--_px);
+  border: none;
+  border-radius: var(--radius-form-element-small);
+  font: var(--_font);
+  text-align: start;
+  color: var(--color-foreground-high-emphasis);
+  background: var(--color-surface-level-1);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line), var(--_ring);
+  transition: box-shadow var(--motion-fade-default);
+  cursor: pointer;
+  --_line: transparent;
+  --_ring: var(--shadow-card-style-1);
+}
+
+.box[data-size='large'] {
+  --_py: var(--space-small);
+  --_px: var(--space-medium);
+  --_gap: var(--layout-small);
+  --_font: var(--text-ui-text-lead-regular);
+  --_icon: var(--line-height-text-small);
+}
+
+.box[data-size='medium'] {
+  --_py: var(--space-tiny);
+  --_px: var(--space-medium);
+  --_gap: var(--layout-small);
+  --_font: var(--text-ui-text-regular);
+  --_icon: var(--line-height-text-small);
+}
+
+.box[data-size='small'] {
+  --_py: var(--space-tiny);
+  --_px: var(--space-small);
+  --_gap: var(--space-micro);
+  --_font: var(--text-ui-text-small-regular);
+  --_icon: var(--line-height-text-small);
+}
+
+.box[data-size='tiny'] {
+  --_py: var(--space-micro);
+  --_px: var(--space-tiny);
+  --_gap: var(--space-micro);
+  --_font: var(--text-ui-text-small-regular);
+  --_icon: var(--line-height-footnote);
+}
+
+/* Small with a value: Figma pads 4px so the 20px micro badge or chips fit the 32px box. */
+.box[data-size='small'][data-compact] {
+  --_py: var(--space-micro);
+}
+
+.texts {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tiny);
+  min-inline-size: 0;
+}
+
+.placeholder,
+.value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--color-foreground-low-emphasis);
+}
+
+.chips {
+  display: flex;
+  gap: var(--space-tiny);
+  overflow: hidden;
+}
+
+.arrow,
+.errorIcon {
+  flex: none;
+  inline-size: var(--_icon);
+  block-size: var(--_icon);
+}
+
+.arrow {
+  color: var(--color-foreground-high-emphasis);
+}
+
+.errorIcon {
+  color: var(--color-error);
+}
+
+/* Inner Label: the label rests as the placeholder, then floats above the value (12px text). */
+.box[data-inner='floated'] {
+  --_py: var(--space-atom);
+}
+
+.innerLabel {
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-primary);
+}
+
+/* The resting inner label stays in the accessible name. */
+.visuallyHidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* States */
+.box:is(:hover, [data-state='hover']) {
+  --_line: var(--color-primary-tint);
+}
+
+.box:is(:focus-visible, [data-open], [data-state='focus']) {
+  outline: none;
+  --_line: var(--color-primary);
+  --_ring: var(--shadow-focus-primary);
+}
+
+.box[data-error] {
+  --_gap: var(--layout-tiny);
+  --_line: var(--color-error);
+}
+
+.box[data-error]:is(:focus-visible, [data-open], [data-state='focus']) {
+  --_ring: var(--shadow-focus-error);
+}
+
+.box[data-error] .placeholder,
+.box[data-error] .innerLabel {
+  color: var(--color-error);
+}
+
+.box:disabled {
+  --_line: var(--color-surface-level-4);
+  --_ring: 0 0 #0000;
+  color: var(--color-foreground-low-emphasis);
+  background: var(--color-surface-level-2);
+  cursor: not-allowed;
+}
+
+.box:disabled :is(.innerLabel, .arrow) {
+  color: var(--color-foreground-low-emphasis);
+}
+
+/* The list: the width of the box, up to ten Medium cells tall (the Figma Dropdown). */
+.dropdown {
+  position: absolute;
+  inset-block-start: calc(100% + var(--space-form-dropdown-top));
+  inset-inline-start: 0;
+  min-inline-size: 100%;
+  max-block-size: calc(10 * (var(--line-height-base) + 2 * var(--space-tiny)) + 9 * var(--border-width) + 2 * var(--layout-tiny));
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--border-width);
+}

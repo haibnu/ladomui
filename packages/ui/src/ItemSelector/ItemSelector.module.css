@@ -1,0 +1,93 @@
+/* Item Selector, from Figma Components / Item Selector (4929:292): a surface/level-2 field
+   with a folder icon, the picked item and an action chip at the end. */
+
+.selector {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-small);
+  box-sizing: border-box;
+  inline-size: 100%;
+  margin: 0;
+  padding: var(--space-tiny) var(--space-medium);
+  border: none;
+  border-radius: var(--radius-form-element-small);
+  font: var(--text-ui-text-regular);
+  text-align: start;
+  color: var(--color-foreground-medium-emphasis);
+  background: var(--color-surface-level-2);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line, transparent), var(--_ring, 0 0 #0000);
+  transition: box-shadow var(--motion-fade-default);
+  cursor: pointer;
+  --_muted: var(--color-foreground-medium-emphasis);
+  --_strong: var(--color-foreground-high-emphasis);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--_muted);
+}
+
+.icon > svg {
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+}
+
+.value {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selector[data-filled] .value {
+  color: var(--_strong);
+}
+
+/* The action chip: surface/level-3 pill, 12px icon and small text. */
+.action {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-micro);
+  padding: var(--space-micro) var(--space-tiny);
+  border-radius: var(--radius-full);
+  font: var(--text-ui-text-small-bold);
+  color: var(--_strong);
+  background: var(--color-surface-level-3);
+}
+
+.action > svg {
+  inline-size: var(--line-height-footnote);
+  block-size: var(--line-height-footnote);
+  color: var(--_muted);
+}
+
+/* States */
+.selector:is(:hover, [data-state='hover']) {
+  --_line: var(--color-primary-tint);
+}
+
+.selector:focus-visible {
+  outline: none;
+  --_line: var(--color-primary);
+  --_ring: var(--shadow-focus-primary);
+}
+
+.selector[data-error] {
+  --_line: var(--color-error);
+}
+
+.selector[data-error]:focus-visible {
+  --_ring: var(--shadow-focus-error);
+}
+
+.selector:disabled {
+  --_line: transparent;
+  --_ring: 0 0 #0000;
+  --_muted: var(--color-foreground-low-emphasis);
+  --_strong: var(--color-foreground-low-emphasis);
+  color: var(--color-foreground-low-emphasis);
+  cursor: not-allowed;
+}

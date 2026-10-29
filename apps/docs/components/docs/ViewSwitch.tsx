@@ -1,8 +1,8 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { Segment } from '@ladom/ui';
 import { useLocale } from '../useLocale';
-import styles from './docs.module.css';
 
 // Component pages have two audiences: designers (anatomy, variants, tokens, Figma) and
 // developers (API, code, accessibility). The choice is remembered across pages.
@@ -47,18 +47,17 @@ export const useView = () => useContext(ViewContext);
 export function ViewSwitch() {
   const { view, setView } = useView();
   const { t } = useLocale();
-  const options: { value: View; label: string }[] = [
-    { value: 'designer', label: t.component.designer },
-    { value: 'developer', label: t.component.developer },
-  ];
   return (
-    <div className={styles.segment} role="radiogroup" aria-label={t.component.viewLabel}>
-      {options.map((o) => (
-        <button key={o.value} type="button" role="radio" aria-checked={view === o.value} className={styles.segmentItem} onClick={() => setView(o.value)}>
-          {o.label}
-        </button>
-      ))}
-    </div>
+    <Segment
+      aria-label={t.component.viewLabel}
+      name="docs-view"
+      value={view}
+      onChange={(v) => setView(v as View)}
+      options={[
+        { value: 'designer', label: t.component.designer },
+        { value: 'developer', label: t.component.developer },
+      ]}
+    />
   );
 }
 

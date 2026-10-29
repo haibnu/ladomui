@@ -1,0 +1,119 @@
+/* Shared placement and beak for Tooltip and Popover. The bubble is absolutely positioned next to
+   its anchor (no z-index token exists); data-placement is where it sits, data-beak shows the
+   arrow. Figma names the variants after the beak's side, the opposite of the placement. */
+
+.anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.floating {
+  position: absolute;
+  inline-size: max-content;
+  --_gap: calc(var(--space-tiny) + var(--space-micro));
+  --_beak: var(--space-small);
+  --_beak-offset: var(--space-medium);
+}
+
+/* Side */
+.floating[data-placement^='top'] {
+  inset-block-end: calc(100% + var(--_gap));
+}
+
+.floating[data-placement^='bottom'] {
+  inset-block-start: calc(100% + var(--_gap));
+}
+
+.floating[data-placement^='left'] {
+  inset-inline-end: calc(100% + var(--_gap));
+}
+
+.floating[data-placement^='right'] {
+  inset-inline-start: calc(100% + var(--_gap));
+}
+
+/* Alignment along the side */
+.floating:is([data-placement='top'], [data-placement='bottom']) {
+  inset-inline-start: 50%;
+  translate: -50% 0;
+}
+
+.floating:is([data-placement='top-start'], [data-placement='bottom-start']) {
+  inset-inline-start: 0;
+}
+
+.floating:is([data-placement='top-end'], [data-placement='bottom-end']) {
+  inset-inline-end: 0;
+}
+
+.floating:is([data-placement='left'], [data-placement='right']) {
+  inset-block-start: 50%;
+  translate: 0 -50%;
+}
+
+.floating:is([data-placement='left-start'], [data-placement='right-start']) {
+  inset-block-start: 0;
+}
+
+.floating:is([data-placement='left-end'], [data-placement='right-end']) {
+  inset-block-end: 0;
+}
+
+/* Beak: a square turned 45°, lined on its two outer sides, half outside the bubble. */
+.beak {
+  position: absolute;
+  inline-size: var(--_beak);
+  block-size: var(--_beak);
+  background: var(--_bg);
+  border: 0 solid var(--_line);
+  rotate: 45deg;
+  --_half: calc(var(--_beak) / -2);
+}
+
+.floating[data-placement^='top'] > .beak {
+  inset-block-end: var(--_half);
+  border-inline-end-width: var(--border-width);
+  border-block-end-width: var(--border-width);
+}
+
+.floating[data-placement^='bottom'] > .beak {
+  inset-block-start: var(--_half);
+  border-inline-start-width: var(--border-width);
+  border-block-start-width: var(--border-width);
+}
+
+.floating[data-placement^='left'] > .beak {
+  inset-inline-end: var(--_half);
+  border-block-start-width: var(--border-width);
+  border-inline-end-width: var(--border-width);
+}
+
+.floating[data-placement^='right'] > .beak {
+  inset-inline-start: var(--_half);
+  border-block-end-width: var(--border-width);
+  border-inline-start-width: var(--border-width);
+}
+
+.floating:is([data-placement='top'], [data-placement='bottom']) > .beak {
+  inset-inline-start: calc(50% + var(--_half));
+}
+
+.floating:is([data-placement='top-start'], [data-placement='bottom-start']) > .beak {
+  inset-inline-start: var(--_beak-offset);
+}
+
+.floating:is([data-placement='top-end'], [data-placement='bottom-end']) > .beak {
+  inset-inline-end: var(--_beak-offset);
+}
+
+.floating:is([data-placement='left'], [data-placement='right']) > .beak {
+  inset-block-start: calc(50% + var(--_half));
+}
+
+.floating:is([data-placement='left-start'], [data-placement='right-start']) > .beak {
+  inset-block-start: var(--_beak-offset);
+}
+
+.floating:is([data-placement='left-end'], [data-placement='right-end']) > .beak {
+  inset-block-end: var(--_beak-offset);
+}
