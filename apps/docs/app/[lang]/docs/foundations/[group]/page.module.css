@@ -1,9 +1,15 @@
 .switcher {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-medium);
+  gap: var(--space-medium) var(--space-xlarge);
   font: var(--text-ui-text-small-regular);
   color: var(--color-foreground-medium-emphasis);
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tiny);
 }
 
 .sectionTitle {

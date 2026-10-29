@@ -54,7 +54,7 @@ const en = {
   foundations: {
     device: 'Device',
     density: 'Density',
-    auto: 'auto',
+    auto: 'Auto',
     token: 'Token',
     value: 'Value',
     preview: 'Preview',
@@ -154,7 +154,7 @@ const tr: Dictionary = {
   foundations: {
     device: 'Cihaz',
     density: 'Yoğunluk',
-    auto: 'otomatik',
+    auto: 'Otomatik',
     token: 'Token',
     value: 'Değer',
     preview: 'Önizleme',
