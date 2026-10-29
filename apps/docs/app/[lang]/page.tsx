@@ -3,10 +3,13 @@ import type { CSSProperties } from 'react';
 import { iconNames } from '@ladom/icons';
 import { icons } from '@ladom/icons/all';
 import meta from '@ladom/tokens/tokens.json';
+import tiers from '@/registry/tiers.json';
+import { CodeBlock } from '@/components/docs/CodeBlock';
 import { TopBar } from '@/components/TopBar';
 import { getDictionary, href, type Locale } from '@/i18n';
 import styles from './landing.module.css';
 
+const componentCount = Object.keys(tiers).length;
 const tokenCount = meta.groups.reduce((n, g) => n + g.variables.length + g.tokens.length, 0);
 
 const SWATCHES = ['primary', 'primary-tint', 'secondary', 'surface-level-3', 'success', 'info', 'warning', 'error'];
@@ -42,6 +45,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <div>
               <dt>{t.tokens}</dt>
               <dd>{tokenCount}</dd>
+            </div>
+            <div>
+              <dt>{t.componentCount}</dt>
+              <dd>{componentCount}</dd>
             </div>
             <div>
               <dt>{t.iconCount}</dt>
@@ -84,6 +91,32 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 return <Icon key={name} size={24} />;
               })}
             </div>
+          </Link>
+        </section>
+
+        <section className={styles.why} aria-labelledby="why">
+          <h2 id="why" className={styles.sectionTitle}>
+            {t.whyTitle}
+          </h2>
+          <p className={styles.sectionLead}>{t.whyLead}</p>
+          <ul className={styles.features}>
+            {t.features.map((f) => (
+              <li key={f.title} className={styles.feature}>
+                <h3 className={styles.featureTitle}>{f.title}</h3>
+                <p className={styles.featureText}>{f.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className={styles.install} aria-labelledby="install">
+          <h2 id="install" className={styles.sectionTitle}>
+            {t.installTitle}
+          </h2>
+          <p className={styles.sectionLead}>{t.installText}</p>
+          <CodeBlock className={styles.installCode} code={'npx ladom-ui init\nnpx ladom-ui add button input table modal'} />
+          <Link href={href(lang, '/docs/installation')} className={styles.primaryAction}>
+            {t.getStarted}
           </Link>
         </section>
       </main>

@@ -90,6 +90,19 @@ const en = {
     themes: 'Themes',
     themesValue: 'Light · Dark',
     showcase: 'Showcase',
+    componentCount: 'Components',
+    whyTitle: 'Why Ladom UI',
+    whyLead: 'A design system your designers and developers share, not just a set of components.',
+    features: [
+      { title: 'Figma and code match 1:1', text: 'Tokens, variants and names come from one Figma file. Every component page shows the Figma variant next to the code, for designers and developers alike.' },
+      { title: 'No Tailwind required', text: 'Styling is CSS variables and CSS Modules. It works in any React app, with your own CSS, and needs no build plugin.' },
+      { title: 'A finished look', text: 'Light and dark themes, comfort and narrow density, and desktop, tablet and mobile modes are designed in, not left to you.' },
+      { title: 'Copy it, own it', text: 'The ladom-ui CLI copies the code into your project, so you can read and change it. Every component is free under MIT.' },
+      { title: 'Built for real products', text: 'Beyond the basics: Table, Modal, Drawer, Pagination, date and time pickers, Uploader, Item Selector and Stepper.' },
+      { title: 'English, Turkish and Claude', text: 'The docs are in English and Turkish. A Claude Code skill teaches Claude the components, the tokens and the rules.' },
+    ],
+    installTitle: 'Start in a minute',
+    installText: 'Set up the tokens, then add the components you need.',
   },
 };
 
@@ -177,6 +190,19 @@ const tr: Dictionary = {
     themes: 'Tema',
     themesValue: 'Açık · Koyu',
     showcase: 'Vitrin',
+    componentCount: 'Bileşen',
+    whyTitle: 'Neden Ladom UI',
+    whyLead: 'Yalnızca bir bileşen seti değil; tasarımcıların ve geliştiricilerin paylaştığı bir tasarım sistemi.',
+    features: [
+      { title: 'Figma ve kod birebir', text: 'Tokenlar, varyantlar ve adlar tek bir Figma dosyasından gelir. Her bileşen sayfası Figma varyantını kodun yanında gösterir; tasarımcı da geliştirici de aynı dili konuşur.' },
+      { title: 'Tailwind gerekmez', text: 'Stiller CSS değişkenleri ve CSS Modules ile yazılır. Her React uygulamasında, kendi CSS’inizle çalışır; bir build eklentisi istemez.' },
+      { title: 'Hazır bir görünüm', text: 'Açık ve koyu tema, comfort ve narrow yoğunluk, masaüstü, tablet ve mobil modları baştan tasarlanmıştır; size bırakılmaz.' },
+      { title: 'Kopyalayın, sizin olsun', text: 'ladom-ui CLI kodu projenize kopyalar; okuyabilir ve değiştirebilirsiniz. Tüm bileşenler MIT lisansıyla ücretsizdir.' },
+      { title: 'Gerçek ürünler için', text: 'Temellerin ötesinde: Table, Modal, Drawer, Pagination, tarih ve saat seçiciler, Uploader, Item Selector ve Stepper.' },
+      { title: 'İngilizce, Türkçe ve Claude', text: 'Dokümanlar İngilizce ve Türkçe. Bir Claude Code skill’i Claude’a bileşenleri, tokenları ve kuralları öğretir.' },
+    ],
+    installTitle: 'Bir dakikada başlayın',
+    installText: 'Tokenları kurun, sonra ihtiyacınız olan bileşenleri ekleyin.',
   },
 };
 
