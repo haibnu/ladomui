@@ -1,0 +1,128 @@
+/* Tab, from Figma Components / Tab (99:14457) and Tab Item (99:14488). Every item is 40px tall;
+   the inner part carries the hover and active look. */
+
+.tabs {
+  position: relative;
+  display: flex;
+}
+
+.tabs[data-align='center'] {
+  justify-content: center;
+}
+
+.tabs[data-align='end'] {
+  justify-content: flex-end;
+}
+
+/* Border Bottom: the line sits under the items; the active underline covers it. */
+.tabs[data-border] {
+  box-shadow: inset 0 calc(-1 * var(--border-width)) 0 var(--color-surface-level-3);
+}
+
+.tab {
+  display: flex;
+  margin: 0;
+  padding: var(--space-micro);
+  border: none;
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-high-emphasis);
+  background: none;
+  cursor: pointer;
+}
+
+.inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-tiny);
+  padding: var(--space-micro) var(--space-small);
+  border-radius: var(--radius-form-element);
+  white-space: nowrap;
+  transition: background-color var(--motion-fade-default);
+}
+
+.info {
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+}
+
+.tab:focus-visible {
+  outline: none;
+}
+
+.tab:focus-visible .inner {
+  box-shadow: var(--shadow-focus-primary);
+}
+
+/* Primary: text tabs, the active one underlined in primary. */
+.tabs[data-variant='primary'] .tab:not(:disabled):hover {
+  color: var(--color-primary);
+}
+
+.tabs[data-variant='primary'] .tab:not(:disabled):hover .inner {
+  background: var(--color-surface-level-2);
+}
+
+.tabs[data-variant='primary'] .tab[aria-selected='true'] {
+  color: var(--color-primary);
+  box-shadow: inset 0 calc(-1 * var(--border-width)) 0 var(--color-primary);
+}
+
+/* Secondary: pills on surface/level-1; the active one primary soft. */
+.tabs[data-variant='secondary'] .inner {
+  border-radius: var(--radius-full);
+  background: var(--color-surface-level-1);
+}
+
+.tabs[data-variant='secondary'] .tab:not(:disabled):hover {
+  color: var(--color-primary);
+}
+
+.tabs[data-variant='secondary'] .tab:not(:disabled):hover .inner {
+  background: var(--color-surface-level-2);
+}
+
+.tabs[data-variant='secondary'] .tab[aria-selected='true'] {
+  color: var(--color-primary);
+}
+
+.tabs[data-variant='secondary'] .tab[aria-selected='true'] .inner {
+  background: var(--color-primary-soft);
+}
+
+/* Button: small ghost tertiary buttons; the active one pressed. */
+.tabs[data-variant='button'] .tab {
+  padding: var(--space-micro) var(--space-medium);
+}
+
+.tabs[data-variant='button'] .inner {
+  padding: var(--space-tiny) var(--space-small);
+  border-radius: var(--radius-form-element-small);
+  font: var(--text-ui-text-small-bold);
+}
+
+.tabs[data-variant='button'] .tab:not(:disabled):hover .inner {
+  background: var(--color-surface-level-2);
+}
+
+.tabs[data-variant='button'] .tab[aria-selected='true'] .inner {
+  background: var(--color-surface-level-3);
+}
+
+/* Disabled */
+.tab:disabled {
+  color: var(--color-foreground-low-emphasis);
+  cursor: not-allowed;
+}
+
+.tabs[data-variant='secondary'] .tab:disabled .inner {
+  background: none;
+}
+
+.panel {
+  padding-block-start: var(--space-medium);
+  outline: none;
+}
+
+.panel:focus-visible {
+  box-shadow: var(--shadow-focus-primary);
+}

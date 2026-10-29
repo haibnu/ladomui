@@ -19,3 +19,4 @@ export { ItemSelector, type ItemSelectorProps } from './ItemSelector/ItemSelecto
 export { Uploader, formatFileSize, type UploaderFile, type UploaderProps } from './Uploader/Uploader';
 export { Calendar, DatePicker, type CalendarProps, type DatePickerProps, type DatePreset, type DateRange } from './DatePicker/DatePicker';
 export { TimePicker, type TimePickerProps, type TimeValue } from './TimePicker/TimePicker';
+export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
