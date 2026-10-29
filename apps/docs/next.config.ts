@@ -1,8 +1,8 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  // @ladom/ui ships TypeScript source and CSS Modules; Next compiles it.
-  transpilePackages: ['@ladom/ui'],
+  // @ladom/ui and @ladom/icons ship TypeScript source (and CSS Modules); Next compiles them.
+  transpilePackages: ['@ladom/ui', '@ladom/icons'],
 };
 
 export default nextConfig;

@@ -1,0 +1,93 @@
+.page {
+  max-width: var(--grid-column-12);
+  margin: 0 auto;
+  padding: var(--space-container);
+}
+
+.title {
+  margin: 0;
+  font: var(--text-content-h2-bold);
+}
+
+.lead {
+  margin-block: var(--space-tiny) var(--space-xlarge);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.lead code {
+  font: var(--text-ui-text-small-bold);
+}
+
+.search {
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: var(--grid-column-4);
+  padding: var(--space-small) var(--space-medium);
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-high-emphasis);
+  background: var(--color-surface-level-1);
+  border: var(--border);
+  border-radius: var(--radius-form-element);
+}
+
+.search:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.empty {
+  color: var(--color-foreground-low-emphasis);
+}
+
+.section {
+  margin-block-start: var(--space-xxlarge);
+}
+
+.heading {
+  margin-block: 0 var(--space-small);
+  font: var(--text-content-h5-semibold);
+  text-transform: capitalize;
+}
+
+.count {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-column-1), 1fr));
+  gap: var(--space-tiny);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-tiny);
+  padding: var(--space-medium) var(--space-tiny);
+  color: var(--color-foreground-high-emphasis);
+  background: var(--color-surface-level-1);
+  border-radius: var(--radius-card-inner);
+  box-shadow: var(--shadow-depth-none);
+}
+
+.name {
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-medium-emphasis);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.badge {
+  position: absolute;
+  inset-block-start: var(--space-micro);
+  inset-inline-end: var(--space-micro);
+  font: var(--text-ui-caption-small);
+  text-transform: var(--text-ui-caption-small-text-transform);
+  color: var(--color-foreground-low-emphasis);
+}

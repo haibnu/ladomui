@@ -10,6 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@ladom/icons": "workspace:*",
     "@ladom/tokens": "workspace:*",
     "@ladom/ui": "workspace:*",
     "next": "16.4.3",
