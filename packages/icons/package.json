@@ -3,10 +3,23 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./all": "./src/all.ts"
+  },
+  "sideEffects": false,
   "scripts": {
-    "figma:export": "node scripts/figma-export.mjs"
+    "build": "node scripts/build.mjs",
+    "figma:export": "node scripts/figma-export.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
   },
   "devDependencies": {
-    "@tabler/icons": "3.50.0"
+    "@tabler/icons": "3.50.0",
+    "@types/react": "19.3.0",
+    "react": "19.3.1",
+    "typescript": "7.0.2"
   }
 }
