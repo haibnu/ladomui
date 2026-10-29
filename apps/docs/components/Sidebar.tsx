@@ -26,6 +26,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
                     onClick={onNavigate}
                   >
                     {item.title}
+                    {item.pro && <span className={styles.pro}>Pro</span>}
                   </Link>
                 </li>
               ) : (

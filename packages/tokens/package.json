@@ -8,10 +8,6 @@
     "./*.css": "./css/*.css",
     "./tokens.json": "./meta/tokens.json"
   },
-  "files": [
-    "css",
-    "meta"
-  ],
   "scripts": {
     "build": "node scripts/build.mjs"
   }

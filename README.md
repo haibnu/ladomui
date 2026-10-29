@@ -9,6 +9,17 @@ React design system built from the Figma file "Ladom UI Design System v1.0".
 | `packages/ui` (`@ladom/ui`) | React components (CSS Modules, no framework dependency) |
 | `apps/docs` (`@ladom/docs`) | Next.js documentation site for ui.ladom.co, in English (`/en`) and Turkish (`/tr`) |
 
+## Using Ladom UI in an app
+
+Apps get Ladom UI with the `ladom-ui` CLI (`packages/cli`), which copies the tokens, components and icons into the app, shadcn/ui style. The workspace packages stay private.
+
+```bash
+npx ladom-ui init
+npx ladom-ui add button input
+```
+
+The guide is at https://ui.ladom.co/en/docs/installation. `npx ladom-ui skill` adds the Claude Code skill (`skills/ladom-ui`) to a project.
+
 ## Getting started
 
 Requires Node 20.9+ and pnpm 10.
@@ -44,5 +55,14 @@ import { IconPhone } from '@ladom/icons';
 ```
 
 Icons take the current text color. The docs app lists every icon at `/icons`.
+
+## Registry and releasing
+
+- `scripts/registry/build.mjs` builds the registry from `packages/ui/src`, `packages/tokens/css` and `packages/icons/src`; `scripts/registry/items.json` lists the components and their tier (free or Pro). The docs app serves it at https://ui.ladom.co/r and runs the build before `dev` and `build`.
+- Pro items need a license key. `node scripts/registry/new-key.mjs <label>` makes one; add its digest to `LADOM_UI_PRO_KEYS` (comma-separated) on Vercel and redeploy. Remove a digest to revoke the key.
+- The CLI is published from `packages/cli` with `npm publish` (bump its version first).
+- The docs deploy to https://ui.ladom.co on Vercel on every push to `main`.
+
+Free components, tokens, icons and the CLI are MIT; Pro components are under the Ladom UI Pro License. See [LICENSE.md](LICENSE.md) and [LICENSE-PRO.md](LICENSE-PRO.md).
 
 See [PLAN.md](PLAN.md) for scope and phases.

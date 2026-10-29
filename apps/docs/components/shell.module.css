@@ -268,6 +268,12 @@ a.navLink:hover {
   color: var(--color-foreground-low-emphasis);
 }
 
+.pro {
+  font: var(--text-ui-caption-small);
+  text-transform: var(--text-ui-caption-small-text-transform);
+  color: var(--color-primary);
+}
+
 .toc {
   font: var(--text-ui-text-small-regular);
 }

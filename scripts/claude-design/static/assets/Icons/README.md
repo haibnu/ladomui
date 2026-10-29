@@ -1,0 +1,1 @@
+The most used Ladom icons as 24px SVG files: Tabler outline icons with a 2px stroke, inked `#1f1f1f` (`color-foreground-high-emphasis` in light). In code use `@ladom/icons` (`window.LadomUI.Icons`), whose icons take the text color. The full set of 229 is at https://ui.ladom.co/en/docs/foundations/icons.

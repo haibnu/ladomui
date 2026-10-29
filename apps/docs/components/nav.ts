@@ -1,7 +1,12 @@
 import meta from '@ladom/tokens/tokens.json';
+import tiers from '@/registry/tiers.json';
 import { getDictionary, href, type Locale } from '@/i18n';
 
-export type NavItem = { title: string; href?: string; soon?: boolean };
+export type NavItem = { title: string; href?: string; soon?: boolean; pro?: boolean };
+
+// Docs path segment -> registry name, where they differ.
+const REGISTRY_NAME: Record<string, string> = { chips: 'chip', tab: 'tabs' };
+const isPro = (slug: string) => (tiers as Record<string, string>)[REGISTRY_NAME[slug] ?? slug] === 'pro';
 export type NavSection = { title: string; items: NavItem[] };
 
 // Components from PLAN.md phases 3-5; each gets a page as it is built. Names stay as in Figma.
@@ -24,6 +29,7 @@ export function getNav(lang: Locale): NavSection[] {
       items: [
         { title: t.nav.introduction, href: href(lang, '/docs/introduction') },
         { title: t.nav.installation, href: href(lang, '/docs/installation') },
+        { title: t.nav.license, href: href(lang, '/docs/license') },
       ],
     },
     {
@@ -36,13 +42,13 @@ export function getNav(lang: Locale): NavSection[] {
     {
       title: t.nav.components,
       items: PLANNED_COMPONENTS.map((title) =>
-        BUILT[title] ? { title, href: href(lang, `/docs/components/${BUILT[title]}`) } : { title, soon: true },
+        BUILT[title] ? { title, href: href(lang, `/docs/components/${BUILT[title]}`), pro: isPro(BUILT[title]!) } : { title, soon: true },
       ),
     },
     {
       title: t.nav.molecules,
       items: PLANNED_MOLECULES.map((title) =>
-        BUILT_MOLECULES[title] ? { title, href: href(lang, `/docs/molecules/${BUILT_MOLECULES[title]}`) } : { title, soon: true },
+        BUILT_MOLECULES[title] ? { title, href: href(lang, `/docs/molecules/${BUILT_MOLECULES[title]}`), pro: isPro(BUILT_MOLECULES[title]!) } : { title, soon: true },
       ),
     },
   ];

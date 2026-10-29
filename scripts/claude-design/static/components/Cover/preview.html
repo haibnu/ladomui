@@ -1,0 +1,25 @@
+<!-- @dsCard height=288 -->
+<style>
+html,body{margin:0;height:100%}
+body{background:var(--color-surface-background);position:relative;width:960px;height:288px;overflow:hidden}
+svg{position:absolute;inset:0}
+.tile{rx:var(--radius-card)}
+.brand{fill:var(--color-primary)}
+.soft{fill:var(--color-surface-level-3)}
+.line{fill:var(--color-surface-level-4)}
+.ok{fill:var(--color-success)}
+.warn{fill:var(--color-warning)}
+.text{position:absolute;left:48px;bottom:44px;max-width:440px;display:flex;flex-direction:column;gap:var(--space-tiny)}
+h1{margin:0;font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:700;font-size:88px;line-height:.92;letter-spacing:-0.02em;color:var(--color-foreground-high-emphasis)}
+p{margin:0;font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:14px;line-height:20px;color:var(--color-foreground-medium-emphasis)}
+</style>
+<svg width="960" height="288" viewBox="0 0 960 288" aria-hidden="true">
+<!--
+blocks: color-primary (brand keycap gray) on six tiles, two of them two wide; color-surface-level-3 and -level-4 as the neutral field; color-success and color-warning one tile each.
+arrangement: a 6 x 4 keyboard of 64px keys, space-tiny (8) apart, from x 496 to the right edge, some keys merged two or three wide like a keyboard row.
+pattern: keycaps cut by radius-card, because the Ladom mark is a keycap and the system is a dense, modular UI kit.
+scales: key 64 = 2 x space-xxlarge, gap space-tiny, corners radius-card.
+-->
+<rect class="tile brand" x="496" y="4" width="136" height="64"/><rect class="tile soft" x="640" y="4" width="64" height="64"/><rect class="tile line" x="712" y="4" width="64" height="64"/><rect class="tile soft" x="784" y="4" width="136" height="64"/><rect class="tile soft" x="496" y="76" width="64" height="64"/><rect class="tile brand" x="568" y="76" width="64" height="64"/><rect class="tile brand" x="640" y="76" width="136" height="64"/><rect class="tile ok" x="784" y="76" width="64" height="64"/><rect class="tile soft" x="856" y="76" width="64" height="64"/><rect class="tile line" x="496" y="148" width="64" height="64"/><rect class="tile soft" x="568" y="148" width="208" height="64"/><rect class="tile brand" x="784" y="148" width="136" height="64"/><rect class="tile soft" x="496" y="220" width="136" height="64"/><rect class="tile warn" x="640" y="220" width="64" height="64"/><rect class="tile soft" x="712" y="220" width="64" height="64"/><rect class="tile brand" x="784" y="220" width="64" height="64"/><rect class="tile line" x="856" y="220" width="64" height="64"/>
+</svg>
+<div class="text"><h1>Ladom UI</h1><p>One source of truth, from Figma to production.</p></div>
