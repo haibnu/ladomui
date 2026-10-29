@@ -10,7 +10,7 @@ export const href = (lang: Locale, path: string) => `/${lang}${path === '/' ? ''
 
 const en = {
   meta: {
-    description: 'The Ladom design system: design tokens, icons and React components, aligned 1:1 with Figma.',
+    description: 'Ladom UI is the UI library built for AI: React components, design tokens and icons that Claude knows by heart.',
   },
   topBar: {
     docs: 'Docs',
@@ -80,9 +80,9 @@ const en = {
     figmaLink: 'Open in Figma',
   },
   landing: {
-    eyebrow: 'Ladom Design System',
-    title: 'One source of truth, from Figma to production.',
-    lead: 'Design tokens, icons and React components for every Ladom product, built 1:1 from the Ladom UI Figma file.',
+    eyebrow: 'AI-native UI library',
+    title: 'The UI library built for AI.',
+    lead: 'React components, tokens and icons that Claude knows by heart. Describe the screen, get consistent, production-ready UI.',
     getStarted: 'Get started',
     browse: 'Browse foundations',
     tokens: 'Design tokens',
@@ -92,14 +92,14 @@ const en = {
     showcase: 'Showcase',
     componentCount: 'Components',
     whyTitle: 'Why Ladom UI',
-    whyLead: 'A design system your designers and developers share, not just a set of components.',
+    whyLead: 'Your AI writes the screens; Ladom UI makes sure they look like one product.',
     features: [
-      { title: 'Figma and code match 1:1', text: 'Tokens, variants and names come from one Figma file. Every component page shows the Figma variant next to the code, for designers and developers alike.' },
-      { title: 'No Tailwind required', text: 'Styling is CSS variables and CSS Modules. It works in any React app, with your own CSS, and needs no build plugin.' },
-      { title: 'A finished look', text: 'Light and dark themes, comfort and narrow density, and desktop, tablet and mobile modes are designed in, not left to you.' },
-      { title: 'Copy it, own it', text: 'The ladom-ui CLI copies the code into your project, so you can read and change it. Every component is free under MIT.' },
+      { title: 'Built for AI', text: 'A Claude Code skill teaches Claude the components, the tokens and the rules, so it uses them instead of inventing styles. Add it with npx ladom-ui skill.' },
+      { title: 'Consistent by default', text: 'Every color, space, radius and type style is a token. Even screens an AI writes follow the same scale and themes.' },
+      { title: 'Copy it, own it', text: 'The ladom-ui CLI copies the code into your project, where you and your AI can read and change it. update brings new versions without losing your edits.' },
       { title: 'Built for real products', text: 'Beyond the basics: Table, Modal, Drawer, Pagination, date and time pickers, Uploader, Item Selector and Stepper.' },
-      { title: 'English, Turkish and Claude', text: 'The docs are in English and Turkish. A Claude Code skill teaches Claude the components, the tokens and the rules.' },
+      { title: 'No Tailwind required', text: 'Styling is CSS variables and CSS Modules. It works in any React app, with your own CSS, and needs no build plugin.' },
+      { title: 'A finished look', text: 'Light and dark themes, comfort and narrow density, and desktop, tablet and mobile modes come designed in.' },
     ],
     installTitle: 'Start in a minute',
     installText: 'Set up the tokens, then add the components you need.',
@@ -110,7 +110,7 @@ export type Dictionary = typeof en;
 
 const tr: Dictionary = {
   meta: {
-    description: 'Ladom tasarım sistemi: Figma ile birebir uyumlu tasarım tokenları, ikonlar ve React bileşenleri.',
+    description: 'Ladom UI, yapay zekâ için tasarlanmış UI kütüphanesi: Claude’un ezbere bildiği React bileşenleri, tasarım tokenları ve ikonlar.',
   },
   topBar: {
     docs: 'Dokümanlar',
@@ -180,9 +180,9 @@ const tr: Dictionary = {
     figmaLink: 'Figma’da aç',
   },
   landing: {
-    eyebrow: 'Ladom Tasarım Sistemi',
-    title: 'Figma’dan canlıya, tek bir doğruluk kaynağı.',
-    lead: 'Tüm Ladom ürünleri için tasarım tokenları, ikonlar ve React bileşenleri; Ladom UI Figma dosyasıyla birebir.',
+    eyebrow: 'AI-native UI kütüphanesi',
+    title: 'Yapay zekâ için tasarlanmış UI kütüphanesi.',
+    lead: 'Claude’un ezbere bildiği React bileşenleri, tokenlar ve ikonlar. Ekranı tarif edin, tutarlı ve yayına hazır arayüz alın.',
     getStarted: 'Başla',
     browse: 'Temellere göz at',
     tokens: 'Tasarım tokenı',
@@ -192,14 +192,14 @@ const tr: Dictionary = {
     showcase: 'Vitrin',
     componentCount: 'Bileşen',
     whyTitle: 'Neden Ladom UI',
-    whyLead: 'Yalnızca bir bileşen seti değil; tasarımcıların ve geliştiricilerin paylaştığı bir tasarım sistemi.',
+    whyLead: 'Ekranları yapay zekânız yazar; Ladom UI hepsinin tek bir ürün gibi görünmesini sağlar.',
     features: [
-      { title: 'Figma ve kod birebir', text: 'Tokenlar, varyantlar ve adlar tek bir Figma dosyasından gelir. Her bileşen sayfası Figma varyantını kodun yanında gösterir; tasarımcı da geliştirici de aynı dili konuşur.' },
-      { title: 'Tailwind gerekmez', text: 'Stiller CSS değişkenleri ve CSS Modules ile yazılır. Her React uygulamasında, kendi CSS’inizle çalışır; bir build eklentisi istemez.' },
-      { title: 'Hazır bir görünüm', text: 'Açık ve koyu tema, comfort ve narrow yoğunluk, masaüstü, tablet ve mobil modları baştan tasarlanmıştır; size bırakılmaz.' },
-      { title: 'Kopyalayın, sizin olsun', text: 'ladom-ui CLI kodu projenize kopyalar; okuyabilir ve değiştirebilirsiniz. Tüm bileşenler MIT lisansıyla ücretsizdir.' },
+      { title: 'Yapay zekâ için', text: 'Bir Claude Code skill’i Claude’a bileşenleri, tokenları ve kuralları öğretir; Claude stil uydurmak yerine onları kullanır. npx ladom-ui skill ile ekleyin.' },
+      { title: 'Varsayılan olarak tutarlı', text: 'Her renk, boşluk, köşe ve yazı stili bir token’dır. Yapay zekânın yazdığı ekranlar bile aynı ölçeği ve temaları izler.' },
+      { title: 'Kopyalayın, sizin olsun', text: 'ladom-ui CLI kodu projenize kopyalar; siz de yapay zekânız da okuyup değiştirebilirsiniz. update, değişikliklerinizi kaybetmeden yeni sürümleri getirir.' },
       { title: 'Gerçek ürünler için', text: 'Temellerin ötesinde: Table, Modal, Drawer, Pagination, tarih ve saat seçiciler, Uploader, Item Selector ve Stepper.' },
-      { title: 'İngilizce, Türkçe ve Claude', text: 'Dokümanlar İngilizce ve Türkçe. Bir Claude Code skill’i Claude’a bileşenleri, tokenları ve kuralları öğretir.' },
+      { title: 'Tailwind gerekmez', text: 'Stiller CSS değişkenleri ve CSS Modules ile yazılır. Her React uygulamasında, kendi CSS’inizle çalışır; bir build eklentisi istemez.' },
+      { title: 'Hazır bir görünüm', text: 'Açık ve koyu tema, comfort ve narrow yoğunluk, masaüstü, tablet ve mobil modları hazır gelir.' },
     ],
     installTitle: 'Bir dakikada başlayın',
     installText: 'Tokenları kurun, sonra ihtiyacınız olan bileşenleri ekleyin.',
