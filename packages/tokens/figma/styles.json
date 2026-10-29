@@ -1,0 +1,1715 @@
+{
+  "text": [
+    {
+      "name": "ui/title",
+      "font": {
+        "family": "Neue Haas Grotesk Text Pro",
+        "style": "65 Medium"
+      },
+      "size": 32,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 48
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 48
+    },
+    {
+      "name": "ui/label",
+      "font": {
+        "family": "Neue Haas Grotesk Text Pro",
+        "style": "55 Roman"
+      },
+      "size": 14,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24
+    },
+    {
+      "name": "ui/display",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 64,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 80
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -2
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 80,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/display",
+        "fontStyle": "design-tokens/typography/weight/bold",
+        "fontFamily": "font-name",
+        "lineHeight": "design-tokens/typography/line-height/display"
+      }
+    },
+    {
+      "name": "ui/CAPTION",
+      "font": {
+        "family": "Inter",
+        "style": "Bold",
+        "variationSettings": {
+          "wght": 700,
+          "slnt": 0
+        }
+      },
+      "size": 12,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 16
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "UPPER",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 16
+    },
+    {
+      "name": "ui/text/regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 14,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/base-size",
+        "fontStyle": "design-tokens/typography/weight/normal",
+        "fontFamily": "font-name",
+        "lineHeight": "design-tokens/typography/line-height/base"
+      }
+    },
+    {
+      "name": "ui/text/bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 14,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/text",
+        "fontStyle": "design-tokens/typography/weight/bold",
+        "fontFamily": "font-name",
+        "lineHeight": "design-tokens/typography/line-height/base"
+      }
+    },
+    {
+      "name": "ui/text small/regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 12,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 16
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 16,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/text-small",
+        "fontStyle": "design-tokens/typography/weight/normal",
+        "fontFamily": "font-name",
+        "lineHeight": "design-tokens/typography/line-height/text small"
+      }
+    },
+    {
+      "name": "ui/text small/bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 12,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 16
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 16,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/text-small",
+        "fontStyle": "design-tokens/typography/weight/bold",
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "ui/text lead/regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/text-lead",
+        "fontStyle": "design-tokens/typography/weight/normal",
+        "fontFamily": "font-name",
+        "lineHeight": "design-tokens/typography/line-height/base"
+      }
+    },
+    {
+      "name": "ui/text lead/bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/text-lead",
+        "fontStyle": "design-tokens/typography/weight/bold",
+        "fontFamily": "font-name",
+        "lineHeight": "design-tokens/typography/line-height/base"
+      }
+    },
+    {
+      "name": "ui/footnote/regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 10,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 12
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 12,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/footnote",
+        "fontStyle": "design-tokens/typography/weight/normal",
+        "fontFamily": "font-name",
+        "paragraphSpacing": "design-tokens/typography/line-height/footnote",
+        "lineHeight": "design-tokens/typography/line-height/footnote"
+      }
+    },
+    {
+      "name": "ui/footnote/bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 10,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 12
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 12,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/footnote",
+        "fontStyle": "design-tokens/typography/weight/bold",
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/paragraphy/regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 14,
+      "lineHeight": {
+        "unit": "AUTO"
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 0,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/paragraphy",
+        "fontStyle": "design-tokens/typography/weight/normal",
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/paragraphy/bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 14,
+      "lineHeight": {
+        "unit": "AUTO"
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 0,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/paragraphy",
+        "fontStyle": "design-tokens/typography/weight/normal",
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H1/Regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Regular"
+      },
+      "size": 40,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 56
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 56,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H1/Semibold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 40,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 56
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 56,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H1/Bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 40,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 56
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 56,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H2/Regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Regular"
+      },
+      "size": 32,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 48
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 48,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H2/Semibold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 32,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 48
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 48,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H2/Bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 32,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 48
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 48,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H3/Regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Regular"
+      },
+      "size": 24,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 32
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 32,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H3/Semibold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 24,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 32
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 32,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H3/Bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 24,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 32
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 32,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H4/Regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Regular"
+      },
+      "size": 20,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 28
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 28,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H4/Semibold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 20,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 28
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 28,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H4/Bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 20,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 28
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 28,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H5/Regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Regular"
+      },
+      "size": 18,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 0,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H5/Semibold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 18,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H5/Bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 18,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H6/Regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Regular"
+      },
+      "size": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H6/Semibold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/H6/Bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/Hero/Regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Regular"
+      },
+      "size": 48,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 64
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 64,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/Hero/Semibold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 48,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 64
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 64,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/Hero/Bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 48,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 64
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 64,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/Hero XL/Regular",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Regular"
+      },
+      "size": 64,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 80
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -2
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 80,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/Hero XL/Semibold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 64,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 80
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -2
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 80,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "content/Hero XL/Bold",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 64,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 80
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -2
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 80,
+      "bound": {
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "ui/CAPTION Small",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Bold"
+      },
+      "size": 10,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 12
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "UPPER",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 12,
+      "bound": {
+        "fontSize": "design-tokens/typography/size/footnote",
+        "fontStyle": "design-tokens/typography/weight/bold",
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "ui/page title",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 18,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 0,
+      "bound": {
+        "fontStyle": "design-tokens/typography/weight/normal",
+        "fontFamily": "font-name"
+      }
+    },
+    {
+      "name": "ui/button",
+      "font": {
+        "family": "HK Grotesk",
+        "style": "Medium"
+      },
+      "size": 14,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 0,
+      "bound": {
+        "lineHeight": "design-tokens/typography/line-height/base",
+        "fontFamily": "font-name",
+        "fontSize": "design-tokens/typography/size/text"
+      }
+    },
+    {
+      "name": "ui/card title",
+      "font": {
+        "family": "Neue Haas Grotesk Text Pro",
+        "style": "65 Medium"
+      },
+      "size": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      },
+      "textCase": "ORIGINAL",
+      "textDecoration": "NONE",
+      "paragraphSpacing": 24
+    }
+  ],
+  "effect": [
+    {
+      "name": "global-tokens/button-default",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00000008",
+          "offset": {
+            "x": 0,
+            "y": 0.5
+          },
+          "radius": 0.5,
+          "spread": 0,
+          "visible": true
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00000014",
+          "offset": {
+            "x": 0,
+            "y": 0.5
+          },
+          "radius": 2.5,
+          "spread": 0,
+          "visible": true
+        },
+        {
+          "type": "INNER_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": -2
+          },
+          "radius": 1,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "global-tokens/focus-primary",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#ededed",
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 3,
+          "visible": true,
+          "bound": {
+            "color": "primary/primary-soft"
+          }
+        }
+      ]
+    },
+    {
+      "name": "global-tokens/focus-secondary",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#ffffff",
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 3,
+          "visible": true,
+          "bound": {
+            "color": "secondary/secondary-soft"
+          }
+        }
+      ]
+    },
+    {
+      "name": "global-tokens/focus-tertiary",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#fafafa",
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 3,
+          "visible": true,
+          "bound": {
+            "color": "tertiary/tertiary-soft"
+          }
+        }
+      ]
+    },
+    {
+      "name": "global-tokens/focus-error",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#ffc9c9",
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 3,
+          "visible": true,
+          "bound": {
+            "color": "error/error-tint"
+          }
+        }
+      ]
+    },
+    {
+      "name": "global-tokens/card-style-1",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#0002281f",
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 4,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-12"
+          }
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 2,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "global-tokens/card-style-2",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#0002281f",
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 4,
+          "spread": 0,
+          "visible": false,
+          "bound": {
+            "color": "opacity/opacity-12"
+          }
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 2,
+          "spread": 0,
+          "visible": false,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        },
+        {
+          "type": "INNER_SHADOW",
+          "color": "#ffffff14",
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "bound": {
+            "color": "opacity/invert-opacity-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "global-tokens/card-hover",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#ffffff14",
+          "offset": {
+            "x": 0,
+            "y": 8
+          },
+          "radius": 8,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/invert-opacity-8"
+          }
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": 20
+          },
+          "radius": 24,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "global-tokens/form-level-1",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#0002283d",
+          "offset": {
+            "x": 0,
+            "y": 24
+          },
+          "radius": 56,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-24"
+          }
+        }
+      ]
+    },
+    {
+      "name": "component-tokens/button-secondary-default",
+      "effects": [
+        {
+          "type": "INNER_SHADOW",
+          "color": "#00000014",
+          "offset": {
+            "x": 0,
+            "y": -0.5
+          },
+          "radius": 0,
+          "spread": 0,
+          "visible": true
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#0000000a",
+          "offset": {
+            "x": 0,
+            "y": 1.5
+          },
+          "radius": 1.5,
+          "spread": 0,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "primitive/Depth None",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#e5e5e5",
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "bound": {
+            "color": "surface/level-4"
+          }
+        }
+      ]
+    },
+    {
+      "name": "primitive/Depth MD",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": 4
+          },
+          "radius": 8,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#ffffff14",
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "radius": 4,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/invert-opacity-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "primitive/Depth XL",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#ffffff14",
+          "offset": {
+            "x": 0,
+            "y": 8
+          },
+          "radius": 8,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/invert-opacity-8"
+          }
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": 20
+          },
+          "radius": 24,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "primitive/Depth 2XL",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#0002283d",
+          "offset": {
+            "x": 0,
+            "y": 24
+          },
+          "radius": 56,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-24"
+          }
+        }
+      ]
+    },
+    {
+      "name": "primitive/Depth Inner",
+      "effects": [
+        {
+          "type": "INNER_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "radius": 4,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "primitive/Line Bottom",
+      "effects": [
+        {
+          "type": "INNER_SHADOW",
+          "color": "#dbe6ec",
+          "offset": {
+            "x": 0,
+            "y": -1
+          },
+          "radius": 0,
+          "spread": 0,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "primitive/Line Top",
+      "effects": [
+        {
+          "type": "INNER_SHADOW",
+          "color": "#dbe6ec",
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 0,
+          "spread": 0,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "primitive/Line Right",
+      "effects": [
+        {
+          "type": "INNER_SHADOW",
+          "color": "#dbe6ec",
+          "offset": {
+            "x": -1,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 0,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "primitive/Depth SM",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#0002281f",
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 4,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-12"
+          }
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 2,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "primitive/Depth LG",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#ffffff14",
+          "offset": {
+            "x": 0,
+            "y": 4
+          },
+          "radius": 6,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/invert-opacity-8"
+          }
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00022814",
+          "offset": {
+            "x": 0,
+            "y": 8
+          },
+          "radius": 16,
+          "spread": 0,
+          "visible": true,
+          "bound": {
+            "color": "opacity/opacity-8"
+          }
+        }
+      ]
+    }
+  ],
+  "paint": [
+    {
+      "name": "gradient",
+      "paints": [
+        {
+          "type": "GRADIENT_LINEAR",
+          "stops": [
+            {
+              "pos": 0,
+              "color": "#f2f2f2"
+            },
+            {
+              "pos": 1,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "card-border",
+      "paints": [
+        {
+          "type": "GRADIENT_LINEAR",
+          "stops": [
+            {
+              "pos": 0,
+              "color": "#00022800"
+            },
+            {
+              "pos": 1,
+              "color": "#00022814"
+            }
+          ]
+        },
+        {
+          "type": "SOLID",
+          "color": "#000228",
+          "opacity": 0.07999999821186066,
+          "bound": "opacity/opacity-8"
+        }
+      ]
+    },
+    {
+      "name": "bg-card",
+      "paints": [
+        {
+          "type": "SOLID",
+          "color": "#fafafa",
+          "opacity": 1,
+          "bound": "surface/level-2"
+        },
+        {
+          "type": "GRADIENT_LINEAR",
+          "stops": [
+            {
+              "pos": 0,
+              "color": "#00022800"
+            },
+            {
+              "pos": 1,
+              "color": "#00022814"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "user/placeholder",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/01 Man | Halil",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/02 Man | Jane Cooper",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/03 Man | John Dukes",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/04 Man | Rodger Struck",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/05 Man | Alex Buckmaster",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/01 Woman | Mary Freund",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/02 Woman | Rhonda Rhodes",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/03 Woman | Katie Sims",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    },
+    {
+      "name": "user/04 Woman | Patricia Sanders",
+      "paints": [
+        {
+          "type": "IMAGE"
+        }
+      ]
+    }
+  ],
+  "grid": [
+    {
+      "name": "Dashboard 12 Grid",
+      "grids": [
+        {
+          "pattern": "GRID",
+          "visible": false,
+          "color": {
+            "r": 1,
+            "g": 0,
+            "b": 0,
+            "a": 0.10000000149011612
+          },
+          "sectionSize": 8,
+          "boundVariables": {}
+        },
+        {
+          "pattern": "COLUMNS",
+          "visible": true,
+          "color": {
+            "r": 1,
+            "g": 0,
+            "b": 0,
+            "a": 0.10000000149011612
+          },
+          "gutterSize": 16,
+          "alignment": "MIN",
+          "count": 12,
+          "sectionSize": 96,
+          "offset": 88,
+          "boundVariables": {}
+        }
+      ]
+    },
+    {
+      "name": "Website 12 Grid",
+      "grids": [
+        {
+          "pattern": "GRID",
+          "visible": false,
+          "color": {
+            "r": 1,
+            "g": 0,
+            "b": 0,
+            "a": 0.10000000149011612
+          },
+          "sectionSize": 8,
+          "boundVariables": {}
+        },
+        {
+          "pattern": "COLUMNS",
+          "visible": true,
+          "color": {
+            "r": 1,
+            "g": 0,
+            "b": 0,
+            "a": 0.10000000149011612
+          },
+          "gutterSize": 20,
+          "alignment": "CENTER",
+          "count": 12,
+          "sectionSize": 93,
+          "boundVariables": {}
+        }
+      ]
+    },
+    {
+      "name": "Mail 8 Grid",
+      "grids": [
+        {
+          "pattern": "GRID",
+          "visible": false,
+          "color": {
+            "r": 1,
+            "g": 0,
+            "b": 0,
+            "a": 0.10000000149011612
+          },
+          "sectionSize": 8,
+          "boundVariables": {}
+        },
+        {
+          "pattern": "COLUMNS",
+          "visible": true,
+          "color": {
+            "r": 1,
+            "g": 0,
+            "b": 0,
+            "a": 0.10000000149011612
+          },
+          "gutterSize": 16,
+          "alignment": "CENTER",
+          "count": 8,
+          "sectionSize": 56,
+          "boundVariables": {}
+        }
+      ]
+    }
+  ]
+}
