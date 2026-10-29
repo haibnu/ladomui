@@ -89,6 +89,10 @@
     {
       "name": "design-tokens/radius/r-checkbox",
       "value": 6
+    },
+    {
+      "name": "component-tokens/loader/track-height",
+      "value": 5
     }
   ],
   "styles": {

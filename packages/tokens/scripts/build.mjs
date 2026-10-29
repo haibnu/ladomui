@@ -26,7 +26,7 @@ const GROUPS = [
   { id: 'typography', title: 'Typography', match: (k) => k === FONT_KEY || k.startsWith(`${TOKEN}design-tokens/typography/`) },
   { id: 'space', title: 'Spacing', match: (k, v) => v.collection === '04 Layout' || /^03 Token \/ design-tokens\/(spacing\/)?s-/.test(k) },
   { id: 'radius', title: 'Radius', match: (k) => k.startsWith(`${TOKEN}design-tokens/radius/`) || k === `${TOKEN}component-tokens/badge/radius` },
-  { id: 'size', title: 'Sizes', match: (k) => k.startsWith(`${TOKEN}component-tokens/modal/`) || k.startsWith(`${TOKEN}page-tokens/`) },
+  { id: 'size', title: 'Sizes', match: (k) => k.startsWith(`${TOKEN}component-tokens/modal/`) || k === `${TOKEN}component-tokens/loader/track-height` || k.startsWith(`${TOKEN}page-tokens/`) },
   { id: 'grid', title: 'Grid', match: (k) => k.startsWith(`${TOKEN}design-tokens/grid/`) },
   { id: 'border', title: 'Border', match: () => false },
   { id: 'shadow', title: 'Depth', match: () => false },
