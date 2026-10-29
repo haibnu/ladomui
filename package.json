@@ -8,9 +8,11 @@
   "scripts": {
     "build": "pnpm -r build",
     "dev": "pnpm --filter @ladom/tokens build && pnpm --filter @ladom/docs dev",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "release": "pnpm -r --filter \"./packages/*\" publish --access public"
   },
   "devDependencies": {
+    "esbuild": "0.28.2",
     "typescript": "7.0.2"
   }
 }

@@ -1,7 +1,15 @@
 {
   "name": "@ladom/icons",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Ladom (https://ladom.co)",
+  "homepage": "https://ui.ladom.co",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haibnu/ladomui.git",
+    "directory": "packages/icons"
+  },
+  "description": "Ladom UI icons as React components: semantic names mapped to Tabler icons, plus custom icons.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -11,7 +19,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "figma:export": "node scripts/figma-export.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepack": "node ../../scripts/bundle-package.mjs src/index.ts src/all.ts"
   },
   "peerDependencies": {
     "react": "^19.0.0"
@@ -21,5 +30,23 @@
     "@types/react": "19.3.0",
     "react": "19.3.1",
     "typescript": "7.0.2"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./all": {
+        "types": "./dist/all.d.ts",
+        "default": "./dist/all.js"
+      }
+    }
   }
 }
