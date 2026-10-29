@@ -1,0 +1,232 @@
+/* Uploader, from Figma Components / Uploader (4046:12986). A dashed drop zone; Horizontal sits
+   in a lined box, Vertical is the dashed box itself until files are listed. Figma dashes 8/4;
+   code uses the border-dashed style. */
+
+.uploader {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-tiny) + var(--space-atom));
+  box-sizing: border-box;
+  padding: var(--layout-micro);
+  border-radius: var(--radius-form-element-small);
+  background: var(--_bg);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line);
+  --_bg: var(--color-surface-level-1);
+  --_line: var(--color-foreground-low-emphasis);
+  --_dash: var(--color-surface-level-4);
+  --_title: var(--color-foreground-high-emphasis);
+}
+
+/* Vertical without files: the zone is the box. */
+.uploader[data-direction='vertical']:not(:has(.files)) {
+  padding: 0;
+  --_bg: transparent;
+  --_line: transparent;
+}
+
+.zone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: var(--border-width) dashed var(--_dash);
+  min-block-size: var(--space-xxlarge);
+  border-radius: calc(var(--radius-form-element-small) - var(--space-atom));
+  cursor: pointer;
+}
+
+/* Figma's Vertical drop area is 176px tall. */
+.uploader[data-direction='vertical'] .zone:not([data-compact]) {
+  min-block-size: calc(5 * var(--space-xxlarge) + var(--space-medium));
+  padding: var(--space-large) var(--layout-default);
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-micro);
+  pointer-events: none;
+}
+
+.prompt > * {
+  pointer-events: auto;
+}
+
+.title {
+  font: var(--text-ui-text-regular);
+  color: var(--_title);
+}
+
+.or {
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.hint {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.uploader[data-direction='vertical'] .zone:not([data-compact]) .prompt {
+  flex-direction: column;
+  gap: var(--layout-tiny);
+  text-align: center;
+}
+
+.uploader[data-direction='vertical'] .zone:not([data-compact]) .title {
+  font: var(--text-ui-text-bold);
+}
+
+.uploader[data-direction='vertical'] .zone:not([data-compact]) .or {
+  font: var(--text-ui-text-small-regular);
+}
+
+.drop {
+  font: var(--text-ui-text-regular);
+  color: var(--color-primary);
+}
+
+.uploader[data-direction='vertical'] .zone:not([data-compact]) .drop {
+  font: var(--text-ui-text-bold);
+}
+
+.loader {
+  inline-size: 80%;
+}
+
+.errorIcon {
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+  color: var(--color-error);
+}
+
+.input {
+  display: none;
+}
+
+/* Files (Loaded) */
+.files {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-tiny) + var(--space-atom));
+  margin: 0;
+  padding: 0 var(--space-micro);
+  list-style: none;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tiny);
+}
+
+.thumb {
+  display: grid;
+  flex: none;
+  place-items: center;
+  overflow: hidden;
+  inline-size: var(--_thumb);
+  block-size: var(--_thumb);
+  border-radius: calc(var(--radius-form-element-small) / 2);
+  color: var(--color-foreground-medium-emphasis);
+  background: var(--color-surface-level-2);
+  --_thumb: var(--space-xlarge);
+}
+
+.thumb > img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.thumb > svg {
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+}
+
+.meta {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.name {
+  overflow: hidden;
+  font: var(--text-ui-footnote-bold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-foreground-high-emphasis);
+}
+
+.size {
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.uploader[data-direction='vertical'] .files {
+  padding: var(--space-tiny);
+}
+
+.uploader[data-direction='vertical'] .file {
+  gap: var(--space-small);
+  --_thumb: calc(var(--space-xxlarge) + var(--space-medium));
+}
+
+.uploader[data-direction='vertical'] .meta {
+  gap: var(--space-atom);
+}
+
+.uploader[data-direction='vertical'] :is(.name, .size) {
+  font: var(--text-ui-text-small-regular);
+}
+
+.uploader[data-direction='vertical'] .name {
+  font: var(--text-ui-text-small-bold);
+}
+
+/* States */
+.uploader:not([data-disabled]):is(:hover, [data-state='hover']) {
+  --_line: var(--color-primary-tint);
+}
+
+.uploader[data-direction='vertical']:not(:has(.files)):not([data-disabled]):is(:hover, [data-state='hover']) {
+  --_dash: var(--color-primary-tint);
+}
+
+.uploader:not([data-disabled]):is(:has(.zone:active), [data-state='pressed']),
+.uploader[data-direction][data-drag] {
+  --_bg: var(--color-surface-level-2);
+}
+
+.uploader[data-direction][data-drag] {
+  --_dash: var(--color-primary);
+}
+
+.uploader:has(:focus-visible) .zone {
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.uploader[data-error] {
+  --_line: var(--color-error);
+}
+
+.uploader[data-error][data-direction='horizontal'] {
+  --_title: var(--color-foreground-low-emphasis);
+}
+
+.uploader[data-error][data-direction='vertical']:not(:has(.files)) {
+  --_bg: var(--color-surface-level-1);
+  --_dash: var(--color-error);
+  --_title: var(--color-error);
+}
+
+.uploader[data-direction][data-disabled] {
+  --_bg: var(--color-surface-level-2);
+  --_title: var(--color-foreground-low-emphasis);
+}
+
+.uploader[data-disabled] .zone {
+  cursor: not-allowed;
+}

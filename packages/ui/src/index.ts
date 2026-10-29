@@ -16,3 +16,4 @@ export { Dropdown, type DropdownProps } from './Dropdown/Dropdown';
 export { Selectbox, type SelectboxOption, type SelectboxProps, type SelectboxSize } from './Selectbox/Selectbox';
 export { Segment, type SegmentOption, type SegmentProps, type SegmentSize } from './Segment/Segment';
 export { ItemSelector, type ItemSelectorProps } from './ItemSelector/ItemSelector';
+export { Uploader, formatFileSize, type UploaderFile, type UploaderProps } from './Uploader/Uploader';
