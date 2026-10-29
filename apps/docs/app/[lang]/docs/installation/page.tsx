@@ -14,7 +14,7 @@ const LICENSE = [href('en', '/docs/license'), href('tr', '/docs/license')] as co
 const CODE = {
   init: `npx ladom-ui init`,
   add: `npx ladom-ui add button input form-field`,
-  pro: `LADOM_UI_KEY=ldm_pro_… npx ladom-ui add selectbox toast`,
+  pro: `LADOM_UI_KEY=ldm_pro_… npx ladom-ui add toast accordion`,
   icons: `npx ladom-ui icons share calendar`,
   update: `npx ladom-ui add button --overwrite`,
   layout: `// app/layout.tsx

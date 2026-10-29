@@ -17,7 +17,7 @@ Usage
   npx ladom-ui list                            List the components and their tier
   npx ladom-ui skill                           Add the Claude Code skill to .claude/skills
 
-Pro components need a license key:  LADOM_UI_KEY=ldm_pro_… npx ladom-ui add selectbox
+Pro components need a license key:  LADOM_UI_KEY=ldm_pro_… npx ladom-ui add toast
 Docs: https://ui.ladom.co/en/docs/installation · License: https://ui.ladom.co/license`;
 
 const args = process.argv.slice(2);

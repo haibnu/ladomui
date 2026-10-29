@@ -4,7 +4,7 @@
 
 Copyright (c) 2026 Ladom (https://ladom.co). All rights reserved.
 
-This license covers the Ladom UI Pro components: the files the `ladom-ui` CLI copies from the
+This license covers the Ladom UI Pro components (the molecules): the files the `ladom-ui` CLI copies from the
 registry at https://ui.ladom.co/r with a license key, marked "Ladom UI Pro" in their first lines
 ("the Pro Components").
 

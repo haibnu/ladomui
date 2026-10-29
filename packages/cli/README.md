@@ -20,7 +20,7 @@ as `--font-hanken-grotesk` on `<html>`, and import components from `@/components
 Pro components need a license key. Pass it in `LADOM_UI_KEY`:
 
 ```bash
-LADOM_UI_KEY=ldm_pro_… npx ladom-ui add selectbox toast
+LADOM_UI_KEY=ldm_pro_… npx ladom-ui add toast accordion
 ```
 
 ## Options
