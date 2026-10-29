@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { Hanken_Grotesk } from 'next/font/google';
-import '@ladom/tokens/typography.css';
+import '@ladom/tokens/index.css';
+import './globals.css';
 
 // The tokens read the loaded family from --font-hanken-grotesk, so the class must sit on <html>.
 const hankenGrotesk = Hanken_Grotesk({

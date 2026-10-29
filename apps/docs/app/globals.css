@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  background: var(--color-surface-background);
+  color: var(--color-foreground-high-emphasis);
+  font: var(--text-ui-text-regular);
+}
+
+a {
+  color: var(--color-link-color);
+}
