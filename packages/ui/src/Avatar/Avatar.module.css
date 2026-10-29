@@ -1,0 +1,141 @@
+/* Avatar, from Figma Components / Avatar (1153:124). XLarge and Medium use the card radius,
+   the smaller sizes are round. Initials and icons sit on primary soft with a 1px surface ring
+   outside; the status dot and the notification bubble have a 2px one. */
+
+.avatar {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--_size);
+  block-size: var(--_size);
+  border-radius: var(--_radius);
+  color: var(--color-foreground-high-emphasis);
+  --_ring: 0 0 #0000;
+  --_hover: 0 0 #0000;
+}
+
+.image,
+.face {
+  grid-area: 1 / 1;
+  box-sizing: border-box;
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: inherit;
+  box-shadow: var(--_ring), var(--_hover);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.face {
+  display: grid;
+  place-items: center;
+  font: var(--_font);
+  background: var(--color-primary-soft);
+  --_ring: 0 0 0 var(--border-width) var(--color-surface-level-1);
+}
+
+.face > svg {
+  inline-size: var(--_icon);
+  block-size: var(--_icon);
+}
+
+/* Sizes */
+.avatar[data-size='xlarge'] {
+  --_size: calc(2 * var(--space-xxlarge) + var(--space-tiny));
+  --_radius: var(--radius-card);
+  --_font: var(--text-ui-text-lead-bold);
+  --_icon: calc(var(--space-xxlarge) + var(--space-micro));
+  --_dot: var(--space-small);
+  --_bubble: var(--space-large);
+  --_bubble-font: var(--text-ui-text-small-regular);
+}
+
+.avatar[data-size='medium'] {
+  --_size: calc(var(--space-xxlarge) + var(--space-medium));
+  --_radius: var(--radius-card);
+  --_font: var(--text-ui-text-bold);
+  --_icon: var(--space-xlarge);
+  --_dot: var(--space-tiny);
+  --_bubble: var(--space-large);
+  --_bubble-font: var(--text-ui-text-small-regular);
+}
+
+.avatar[data-size='small'] {
+  --_size: var(--space-xxlarge);
+  --_radius: var(--radius-full);
+  --_font: var(--text-ui-text-bold);
+  --_icon: var(--space-medium);
+  --_dot: var(--space-tiny);
+  --_bubble: var(--space-medium);
+  --_bubble-font: var(--text-ui-footnote-regular);
+}
+
+.avatar[data-size='tiny'] {
+  --_size: var(--space-xlarge);
+  --_radius: var(--radius-full);
+  --_font: var(--text-ui-text-small-bold);
+  --_icon: var(--space-small);
+  --_dot: var(--space-micro);
+}
+
+.avatar[data-size='micro'] {
+  --_size: var(--space-medium);
+  --_radius: var(--radius-full);
+  --_font: var(--text-ui-footnote-bold);
+  --_icon: var(--space-tiny);
+}
+
+/* Status: a success dot in the bottom end corner. */
+.status {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  inline-size: var(--_dot);
+  block-size: var(--_dot);
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+  box-shadow: 0 0 0 calc(2 * var(--border-width)) var(--color-surface-level-1);
+}
+
+/* Notification: a primary bubble 8px over the top end corner. */
+.notification {
+  position: absolute;
+  inset-block-start: calc(-1 * var(--space-tiny));
+  inset-inline-end: calc(-1 * var(--space-tiny));
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-inline-size: var(--_bubble);
+  block-size: var(--_bubble);
+  padding-inline: var(--space-atom);
+  border-radius: var(--radius-full);
+  font: var(--_bubble-font);
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  box-shadow: 0 0 0 calc(2 * var(--border-width)) var(--color-surface-level-1);
+}
+
+/* Hover: the primary focus shadow, when the avatar is inside a link or button. */
+:is(a, button):is(:hover, :focus-visible) > .avatar,
+.avatar[data-state='hover'] {
+  --_hover: var(--shadow-focus-primary);
+}
+
+/* Avatar Group */
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-form-ingroup-gutter);
+}
+
+/* Overlap: each avatar after the first steps 8px back, ringed to stay apart. */
+.group[data-layout='overlap'] > .avatar + .avatar {
+  margin-inline-start: calc(-1 * (var(--space-form-ingroup-gutter) + var(--space-tiny)));
+}
+
+.group > .avatar + .avatar :is(.image, .face) {
+  --_ring: 0 0 0 var(--border-width) var(--color-surface-level-1);
+}
