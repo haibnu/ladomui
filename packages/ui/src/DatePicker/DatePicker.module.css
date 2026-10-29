@@ -1,0 +1,180 @@
+/* Date Picker, from Figma Components / Date Picker (2037:6346): 48px day cells with a 32px
+   circle, a 48px month header, in a 16px padded panel with the Depth 2XL shadow. */
+
+.picker {
+  display: inline-flex;
+  gap: var(--space-tiny);
+  padding: var(--space-medium);
+  border-radius: var(--radius-layout-base);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-depth-2xl);
+}
+
+.bare {
+  display: inline-flex;
+}
+
+.panel {
+  padding: var(--space-tiny);
+  border-radius: var(--radius-form-element-small);
+}
+
+.presets {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: calc(5 * var(--space-xxlarge) + var(--space-large));
+}
+
+.month {
+  display: flex;
+  flex-direction: column;
+  --_cell: calc(var(--space-xxlarge) + var(--space-medium));
+  --_circle: var(--space-xxlarge);
+}
+
+/* Date Month: the title in the middle, Controls on the sides. */
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: var(--_cell);
+}
+
+.title {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-level-1);
+}
+
+.previous,
+.next {
+  position: absolute;
+}
+
+.previous {
+  inset-inline-start: 0;
+}
+
+.next {
+  inset-inline-end: 0;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+/* Date Day */
+.day {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: var(--_cell);
+  block-size: var(--_cell);
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: var(--text-ui-text-small-regular);
+  color: var(--_fg);
+  background: none;
+  cursor: pointer;
+  isolation: isolate;
+  --_fg: var(--color-foreground-level-1);
+  --_circle-bg: transparent;
+  --_circle-line: transparent;
+}
+
+/* The 32px circle. */
+.day::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  margin: auto;
+  inline-size: var(--_circle);
+  block-size: var(--_circle);
+  border-radius: var(--radius-full);
+  background: var(--_circle-bg);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_circle-line), var(--_ring, 0 0 #0000);
+  content: '';
+}
+
+/* The range band behind the circle. */
+.day[data-range]::after {
+  position: absolute;
+  inset-block: 0;
+  z-index: -2;
+  margin-block: auto;
+  block-size: var(--_circle);
+  background: var(--color-primary-soft);
+  content: '';
+}
+
+.day[data-range='middle']::after {
+  inset-inline: 0;
+}
+
+.day[data-range='start']::after {
+  inset-inline: 50% 0;
+}
+
+.day[data-range='end']::after {
+  inset-inline: 0 50%;
+}
+
+.day[data-range='middle'] {
+  --_fg: var(--color-foreground-high-emphasis);
+}
+
+/* Event dot: 8px under the number, 4px on-color inside a selected circle. */
+.dot {
+  position: absolute;
+  inset-block-start: calc(50% + var(--space-tiny) + var(--space-atom));
+  inset-inline-start: 50%;
+  inline-size: var(--space-tiny);
+  block-size: var(--space-tiny);
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  translate: -50% 0;
+}
+
+.day[data-selected] .dot {
+  inset-block-start: calc(50% + var(--space-tiny));
+  inline-size: var(--space-micro);
+  block-size: var(--space-micro);
+  background: var(--color-on-primary);
+}
+
+.day[data-today] {
+  --_fg: var(--color-primary);
+  --_circle-line: var(--color-primary);
+}
+
+.day:not(:disabled, [data-selected]):is(:hover, [data-state='hover']) {
+  --_fg: var(--color-on-secondary);
+  --_circle-bg: var(--color-secondary);
+  --_circle-line: transparent;
+}
+
+.day[data-selected] {
+  --_fg: var(--color-on-primary);
+  --_circle-bg: var(--color-primary);
+  --_circle-line: transparent;
+}
+
+.day:focus-visible {
+  outline: none;
+  --_ring: var(--shadow-focus-primary);
+}
+
+.day:disabled {
+  --_fg: var(--color-foreground-medium-emphasis);
+  cursor: default;
+}
+
+.day:disabled[data-selected] {
+  --_circle-bg: var(--color-surface-level-3);
+}
