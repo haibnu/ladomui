@@ -5,6 +5,7 @@ React design system built from the Figma file "Ladom UI Design System v1.0".
 | Package | What it is |
 |---|---|
 | `packages/tokens` (`@ladom/tokens`) | Design tokens as CSS variables, generated from the Figma export |
+| `packages/icons` (`@ladom/icons`) | Icon components: semantic names mapped to Tabler icons, plus custom icons from Figma |
 | `packages/ui` (`@ladom/ui`) | React components (CSS Modules, no framework dependency) |
 | `apps/docs` (`@ladom/docs`) | Next.js documentation and preview site |
 
@@ -32,5 +33,16 @@ Modes, all set on `<html>`:
 - Device: Mobile below 768px, Tablet below 1280px, Desktop otherwise. `data-device="mobile|tablet|desktop"` forces one.
 - Theme: Light by default, `data-theme="dark"` for Dark (opt-in; the Figma Dark mode is not final).
 - Density: Comfort by default, `data-density="narrow"` for Narrow.
+
+## Using the icons
+
+```tsx
+import { IconPhone } from '@ladom/icons';
+
+<IconPhone size={20} />; // decorative by default
+<IconPhone title="Call" />; // accessible name
+```
+
+Icons take the current text color. The docs app lists every icon at `/icons`.
 
 See [PLAN.md](PLAN.md) for scope and phases.
