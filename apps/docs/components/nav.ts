@@ -12,7 +12,7 @@ const PLANNED_COMPONENTS = [
 ];
 const PLANNED_MOLECULES = ['Accordion', 'Alert', 'Navigation', 'Toast'];
 // Components that have a page, by their path segment.
-const BUILT: Record<string, string> = { Avatar: 'avatar', Badge: 'badge', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Date Picker': 'date-picker', Dropdown: 'dropdown', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Switch: 'switch', 'Time Picker': 'time-picker', Uploader: 'uploader' };
+const BUILT: Record<string, string> = { Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Date Picker': 'date-picker', Dropdown: 'dropdown', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', 'Time Picker': 'time-picker', Tooltip: 'tooltip', Uploader: 'uploader' };
 
 export function getNav(lang: Locale): NavSection[] {
   const t = getDictionary(lang);
