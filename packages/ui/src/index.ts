@@ -18,3 +18,4 @@ export { Segment, type SegmentOption, type SegmentProps, type SegmentSize } from
 export { ItemSelector, type ItemSelectorProps } from './ItemSelector/ItemSelector';
 export { Uploader, formatFileSize, type UploaderFile, type UploaderProps } from './Uploader/Uploader';
 export { Calendar, DatePicker, type CalendarProps, type DatePickerProps, type DatePreset, type DateRange } from './DatePicker/DatePicker';
+export { TimePicker, type TimePickerProps, type TimeValue } from './TimePicker/TimePicker';
