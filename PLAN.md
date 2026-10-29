@@ -22,7 +22,7 @@ Figma file: https://www.figma.com/design/VCJ6ew9Vk1gAqfnvQ1gfOz/Ladom-UI-Design-
 
 ## Phase 6 decisions
 - Distribution: shadcn/ui style, no design packages on npm. The `ladom-ui` CLI (the only npm package, MIT) copies tokens, icons and components into the app from the registry at ui.ladom.co/r.
-- Tiers: free (tokens, icons, Button, Badge, Chip, Avatar, Loader, Label, Hint, Input, FormField, Checkbox, Radio, ChoiceGroup, Switch) under MIT; Pro (the rest) under the Ladom UI Pro License, behind a license key. Keys start as SHA-256 digests in the `LADOM_UI_PRO_KEYS` env var on Vercel.
+- Tiers: free (tokens, icons and every component) under MIT; Pro (the molecules: Alert, Toast, Accordion, Navigation) under the Ladom UI Pro License, behind a license key. Keys start as SHA-256 digests in the `LADOM_UI_PRO_KEYS` env var on Vercel.
 - Hosting: Vercel project `ladom-ui` (team "Ladom's Projects"), root `apps/docs`, domain ui.ladom.co.
 - Claude: a claude.ai design system built from the repo (`scripts/claude-design/`) and a Claude Code skill (`skills/ladom-ui`).
 
