@@ -1,0 +1,45 @@
+/* Label, from Figma Components / Label (1172:168). */
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--layout-tiny);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--layout-tiny);
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-high-emphasis);
+}
+
+.info {
+  flex: none;
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.optional,
+.subtitle {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+/* with Form Element: small text; a single row gets 4px above and below, a stacked label the in-group gap below. */
+.root[data-form] .label {
+  font: var(--text-ui-text-small-regular);
+}
+
+.root[data-form]:not([data-stacked]) {
+  padding-block: var(--space-micro);
+}
+
+.root[data-form][data-stacked] {
+  padding-block-end: var(--space-form-ingroup-gutter);
+}
