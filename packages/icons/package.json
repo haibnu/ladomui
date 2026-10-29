@@ -1,0 +1,12 @@
+{
+  "name": "@ladom/icons",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "figma:export": "node scripts/figma-export.mjs"
+  },
+  "devDependencies": {
+    "@tabler/icons": "3.50.0"
+  }
+}
