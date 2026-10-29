@@ -1,0 +1,23 @@
+{
+  "$description": "Values read from Figma documentation pages that are not variables or styles. Transcribed read-only; re-read the listed nodes when the pages change.",
+  "motion": {
+    "$source": "Animation page 2575:31, frame 2606:8737",
+    "durations": {
+      "speed-xs": "250ms",
+      "speed-s": "250ms",
+      "speed-m": "250ms"
+    },
+    "animations": {
+      "fade-default": { "easing": "ease-in-out", "duration": "speed-xs", "usedFor": "Component States" },
+      "swipe-y": { "easing": "ease-in-out", "duration": "speed-xs", "usedFor": "Component States" },
+      "bounce-y": { "easing": "cubic-bezier", "duration": "speed-xs", "usedFor": "Component States" }
+    }
+  },
+  "border": {
+    "$source": "Border page 2675:8811: 'Line' 2675:8815 and 'DashLine' 2675:8855",
+    "width": 1,
+    "align": "INSIDE",
+    "color": "Light / Helper Color / Border",
+    "dashPattern": [4, 4]
+  }
+}

@@ -20,11 +20,17 @@ pnpm dev
 ## Using the tokens in an app
 
 ```ts
-import '@ladom/tokens/typography.css';
+import '@ladom/tokens/index.css'; // or a single group, e.g. '@ladom/tokens/color.css'
 ```
+
+Groups: `color`, `typography`, `space`, `radius`, `size`, `grid`, `border`, `shadow`, `motion`. The docs app lists every token at `/tokens`.
 
 Load Hanken Grotesk and expose it as `--font-hanken-grotesk` on `<html>` (with `next/font`, set `variable: '--font-hanken-grotesk'` and put the class on `<html>`). Text styles are used as `font: var(--text-ui-title);`.
 
-Responsive values follow the Figma modes: Mobile below 768px, Tablet below 1280px, Desktop otherwise. `<html data-device="mobile|tablet|desktop">` forces a mode.
+Modes, all set on `<html>`:
+
+- Device: Mobile below 768px, Tablet below 1280px, Desktop otherwise. `data-device="mobile|tablet|desktop"` forces one.
+- Theme: Light by default, `data-theme="dark"` for Dark (opt-in; the Figma Dark mode is not final).
+- Density: Comfort by default, `data-density="narrow"` for Narrow.
 
 See [PLAN.md](PLAN.md) for scope and phases.

@@ -1,0 +1,16 @@
+{
+  "$description": "Legacy remote paint styles still used in the Figma file, mapped to the local 02 Theme variables that replace them. Agreed with the design owner; the Figma file itself is not migrated yet.",
+  "Light / Surface / Level 1": "surface/level-1",
+  "Light / Surface / Level 2": "surface/level-2",
+  "Light / Surface / Level 3": "surface/level-3",
+  "Light / Foreground / High Emphasis": "foreground/high-emphasis",
+  "Light / Foreground / Medium Emphasis": "foreground/medium-emphasis",
+  "Light / Foreground / Low Emphasis": "foreground/low-emphasis",
+  "Light / Foreground / Level 1": "foreground/level-1",
+  "Light / Primary / Primary": "primary/primary",
+  "Light / Primary / Primary Light": "primary/primary-tint",
+  "Light / Secondary / On Secondary": "secondary/on-secondary",
+  "Light / Danger / Danger": "error/error",
+  "Light / Success / On Success": "success/on-success",
+  "Light / Helper Color / Border": "surface/level-4"
+}
