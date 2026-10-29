@@ -8,7 +8,7 @@ import registry from '@/registry/registry.json';
 //   /r/<name>.json  one item with its files; Pro items need a license key
 // Pro keys are sent as "Authorization: Bearer <key>" and checked against LADOM_UI_PRO_KEYS, a
 // comma-separated list of the keys' SHA-256 hex digests (scripts/registry/new-key.mjs makes one).
-type Item = { name: string; type: string; tier: 'free' | 'pro'; description: string; dependencies: string[]; icons: string[]; files: { path: string; content: string }[] };
+type Item = { name: string; type: string; tier: 'free' | 'pro'; description: string; hash: string; dependencies: string[]; icons: string[]; files: { path: string; content: string }[] };
 const items = registry.items as Record<string, Item>;
 
 const json = (body: unknown, status = 200, cache = 'public, max-age=300') =>

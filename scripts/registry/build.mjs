@@ -3,6 +3,7 @@
 // of packages/ui/src becomes an item with its files, the items it imports and the icons it uses;
 // @ladom/icons imports are rewritten to the local icons folder the CLI writes. Each file gets the
 // license header of its tier. Fails when a free item depends on a Pro one.
+import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -77,6 +78,11 @@ for (const folder of folders) {
     files: u.files.map((f) => ({ path: f.path, content: withHeader(f.path, f.content, tierOf[folder]) })),
   };
 }
+
+// A short hash of each item's files: the CLI compares it with what a project installed to tell
+// which items have an update.
+const hashOf = (files) => createHash('sha256').update(JSON.stringify(files)).digest('hex').slice(0, 12);
+for (const item of Object.values(items)) item.hash = hashOf(item.files);
 
 // Icons: free; createIcon plus one file per icon, imported from a generated index.
 const iconsSrc = join(repo, 'packages/icons/src');
