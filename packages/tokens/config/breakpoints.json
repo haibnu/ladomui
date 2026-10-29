@@ -1,0 +1,5 @@
+{
+  "$description": "Screen widths for the Figma 03 Token modes. Not defined in Figma; agreed with the design owner. Desktop is the default mode; Tablet applies below `desktop`, Mobile below `tablet`. <html data-device=\"desktop|tablet|mobile\"> forces a mode regardless of width.",
+  "tablet": 768,
+  "desktop": 1280
+}

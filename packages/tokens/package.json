@@ -1,0 +1,15 @@
+{
+  "name": "@ladom/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./typography.css": "./css/typography.css"
+  },
+  "files": [
+    "css"
+  ],
+  "scripts": {
+    "build": "node scripts/build-typography.mjs"
+  }
+}
