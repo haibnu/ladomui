@@ -1,36 +1,5 @@
 /* Building blocks for component pages. */
 
-/* Designer / Developer switch (stand-in for the future Segment component). */
-.segment {
-  display: inline-flex;
-  gap: var(--space-atom);
-  padding: var(--space-atom);
-  background: var(--color-surface-level-3);
-  border-radius: var(--radius-form-element);
-}
-
-.segmentItem {
-  padding: var(--space-micro) var(--space-medium);
-  font: var(--text-ui-text-regular);
-  color: var(--color-foreground-medium-emphasis);
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-form-element-small);
-  cursor: pointer;
-}
-
-.segmentItem[aria-checked='true'] {
-  font: var(--text-ui-text-bold);
-  color: var(--color-foreground-high-emphasis);
-  background: var(--color-surface-level-1);
-  box-shadow: var(--shadow-depth-sm);
-}
-
-.segmentItem:focus-visible {
-  outline: none;
-  box-shadow: var(--shadow-focus-primary);
-}
-
 /* Code */
 .code {
   position: relative;
