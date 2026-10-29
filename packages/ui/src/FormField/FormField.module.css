@@ -1,0 +1,26 @@
+/* Form Input, from Figma (2521:468). */
+
+.field {
+  display: grid;
+}
+
+.field[data-align='horizontal'] {
+  /* Figma splits the row in two equal columns. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+/* Beside the field, the label is centered on a medium input's height. */
+.field[data-align='horizontal'] .labelCell {
+  padding-block: var(--layout-tiny);
+}
+
+.field[data-spacing] {
+  padding-block-end: var(--space-form-gutter);
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}

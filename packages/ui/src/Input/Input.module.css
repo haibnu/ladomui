@@ -1,0 +1,129 @@
+/* Input, from Figma Components / Input (1133:303). The box draws the field; the native input
+   inside is transparent. data-state="hover|focus|typed" shows a state without interaction. */
+
+.box {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-tiny);
+  padding: var(--layout-tiny) var(--_pad-x);
+  border-radius: var(--_radius);
+  background: var(--color-surface-level-1);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line), var(--_ring, 0 0 #0000);
+  transition: box-shadow var(--motion-fade-default);
+  cursor: text;
+  --_line: var(--color-surface-level-4);
+}
+
+.box[data-size='medium'] {
+  --_pad-x: var(--layout-default);
+  --_radius: var(--radius-form-element);
+  font: var(--text-ui-text-regular);
+}
+
+.box[data-size='small'] {
+  --_pad-x: var(--layout-small);
+  --_radius: var(--radius-form-element-small);
+  font: var(--text-ui-text-small-regular);
+}
+
+.input {
+  flex: 1;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--color-foreground-high-emphasis);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-foreground-low-emphasis);
+  opacity: 1;
+}
+
+/* The native search clear button and decorations would double the icon. */
+.input::-webkit-search-decoration,
+.input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.icon,
+.toggle {
+  display: inline-flex;
+  flex: none;
+  color: var(--color-foreground-low-emphasis);
+}
+
+/* Icons are passed as elements; Figma draws them at 16px in every size. */
+.icon > svg,
+.toggle > svg {
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+}
+
+.errorIcon {
+  flex: none;
+  color: var(--color-error);
+}
+
+.affix {
+  flex: none;
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.toggle {
+  display: inline-flex;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--radius-form-element-small);
+  cursor: pointer;
+}
+
+.toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+/* States (🕹 State) */
+.box:is(:hover, [data-state='hover']) {
+  --_line: var(--color-primary-tint);
+}
+
+.box:has(.input:not(:placeholder-shown)),
+.box[data-state='typed'] {
+  --_line: var(--color-foreground-low-emphasis);
+}
+
+.box:is(:focus-within, [data-state='focus']) {
+  --_line: var(--color-primary);
+  --_ring: var(--shadow-focus-primary);
+}
+
+.box[data-error] {
+  --_line: var(--color-error);
+}
+
+.box[data-error]:is(:focus-within, [data-state='focus']) {
+  --_ring: var(--shadow-focus-error);
+}
+
+.box[data-disabled] {
+  --_line: var(--color-surface-level-4);
+  --_ring: 0 0 #0000;
+  background: var(--color-surface-level-2);
+  cursor: not-allowed;
+}
+
+.box[data-disabled] .input {
+  cursor: not-allowed;
+}
+
+/* 🎛 Type=Search: filled, borderless look. */
+.box[data-look='search'] {
+  gap: var(--layout-small);
+  background: var(--color-surface-level-2);
+  --_line: var(--color-surface-level-2);
+}
