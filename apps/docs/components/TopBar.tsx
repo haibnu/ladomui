@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { IconExternalLink } from '@ladom/icons';
+import { Logo } from './Logo';
 import { MobileNav } from './MobileNav';
 import { Search } from './Search';
 import { ThemeToggle } from './ThemeToggle';
@@ -11,8 +12,8 @@ export function TopBar({ withMenu = false }: { withMenu?: boolean }) {
     <header className={styles.topBar}>
       <div className={styles.topBarStart}>
         {withMenu && <MobileNav />}
-        <Link href="/" className={styles.brand}>
-          Ladom UI
+        <Link href="/" className={styles.brand} aria-label="Ladom UI home">
+          <Logo />
         </Link>
       </div>
       <div className={styles.topBarEnd}>

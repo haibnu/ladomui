@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Favicon: the UI badge from components/Logo.tsx. Colors are the light-theme token values
+       (--color-static-brand-color, --color-static-white), since a favicon cannot read CSS variables. -->
+  <defs>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0.35" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.4" />
+    </linearGradient>
+  </defs>
+  <path d="M5 0H21A11 11 0 0 1 32 11V27A5 5 0 0 1 27 32H5A5 5 0 0 1 0 27V5A5 5 0 0 1 5 0Z" fill="#3c3c3c" />
+  <path d="M5 0H21A11 11 0 0 1 32 11V27A5 5 0 0 1 27 32H5A5 5 0 0 1 0 27V5A5 5 0 0 1 5 0Z" fill="url(#sheen)" />
+  <g fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round">
+    <path d="M9.5 9V17.5A4.5 4.5 0 0 0 18.5 17.5V9" />
+    <path d="M23.5 9V22" />
+  </g>
+</svg>
