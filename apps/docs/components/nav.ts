@@ -11,6 +11,8 @@ const PLANNED_COMPONENTS = [
   'Time Picker', 'Tooltip', 'Uploader',
 ];
 const PLANNED_MOLECULES = ['Accordion', 'Alert', 'Navigation', 'Toast'];
+// Components that have a page, by their path segment.
+const BUILT: Record<string, string> = { Button: 'button' };
 
 export function getNav(lang: Locale): NavSection[] {
   const t = getDictionary(lang);
@@ -29,7 +31,12 @@ export function getNav(lang: Locale): NavSection[] {
         { title: t.nav.icons, href: href(lang, '/docs/foundations/icons') },
       ],
     },
-    { title: t.nav.components, items: PLANNED_COMPONENTS.map((title) => ({ title, soon: true })) },
+    {
+      title: t.nav.components,
+      items: PLANNED_COMPONENTS.map((title) =>
+        BUILT[title] ? { title, href: href(lang, `/docs/components/${BUILT[title]}`) } : { title, soon: true },
+      ),
+    },
     { title: t.nav.molecules, items: PLANNED_MOLECULES.map((title) => ({ title, soon: true })) },
   ];
 }
