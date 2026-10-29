@@ -25,3 +25,4 @@ export { Stepper, type StepperProps } from './Stepper/Stepper';
 export { Tooltip, type TooltipProps } from './Tooltip/Tooltip';
 export { Popover, type PopoverProps } from './Popover/Popover';
 export type { Placement } from './Floating/placement';
+export { Alert, type AlertProps, type AlertTone } from './Alert/Alert';

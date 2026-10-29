@@ -1,0 +1,100 @@
+/* Alert Message, from Figma Molecules / Alert (2109:21906): an icon, the title with an optional
+   description and buttons, and a close button on the tone's soft color. Toast shares this layout. */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--layout-small);
+  box-sizing: border-box;
+  padding: var(--layout-tiny) var(--layout-small) var(--layout-tiny) var(--layout-default);
+  border-radius: var(--radius-form-element);
+  color: var(--color-foreground-high-emphasis);
+  background: var(--_bg);
+  --_bg: var(--color-surface-level-3);
+  --_icon: var(--color-primary);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  padding-block: var(--layout-tiny);
+  color: var(--_icon);
+}
+
+.icon > svg {
+  inline-size: var(--space-xlarge);
+  block-size: var(--space-xlarge);
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--layout-micro);
+  min-inline-size: 0;
+  padding-block: var(--layout-tiny);
+}
+
+.title {
+  font: var(--text-ui-text-bold);
+}
+
+.description {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-form-gutter);
+  padding-block-start: var(--space-form-ingroup-gutter);
+}
+
+.close {
+  flex: none;
+  margin-block: var(--layout-micro);
+}
+
+/* Horizontal: a pill with everything on one line. */
+.alert[data-direction='horizontal'] {
+  align-items: center;
+  padding-inline-end: var(--layout-default);
+  border-radius: var(--radius-full);
+}
+
+.alert[data-direction='horizontal'] .container {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--layout-tiny);
+}
+
+.alert[data-direction='horizontal'] .actions {
+  margin-inline-start: auto;
+  padding-block-start: 0;
+}
+
+.alert[data-direction='horizontal'] .close {
+  margin-block: 0;
+}
+
+/* Tones */
+.alert[data-tone='info'] {
+  --_bg: var(--color-info-soft);
+  --_icon: var(--color-info);
+}
+
+.alert[data-tone='success'] {
+  --_bg: var(--color-success-soft);
+  --_icon: var(--color-success);
+}
+
+.alert[data-tone='error'] {
+  --_bg: var(--color-error-soft);
+  --_icon: var(--color-error);
+}
+
+.alert[data-tone='warning'] {
+  --_bg: var(--color-warning-soft);
+  --_icon: var(--color-warning);
+}
