@@ -1,0 +1,18 @@
+/* Dropdown, from Figma Components / Dropdown (1145:669): an 8px padded panel with the layout
+   radius and the form level 1 shadow. Cells are 1px apart. */
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--border-width);
+  box-sizing: border-box;
+  padding: var(--layout-tiny);
+  overflow-y: auto;
+  border-radius: var(--radius-layout-base);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-form-level-1);
+}
+
+.dropdown[data-full-width] {
+  padding-inline: 0;
+}

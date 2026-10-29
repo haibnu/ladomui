@@ -12,3 +12,5 @@ export { Loader, type LoaderProps, type LoaderTone } from './Loader/Loader';
 export { Chip, type ChipProps, type ChipSize, type ChipTone } from './Chip/Chip';
 export { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize } from './Avatar/Avatar';
 export { Cell, CellActions, CellHelper, CellSearch, type CellHelperProps, type CellProps, type CellSize } from './Cell/Cell';
+export { Cell, CellActions, CellHelper, CellSearch, type CellHelperProps, type CellProps, type CellSize } from './Cell/Cell';
+export { Dropdown, type DropdownProps } from './Dropdown/Dropdown';
