@@ -69,6 +69,15 @@ const en = {
     custom: 'custom',
     categories: { common: 'Common', direction: 'Direction', electric: 'Electric' } as Record<string, string>,
   },
+  component: {
+    designer: 'Designer',
+    developer: 'Developer',
+    viewLabel: 'Show documentation for',
+    copy: 'Copy code',
+    copied: 'Copied',
+    playground: 'Playground',
+    figmaLink: 'Open in Figma',
+  },
   landing: {
     eyebrow: 'Ladom Design System',
     title: 'One source of truth, from Figma to production.',
@@ -145,6 +154,15 @@ const tr: Dictionary = {
     empty: 'Eşleşen ikon yok:',
     custom: 'özel',
     categories: { common: 'Genel', direction: 'Yön', electric: 'Elektrik' },
+  },
+  component: {
+    designer: 'Tasarımcı',
+    developer: 'Geliştirici',
+    viewLabel: 'Dokümantasyonu şunun için göster',
+    copy: 'Kodu kopyala',
+    copied: 'Kopyalandı',
+    playground: 'Playground',
+    figmaLink: 'Figma’da aç',
   },
   landing: {
     eyebrow: 'Ladom Tasarım Sistemi',

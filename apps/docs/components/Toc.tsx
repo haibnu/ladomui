@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { CONTENT_CHANGE } from './docs/ViewSwitch';
 import { useLocale } from './useLocale';
 import styles from './shell.module.css';
 
@@ -15,8 +16,6 @@ export function Toc() {
   const [active, setActive] = useState<string>();
 
   useEffect(() => {
-    const els = [...document.querySelectorAll<HTMLElement>('[data-doc-content] :is(h2, h3)[id]')];
-    setHeadings(els.map((el) => ({ id: el.id, text: el.textContent ?? '', level: el.tagName === 'H2' ? 2 : 3 })));
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
@@ -24,8 +23,19 @@ export function Toc() {
       },
       { rootMargin: '0px 0px -70% 0px' },
     );
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const scan = () => {
+      observer.disconnect();
+      const els = [...document.querySelectorAll<HTMLElement>('[data-doc-content] :is(h2, h3)[id]')];
+      setHeadings(els.map((el) => ({ id: el.id, text: el.textContent ?? '', level: el.tagName === 'H2' ? 2 : 3 })));
+      els.forEach((el) => observer.observe(el));
+    };
+    scan();
+    // Component pages swap their sections when switching between the designer and developer views.
+    window.addEventListener(CONTENT_CHANGE, scan);
+    return () => {
+      window.removeEventListener(CONTENT_CHANGE, scan);
+      observer.disconnect();
+    };
   }, [pathname]);
 
   if (!headings.length) return null;
