@@ -25,3 +25,8 @@ export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcr
 export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
 export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcrumb/Breadcrumb';
 export { Stepper, type StepperProps } from './Stepper/Stepper';
+export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
+export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcrumb/Breadcrumb';
+export { Stepper, type StepperProps } from './Stepper/Stepper';
+export { Tooltip, type TooltipProps } from './Tooltip/Tooltip';
+export type { Placement } from './Floating/placement';
