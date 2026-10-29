@@ -36,8 +36,8 @@ export function IconGallery() {
       />
       {groups.length === 0 && <p className={styles.empty}>No icons match “{query}”.</p>}
       {groups.map(([category, names]) => (
-        <section key={category} className={styles.section}>
-          <h2 className={styles.heading}>
+        <section key={category}>
+          <h2 id={category} className={styles.heading}>
             {category} <span className={styles.count}>{names.length}</span>
           </h2>
           <ul className={styles.grid}>
@@ -45,7 +45,7 @@ export function IconGallery() {
               const Icon = icons[name];
               const m = iconMeta[name];
               return (
-                <li key={name} className={styles.tile} title={`${componentName(name)} · ${m.source === 'figma' ? 'custom (Figma)' : `tabler: ${m.tabler}`}`}>
+                <li key={name} id={`icon-${name}`} className={styles.tile} title={`${componentName(name)} · ${m.source === 'figma' ? 'custom (Figma)' : `tabler: ${m.tabler}`}`}>
                   <Icon size={24} />
                   <span className={styles.name}>{name}</span>
                   {m.source === 'figma' && <span className={styles.badge}>custom</span>}

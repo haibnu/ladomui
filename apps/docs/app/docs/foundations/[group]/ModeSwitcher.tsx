@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 
-// Each switch sets a data attribute on <html>; "auto" removes it (theme: Light, device: by screen width, density: Comfort).
+// Each switch sets a data attribute on <html>; "auto" removes it (device: by screen width, density: Comfort).
+// The theme has its own toggle in the top bar. Forced modes are cleared when leaving the page.
 const SWITCHES = [
-  { attr: 'data-theme', label: 'Theme', options: ['dark'] },
   { attr: 'data-device', label: 'Device', options: ['desktop', 'tablet', 'mobile'] },
   { attr: 'data-density', label: 'Density', options: ['narrow'] },
 ] as const;
@@ -21,6 +21,8 @@ export function ModeSwitcher() {
       else html.removeAttribute(attr);
     }
   }, [values]);
+
+  useEffect(() => () => SWITCHES.forEach(({ attr }) => document.documentElement.removeAttribute(attr)), []);
 
   return (
     <div className={styles.switcher}>
