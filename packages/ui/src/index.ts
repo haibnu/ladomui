@@ -22,3 +22,6 @@ export { TimePicker, type TimePickerProps, type TimeValue } from './TimePicker/T
 export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
 export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
 export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcrumb/Breadcrumb';
+export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
+export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcrumb/Breadcrumb';
+export { Stepper, type StepperProps } from './Stepper/Stepper';
