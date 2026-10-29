@@ -26,3 +26,5 @@ export { Tooltip, type TooltipProps } from './Tooltip/Tooltip';
 export { Popover, type PopoverProps } from './Popover/Popover';
 export type { Placement } from './Floating/placement';
 export { Alert, type AlertProps, type AlertTone } from './Alert/Alert';
+export { Alert, type AlertProps, type AlertTone } from './Alert/Alert';
+export { Toast, ToastProvider, useToast, type ToastOptions, type ToastProps, type ToastTone } from './Toast/Toast';
