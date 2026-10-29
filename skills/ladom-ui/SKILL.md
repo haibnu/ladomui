@@ -39,11 +39,12 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Labels and status | `Label`, `Hint`, `Badge`, `Chip`, `Avatar`/`AvatarGroup`, `Loader`, `Stepper` |
 | Lists and menus | `Dropdown` with `Cell`, `CellHelper`, `CellSearch`, `CellActions` |
 | Navigation | `AppHeader` with `PageHeader`, `PublicHeader`, `Tabs`, `Breadcrumb` |
-| Overlays | `Tooltip`, `Popover` (placement = where it opens) |
+| Overlays | `Tooltip`, `Popover` (placement = where it opens), `Modal` (size), `Drawer` (side); both need `open` and `onClose` |
+| Data | `Table` (columns, rows, rowKey, sortable columns, selectable), `Pagination` (page, pageCount, onPageChange) |
 | Messages | `Alert` (inline), `Toast` via `useToast()` |
 | Disclosure | `Accordion` |
 
-CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-picker` (DatePicker, Calendar), `time-picker`, `tabs`, `chip`, `avatar` (Avatar, AvatarGroup), `dropdown`, `cell`, `navigation` (AppHeader, PageHeader, PublicHeader). `npx ladom-ui list` shows them all.
+CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-picker` (DatePicker, Calendar), `time-picker`, `tabs`, `chip`, `avatar` (Avatar, AvatarGroup), `dropdown`, `cell`, `navigation` (AppHeader, PageHeader, PublicHeader), `modal` (Modal, Drawer), `table`, `pagination`. `npx ladom-ui list` shows them all.
 
 Icon props: `Button` takes icon components (`icon={IconAdd}`); other components take elements (`iconLeft={<IconAdd />}`).
 

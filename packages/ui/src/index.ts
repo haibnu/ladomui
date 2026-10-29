@@ -31,3 +31,6 @@ export { Accordion, type AccordionProps } from './Accordion/Accordion';
 export { PageHeader, type PageHeaderEdit, type PageHeaderProps } from './Navigation/PageHeader';
 export { AppHeader, type AppHeaderProps } from './Navigation/AppHeader';
 export { PublicHeader, type PublicHeaderProps } from './Navigation/PublicHeader';
+export { Drawer, Modal, type DrawerProps, type ModalProps, type ModalSize } from './Modal/Modal';
+export { Table, type TableColumn, type TableProps, type TableSort, type TableSortDirection } from './Table/Table';
+export { Pagination, paginationRange, type PaginationProps } from './Pagination/Pagination';

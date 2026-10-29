@@ -1,0 +1,145 @@
+/* Modal and Drawer, from Figma Components / Modal (4212:111) and Drawer (4212:199):
+   surface/level-1, Depth XL, the modal size tokens for the width and the modal spacing tokens;
+   the overlay is component/modal/overlay. */
+
+.dialog {
+  box-sizing: border-box;
+  max-inline-size: none;
+  max-block-size: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  color: var(--color-foreground-high-emphasis);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-depth-xl);
+}
+
+.dialog::backdrop {
+  background: var(--color-component-modal-overlay);
+}
+
+.dialog[data-kind='modal'] {
+  inline-size: min(var(--_size), 100% - 2 * var(--space-medium));
+  max-block-size: calc(100% - 2 * var(--space-medium));
+  border-radius: var(--radius-card);
+}
+
+.dialog[data-size='small'] {
+  --_size: var(--modal-small-size);
+}
+
+.dialog[data-size='medium'] {
+  --_size: var(--modal-medium-size);
+}
+
+.dialog[data-size='large'] {
+  --_size: var(--modal-large-size);
+}
+
+.dialog[data-kind='drawer'] {
+  inline-size: min(var(--modal-small-size), 100%);
+  block-size: 100%;
+  margin-block: 0;
+}
+
+.dialog[data-side='right'] {
+  margin-inline: auto 0;
+}
+
+.dialog[data-side='left'] {
+  margin-inline: 0 auto;
+  --_dir: -1;
+}
+
+.dialog[open] {
+  animation: fade var(--motion-fade-default);
+}
+
+.dialog[data-kind='drawer'][open] {
+  animation: slide var(--motion-swipe-y);
+}
+
+.dialog[open]::backdrop {
+  animation: fade var(--motion-fade-default);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide {
+  from {
+    translate: calc(var(--_dir, 1) * 100%) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open],
+  .dialog[open]::backdrop {
+    animation: none;
+  }
+}
+
+.surface {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100%;
+  max-block-size: inherit;
+}
+
+.dialog[data-kind='modal'] .surface {
+  max-block-size: calc(100dvh - 2 * var(--space-medium));
+}
+
+.dialog[data-kind='drawer'] .surface {
+  block-size: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--layout-default);
+  padding: var(--space-modal) var(--space-modal) 0;
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--layout-micro);
+  min-inline-size: 0;
+}
+
+.title {
+  margin: 0;
+  font: var(--text-ui-page-title);
+}
+
+.description {
+  margin: 0;
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.body {
+  flex: 1;
+  overflow: auto;
+  padding: var(--space-modal-horizontal) var(--space-modal) 0;
+  font: var(--text-content-paragraphy-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+/* Without a footer the body keeps the bottom padding the footer would add. */
+.body:last-child {
+  padding-block-end: var(--space-modal);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--layout-tiny);
+  padding: var(--space-modal);
+}

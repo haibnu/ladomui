@@ -1,0 +1,54 @@
+/* Pagination, from Figma Components / Pagination (4215:13): 32px page items with the small form
+   radius in text small bold; Current is primary with on-primary text, Hover surface/level-2. */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-micro);
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-micro);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item,
+.gap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-inline-size: var(--space-xxlarge);
+  block-size: var(--space-xxlarge);
+  padding-inline: var(--layout-tiny);
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.item {
+  border: 0;
+  border-radius: var(--radius-form-element-small);
+  background: none;
+  cursor: pointer;
+  transition: background var(--motion-fade-default);
+}
+
+.item:hover {
+  color: var(--color-foreground-high-emphasis);
+  background: var(--color-surface-level-2);
+}
+
+.item:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.item[aria-current='page'] {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  cursor: default;
+}

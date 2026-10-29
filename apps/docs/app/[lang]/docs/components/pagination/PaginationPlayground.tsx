@@ -1,0 +1,68 @@
+'use client';
+
+import { useState } from 'react';
+import { Pagination } from '@ladom/ui';
+import { CodeBlock } from '@/components/docs/CodeBlock';
+import { useView } from '@/components/docs/ViewSwitch';
+import styles from '@/components/docs/docs.module.css';
+import { useLocale } from '@/components/useLocale';
+
+const COPY = {
+  en: { pages: 'Pages', siblings: 'Siblings', figma: 'Figma variant', code: 'Code', label: 'Pagination', previous: 'Previous page', next: 'Next page', page: (p: number) => `Page ${p}` },
+  tr: { pages: 'Sayfa sayısı', siblings: 'Komşu sayfa', figma: 'Figma varyantı', code: 'Kod', label: 'Sayfalama', previous: 'Önceki sayfa', next: 'Sonraki sayfa', page: (p: number) => `Sayfa ${p}` },
+};
+
+export function PaginationPlayground() {
+  const { lang } = useLocale();
+  const { view } = useView();
+  const c = COPY[lang];
+  const [page, setPage] = useState(2);
+  const [pageCount, setPageCount] = useState(12);
+  const [siblings, setSiblings] = useState(1);
+  const code = `import { Pagination } from '@/components/ladom';\n\n<Pagination\n  page={${page}}\n  pageCount={${pageCount}}${siblings !== 1 ? `\n  siblings={${siblings}}` : ''}\n  onPageChange={setPage}\n/>`;
+  const figma = `Pagination\n.Pagination Item › 🕹 State=Current (${page})`;
+  return (
+    <div className={styles.playground}>
+      <div className={styles.stage}>
+        <Pagination
+          page={page}
+          pageCount={pageCount}
+          siblings={siblings}
+          onPageChange={setPage}
+          aria-label={c.label}
+          previousLabel={c.previous}
+          nextLabel={c.next}
+          pageLabel={c.page}
+        />
+      </div>
+      <div className={styles.controls}>
+        <label>
+          {c.pages}
+          <input
+            type="number"
+            min={1}
+            max={99}
+            value={pageCount}
+            onChange={(e) => {
+              const n = Math.max(1, Number(e.target.value) || 1);
+              setPageCount(n);
+              setPage((p) => Math.min(p, n));
+            }}
+          />
+        </label>
+        <label>
+          {c.siblings}
+          <select value={siblings} onChange={(e) => setSiblings(Number(e.target.value))}>
+            {[0, 1, 2].map((s) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div className={styles.output}>
+        <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>
+        <CodeBlock code={view === 'designer' ? figma : code} />
+      </div>
+    </div>
+  );
+}
