@@ -5,19 +5,19 @@ import { getDictionary, href, type Locale } from '@/i18n';
 export type NavItem = { title: string; href?: string; soon?: boolean; pro?: boolean };
 
 // Docs path segment -> registry name, where they differ.
-const REGISTRY_NAME: Record<string, string> = { chips: 'chip', tab: 'tabs' };
+const REGISTRY_NAME: Record<string, string> = { chips: 'chip', tab: 'tabs', drawer: 'modal' };
 const isPro = (slug: string) => (tiers as Record<string, string>)[REGISTRY_NAME[slug] ?? slug] === 'pro';
 export type NavSection = { title: string; items: NavItem[] };
 
 // Components from PLAN.md phases 3-5; each gets a page as it is built. Names stay as in Figma.
 const PLANNED_COMPONENTS = [
   'Avatar', 'Badge', 'Brand', 'Button', 'Checkbox', 'Chips', 'Hint', 'Input', 'Label', 'Loader', 'Radio', 'Switch',
-  'Alert', 'Breadcrumb', 'Cell', 'Date Picker', 'Dropdown', 'Item Selector', 'Popover', 'Segment', 'Selectbox', 'Stepper', 'Tab',
-  'Time Picker', 'Toast', 'Tooltip', 'Uploader',
+  'Alert', 'Breadcrumb', 'Cell', 'Date Picker', 'Drawer', 'Dropdown', 'Item Selector', 'Modal', 'Pagination', 'Popover', 'Segment',
+  'Selectbox', 'Stepper', 'Tab', 'Table', 'Time Picker', 'Toast', 'Tooltip', 'Uploader',
 ];
 const PLANNED_MOLECULES = ['Accordion', 'Navigation'];
 // Components that have a page, by their path segment.
-const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Date Picker': 'date-picker', Dropdown: 'dropdown', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
+const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
 const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', Navigation: 'navigation' };
 
