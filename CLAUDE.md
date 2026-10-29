@@ -32,12 +32,16 @@ React design system built from the Figma file "Ladom UI Design System v1.0" (fil
 - The logo (`components/Logo.tsx`) is rebuilt from the "Ladom UI" heading on ladom.co; do not replace it with the Figma Brand component.
 
 ## Releasing and deploying
-- The packages are published to npm as `@ladom/tokens`, `@ladom/icons` and `@ladom/ui` (MIT). The workspace uses the sources; `publishConfig` points the published exports at `dist/`, which `prepack` builds with `scripts/bundle-package.mjs` (icons bundled; components compiled file by file so each keeps its `'use client'` and the CSS Modules stay for the app's bundler). Bump the versions, then `pnpm release` (needs an npm login with access to the `@ladom` scope).
+- The design packages stay private. Apps get Ladom UI with the `ladom-ui` CLI (`packages/cli`, dependency-free, the only npm package; `npm publish` from there), which copies files from the registry, shadcn/ui style.
+- `scripts/registry/build.mjs` builds `apps/docs/registry/` (gitignored: `registry.json`, `tiers.json`, `licenses.json`) from the packages; `scripts/registry/items.json` gives each component its tier. Internal parts (Floating, Brand) are free when a free item needs them; the build fails if a free item depends on a Pro one. Add every new component to `items.json`.
+- `apps/docs/app/r/[file]/route.ts` serves the registry: free items to everyone, Pro items only with `Authorization: Bearer <key>` whose SHA-256 is in `LADOM_UI_PRO_KEYS` (Vercel env, comma-separated hex). `node scripts/registry/new-key.mjs` makes a key; never commit keys.
+- Licenses: `LICENSE.md` (MIT for the free tier and the CLI) and `LICENSE-PRO.md` (draft, needs legal review). Each copied file starts with its tier's license line; the docs page is `/[lang]/docs/license` (`/license` redirects).
+- `scripts/bundle-package.mjs` is only used by `scripts/claude-design/` now.
 - The docs deploy on Vercel: project `ladom-ui` in the "Ladom's Projects" team, root `apps/docs`, domain ui.ladom.co (DNS on Cloudflare: a CNAME to Vercel). Pushes deploy; `main` is production.
-- `skills/ladom-ui/SKILL.md` is the Claude Code skill for projects that use Ladom UI; keep it in step with the components.
+- `skills/ladom-ui/SKILL.md` is the Claude Code skill for projects that use Ladom UI (the registry serves it for `npx ladom-ui skill`); keep it in step with the components.
 - The claude.ai design system (https://claude.ai/artifact/GMGcccbEoBzuj6Q9Q5ZJdD) is built with `scripts/claude-design/` (see its README); re-sync it after token or component changes.
 
 ## Commands
 - `pnpm install`, then `pnpm dev` (builds tokens, starts the docs app).
 - `pnpm build`, `pnpm typecheck`.
-- `pnpm release` publishes the packages to npm.
+- `node scripts/registry/build.mjs` rebuilds the registry (the docs scripts run it too).

@@ -1,6 +1,6 @@
 ---
 name: ladom-ui
-description: Build Ladom product screens with the Ladom UI design system (@ladom/ui, @ladom/tokens, @ladom/icons). Use when creating or changing React/Next.js UI in a Ladom project, picking components, styling with design tokens, or adding icons, so the result matches the Ladom UI Figma file.
+description: Build Ladom product screens with the Ladom UI design system, copied into the app with the ladom-ui CLI. Use when creating or changing React/Next.js UI in a Ladom project, picking components, styling with design tokens, or adding icons, so the result matches the Ladom UI Figma file.
 ---
 
 # Ladom UI
@@ -11,21 +11,25 @@ Ladom UI is the design system of Ladom products, built 1:1 from the Figma file "
 - Use a Ladom UI component whenever one fits; do not rebuild buttons, inputs, selects, tabs, toasts etc. by hand.
 - Every visual value comes from a token (CSS variable). Never hard-code colors, spacing, radii, shadows or font sizes.
 - Text styles are font shorthands: `font: var(--text-ui-text-regular);`.
-- Icons come only from `@ladom/icons` (`import { IconAdd } from '@ladom/icons'`). Do not import Tabler or other icon sets.
+- Icons come only from the Ladom UI icons folder (`import { IconAdd } from '@/components/ladom'`). Do not import Tabler or other icon sets; copy a missing icon with `npx ladom-ui icons <name>`.
+- The copied files are the app's code, but keep them as Ladom UI ships them; do not restyle a component in place. Keep the license line at the top of each file.
 - Keep accessibility the components provide: give icon-only buttons an `aria-label`, wrap fields in `FormField`, name groups (`Segment`, `Tabs`, `Stepper`) with `aria-label`.
 
 ## Setup (once per app)
 ```bash
-npm install @ladom/ui @ladom/tokens @ladom/icons
+npx ladom-ui init                      # ladom-ui.json + tokens in components/ladom
+npx ladom-ui add button input selectbox  # components, the parts they need, their icons
+npx ladom-ui list                      # every component and its tier
 ```
+Pro components (marked Pro on ui.ladom.co) need `LADOM_UI_KEY` set to a license key; never write the key into files. If it is missing, tell the user instead of rebuilding the component.
 ```tsx
 // app/layout.tsx
 import { Hanken_Grotesk } from 'next/font/google';
-import '@ladom/tokens/index.css';
+import '@/components/ladom/tokens/index.css';
 const font = Hanken_Grotesk({ subsets: ['latin', 'latin-ext'], variable: '--font-hanken-grotesk' });
 // <html className={font.variable}> … <body style={{ background: 'var(--color-surface-background)' }}>
 ```
-Toasts need `<ToastProvider>` (a client component) around the app. Modes go on `<html>`: `data-theme="dark"`, `data-density="narrow"`, `data-device="mobile|tablet|desktop"`.
+Import components and icons from `@/components/ladom` (the folder in `ladom-ui.json`). Before using a component, check it is in that folder; add it with the CLI if not. Toasts need `<ToastProvider>` (a client component) around the app. Modes go on `<html>`: `data-theme="dark"`, `data-density="narrow"`, `data-device="mobile|tablet|desktop"`.
 
 ## Components
 | Need | Component |
@@ -38,6 +42,8 @@ Toasts need `<ToastProvider>` (a client component) around the app. Modes go on `
 | Overlays | `Tooltip`, `Popover` (placement = where it opens) |
 | Messages | `Alert` (inline), `Toast` via `useToast()` |
 | Disclosure | `Accordion` |
+
+CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-picker` (DatePicker, Calendar), `time-picker`, `tabs`, `chip`, `avatar` (Avatar, AvatarGroup), `dropdown`, `cell`, `navigation` (AppHeader, PageHeader, PublicHeader). `npx ladom-ui list` shows them all.
 
 Icon props: `Button` takes icon components (`icon={IconAdd}`); other components take elements (`iconLeft={<IconAdd />}`).
 
