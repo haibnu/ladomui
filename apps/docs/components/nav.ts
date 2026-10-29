@@ -12,14 +12,14 @@ export type NavSection = { title: string; items: NavItem[] };
 // Components from PLAN.md phases 3-5; each gets a page as it is built. Names stay as in Figma.
 const PLANNED_COMPONENTS = [
   'Avatar', 'Badge', 'Brand', 'Button', 'Checkbox', 'Chips', 'Hint', 'Input', 'Label', 'Loader', 'Radio', 'Switch',
-  'Breadcrumb', 'Cell', 'Date Picker', 'Dropdown', 'Item Selector', 'Popover', 'Segment', 'Selectbox', 'Stepper', 'Tab',
-  'Time Picker', 'Tooltip', 'Uploader',
+  'Alert', 'Breadcrumb', 'Cell', 'Date Picker', 'Dropdown', 'Item Selector', 'Popover', 'Segment', 'Selectbox', 'Stepper', 'Tab',
+  'Time Picker', 'Toast', 'Tooltip', 'Uploader',
 ];
-const PLANNED_MOLECULES = ['Accordion', 'Alert', 'Navigation', 'Toast'];
+const PLANNED_MOLECULES = ['Accordion', 'Navigation'];
 // Components that have a page, by their path segment.
-const BUILT: Record<string, string> = { Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Date Picker': 'date-picker', Dropdown: 'dropdown', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', 'Time Picker': 'time-picker', Tooltip: 'tooltip', Uploader: 'uploader' };
+const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Date Picker': 'date-picker', Dropdown: 'dropdown', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
-const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', Alert: 'alert', Navigation: 'navigation', Toast: 'toast' };
+const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', Navigation: 'navigation' };
 
 export function getNav(lang: Locale): NavSection[] {
   const t = getDictionary(lang);

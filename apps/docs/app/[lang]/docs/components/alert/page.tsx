@@ -77,7 +77,7 @@ export default async function AlertPage({ params }: Props) {
   const c = COPY[lang];
   return (
     <ViewProvider>
-      <DocPage eyebrow={t.nav.molecules} title="Alert" description={c.description}>
+      <DocPage eyebrow={t.nav.components} title="Alert" description={c.description}>
         <ComponentToolbar lang={lang} figmaNode="2109:21906" />
 
         <h2 id="playground">{t.component.playground}</h2>

@@ -5,8 +5,8 @@ belongs to.
 
 | Part | License |
 |---|---|
-| Design tokens, icons, every component (Button, Badge, Chip, Avatar, Loader, Label, Hint, FormField, Input, Checkbox, Radio, ChoiceGroup, Switch, Selectbox, Dropdown, Cell, Segment, ItemSelector, Uploader, DatePicker, TimePicker, Tabs, Breadcrumb, Stepper, Tooltip, Popover) and the `ladom-ui` CLI | MIT, below |
-| Pro molecules (Alert, Toast, Accordion, Navigation) | [Ladom UI Pro License](LICENSE-PRO.md) |
+| Design tokens, icons, every component (Button, Badge, Chip, Avatar, Loader, Label, Hint, FormField, Input, Checkbox, Radio, ChoiceGroup, Switch, Selectbox, Dropdown, Cell, Segment, ItemSelector, Uploader, DatePicker, TimePicker, Tabs, Breadcrumb, Stepper, Tooltip, Popover, Alert, Toast) and the `ladom-ui` CLI | MIT, below |
+| Pro molecules (Accordion, Navigation) | [Ladom UI Pro License](LICENSE-PRO.md) |
 | This repository as a whole (the docs site, the scripts, the Pro sources) | All rights reserved, unless a part above says otherwise |
 
 `scripts/registry/items.json` is the list each tier is built from.

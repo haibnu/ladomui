@@ -22,7 +22,7 @@ Figma file: https://www.figma.com/design/VCJ6ew9Vk1gAqfnvQ1gfOz/Ladom-UI-Design-
 
 ## Phase 6 decisions
 - Distribution: shadcn/ui style, no design packages on npm. The `ladom-ui` CLI (the only npm package, MIT) copies tokens, icons and components into the app from the registry at ui.ladom.co/r.
-- Tiers: free (tokens, icons and every component) under MIT; Pro (the molecules: Alert, Toast, Accordion, Navigation) under the Ladom UI Pro License, behind a license key. Keys start as SHA-256 digests in the `LADOM_UI_PRO_KEYS` env var on Vercel.
+- Tiers: free (tokens, icons and every component) under MIT; Pro (the molecules: Accordion, Navigation) under the Ladom UI Pro License, behind a license key. Keys start as SHA-256 digests in the `LADOM_UI_PRO_KEYS` env var on Vercel.
 - Hosting: Vercel project `ladom-ui` (team "Ladom's Projects"), root `apps/docs`, domain ui.ladom.co.
 - Claude: a claude.ai design system built from the repo (`scripts/claude-design/`) and a Claude Code skill (`skills/ladom-ui`).
 
@@ -30,7 +30,7 @@ Figma file: https://www.figma.com/design/VCJ6ew9Vk1gAqfnvQ1gfOz/Ladom-UI-Design-
 Tokens: Typography 20:466, Colors 57:17380, Grid 1588:0, z-index 2580:0, Radius 105:246, Spacing 1143:266, Animation 2575:31, Depth 1087:5, Border 2675:8811
 Foundation: Assets 2015:17870, Icons 2001:2
 Components: Custom Scroll 5989:19353, Avatar 3949:31, Brand 2109:35672, Badge 1394:0, Button 1088:22, Breadcrumb 4746:0, Cell 1144:424, Checkbox 1182:0, Chips 1126:94, Cursor 1313:285, Date Picker 1313:0, Time Picker 6:1380, Dropdown 1145:481, Label 1172:48, Image 1153:28, Input 1133:300, Hint 1086:50, Loader 1780:0, Popover 4201:12499, Radio 1343:0, Switch 1125:0, Segment 1229:1723, Selectbox 1163:0, State 2585:0, Stepper 2495:1790, Uploader 4046:12820, Tab 1334:0, Item Selector 4929:0, Tooltip 1197:1026
-Molecules: Alert 2109:14790, Accordion 2119:50032, Navigation 2196:16006, Toast 2110:36961
+Molecules: Alert 2109:14790, Accordion 2119:50032, Navigation 2196:16006, Toast 2110:36961 (Alert and Toast are listed under Components in the docs)
 
 ## Target structure
 ```
