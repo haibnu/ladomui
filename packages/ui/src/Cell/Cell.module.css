@@ -1,0 +1,217 @@
+/* Cell, from Figma Components / Cell (87:46114). data-state="hover" and data-active (the active
+   option of a listbox) show the hover state. */
+
+.cell {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-small);
+  box-sizing: border-box;
+  padding: var(--_py) var(--_px);
+  border-radius: var(--_radius);
+  color: var(--_fg);
+  background: var(--_bg);
+  cursor: pointer;
+  user-select: none;
+  --_bg: transparent;
+  --_fg: var(--color-foreground-high-emphasis);
+}
+
+.cell[data-size='medium'] {
+  --_py: var(--space-tiny);
+  --_px: var(--space-medium);
+  --_radius: var(--radius-form-element);
+  --_icon: var(--space-large);
+  font: var(--text-ui-text-regular);
+}
+
+/* Small pads the text 4px above and below, so it keeps the 24px row of Medium. */
+.cell[data-size='small'] {
+  --_py: var(--space-micro);
+  --_px: var(--space-small);
+  --_radius: var(--radius-form-element-small);
+  --_icon: var(--line-height-text-small);
+  font: var(--text-ui-text-small-regular);
+}
+
+.cell[data-size='small'] .texts {
+  padding-block: var(--space-micro);
+}
+
+.texts {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tiny);
+  min-inline-size: 0;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.secondary {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.icon > svg {
+  inline-size: var(--_icon);
+  block-size: var(--_icon);
+}
+
+/* The checkbox and radio of Type=Checkbox / Radio, drawn like the Checkbox and Radio
+   components (no input of their own: the cell is the option). */
+.control {
+  display: grid;
+  flex: none;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: var(--_box);
+  block-size: var(--_box);
+  margin: var(--space-atom);
+  color: var(--color-on-primary);
+  background: var(--color-surface-level-1);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line);
+  --_line: var(--color-surface-level-4);
+}
+
+.cell[data-size='medium'] .control {
+  --_box: calc(var(--line-height-base) - 2 * var(--space-atom));
+}
+
+.cell[data-size='small'] .control {
+  --_box: var(--line-height-text-small);
+}
+
+.control[data-kind='checkbox'] {
+  border-radius: var(--radius-checkbox);
+}
+
+.control[data-kind='checkbox'] > svg {
+  display: none;
+  inline-size: calc(var(--_box) / 2);
+  block-size: calc(var(--_box) / 2);
+}
+
+.control[data-kind='radio'] {
+  border-radius: var(--radius-full);
+  --_line: var(--color-foreground-medium-emphasis);
+}
+
+.dot {
+  display: none;
+  inline-size: calc(var(--_box) / 2);
+  block-size: calc(var(--_box) / 2);
+  border-radius: var(--radius-full);
+  background: var(--color-on-primary);
+  box-shadow: var(--shadow-depth-md);
+}
+
+.control[data-checked] {
+  background: var(--color-primary);
+  --_line: transparent;
+}
+
+.control[data-checked] > svg,
+.control[data-checked] > .dot {
+  display: block;
+}
+
+.cell:is(:hover, [data-state='hover'], [data-active]) .control:not([data-checked]) {
+  --_line: var(--color-primary);
+}
+
+/* States */
+.cell:is(:hover, [data-state='hover'], [data-active]) {
+  --_bg: var(--color-surface-level-2);
+}
+
+.cell[data-selected] {
+  --_bg: var(--color-primary-soft);
+  --_fg: var(--color-primary);
+}
+
+.cell[data-selected]:is(:hover, [data-state='hover'], [data-active]) {
+  --_bg: var(--color-surface-level-3);
+}
+
+.cell[data-tone='destructive'] {
+  --_fg: var(--color-error);
+}
+
+.cell[data-tone='destructive']:is(:hover, [data-state='hover'], [data-active]) {
+  --_bg: var(--color-error-soft);
+}
+
+.cell[data-tone='destructive'][data-selected] {
+  --_bg: var(--color-error-tint);
+}
+
+.cell[data-tone='destructive'][data-selected]:is(:hover, [data-state='hover'], [data-active]) {
+  --_bg: var(--color-error-natural);
+}
+
+/* Figma has no disabled cell; an unavailable option keeps its look but takes no pointer. */
+.cell[aria-disabled='true'] {
+  cursor: not-allowed;
+  --_fg: var(--color-foreground-low-emphasis);
+  --_bg: transparent;
+}
+
+/* Type=Action */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-small);
+  padding: var(--layout-micro) var(--space-medium);
+}
+
+.actions[data-size='small'] {
+  padding-inline: var(--space-small);
+}
+
+/* Type=Search */
+.search {
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--space-micro);
+}
+
+/* Cell Helper */
+.helper {
+  font: var(--text-ui-caption);
+  text-transform: var(--text-ui-caption-text-transform);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.helper[data-variant='caption'] {
+  padding: var(--space-tiny) var(--space-medium);
+}
+
+.helper[data-variant='caption-divider'] {
+  padding: var(--space-medium) var(--space-medium) var(--space-tiny);
+  border-block-start: var(--border-width) solid var(--color-surface-level-3);
+}
+
+.helper[data-variant='caption-flush'] {
+  padding-block: var(--space-tiny);
+}
+
+/* Divider: a 1px line in the middle of a 16px row. */
+.helper[data-variant='divider'] {
+  block-size: var(--space-medium);
+  background: linear-gradient(var(--color-surface-level-2), var(--color-surface-level-2)) center / 100% var(--border-width) no-repeat;
+}
