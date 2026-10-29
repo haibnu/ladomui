@@ -47,6 +47,7 @@ const en = {
       'Loader sizes differ between variants in Figma (20, 24 or 16px for Medium). Code uses 24px for Large and Medium, 16px for Small and Tiny.',
       'Tiny shows a 12px left icon but a 16px right icon in Figma. Code uses 12px for both.',
       'Success Small and Tiny loading variants use the Tertiary soft fill in Figma. Code uses Success soft.',
+      'Ghost Tertiary uses tertiary/tertiary (white) for its label in Figma, which disappears on light surfaces. Code uses foreground/high-emphasis.',
     ],
   },
   developer: {
@@ -136,6 +137,7 @@ const tr: ButtonCopy = {
       'Yükleniyor göstergesinin boyutu Figma’da varyantlara göre farklı (Medium’da 20, 24 ya da 16px). Kodda Large ve Medium 24px, Small ve Tiny 16px.',
       'Tiny’de Figma’da sol ikon 12px, sağ ikon 16px. Kodda ikisi de 12px.',
       'Figma’da Success Small ve Tiny yükleniyor varyantları Tertiary soft dolgusunu kullanıyor. Kodda Success soft.',
+      'Figma’da Ghost Tertiary metni tertiary/tertiary (beyaz) renginde; açık zeminde kayboluyor. Kodda foreground/high-emphasis.',
     ],
   },
   developer: {

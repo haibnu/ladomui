@@ -263,7 +263,11 @@
   --_focus-shadow: var(--shadow-focus-secondary);
 }
 
+/* Figma colors the ghost tertiary label with tertiary/tertiary (white), which disappears on
+   light surfaces; it uses the high-emphasis text color instead (design owner's decision). */
 .button[data-variant='ghost'][data-tone='tertiary'] {
+  --_fg: var(--color-foreground-high-emphasis);
+  --_sub: var(--color-foreground-high-emphasis);
   --_focus-bg: transparent;
   --_focus-shadow: 0 0 0 3px var(--color-surface-level-3), var(--shadow-focus-tertiary);
 }
