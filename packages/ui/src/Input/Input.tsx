@@ -8,7 +8,8 @@ import styles from './Input.module.css';
 // Figma: Components / Input (node 1133:303). size = 👕 Size (Medium, Small), error = Error,
 // disabled = Disable, iconLeft/iconRight = Icon (L)/(R), prefix/suffix = Leading/Trailing Text.
 // 🎛 Type follows the input type: type="search" is the Search look, type="password" adds the
-// show/hide toggle. 🕹 State is :hover, :focus-within and a filled value (Typed).
+// show/hide toggle, type="number" centers the value (NumberInput). 🕹 State is :hover,
+// :focus-within and a filled value (Typed).
 export type InputSize = 'medium' | 'small';
 
 export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> & {
@@ -62,7 +63,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     <div
       className={[styles.box, className].filter(Boolean).join(' ')}
       data-size={size}
-      data-look={type === 'search' ? 'search' : 'default'}
+      data-look={type === 'search' ? 'search' : type === 'number' ? 'number' : 'default'}
       data-error={invalid || undefined}
       data-disabled={disabled || undefined}
       data-state={forcedState}
