@@ -34,3 +34,6 @@ export { PublicHeader, type PublicHeaderProps } from './Navigation/PublicHeader'
 export { Drawer, Modal, type DrawerProps, type ModalProps, type ModalSize } from './Modal/Modal';
 export { Table, type TableColumn, type TableProps, type TableSort, type TableSortDirection } from './Table/Table';
 export { Pagination, paginationRange, type PaginationProps } from './Pagination/Pagination';
+export { Textarea, type TextareaProps } from './Textarea/Textarea';
+export { NumberInput, type NumberInputProps } from './NumberInput/NumberInput';
+export { EmptyState, type EmptyStateProps, type EmptyStateSize } from './EmptyState/EmptyState';

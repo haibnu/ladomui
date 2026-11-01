@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
-import { IconArrowBottom, IconArrowTop, IconError } from '@ladom/icons';
+import { IconArrowBottom, IconArrowTop, IconError, IconSearch } from '@ladom/icons';
 import { Badge } from '../Badge/Badge';
 import { Cell, CellSearch } from '../Cell/Cell';
+import { EmptyState } from '../EmptyState/EmptyState';
 import { Chip } from '../Chip/Chip';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { useFieldContext } from '../FormField/FormField';
@@ -42,6 +43,8 @@ type Common = {
   /** Adds a search field at the top of the list that filters the options. */
   searchable?: boolean;
   searchPlaceholder?: string;
+  /** Shown in the list when the search matches nothing (a small EmptyState). */
+  noResultsLabel?: string;
   /** Form field name; the value is submitted through hidden inputs. */
   name?: string;
   id?: string;
@@ -76,6 +79,7 @@ export function Selectbox(props: SelectboxProps) {
     disabled = false,
     searchable = false,
     searchPlaceholder = 'Search',
+    noResultsLabel = 'No results',
     name,
     id,
     className,
@@ -328,6 +332,7 @@ export function Selectbox(props: SelectboxProps) {
               </Cell>
             ))}
           </div>
+          {visible.length === 0 && <EmptyState size="small" icon={<IconSearch />} title={noResultsLabel} role="status" />}
         </Dropdown>
       )}
       {name != null && (selected.length ? selected : ['']).map((v, i) => <input key={i} type="hidden" name={name} value={v} />)}
