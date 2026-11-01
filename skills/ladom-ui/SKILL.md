@@ -36,11 +36,12 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Need | Component |
 |---|---|
 | Actions | `Button` (variant solid/ghost, tone, size, icon, iconLeft/Right, loading) |
-| Form fields | `FormField` (label, hint, error) + `Input`, `Selectbox`, `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
+| Form fields | `FormField` (label, hint, error) + `Input`, `Textarea` (showCount, maxLength), `NumberInput` (value, min, max, step), `Selectbox`, `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
 | Labels and status | `Label`, `Hint`, `Badge`, `Chip`, `Avatar`/`AvatarGroup`, `Loader`, `Stepper` |
 | Lists and menus | `Dropdown` with `Cell`, `CellHelper`, `CellSearch`, `CellActions` |
 | Navigation | `AppHeader` with `PageHeader`, `PublicHeader`, `Tabs`, `Breadcrumb` |
 | Overlays | `Tooltip`, `Popover` (placement = where it opens), `Modal` (size), `Drawer` (side); both need `open` and `onClose` |
+| Empty and error states | `EmptyState` (size large on pages, medium in tables and cards, small inside components; tone error for failed loads) |
 | Data | `Table` (columns, rows, rowKey, sortable columns, selectable), `Pagination` (page, pageCount, onPageChange) |
 | Messages | `Alert` (inline), `Toast` via `useToast()` |
 | Disclosure | `Accordion` |
