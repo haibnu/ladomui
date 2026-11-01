@@ -1,0 +1,37 @@
+/* Textarea, from Figma Components / Input / Textarea (1212:1629): the Input box (medium) with a
+   multi-line value; the count is ui/text small/regular in medium emphasis (4238:3914). */
+
+.box[data-size] {
+  align-items: flex-start;
+}
+
+.textarea {
+  min-block-size: var(--line-height-base);
+  resize: vertical;
+}
+
+.errorIcon {
+  margin-block-start: var(--space-micro);
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.countRow {
+  display: flex;
+  justify-content: flex-end;
+  padding-block-start: var(--space-form-ingroup-gutter);
+}
+
+.count {
+  flex: none;
+  font: var(--text-ui-text-small-regular);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.count[data-over] {
+  color: var(--color-error);
+}
