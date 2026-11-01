@@ -1,11 +1,13 @@
 'use client';
 
-import { forwardRef, useState, type InputHTMLAttributes, type ReactNode } from 'react';
-import { IconError, IconHide, IconSearch, IconShow } from '@ladom/icons';
+import { forwardRef, useRef, useState, type InputHTMLAttributes, type ReactNode } from 'react';
+import { IconClear, IconError, IconHide, IconSearch, IconShow } from '@ladom/icons';
 import { useFieldContext } from '../FormField/FormField';
 import styles from './Input.module.css';
 
-// Figma: Components / Input (node 1133:303). size = 👕 Size (Medium, Small), error = Error,
+// Figma: Components / Input (node 1133:303). type="search" shows the clear button (Icon/clear)
+// once it has a value, as in Type=Search, State=Typed.
+// size = 👕 Size (Medium, Small), error = Error,
 // disabled = Disable, iconLeft/iconRight = Icon (L)/(R), prefix/suffix = Leading/Trailing Text.
 // 🎛 Type follows the input type: type="search" is the Search look, type="password" adds the
 // show/hide toggle, type="number" centers the value (NumberInput). 🕹 State is :hover,
@@ -28,6 +30,8 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'p
   /** Labels of the password toggle. */
   showPasswordLabel?: string;
   hidePasswordLabel?: string;
+  /** Name of the clear button of a search input. */
+  clearLabel?: string;
   /** Shows a state without interaction (docs, visual tests). */
   'data-state'?: 'hover' | 'focus' | 'typed';
 };
@@ -47,6 +51,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     placeholder,
     showPasswordLabel = 'Show password',
     hidePasswordLabel = 'Hide password',
+    clearLabel = 'Clear',
+    value,
+    defaultValue,
+    onChange,
     'aria-describedby': describedBy,
     'data-state': forcedState,
     ...rest
@@ -56,7 +64,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const field = useFieldContext();
   const invalid = error ?? field?.invalid ?? false;
   const [revealed, setRevealed] = useState(false);
+  const inner = useRef<HTMLInputElement | null>(null);
+  const [innerFilled, setInnerFilled] = useState(String(defaultValue ?? '') !== '');
+  const filled = value !== undefined ? String(value) !== '' : innerFilled;
   const isPassword = type === 'password';
+  const clearable = type === 'search' && filled && !disabled;
+  // Clears through the native value setter and an input event, so onChange runs for controlled
+  // and uncontrolled inputs alike.
+  const clear = () => {
+    const el = inner.current;
+    if (!el) return;
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set?.call(el, '');
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.focus();
+  };
   const leading = iconLeft ?? (type === 'search' ? <IconSearch /> : null);
 
   return (
@@ -71,7 +92,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       {leading != null && <span className={styles.icon}>{leading}</span>}
       {prefix != null && <span className={styles.affix}>{prefix}</span>}
       <input
-        ref={ref}
+        ref={(el) => {
+          inner.current = el;
+          if (typeof ref === 'function') ref(el);
+          else if (ref) ref.current = el;
+        }}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={(e) => {
+          setInnerFilled(e.target.value !== '');
+          onChange?.(e);
+        }}
         id={id ?? field?.id}
         type={isPassword && revealed ? 'text' : type}
         disabled={disabled}
@@ -85,6 +116,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       {suffix != null && <span className={styles.affix}>{suffix}</span>}
       {invalid && <IconError size={16} className={styles.errorIcon} />}
       {iconRight != null && <span className={styles.icon}>{iconRight}</span>}
+      {clearable && (
+        <button type="button" className={styles.toggle} onClick={clear} aria-label={clearLabel}>
+          <IconClear size={16} />
+        </button>
+      )}
       {isPassword && (
         <button
           type="button"
