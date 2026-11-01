@@ -447,7 +447,7 @@
     }
   },
   "clear": {
-    "tabler": "alert-square-rounded",
+    "tabler": "square-rounded-x",
     "style": "filled",
     "category": "common",
     "figma": {
