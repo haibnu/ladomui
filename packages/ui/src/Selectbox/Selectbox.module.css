@@ -7,6 +7,11 @@
   vertical-align: top;
 }
 
+/* While open, the list sits above the boxes that follow (there is no z-index token yet). */
+.selectbox:has(> [aria-expanded='true']) {
+  z-index: 1;
+}
+
 .selectbox[data-fluid] {
   display: block;
 }
