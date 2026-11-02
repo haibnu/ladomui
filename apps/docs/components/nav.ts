@@ -55,3 +55,17 @@ export function getNav(lang: Locale): NavSection[] {
 }
 
 export const GITHUB_URL = 'https://github.com/haibnu/ladomui';
+
+export type CatalogItem = { title: string; slug: string; href: string; pro: boolean; molecule: boolean };
+
+// The built components and molecules, in nav order, for the landing page.
+export function getCatalog(lang: Locale): CatalogItem[] {
+  const pick = (names: string[], built: Record<string, string>, molecule: boolean) =>
+    names
+      .filter((title) => built[title])
+      .map((title) => {
+        const slug = built[title]!;
+        return { title, slug, href: href(lang, `/docs/${molecule ? 'molecules' : 'components'}/${slug}`), pro: isPro(slug), molecule };
+      });
+  return [...pick(PLANNED_COMPONENTS, BUILT, false), ...pick(PLANNED_MOLECULES, BUILT_MOLECULES, true)];
+}

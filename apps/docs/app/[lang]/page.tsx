@@ -1,126 +1,230 @@
 import Link from 'next/link';
-import type { CSSProperties } from 'react';
 import { iconNames } from '@ladom/icons';
-import { icons } from '@ladom/icons/all';
 import meta from '@ladom/tokens/tokens.json';
-import tiers from '@/registry/tiers.json';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import * as figmaArt from '@/components/landing/art/figma';
+import { DRAWN } from '@/components/landing/art/drawn';
+import { inter, jakarta, paprika } from '@/components/landing/fonts';
+import { HeroStrip } from '@/components/landing/HeroStrip';
+import styles from '@/components/landing/landing.module.css';
+import { PlayInView } from '@/components/landing/PlayInView';
+import { getCatalog, type CatalogItem } from '@/components/nav';
 import { TopBar } from '@/components/TopBar';
 import { getDictionary, href, type Locale } from '@/i18n';
-import styles from './landing.module.css';
 
-const componentCount = Object.keys(tiers).length;
+// Built from the Ladom Agency Website Figma file, LP - Desktop (173:25296).
+const FIGMA_FILE = 'https://www.figma.com/design/VCJ6ew9Vk1gAqfnvQ1gfOz/Ladom-UI-Design-System';
 const tokenCount = meta.groups.reduce((n, g) => n + g.variables.length + g.tokens.length, 0);
 
-const SWATCHES = ['primary', 'primary-tint', 'secondary', 'surface-level-3', 'success', 'info', 'warning', 'error'];
-const TYPE_SAMPLES = [
-  { token: '--text-content-h2-bold', label: 'Content H2 Bold' },
-  { token: '--text-ui-text-lead-regular', label: 'UI Text Lead' },
-  { token: '--text-ui-text-regular', label: 'UI Text' },
-  { token: '--text-ui-caption', label: 'UI Caption' },
-];
-const ICONS = iconNames.filter((n) => ['phone', 'search', 'setting', 'delete', 'add', 'check', 'info', 'warning', 'message', 'profile', 'download', 'ev'].includes(n));
+// Illustrations from the Figma Component Cards, by docs page; the rest are drawn in drawn.tsx.
+const FIGMA_ART: Record<string, string> = {
+  avatar: figmaArt.avatar,
+  button: figmaArt.button,
+  checkbox: figmaArt.checkbox,
+  radio: figmaArt.radio,
+  selectbox: figmaArt.selectbox,
+  tab: figmaArt.tab,
+  cell: figmaArt.cell,
+  modal: figmaArt.modal,
+  drawer: figmaArt.drawer,
+};
+
+function Svg({ svg, className }: { svg: string; className?: string }) {
+  return <span className={className} aria-hidden dangerouslySetInnerHTML={{ __html: svg }} />;
+}
+
+function Divider({ children }: { children: string }) {
+  return (
+    <p className={styles.divider}>
+      <span>{children}</span>
+    </p>
+  );
+}
+
+function Card({ item, t }: { item: CatalogItem; t: ReturnType<typeof getDictionary>['landing'] }) {
+  const Drawn = DRAWN[item.slug];
+  const figma = FIGMA_ART[item.slug];
+  return (
+    <li>
+      <Link href={item.href} className={styles.card}>
+        <span className={styles.cardHead}>
+          <span className={styles.cardTitle}>{item.title}</span>
+          <span className={styles.tier}>{item.pro ? t.pro : t.freeTier}</span>
+        </span>
+        <span className={styles.metas}>
+          <span>
+            Figma <span className={styles.status}>{t.available}</span>
+          </span>
+          <span>
+            React <span className={styles.status}>{t.available}</span>
+          </span>
+          <span className={styles.metaLater}>
+            Mobile <span className={styles.status}>{t.later}</span>
+          </span>
+        </span>
+        <span className={styles.art} data-art>
+          {figma ? <Svg svg={figma} /> : Drawn ? <Drawn /> : null}
+        </span>
+      </Link>
+    </li>
+  );
+}
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const lang = (await params).lang as Locale;
-  const t = getDictionary(lang).landing;
-  const groups = getDictionary(lang).groups;
+  const dict = getDictionary(lang);
+  const t = dict.landing;
+  const catalog = getCatalog(lang);
+  const components = catalog.filter((c) => !c.molecule);
+  const molecules = catalog.filter((c) => c.molecule);
   return (
-    <>
+    <div className={[styles.page, jakarta.variable, paprika.variable, inter.variable].join(' ')}>
       <TopBar lang={lang} />
-      <main className={styles.main}>
+      <main>
         <section className={styles.hero}>
-          <p className={styles.eyebrow}>{t.eyebrow}</p>
-          <h1 className={styles.title}>{t.title}</h1>
-          <p className={styles.lead}>{t.lead}</p>
-          <div className={styles.actions}>
-            <Link href={href(lang, '/docs/introduction')} className={styles.primaryAction}>
-              {t.getStarted}
-            </Link>
-            <Link href={href(lang, '/docs/foundations/color')} className={styles.secondaryAction}>
-              {t.browse}
+          <div className={styles.heroInner}>
+            <div className={styles.heroText}>
+              <p className={styles.eyebrow}>{t.eyebrow}</p>
+              <h1 className={styles.title}>
+                <span className={styles.titleRow}>
+                  {t.title[0]} <Svg svg={figmaArt.uiMark} className={styles.uiMark} />
+                  <span className={styles.visuallyHidden}>UI</span>
+                </span>
+                <span className={styles.titleRow}>{t.title[1]}</span>
+                <em className={styles.titleScript}>{t.title[2]}</em>
+              </h1>
+              <p className={styles.lead}>{t.lead}</p>
+              <div className={styles.heroActions}>
+                <a href={FIGMA_FILE} className={styles.heroButton} target="_blank" rel="noreferrer">
+                  <Svg svg={figmaArt.figmaMark} className={styles.heroIcon} />
+                  {t.figma}
+                  <span className={styles.heroBadge}>{t.free}</span>
+                </a>
+                <Link href={href(lang, '/docs/installation')} className={styles.heroButton}>
+                  <span className={styles.heroCode} aria-hidden>
+                    {'</>'}
+                  </span>
+                  {t.react}
+                  <span className={styles.heroBadge}>v0.2</span>
+                </Link>
+                <span className={`${styles.heroButton} ${styles.heroButtonOff}`} aria-disabled>
+                  {t.mobile}
+                  <span className={`${styles.heroBadge} ${styles.heroBadgeLight}`}>{t.soon}</span>
+                </span>
+              </div>
+            </div>
+            <span className={styles.heroArt} data-art>
+              <Svg svg={figmaArt.heroL} />
+            </span>
+          </div>
+          <HeroStrip lang={lang} />
+        </section>
+
+        <div className={styles.sheets}>
+          <section className={styles.sheet} aria-labelledby="why">
+            <p className={styles.sheetEyebrow}>{t.library}</p>
+            <h2 id="why" className={styles.sheetTitle}>
+              {t.whyTitle}
+            </h2>
+            <p className={styles.sheetLead}>{t.whyLead}</p>
+            <ul className={styles.features}>
+              {t.features.map((f) => (
+                <li key={f.title} className={styles.feature}>
+                  <h3>{f.title}</h3>
+                  <p>{f.text}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className={styles.sheet} aria-labelledby="components">
+            <p className={styles.sheetEyebrow}>{t.library}</p>
+            <h2 id="components" className={styles.sheetTitle}>
+              {t.componentsTitle}
+            </h2>
+            <p className={styles.sheetLead}>{t.stats(catalog.length, tokenCount, iconNames.length)}</p>
+            <Divider>{t.baseComponents}</Divider>
+            <ul className={styles.cards}>
+              {components.map((item) => (
+                <Card key={item.slug} item={item} t={t} />
+              ))}
+            </ul>
+            <Divider>{t.molecules}</Divider>
+            <ul className={styles.cards}>
+              {molecules.map((item) => (
+                <Card key={item.slug} item={item} t={t} />
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        <section className={styles.cta} aria-labelledby="cta">
+          <h2 id="cta" className={styles.ctaTitle}>
+            {t.ctaTitle[0]} <span>{t.ctaTitle[1]}</span>
+          </h2>
+          <div className={styles.ctaStage}>
+            <span className={styles.ctaGlow} aria-hidden />
+            <Svg svg={figmaArt.logo} className={`${styles.coin} ${styles.coinTop}`} />
+            <Svg svg={figmaArt.logo} className={`${styles.coin} ${styles.coinBottom}`} />
+            <Link href={href(lang, '/docs/installation')} className={styles.glass}>
+              {t.ctaButton}
             </Link>
           </div>
-          <dl className={styles.stats}>
-            <div>
-              <dt>{t.tokens}</dt>
-              <dd>{tokenCount}</dd>
-            </div>
-            <div>
-              <dt>{t.componentCount}</dt>
-              <dd>{componentCount}</dd>
-            </div>
-            <div>
-              <dt>{t.iconCount}</dt>
-              <dd>{iconNames.length}</dd>
-            </div>
-            <div>
-              <dt>{t.themes}</dt>
-              <dd>{t.themesValue}</dd>
-            </div>
-          </dl>
-        </section>
-
-        <section className={styles.showcase} aria-label={t.showcase}>
-          <Link href={href(lang, '/docs/foundations/color')} className={styles.card}>
-            <h2 className={styles.cardTitle}>{groups.color!.title}</h2>
-            <div className={styles.swatches}>
-              {SWATCHES.map((s) => (
-                <span key={s} className={styles.swatch} style={{ background: `var(--color-${s})` }} title={`--color-${s}`} />
-              ))}
-            </div>
-          </Link>
-          <Link href={href(lang, '/docs/foundations/typography')} className={styles.card}>
-            <h2 className={styles.cardTitle}>{groups.typography!.title}</h2>
-            <div className={styles.typeSamples}>
-              {TYPE_SAMPLES.map(({ token, label }) => (
-                <span
-                  key={token}
-                  style={{ font: `var(${token})`, textTransform: `var(${token}-text-transform, none)` as CSSProperties['textTransform'] }}
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
-          </Link>
-          <Link href={href(lang, '/docs/foundations/icons')} className={styles.card}>
-            <h2 className={styles.cardTitle}>{getDictionary(lang).nav.icons}</h2>
-            <div className={styles.iconGrid}>
-              {ICONS.map((name) => {
-                const Icon = icons[name];
-                return <Icon key={name} size={24} />;
-              })}
-            </div>
-          </Link>
-        </section>
-
-        <section className={styles.why} aria-labelledby="why">
-          <h2 id="why" className={styles.sectionTitle}>
-            {t.whyTitle}
-          </h2>
-          <p className={styles.sectionLead}>{t.whyLead}</p>
-          <ul className={styles.features}>
-            {t.features.map((f) => (
-              <li key={f.title} className={styles.feature}>
-                <h3 className={styles.featureTitle}>{f.title}</h3>
-                <p className={styles.featureText}>{f.text}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className={styles.install} aria-labelledby="install">
-          <h2 id="install" className={styles.sectionTitle}>
-            {t.installTitle}
-          </h2>
-          <p className={styles.sectionLead}>{t.installText}</p>
-          <CodeBlock className={styles.installCode} code={'npx ladom-ui init\nnpx ladom-ui add button input table modal'} />
-          <Link href={href(lang, '/docs/installation')} className={styles.primaryAction}>
-            {t.getStarted}
-          </Link>
+          <p className={styles.ctaText}>{t.ctaText}</p>
+          <CodeBlock className={styles.ctaCode} code={'npx ladom-ui init\nnpx ladom-ui skill\nnpx ladom-ui add button input table modal'} />
         </section>
       </main>
-      <footer className={styles.footer}>© Ladom</footer>
-    </>
+
+      <footer className={styles.footer}>
+        <nav className={styles.footerColumns} aria-label="Footer">
+          <div>
+            <h2>{t.footerDocs}</h2>
+            <ul>
+              {(['/docs/introduction', '/docs/installation', '/docs/components/button', '/docs/license'] as const).map((path, i) => (
+                <li key={path}>
+                  <Link href={href(lang, path)}>{t.docsLinks[i]}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2>{t.footerProducts}</h2>
+            <ul>
+              <li>
+                <a href={FIGMA_FILE} target="_blank" rel="noreferrer">
+                  {t.products[0]}
+                </a>
+              </li>
+              <li>
+                <Link href={href(lang, '/docs/installation')}>{t.products[1]}</Link>
+              </li>
+              <li className={styles.footerLater}>
+                {t.products[2]} <span className={styles.status}>{t.later}</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2>{t.footerFollow}</h2>
+            <ul>
+              <li>
+                <a href="https://ladom.co" target="_blank" rel="noreferrer">
+                  ladom.co
+                </a>
+              </li>
+              <li>
+                <a href="https://www.npmjs.com/package/ladom-ui" target="_blank" rel="noreferrer">
+                  npm
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <p className={styles.rights}>
+          {t.rights} © {new Date().getFullYear()}
+        </p>
+        <Svg svg={figmaArt.logo} className={styles.footerLogo} />
+      </footer>
+      <PlayInView />
+    </div>
   );
 }

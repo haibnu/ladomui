@@ -1,0 +1,774 @@
+/* Landing page, from the Ladom Agency Website Figma file (LP - Desktop, 173:25296).
+   Its colors and fonts are the Ladom website's, not Ladom UI tokens, so they live here. */
+.page {
+  --lp-bg: #efe9dd;
+  --lp-surface: #fff;
+  --lp-ink: rgb(28 26 9 / 0.88);
+  --lp-ink-2: rgb(28 26 9 / 0.56);
+  --lp-ink-3: rgb(28 26 9 / 0.32);
+  --lp-line: #f3f5f4;
+  --lp-tile: #efeeec;
+  --lp-accent: linear-gradient(90deg, #d9480f, rgb(28 26 9 / 0.56));
+  --lp-cta: linear-gradient(90deg, #ffa94d, rgb(28 26 9 / 0.32));
+  --lp-badge: #3c3c3c;
+  --lp-art-filter: none;
+  --lp-display: var(--font-jakarta), var(--font-hanken-grotesk), sans-serif;
+  --lp-script: var(--font-paprika), serif;
+  --lp-text: var(--font-inter), var(--font-hanken-grotesk), sans-serif;
+  --lp-gutter: clamp(16px, 5vw, 56px);
+
+  background: var(--lp-bg);
+  color: var(--lp-ink);
+  font-family: var(--lp-text);
+  overflow-x: clip;
+}
+
+:root[data-theme='dark'] .page {
+  --lp-bg: #15140f;
+  --lp-surface: #1f1e18;
+  --lp-ink: rgb(250 246 236 / 0.92);
+  --lp-ink-2: rgb(250 246 236 / 0.6);
+  --lp-ink-3: rgb(250 246 236 / 0.36);
+  --lp-line: rgb(250 246 236 / 0.1);
+  --lp-tile: #2a2923;
+  --lp-accent: linear-gradient(90deg, #ff8a4c, rgb(250 246 236 / 0.6));
+  --lp-cta: linear-gradient(90deg, #ffa94d, rgb(250 246 236 / 0.4));
+  --lp-badge: #f3efe6;
+  --lp-art-filter: invert(0.86) hue-rotate(180deg);
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.visuallyHidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  background: var(--lp-surface);
+  padding-block-start: clamp(40px, 8vw, 112px);
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 416px);
+  gap: 48px;
+  align-items: center;
+  max-inline-size: 1142px;
+  margin-inline: auto;
+  padding-inline: var(--lp-gutter);
+}
+
+.eyebrow,
+.sheetEyebrow,
+.tier {
+  margin: 0;
+  font: 500 14px/1.4 var(--lp-text);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.eyebrow,
+.tier {
+  background: var(--lp-accent);
+  background-clip: text;
+  color: transparent;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0 0;
+  font: 800 clamp(40px, 6vw, 72px) / 1.2 var(--lp-display);
+  color: var(--lp-ink);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.15em;
+}
+
+.uiMark {
+  display: inline-flex;
+  inline-size: 1.55em;
+  color: var(--lp-ink);
+}
+
+.uiMark svg,
+.heroArt svg,
+.art svg {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.titleScript {
+  font: 400 clamp(36px, 5.6vw, 68px) / 1.2 var(--lp-script);
+  font-style: italic;
+}
+
+.lead {
+  max-inline-size: 34em;
+  margin: 24px 0 0;
+  font: 400 clamp(17px, 1.6vw, 20px) / 1.5 var(--lp-text);
+  color: var(--lp-ink-2);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-block-start: 40px;
+}
+
+.heroButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-block-size: 56px;
+  padding: 16px 28px;
+  border-radius: 1000px;
+  background: var(--lp-line);
+  color: var(--lp-ink);
+  font: 600 14px/1.7 var(--lp-text);
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+a.heroButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgb(28 26 9 / 0.1);
+}
+
+a.heroButton:focus-visible,
+.card:focus-visible,
+.glass:focus-visible {
+  outline: 2px solid #d9480f;
+  outline-offset: 3px;
+}
+
+.heroButtonOff {
+  background: none;
+  box-shadow: inset 0 0 0 2px var(--lp-line);
+  color: var(--lp-ink-3);
+}
+
+.heroIcon {
+  display: inline-flex;
+  inline-size: 24px;
+}
+
+.heroCode {
+  font: 700 13px/1 ui-monospace, monospace;
+  color: var(--lp-ink-2);
+}
+
+.heroBadge {
+  position: absolute;
+  inset-block-start: -10px;
+  inset-inline-end: 12px;
+  padding: 2px 8px;
+  border-radius: 1000px;
+  background: var(--lp-badge);
+  color: var(--lp-surface);
+  font: 500 11px/16px var(--lp-text);
+  white-space: nowrap;
+}
+
+.heroBadgeLight {
+  background: var(--lp-surface);
+  box-shadow: inset 0 0 0 1px var(--lp-line);
+  color: var(--lp-ink-2);
+}
+
+.heroArt {
+  display: block;
+  filter: var(--lp-art-filter);
+}
+
+/* Live components under the hero, fading into the page */
+.strip {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-block-start: clamp(48px, 7vw, 88px);
+  padding-inline: var(--lp-gutter);
+  block-size: 280px;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.strip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgb(from var(--lp-bg) r g b / 0) 25%, var(--lp-bg) 92%);
+}
+
+.stripColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: none;
+}
+
+.stripCard {
+  flex: none;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--color-surface-level-1);
+  box-shadow: 0 4px 16px rgb(28 26 9 / 0.08);
+  font-family: var(--font-hanken-grotesk);
+}
+
+.stripRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stripCard.stripRow {
+  justify-content: space-between;
+  min-inline-size: 200px;
+  padding-inline: 12px;
+  font: var(--text-ui-text-bold);
+}
+
+/* Cream area with the white sheets */
+.sheets {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 16px 24px;
+  background: var(--lp-bg);
+}
+
+.sheet {
+  max-inline-size: 1480px;
+  inline-size: 100%;
+  margin-inline: auto;
+  padding: clamp(48px, 7vw, 96px) var(--lp-gutter);
+  border-radius: 48px;
+  background: var(--lp-surface);
+  text-align: center;
+}
+
+.sheetEyebrow {
+  color: var(--lp-ink-2);
+}
+
+.sheetTitle {
+  margin: 16px 0 0;
+  font: 800 clamp(40px, 6vw, 72px) / 1.2 var(--lp-display);
+  color: var(--lp-ink);
+}
+
+.sheetLead {
+  margin: 16px auto 0;
+  max-inline-size: 36em;
+  font: 300 clamp(18px, 2vw, 24px) / 1.3 var(--lp-text);
+  color: var(--lp-ink-2);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+  max-inline-size: 1138px;
+  margin: 56px auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: start;
+}
+
+.feature {
+  padding: 28px 32px;
+  border-radius: 24px;
+  background: var(--lp-tile);
+}
+
+.feature h3 {
+  margin: 0;
+  font: 500 20px/1.4 var(--lp-text);
+  color: var(--lp-ink);
+}
+
+.feature p {
+  margin: 8px 0 0;
+  font: 400 15px/1.6 var(--lp-text);
+  color: var(--lp-ink-2);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-inline-size: 1398px;
+  margin: 56px auto 32px;
+  font: 500 12px/1.4 var(--lp-text);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lp-ink-3);
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  block-size: 1px;
+  background: var(--lp-line);
+}
+
+.divider span {
+  padding: 4px 8px;
+  border: 1px solid var(--lp-line);
+  border-radius: 40px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 8px 24px;
+  max-inline-size: 1398px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: start;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 24px;
+  border-radius: 32px;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 200ms ease;
+}
+
+.card:hover {
+  background: rgb(from var(--lp-tile) r g b / 0.5);
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-inline: 16px;
+}
+
+.cardTitle {
+  font: 500 24px/32px var(--lp-text);
+  color: var(--lp-ink);
+}
+
+.metas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-block: 8px 24px;
+  padding-inline: 16px;
+  font: 400 12px/16px var(--lp-text);
+  color: var(--lp-ink);
+}
+
+.metaLater,
+.footerLater {
+  color: var(--lp-ink-2);
+}
+
+.status {
+  margin-inline-start: 4px;
+  padding: 1px 4px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.art {
+  display: block;
+  aspect-ratio: 370 / 340;
+  border-radius: 16px;
+  background: #efeeec;
+  box-shadow: inset 0 0 0 1px rgb(46 42 15 / 0.06);
+  overflow: hidden;
+  filter: var(--lp-art-filter);
+}
+
+/* Call to action */
+.cta {
+  padding: clamp(64px, 10vw, 140px) var(--lp-gutter) 40px;
+  background: var(--lp-bg);
+  text-align: center;
+}
+
+.ctaTitle {
+  max-inline-size: 1138px;
+  margin: 0 auto;
+  font: 800 clamp(40px, 6.4vw, 96px) / 1.2 var(--lp-display);
+  background: var(--lp-cta);
+  background-clip: text;
+  color: transparent;
+}
+
+.ctaTitle span {
+  display: block;
+}
+
+.ctaStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: clamp(40px, 6vw, 72px) auto 0;
+  max-inline-size: 760px;
+}
+
+.ctaGlow {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 268px;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #d28e41 0%, #ece7c2 55%, transparent 72%);
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+.coin {
+  position: absolute;
+  inline-size: clamp(56px, 10vw, 104px);
+  filter: drop-shadow(0 8px 16px rgb(28 26 9 / 0.2));
+}
+
+.coin svg,
+.footerLogo svg {
+  display: block;
+  inline-size: 100%;
+}
+
+.coinTop {
+  inset-block-start: -18%;
+  inset-inline-end: 6%;
+}
+
+.coinBottom {
+  inset-block-end: -22%;
+  inset-inline-start: 4%;
+}
+
+/* Figma "Button Hero" glass pill (177:29744) */
+.glass {
+  position: relative;
+  padding: clamp(24px, 4vw, 56px) clamp(40px, 8vw, 120px);
+  border-radius: 4000px;
+  background:
+    linear-gradient(180deg, #fff, rgb(255 255 255 / 0)),
+    linear-gradient(90deg, #ffd8a8, rgb(28 26 9 / 0.56));
+  background-blend-mode: soft-light, normal;
+  box-shadow:
+    0 4px 8px rgb(0 0 0 / 0.08),
+    0 4px 32px rgb(28 26 9 / 0.12),
+    0 16px 24px rgb(28 26 9 / 0.08),
+    inset 0 -4px 4px rgb(255 255 255 / 0.8),
+    inset 0 -4px 32px rgb(255 255 255 / 0.4),
+    inset 0 -4px 0 rgb(28 26 9 / 0.33);
+  backdrop-filter: blur(34px);
+  color: rgb(28 26 9 / 0.88);
+  font: 800 clamp(32px, 6vw, 88px) / 1.2 var(--lp-display);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 200ms ease;
+}
+
+.glass:hover {
+  transform: translateY(-3px);
+}
+
+.glass:active {
+  transform: translateY(2px);
+}
+
+.ctaText {
+  margin: clamp(48px, 6vw, 72px) auto 16px;
+  max-inline-size: 32em;
+  font: 400 17px/1.5 var(--lp-text);
+  color: var(--lp-ink-2);
+}
+
+.ctaCode {
+  max-inline-size: 520px;
+  margin-inline: auto;
+  text-align: start;
+}
+
+/* Footer */
+.footer {
+  padding: 64px var(--lp-gutter) 40px;
+  background: var(--lp-bg);
+  text-align: center;
+}
+
+.footerColumns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 270px));
+  justify-content: center;
+  gap: 32px;
+}
+
+.footer h2 {
+  margin: 0 0 24px;
+  font: 300 clamp(24px, 2.4vw, 31px) / 1.4 var(--lp-text);
+  color: var(--lp-ink-2);
+}
+
+.footer ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer li,
+.rights {
+  font: 500 14px/1.4 var(--lp-text);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lp-ink-2);
+}
+
+.footer a {
+  color: var(--lp-ink-2);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--lp-ink);
+}
+
+.rights {
+  margin: 72px 0 24px;
+}
+
+.footerLogo {
+  display: inline-block;
+  inline-size: 48px;
+}
+
+@media (max-width: 1279px) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+  }
+}
+
+@media (max-width: 767px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+  }
+
+  .heroArt {
+    order: -1;
+    inline-size: min(60%, 240px);
+  }
+
+  .strip {
+    justify-content: flex-start;
+    block-size: 220px;
+  }
+
+  .sheet {
+    border-radius: 32px;
+  }
+
+  .card {
+    padding-inline: 0;
+  }
+
+  .footerColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .coinTop {
+    inset-block-start: -40%;
+  }
+
+  .coinBottom {
+    inset-block-end: -45%;
+  }
+}
+
+/* Illustration motion. Each a-* class is set on a layer by scripts/landing-art.mjs (Figma art)
+   or in art/drawn.tsx; it plays while the illustration is on screen (PlayInView). */
+.art :global([class*='a-']),
+.heroArt :global([class*='a-']) {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-duration: 3.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.art:not([data-play]) :global([class*='a-']),
+.heroArt:not([data-play]) :global([class*='a-']) {
+  animation-play-state: paused;
+}
+
+/* Press: the block sinks into the ground and springs back. */
+.art :global(.a-body) { animation-name: press; }
+.art :global(.a-shadow) { animation-name: shadow; }
+.art :global(.a-tick) { animation-name: tick; animation-timing-function: cubic-bezier(0.3, 1.6, 0.5, 1); }
+.art :global(.a-dot) { animation-name: dot; animation-timing-function: cubic-bezier(0.3, 1.5, 0.5, 1); }
+.art :global(.a-chevron) { animation-name: flip; animation-timing-function: cubic-bezier(0.4, 1.4, 0.5, 1); }
+.art :global(.a-coin1),
+.art :global(.a-coin2),
+.art :global(.a-coin3) { animation-name: hopUp; }
+.art :global(.a-coin2) { animation-delay: 0.2s; }
+.art :global(.a-coin3) { animation-delay: 0.4s; }
+.art :global(.a-tab) { animation-name: pressSoft; }
+.art :global(.a-row1),
+.art :global(.a-row2),
+.art :global(.a-row3) { animation-name: lift; }
+.art :global(.a-row2) { animation-delay: 0.3s; }
+.art :global(.a-row3) { animation-delay: 0.6s; }
+.art :global(.a-modal) { animation-name: modal; animation-duration: 4s; }
+.art :global(.a-drawer) { animation-name: drawer; animation-duration: 4s; }
+
+.art :global(.a-knob) { animation-name: knob; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.3); }
+.art :global(.a-on) { animation-name: on; animation-timing-function: ease; }
+.art :global(.a-drop) { animation-name: drop; animation-duration: 4s; }
+.art :global(.a-pop) { animation-name: pop; animation-timing-function: cubic-bezier(0.3, 1.6, 0.5, 1); }
+.art :global(.a-step) { animation-name: lift; }
+.art :global(.a-step2) { animation-delay: 0.3s; }
+.art :global(.a-step3) { animation-delay: 0.6s; }
+.art :global(.a-remove) { animation-name: remove; }
+.art :global(.a-hop) { animation-name: hop; animation-duration: 4.8s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.3); }
+.art :global(.a-unfold) { animation-name: unfold; }
+.art :global(.a-float) { animation-name: float; animation-timing-function: ease-in-out; }
+.art :global(.a-floatshadow) { animation-name: floatShadow; animation-timing-function: ease-in-out; }
+.art :global(.a-fadein) { animation-name: fadeIn; }
+.art :global(.a-type) { transform-origin: left center; animation-name: type; animation-timing-function: steps(12, end); }
+.art :global(.a-caret) { animation-name: caret; animation-timing-function: steps(12, end); }
+.art :global(.a-blink) { animation-name: blink; animation-duration: 0.8s; animation-timing-function: steps(1, end); }
+.art :global(.a-move) { animation-name: move; animation-timing-function: cubic-bezier(0.6, 0, 0.3, 1); }
+.art :global(.a-blip) { animation-name: blip; animation-duration: 1.2s; }
+.art :global(.a-num1) { animation-name: numOut; }
+.art :global(.a-num2) { animation-name: numIn; }
+.art :global(.a-tap) { animation-name: tap; }
+.art :global(.a-page) { animation-name: page; animation-duration: 5s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.2); }
+.art :global(.a-popover) { transform-origin: bottom center; animation-name: popover; }
+.art :global(.a-seg) { animation-name: seg; animation-duration: 4.5s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.2); }
+.art :global(.a-grow) { transform-origin: left center; animation-name: grow; animation-duration: 3.6s; }
+.art :global(.a-done) { animation-name: done; animation-duration: 3.6s; }
+.art :global(.a-done2) { animation-delay: 0.6s; }
+.art :global(.a-done3) { animation-delay: 1.2s; }
+.art :global(.a-scan) { animation-name: scan; animation-duration: 4s; }
+.art :global(.a-line1),
+.art :global(.a-line2),
+.art :global(.a-line3) { transform-origin: left center; animation-name: write; }
+.art :global(.a-line2) { animation-delay: 0.4s; }
+.art :global(.a-line3) { animation-delay: 0.8s; }
+.art :global(.a-hour) { transform-origin: center bottom; animation-name: spin; animation-duration: 12s; animation-timing-function: linear; }
+.art :global(.a-minute) { transform-origin: center bottom; animation-name: spin; animation-duration: 3s; animation-timing-function: linear; }
+.art :global(.a-toast) { animation-name: toast; animation-duration: 4s; }
+.art :global(.a-file) { animation-name: file; animation-duration: 4s; animation-timing-function: cubic-bezier(0.3, 1.3, 0.5, 1); }
+.art :global(.a-progress) { transform-origin: left center; animation-name: progress; animation-duration: 4s; }
+.art :global(.a-flip) { animation-name: flipOpen; animation-duration: 4s; }
+.art :global(.a-panel) { animation-name: panel; animation-duration: 4s; }
+.art :global(.a-push) { animation-name: push; animation-duration: 4s; }
+.art :global(.a-navline) { animation-name: navline; animation-duration: 4.5s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.2); }
+
+/* Hero L: the blocks stack once, then breathe. */
+.heroArt :global(.a-l1),
+.heroArt :global(.a-l2),
+.heroArt :global(.a-l3),
+.heroArt :global(.a-l4) {
+  animation-name: stack;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.heroArt :global(.a-l2) { animation-delay: 0.15s; }
+.heroArt :global(.a-l3) { animation-delay: 0.3s; }
+.heroArt :global(.a-l4) { animation-delay: 0.45s; }
+
+@keyframes press { 0%, 30%, 70%, 100% { transform: none; } 40%, 55% { transform: translateY(9px); } }
+@keyframes pressSoft { 0%, 30%, 70%, 100% { transform: none; } 40%, 55% { transform: translateY(5px); } }
+@keyframes shadow { 0%, 30%, 70%, 100% { opacity: 0.1; } 40%, 55% { opacity: 0.04; } }
+@keyframes tick { 0%, 24% { transform: scale(0); opacity: 0; } 34%, 85% { transform: none; opacity: 1; } 95%, 100% { transform: scale(0); opacity: 0; } }
+@keyframes dot { 0%, 15% { transform: translateY(-26px) scale(0.6); opacity: 0; } 30%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translateY(-26px) scale(0.6); opacity: 0; } }
+@keyframes flip { 0%, 24% { transform: none; } 34%, 80% { transform: rotate(180deg); } 90%, 100% { transform: none; } }
+@keyframes hopUp { 0%, 20%, 50%, 100% { transform: none; } 32% { transform: translateY(-16px); } }
+@keyframes lift { 0%, 20%, 55%, 100% { transform: none; } 30%, 45% { transform: translateY(-8px); } }
+@keyframes modal { 0%, 10% { transform: translateY(-40px); opacity: 0; } 25%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translateY(-40px); opacity: 0; } }
+@keyframes drawer { 0%, 10% { transform: translate(52px, -30px); opacity: 0; } 25%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translate(52px, -30px); opacity: 0; } }
+@keyframes knob { 0%, 15%, 90%, 100% { transform: none; } 35%, 70% { transform: translate(78px, -45px); } }
+@keyframes on { 0%, 20%, 85%, 100% { opacity: 0; } 35%, 70% { opacity: 1; } }
+@keyframes drop { 0%, 8% { transform: translateY(-36px); opacity: 0; } 22%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translateY(-36px); opacity: 0; } }
+@keyframes pop { 0%, 15% { transform: scale(0); } 30%, 85% { transform: none; } 95%, 100% { transform: scale(0); } }
+@keyframes remove { 0%, 25%, 80%, 100% { transform: none; opacity: 1; } 38%, 65% { transform: scale(0.2); opacity: 0; } }
+@keyframes hop { 0%, 18% { transform: none; } 25%, 43% { transform: translate(41.6px, -24px); } 50%, 68% { transform: translate(62.4px, -12px); } 75%, 93% { transform: translate(20.8px, 12px); } 100% { transform: none; } }
+@keyframes unfold { 0%, 15% { transform: translate(-14px, -8px); opacity: 0; } 30%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translate(-14px, -8px); opacity: 0; } }
+@keyframes float { 0%, 100% { transform: none; } 50% { transform: translateY(-12px); } }
+@keyframes floatShadow { 0%, 100% { transform: none; opacity: 0.1; } 50% { transform: scale(0.85); opacity: 0.06; } }
+@keyframes fadeIn { 0%, 20% { transform: translateY(-6px); opacity: 0; } 35%, 85% { transform: none; opacity: 1; } 95%, 100% { opacity: 0; } }
+@keyframes type { 0%, 10% { transform: scaleX(0); } 60%, 90% { transform: none; } 100% { transform: scaleX(0); } }
+@keyframes caret { 0%, 10% { transform: translateX(-124px); } 60%, 90% { transform: none; } 100% { transform: translateX(-124px); } }
+@keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+@keyframes move { 0%, 20% { transform: none; } 50%, 80% { transform: translate(129.9px, -75px); } 100% { transform: none; } }
+@keyframes blip { 0%, 60%, 100% { transform: none; } 25% { transform: translateY(-12px); } }
+@keyframes numOut { 0%, 40%, 95%, 100% { opacity: 1; } 45%, 90% { opacity: 0; } }
+@keyframes numIn { 0%, 40%, 95%, 100% { opacity: 0; } 45%, 90% { opacity: 1; } }
+@keyframes tap { 0%, 30%, 50%, 100% { transform: none; } 38%, 44% { transform: translateY(5px); } }
+@keyframes page {
+  0%, 14% { transform: none; }
+  20%, 34% { transform: translate(43.3px, -25px); }
+  40%, 54% { transform: translate(86.6px, -50px); }
+  60%, 74% { transform: translate(129.9px, -75px); }
+  80%, 94% { transform: translate(173.2px, -100px); }
+  100% { transform: none; }
+}
+@keyframes popover { 0%, 15% { transform: translateY(14px) scale(0.92); opacity: 0; } 28%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translateY(14px) scale(0.92); opacity: 0; } }
+@keyframes seg { 0%, 22% { transform: none; } 33%, 55% { transform: translate(69.3px, -40px); } 66%, 88% { transform: translate(138.6px, -80px); } 100% { transform: none; } }
+@keyframes grow { 0%, 10% { transform: scaleX(0); } 70%, 90% { transform: none; } 100% { transform: scaleX(0); } }
+@keyframes done { 0%, 20% { opacity: 0; } 30%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@keyframes scan { 0%, 15% { transform: none; } 25%, 40% { transform: translateY(30px); } 50%, 65% { transform: translateY(60px); } 75%, 90% { transform: translateY(90px); } 100% { transform: none; } }
+@keyframes write { 0%, 10% { transform: scaleX(0); } 30%, 85% { transform: none; } 95%, 100% { transform: scaleX(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes toast { 0%, 8% { transform: translate(52px, -30px); opacity: 0; } 22%, 78% { transform: none; opacity: 1; } 90%, 100% { transform: translate(-52px, 30px); opacity: 0; } }
+@keyframes file { 0%, 8% { transform: translateY(-80px); opacity: 0; } 25%, 85% { transform: none; opacity: 1; } 95%, 100% { opacity: 0; } }
+@keyframes progress { 0%, 25% { transform: scaleX(0); } 75%, 90% { transform: none; } 100% { transform: scaleX(0); } }
+@keyframes flipOpen { 0%, 15% { transform: none; } 28%, 80% { transform: rotate(180deg); } 92%, 100% { transform: none; } }
+@keyframes panel { 0%, 15% { opacity: 0; transform: translateY(-10px); } 30%, 80% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; transform: translateY(-10px); } }
+@keyframes push { 0%, 15% { transform: translate(-50.2px, -29px); } 30%, 80% { transform: none; } 92%, 100% { transform: translate(-50.2px, -29px); } }
+@keyframes navline { 0%, 22% { transform: none; } 33%, 55% { transform: translateX(56px); } 66%, 88% { transform: translateX(112px); } 100% { transform: none; } }
+@keyframes stack { from { transform: translateY(-80px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .art :global([class*='a-']),
+  .heroArt :global([class*='a-']) {
+    animation: none !important;
+  }
+}
