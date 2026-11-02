@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Badge, EmptyState, Pagination, Table, type TableColumn } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -89,17 +90,15 @@ export function TablePlayground() {
             [c.empty, empty, setEmpty],
           ] as [string, boolean, (v: boolean) => void][]
         ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input
-              type="checkbox"
-              checked={v}
-              onChange={(e) => {
-                set(e.target.checked);
-                setPage(1);
-              }}
-            />{' '}
-            {label}
-          </label>
+          <ControlCheck
+            key={label}
+            label={label}
+            checked={v}
+            onChange={(checked) => {
+              set(checked);
+              setPage(1);
+            }}
+          />
         ))}
       </div>
       <div className={styles.output}>

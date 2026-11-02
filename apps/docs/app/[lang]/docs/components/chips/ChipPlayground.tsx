@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Chip, type ChipSize, type ChipTone } from '@ladom/ui';
 import { IconArrowRight, IconCheck } from '@ladom/icons';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -72,30 +73,11 @@ export function ChipPlayground() {
         )}
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.tone}
-          <select value={tone} onChange={(e) => setTone(e.target.value as ChipTone)}>
-            {TONES.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as ChipSize)}>
-            {SIZES.map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.text}
-          <input value={text} onChange={(e) => setText(e.target.value)} />
-        </label>
+        <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />
+        <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
+        <ControlText label={c.text} value={text} onChange={setText} />
         {toggles.map(([label, value, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={value} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
+          <ControlCheck key={label} label={label} checked={value} onChange={set} />
         ))}
       </div>
       <div className={styles.output}>

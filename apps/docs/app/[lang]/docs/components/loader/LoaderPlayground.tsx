@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Loader, type LoaderTone } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -51,33 +52,15 @@ export function LoaderPlayground() {
     <div className={styles.playground}>
       <div className={styles.stage}>{preview}</div>
       <div className={styles.controls}>
-        <label>
-          {c.variant}
-          <select value={variant} onChange={(e) => setVariant(e.target.value as Variant)}>
-            <option>infinite</option>
-            <option>finite</option>
-            <option>brand</option>
-          </select>
-        </label>
-        {variant !== 'brand' && (
-          <label>
-            {c.tone}
-            <select value={tone} onChange={(e) => setTone(e.target.value as LoaderTone)}>
-              {TONES.map((t) => (
-                <option key={t}>{t}</option>
-              ))}
-            </select>
-          </label>
-        )}
+        <ControlSelect label={c.variant} value={variant} options={['infinite', 'finite', 'brand'] as const} onChange={setVariant} />
+        {variant !== 'brand' && <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />}
         {variant === 'finite' && (
           <>
             <label>
               {c.value}
               <input type="range" min={0} max={100} value={value} onChange={(e) => setValue(Number(e.target.value))} />
             </label>
-            <label className={styles.check}>
-              <input type="checkbox" checked={withText} onChange={(e) => setWithText(e.target.checked)} /> {c.text}
-            </label>
+            <ControlCheck label={c.text} checked={withText} onChange={setWithText} />
           </>
         )}
       </div>

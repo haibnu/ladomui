@@ -21,17 +21,6 @@
   position: absolute;
   inset-block-start: var(--space-tiny);
   inset-inline-end: var(--space-tiny);
-  display: inline-flex;
-  padding: var(--space-micro);
-  color: var(--color-foreground-low-emphasis);
-  background: var(--color-surface-level-1);
-  border: var(--border);
-  border-radius: var(--radius-form-element-small);
-  cursor: pointer;
-}
-
-.copy:hover {
-  color: var(--color-foreground-high-emphasis);
 }
 
 /* Example: preview + code */
@@ -145,26 +134,10 @@
   color: var(--color-foreground-medium-emphasis);
 }
 
-.controls > label {
+.controls > label:not([class]) {
   display: flex;
   flex-direction: column;
   gap: var(--space-micro);
-}
-
-.controls select,
-.controls input:not([type='checkbox']) {
-  font: var(--text-ui-text-regular);
-  color: var(--color-foreground-high-emphasis);
-  padding: var(--space-micro) var(--space-tiny);
-  background: var(--color-surface-level-2);
-  border: var(--border);
-  border-radius: var(--radius-form-element-small);
-}
-
-.controls .check {
-  flex-direction: row;
-  align-items: center;
-  gap: var(--space-tiny);
 }
 
 .output {

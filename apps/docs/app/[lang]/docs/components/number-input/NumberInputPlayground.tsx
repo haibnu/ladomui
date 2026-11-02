@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FormField, NumberInput, type InputSize } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlNumber, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -45,35 +46,12 @@ export function NumberInputPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as InputSize)}>
-            <option>medium</option>
-            <option>small</option>
-          </select>
-        </label>
-        {(
-          [
-            [c.min, min, setMin],
-            [c.max, max, setMax],
-            [c.step, step, setStep],
-          ] as [string, number, (v: number) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label}>
-            {label}
-            <input type="number" value={v} onChange={(e) => set(Number(e.target.value))} />
-          </label>
-        ))}
-        {(
-          [
-            [c.error, error, setError],
-            [c.disabled, disabled, setDisabled],
-          ] as [string, boolean, (v: boolean) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
+        <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
+        <ControlNumber label={c.min} value={min} onChange={setMin} />
+        <ControlNumber label={c.max} value={max} onChange={setMax} />
+        <ControlNumber label={c.step} value={step} min={1} onChange={setStep} />
+        <ControlCheck label={c.error} checked={error} onChange={setError} />
+        <ControlCheck label={c.disabled} checked={disabled} onChange={setDisabled} />
         <p style={{ margin: 0 }}>
           {c.value}: <code>{String(value)}</code>
         </p>

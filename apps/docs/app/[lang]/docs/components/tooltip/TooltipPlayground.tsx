@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button, Tooltip, type Placement } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -35,24 +36,10 @@ export function TooltipPlayground() {
         </Tooltip>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.placement}
-          <select value={placement} onChange={(e) => setPlacement(e.target.value as Placement)}>
-            {PLACEMENTS.map((p) => (
-              <option key={p}>{p}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.text}
-          <input value={text} onChange={(e) => setText(e.target.value)} />
-        </label>
-        <label className={styles.check}>
-          <input type="checkbox" checked={beak} onChange={(e) => setBeak(e.target.checked)} /> {c.beak}
-        </label>
-        <label className={styles.check}>
-          <input type="checkbox" checked={pinned} onChange={(e) => setPinned(e.target.checked)} /> {c.pinned}
-        </label>
+        <ControlSelect label={c.placement} value={placement} options={PLACEMENTS} onChange={setPlacement} />
+        <ControlText label={c.text} value={text} onChange={setText} />
+        <ControlCheck label={c.beak} checked={beak} onChange={setBeak} />
+        <ControlCheck label={c.pinned} checked={pinned} onChange={setPinned} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

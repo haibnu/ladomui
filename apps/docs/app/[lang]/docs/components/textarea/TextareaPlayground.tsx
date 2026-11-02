@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FormField, Textarea } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlNumber } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -41,22 +42,11 @@ export function TextareaPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.max}
-          <input type="number" min={0} value={max} onChange={(e) => setMax(Number(e.target.value) || 0)} />
-        </label>
-        {(
-          [
-            [c.count, count, setCount],
-            [c.hint, hint, setHint],
-            [c.error, error, setError],
-            [c.disabled, disabled, setDisabled],
-          ] as [string, boolean, (v: boolean) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
+        <ControlNumber label={c.max} value={max} min={0} step={10} onChange={setMax} />
+        <ControlCheck label={c.count} checked={count} onChange={setCount} />
+        <ControlCheck label={c.hint} checked={hint} onChange={setHint} />
+        <ControlCheck label={c.error} checked={error} onChange={setError} />
+        <ControlCheck label={c.disabled} checked={disabled} onChange={setDisabled} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

@@ -4,6 +4,7 @@ import { useState, type ComponentType } from 'react';
 import { Button, type ButtonSize, type ButtonTone } from '@ladom/ui';
 import { IconAdd, IconDownload, IconForward, IconSearch, IconSetting, type IconProps } from '@ladom/icons';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import { useLocale } from '@/components/useLocale';
 import { buttonCopy } from './content';
@@ -128,108 +129,31 @@ export function ButtonPlayground() {
       : [`Show L Icon=${iconLeft ? 'True' : 'False'}`, `Show R Icon=${iconRight ? 'True' : 'False'}`, `Subtitle=${subtitle ? 'True' : 'False'}`, `Dropdown=${dropdown ? 'True' : 'False'}`]),
   ].join('\n');
 
-  const iconOptions = (
-    <>
-      <option value="">{c.none}</option>
-      {Object.keys(ICONS).map((k) => (
-        <option key={k} value={k}>
-          {k}
-        </option>
-      ))}
-    </>
-  );
+  const iconOptions = [{ value: '', label: c.none }, ...Object.keys(ICONS)];
 
   return (
     <div className={styles.playground}>
       <div className={styles.stage}>{preview}</div>
       <div className={styles.controls}>
-        <label>
-          {c.variant}
-          <select value={variant} onChange={(e) => setVariant(e.target.value as 'solid' | 'ghost')}>
-            <option value="solid">solid</option>
-            <option value="ghost">ghost</option>
-          </select>
-        </label>
-        <label>
-          {c.tone}
-          <select value={safeTone} onChange={(e) => setTone(e.target.value as ButtonTone)}>
-            {tones.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as ButtonSize)}>
-            {SIZES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.state}
-          <select value={state} onChange={(e) => setState(e.target.value as State)}>
-            {STATES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.label}
-          <input value={label} onChange={(e) => setLabel(e.target.value)} />
-        </label>
+        <ControlSelect label={c.variant} value={variant} options={['solid', 'ghost'] as const} onChange={setVariant} />
+        <ControlSelect label={c.tone} value={safeTone} options={tones} onChange={setTone} />
+        <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
+        <ControlSelect label={c.state} value={state} options={STATES} onChange={setState} />
+        <ControlText label={c.label} value={label} onChange={setLabel} />
         {iconOnly ? (
-          <label>
-            {c.icon}
-            <select value={onlyIcon} onChange={(e) => setOnlyIcon(e.target.value)}>
-              {Object.keys(ICONS).map((k) => (
-                <option key={k} value={k}>
-                  {k}
-                </option>
-              ))}
-            </select>
-          </label>
+          <ControlSelect label={c.icon} value={onlyIcon} options={Object.keys(ICONS)} onChange={setOnlyIcon} />
         ) : (
           <>
-            <label>
-              {c.subtitle}
-              <input value={subtitle} onChange={(e) => setSubtitle(e.target.value)} />
-            </label>
-            <label>
-              {c.iconLeft}
-              <select value={iconLeft} onChange={(e) => setIconLeft(e.target.value)}>
-                {iconOptions}
-              </select>
-            </label>
-            <label>
-              {c.iconRight}
-              <select value={iconRight} onChange={(e) => setIconRight(e.target.value)}>
-                {iconOptions}
-              </select>
-            </label>
+            <ControlText label={c.subtitle} value={subtitle} onChange={setSubtitle} />
+            <ControlSelect label={c.iconLeft} value={iconLeft} options={iconOptions} onChange={setIconLeft} />
+            <ControlSelect label={c.iconRight} value={iconRight} options={iconOptions} onChange={setIconRight} />
           </>
         )}
         <div className={styles.toggles}>
-          <label className={styles.check}>
-            <input type="checkbox" checked={iconOnly} onChange={(e) => setIconOnly(e.target.checked)} /> {c.iconOnly}
-          </label>
-          {!iconOnly && (
-            <label className={styles.check}>
-              <input type="checkbox" checked={dropdown} onChange={(e) => setDropdown(e.target.checked)} /> {c.dropdown}
-            </label>
-          )}
-          <label className={styles.check}>
-            <input type="checkbox" checked={loading} onChange={(e) => setLoading(e.target.checked)} /> {c.loading}
-          </label>
-          <label className={styles.check}>
-            <input type="checkbox" checked={disabled} onChange={(e) => setDisabled(e.target.checked)} /> {c.disabled}
-          </label>
+          <ControlCheck label={c.iconOnly} checked={iconOnly} onChange={setIconOnly} />
+          {!iconOnly && <ControlCheck label={c.dropdown} checked={dropdown} onChange={setDropdown} />}
+          <ControlCheck label={c.loading} checked={loading} onChange={setLoading} />
+          <ControlCheck label={c.disabled} checked={disabled} onChange={setDisabled} />
         </div>
       </div>
       <div className={styles.output}>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Tabs, type TabsItem } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -46,42 +47,13 @@ export function TabPlayground() {
         <Tabs aria-label="Sections" items={items} variant={variant} align={align} border={border} value={value} onChange={setValue} style={{ inlineSize: '100%' }} />
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.variant}
-          <select value={variant} onChange={(e) => setVariant(e.target.value as Variant)}>
-            <option>primary</option>
-            <option>secondary</option>
-            <option>button</option>
-          </select>
-        </label>
-        <label>
-          {c.align}
-          <select value={align} onChange={(e) => setAlign(e.target.value as Align)}>
-            <option>start</option>
-            <option>center</option>
-            <option>end</option>
-          </select>
-        </label>
-        <label>
-          {c.count}
-          <select value={count} onChange={(e) => setCount(Number(e.target.value))}>
-            {[2, 3, 4, 5, 6, 7].map((n) => (
-              <option key={n}>{n}</option>
-            ))}
-          </select>
-        </label>
-        {(
-          [
-            [c.border, border, setBorder],
-            [c.badge, badge, setBadge],
-            [c.info, info, setInfo],
-            [c.disabled, disabled, setDisabled],
-          ] as [string, boolean, (v: boolean) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
+        <ControlSelect label={c.variant} value={variant} options={['primary', 'secondary', 'button'] as const} onChange={setVariant} />
+        <ControlSelect label={c.align} value={align} options={['start', 'center', 'end'] as const} onChange={setAlign} />
+        <ControlSelect label={c.count} value={String(count)} options={[2, 3, 4, 5, 6, 7].map(String)} onChange={(v) => setCount(Number(v))} />
+        <ControlCheck label={c.border} checked={border} onChange={setBorder} />
+        <ControlCheck label={c.badge} checked={badge} onChange={setBadge} />
+        <ControlCheck label={c.info} checked={info} onChange={setInfo} />
+        <ControlCheck label={c.disabled} checked={disabled} onChange={setDisabled} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

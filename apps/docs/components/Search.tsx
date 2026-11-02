@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { IconSearch, iconNames } from '@ladom/icons';
+import { Input } from '@ladom/ui';
 import meta from '@ladom/tokens/tokens.json';
 import { getDictionary, href, type Locale } from '@/i18n';
 import { getNav } from './nav';
@@ -80,9 +81,9 @@ export function Search() {
       </button>
       <dialog ref={dialog} className={styles.searchDialog} onClick={(e) => e.target === dialog.current && dialog.current?.close()}>
         <div className={styles.searchInputRow}>
-          <IconSearch size={20} />
-          <input
+          <Input
             className={styles.searchInput}
+            type="search"
             autoFocus
             placeholder={t.search.placeholder}
             value={query}
@@ -92,6 +93,7 @@ export function Search() {
             }}
             onKeyDown={onKeyDown}
             aria-label={t.search.label}
+            clearLabel={t.icons.clear}
           />
           <kbd className={styles.kbd}>Esc</kbd>
         </div>

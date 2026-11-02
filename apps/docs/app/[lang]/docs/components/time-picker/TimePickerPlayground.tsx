@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { TimePicker, type TimeValue } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -42,20 +43,9 @@ export function TimePickerPlayground() {
         </p>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.step}
-          <select value={step} onChange={(e) => setStep(Number(e.target.value))}>
-            <option>1</option>
-            <option>5</option>
-            <option>15</option>
-          </select>
-        </label>
-        <label className={styles.check}>
-          <input type="checkbox" checked={seconds} onChange={(e) => setSeconds(e.target.checked)} /> {c.seconds}
-        </label>
-        <label className={styles.check}>
-          <input type="checkbox" checked={office} onChange={(e) => setOffice(e.target.checked)} /> {c.office}
-        </label>
+        <ControlSelect label={c.step} value={String(step)} options={['1', '5', '15']} onChange={(v) => setStep(Number(v))} />
+        <ControlCheck label={c.seconds} checked={seconds} onChange={setSeconds} />
+        <ControlCheck label={c.office} checked={office} onChange={setOffice} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

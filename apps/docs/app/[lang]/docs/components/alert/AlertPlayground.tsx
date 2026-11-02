@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Alert, Button, type AlertTone } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -58,7 +59,10 @@ export function AlertPlayground() {
         <div style={{ inlineSize: '100%', maxInlineSize: horizontal ? 640 : 400 }}>
           {closed ? (
             <p style={{ margin: 0 }}>
-              {c.closed} <button type="button" onClick={() => setClosed(false)}>{c.reopen}</button>
+              {c.closed}{' '}
+              <Button variant="ghost" tone="secondary" size="small" onClick={() => setClosed(false)}>
+                {c.reopen}
+              </Button>
             </p>
           ) : (
             <Alert
@@ -74,32 +78,11 @@ export function AlertPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.tone}
-          <select value={tone} onChange={(e) => setTone(e.target.value as AlertTone)}>
-            {TONES.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.direction}
-          <select value={direction} onChange={(e) => setDirection(e.target.value as 'vertical' | 'horizontal')}>
-            <option>vertical</option>
-            <option>horizontal</option>
-          </select>
-        </label>
-        {(
-          [
-            [c.description, description, setDescription],
-            [c.actions, actions, setActions],
-            [c.close, close, setClose],
-          ] as [string, boolean, (v: boolean) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
+        <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />
+        <ControlSelect label={c.direction} value={direction} options={['vertical', 'horizontal'] as const} onChange={setDirection} />
+        <ControlCheck label={c.description} checked={description} onChange={setDescription} />
+        <ControlCheck label={c.actions} checked={actions} onChange={setActions} />
+        <ControlCheck label={c.close} checked={close} onChange={setClose} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

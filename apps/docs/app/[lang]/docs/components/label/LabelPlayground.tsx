@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Label } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -52,31 +53,11 @@ export function LabelPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.type}
-          <select value={kind} onChange={(e) => setKind(e.target.value as Kind)}>
-            {Object.keys(FIGMA_TYPE).map((k) => (
-              <option key={k}>{k}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.text}
-          <input value={text} onChange={(e) => setText(e.target.value)} />
-        </label>
-        {(kind === 'subtitle' || kind === 'hint') && (
-          <label>
-            {c.extra}
-            <input value={extra} onChange={(e) => setExtra(e.target.value)} />
-          </label>
-        )}
-        <label>
-          {c.optional}
-          <input value={optional} placeholder={c.opt} onChange={(e) => setOptional(e.target.value)} />
-        </label>
-        <label className={styles.check}>
-          <input type="checkbox" checked={withForm} onChange={(e) => setWithForm(e.target.checked)} /> {c.withForm}
-        </label>
+        <ControlSelect label={c.type} value={kind} options={Object.keys(FIGMA_TYPE) as Kind[]} onChange={setKind} />
+        <ControlText label={c.text} value={text} onChange={setText} />
+        {(kind === 'subtitle' || kind === 'hint') && <ControlText label={c.extra} value={extra} onChange={setExtra} />}
+        <ControlText label={c.optional} value={optional} placeholder={c.opt} onChange={setOptional} />
+        <ControlCheck label={c.withForm} checked={withForm} onChange={setWithForm} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

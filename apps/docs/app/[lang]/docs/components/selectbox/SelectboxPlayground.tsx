@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FormField, Selectbox, type SelectboxSize } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -103,36 +104,21 @@ export function SelectboxPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.type}
-          <select value={type} onChange={(e) => setType(e.target.value as Type)}>
-            <option value="basic">basic</option>
-            <option value="inner">inner label</option>
-            <option value="multiselect">multiselect</option>
-            <option value="chip">chip</option>
-          </select>
-        </label>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as SelectboxSize)}>
-            {SIZES.map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.state}
-          <select value={state} onChange={(e) => setState(e.target.value as State)}>
-            <option>default</option>
-            <option>hover</option>
-            <option>focus</option>
-            <option>active</option>
-          </select>
-        </label>
+        <ControlSelect
+          label={c.type}
+          value={type}
+          options={[
+            { value: 'basic', label: 'basic' },
+            { value: 'inner', label: 'inner label' },
+            { value: 'multiselect', label: 'multiselect' },
+            { value: 'chip', label: 'chip' },
+          ]}
+          onChange={setType}
+        />
+        <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
+        <ControlSelect label={c.state} value={state} options={['default', 'hover', 'focus', 'active'] as const} onChange={setState} />
         {toggles.map(([label, value, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={value} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
+          <ControlCheck key={label} label={label} checked={value} onChange={set} />
         ))}
       </div>
       <div className={styles.output}>

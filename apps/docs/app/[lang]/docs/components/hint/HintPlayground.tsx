@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Hint, type HintSize, type HintTone } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -35,28 +36,10 @@ export function HintPlayground() {
         </Hint>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.tone}
-          <select value={tone} onChange={(e) => setTone(e.target.value as HintTone)}>
-            {TONES.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as HintSize)}>
-            <option>small</option>
-            <option>medium</option>
-          </select>
-        </label>
-        <label>
-          {c.text}
-          <input value={text} onChange={(e) => setText(e.target.value)} />
-        </label>
-        <label className={styles.check}>
-          <input type="checkbox" checked={withForm} onChange={(e) => setWithForm(e.target.checked)} /> {c.withForm}
-        </label>
+        <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />
+        <ControlSelect label={c.size} value={size} options={['small', 'medium'] as const} onChange={setSize} />
+        <ControlText label={c.text} value={text} onChange={setText} />
+        <ControlCheck label={c.withForm} checked={withForm} onChange={setWithForm} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

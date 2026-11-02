@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { Calendar, DatePicker, type DateRange } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -69,25 +70,19 @@ export function DatePickerPlayground() {
         </p>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.type}
-          <select value={type} onChange={(e) => setType(e.target.value as Type)}>
-            <option value="basic">basic</option>
-            <option value="default">default</option>
-            <option value="full">full control</option>
-          </select>
-        </label>
-        {(
-          [
-            [c.range, isRange, setRange, type === 'full'],
-            [c.events, events, setEvents, false],
-            [c.weekStart, monday, setMonday, false],
-          ] as [string, boolean, (v: boolean) => void, boolean][]
-        ).map(([label, v, set, locked]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} disabled={locked} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
+        <ControlSelect
+          label={c.type}
+          value={type}
+          options={[
+            { value: 'basic', label: 'basic' },
+            { value: 'default', label: 'default' },
+            { value: 'full', label: 'full control' },
+          ]}
+          onChange={setType}
+        />
+        <ControlCheck label={c.range} checked={isRange} disabled={type === 'full'} onChange={setRange} />
+        <ControlCheck label={c.events} checked={events} onChange={setEvents} />
+        <ControlCheck label={c.weekStart} checked={monday} onChange={setMonday} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

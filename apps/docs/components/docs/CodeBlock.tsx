@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { IconCheck, IconCopy } from '@ladom/icons';
+import { Button } from '@ladom/ui';
 import { useLocale } from '../useLocale';
 import styles from './docs.module.css';
 
@@ -19,9 +20,7 @@ export function CodeBlock({ code, className }: { code: string; className?: strin
   };
   return (
     <div className={[styles.code, className].filter(Boolean).join(' ')}>
-      <button type="button" className={styles.copy} onClick={copy} aria-label={copied ? t.component.copied : t.component.copy}>
-        {copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
-      </button>
+      <Button className={styles.copy} variant="ghost" tone="secondary" size="small" icon={copied ? IconCheck : IconCopy} onClick={copy} aria-label={copied ? t.component.copied : t.component.copy} />
       <pre>
         <code>{code}</code>
       </pre>

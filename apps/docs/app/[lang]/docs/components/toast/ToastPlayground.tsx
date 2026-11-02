@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button, Toast, ToastProvider, useToast, type ToastTone } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -55,31 +56,10 @@ export function ToastPlayground() {
           <ShowButton options={options} label={c.show} />
         </div>
         <div className={styles.controls}>
-          <label>
-            {c.tone}
-            <select value={tone} onChange={(e) => setTone(e.target.value as ToastTone)}>
-              {TONES.map((t) => (
-                <option key={t}>{t}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            {c.device}
-            <select value={device} onChange={(e) => setDevice(e.target.value as 'desktop' | 'mobile')}>
-              <option>desktop</option>
-              <option>mobile</option>
-            </select>
-          </label>
-          {(
-            [
-              [c.description, description, setDescription],
-              [c.actions, actions, setActions],
-            ] as [string, boolean, (v: boolean) => void][]
-          ).map(([label, v, set]) => (
-            <label key={label} className={styles.check}>
-              <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-            </label>
-          ))}
+          <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />
+          <ControlSelect label={c.device} value={device} options={['desktop', 'mobile'] as const} onChange={setDevice} />
+          <ControlCheck label={c.description} checked={description} onChange={setDescription} />
+          <ControlCheck label={c.actions} checked={actions} onChange={setActions} />
         </div>
         <div className={styles.output}>
           <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>
