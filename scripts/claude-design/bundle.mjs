@@ -2,7 +2,7 @@
 // one IIFE assigning window.LadomUI, React from window.React / window.ReactDOM.
 import { createRequire } from 'node:module';
 const { build } = createRequire(process.argv[2] + '/package.json')('esbuild');
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const [repo, out, componentsJson] = process.argv.slice(2);
@@ -26,7 +26,8 @@ const globals = {
 };
 
 const entry = join(out, '_entry.ts');
-writeFileSync(entry, `export * from ${JSON.stringify(join(repo, 'packages/ui/src/index.ts'))};\nexport * as Icons from ${JSON.stringify(join(repo, 'packages/icons/src/index.ts'))};\n`);
+const pro = join(repo, 'packages/ui/src/pro/index.ts');
+writeFileSync(entry, `export * from ${JSON.stringify(join(repo, 'packages/ui/src/index.ts'))};\n${existsSync(pro) ? `export * from ${JSON.stringify(pro)};\n` : ''}export * as Icons from ${JSON.stringify(join(repo, 'packages/icons/src/index.ts'))};\n`);
 
 const result = await build({
   entryPoints: [entry],

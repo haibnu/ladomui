@@ -1,10 +1,12 @@
 // Builds the registry the ladom-ui CLI installs from: apps/docs/registry/registry.json, served by
 // apps/docs/app/r (free items to everyone, Pro items with a license key). Every component folder
-// of packages/ui/src becomes an item with its files, the items it imports and the icons it uses;
+// of packages/ui/src becomes an item with its files, the items it imports and the icons it uses
+// (the Pro folders come from the private submodule packages/ui/src/pro and are left out when it
+// is not checked out; they are served with the same ../<Folder> paths as the free ones);
 // @ladom/icons imports are rewritten to the local icons folder the CLI writes. Each file gets the
 // license header of its tier. Fails when a free item depends on a Pro one.
 import { createHash } from 'node:crypto';
-import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -26,7 +28,12 @@ const withHeader = (path, text, tier) => {
 
 const walk = (dir) => readdirSync(dir).flatMap((f) => (statSync(join(dir, f)).isDirectory() ? walk(join(dir, f)) : [join(dir, f)]));
 const kebab = (s) => s.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-const folders = readdirSync(uiSrc).filter((f) => statSync(join(uiSrc, f)).isDirectory());
+const proSrc = join(uiSrc, 'pro');
+const dirsIn = (dir) => (existsSync(dir) ? readdirSync(dir).filter((f) => statSync(join(dir, f)).isDirectory()) : []);
+// Folder -> its source directory; Pro folders live one level down and import '../../<Folder>/'.
+const sourceOf = Object.fromEntries([...dirsIn(uiSrc).filter((f) => f !== 'pro').map((f) => [f, uiSrc]), ...dirsIn(proSrc).map((f) => [f, proSrc])]);
+const folders = Object.keys(sourceOf).sort();
+if (!dirsIn(proSrc).length) console.warn('registry: packages/ui/src/pro is not checked out; building the free items only.');
 const nameOf = Object.fromEntries(folders.map((f) => [f, Object.entries(config.items).find(([, v]) => v.folder === f)?.[0] ?? kebab(f)]));
 
 // Read every folder: its files, the folders it imports and the icons it uses.
@@ -35,13 +42,15 @@ for (const folder of folders) {
   const deps = new Set();
   const icons = new Set();
   const files = [];
-  for (const file of walk(join(uiSrc, folder)).sort()) {
+  const base = sourceOf[folder];
+  for (const file of walk(join(base, folder)).sort()) {
     let text = readFileSync(file, 'utf8');
+    if (base === proSrc) text = text.replaceAll("from '../../", "from '../");
     for (const m of text.matchAll(/from '\.\.\/([A-Za-z]+)\//g)) if (m[1] !== folder) deps.add(m[1]);
     for (const m of text.matchAll(/import \{([^}]*)\} from '@ladom\/icons';/g))
       for (const spec of m[1].split(',').map((s) => s.trim()).filter(Boolean)) if (/^Icon[A-Z]/.test(spec)) icons.add(spec);
     text = text.replaceAll("from '@ladom/icons'", "from '../icons'");
-    files.push({ path: relative(uiSrc, file), content: text });
+    files.push({ path: relative(base, file), content: text });
   }
   units[folder] = { folder, deps: [...deps].sort(), icons: [...icons].sort(), files };
 }

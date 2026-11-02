@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { AppHeader, Avatar, Breadcrumb, Button, Input, PageHeader, PublicHeader, Segment, Tabs, Tooltip } from '@ladom/ui';
+import { Avatar, Breadcrumb, Button, Input, Segment, Tabs, Tooltip } from '@ladom/ui';
+import { AppHeader, PageHeader, PublicHeader } from '@ladom/ui/pro';
 import { IconEdit, IconInfo, IconShare } from '@ladom/icons';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck, ControlSelect } from '@/components/docs/Controls';

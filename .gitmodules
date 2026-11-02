@@ -1,0 +1,3 @@
+[submodule "packages/ui/src/pro"]
+	path = packages/ui/src/pro
+	url = https://github.com/haibnu/ladomuipro.git

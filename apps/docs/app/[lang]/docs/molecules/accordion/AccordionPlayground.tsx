@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Accordion, Badge } from '@ladom/ui';
+import { Badge } from '@ladom/ui';
+import { Accordion } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
