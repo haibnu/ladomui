@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { iconNames, type IconName } from '@ladom/icons';
 import { iconMeta, icons } from '@ladom/icons/all';
+import { Input } from '@ladom/ui';
 import { useLocale } from '@/components/useLocale';
 import styles from './page.module.css';
 
@@ -28,13 +29,14 @@ export function IconGallery() {
 
   return (
     <>
-      <input
+      <Input
         className={styles.search}
         type="search"
         placeholder={t.icons.search(iconNames.length)}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         aria-label={t.icons.searchLabel}
+        clearLabel={t.icons.clear}
       />
       {groups.length === 0 && <p className={styles.empty}>
           {t.icons.empty} “{query}”
