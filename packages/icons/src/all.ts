@@ -661,7 +661,7 @@ export const iconMeta: Record<IconName, { category: string; source: 'tabler' | '
   "clear": {
     "category": "common",
     "source": "tabler",
-    "tabler": "alert-square-rounded",
+    "tabler": "square-rounded-x",
     "figma": "Icon/clear"
   },
   "close": {

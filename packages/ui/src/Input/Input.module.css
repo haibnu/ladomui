@@ -127,3 +127,20 @@
   background: var(--color-surface-level-2);
   --_line: var(--color-surface-level-2);
 }
+
+/* Number (NumberInput): the value is centered between the buttons, without the native spinner. */
+.box[data-look='number'][data-size] {
+  --_pad-x: var(--layout-tiny);
+}
+
+.box[data-look='number'] .input {
+  text-align: center;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.box[data-look='number'] .input::-webkit-inner-spin-button,
+.box[data-look='number'] .input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}

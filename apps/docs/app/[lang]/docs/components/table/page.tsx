@@ -97,7 +97,7 @@ export default async function TablePage({ params }: Props) {
   selectable
   selected={selected}
   onSelectedChange={setSelected}
-  empty="No invoices yet."
+  empty={<EmptyState size="medium" title="No invoices yet" description="Invoices you send show up here." />}
 />`}
           />
           <h2 id="api">{c.api}</h2>

@@ -24,3 +24,16 @@
   flex-direction: column;
   min-inline-size: 0;
 }
+
+/* The hint and a count (Textarea) share a row; the count sits at the end. */
+.messageRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--layout-tiny);
+  padding-block-start: var(--space-form-ingroup-gutter);
+}
+
+.messageRow > :first-child:not(:last-child) {
+  flex: 1;
+}

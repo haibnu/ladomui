@@ -1,0 +1,87 @@
+/* Empty State, from Figma Components / Empty State (4239:82): an icon on a round surface/level-3
+   badge (error-soft for Error), a title and a description in the middle, then an action.
+   Large: 64px badge, 32px icon, content H5 bold, --layout-huge padding.
+   Medium: 48px badge, 24px icon, text lead bold, --layout-xlarge padding.
+   Small: 32px badge, 16px icon, text bold, --layout-default padding. */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--_gap);
+  padding: var(--_pad);
+  text-align: center;
+}
+
+.empty[data-size='large'] {
+  --_gap: var(--layout-default);
+  --_pad: var(--layout-huge);
+  --_badge: calc(2 * var(--space-xxlarge));
+  --_icon: var(--space-xxlarge);
+  --_title: var(--text-content-h5-bold);
+  --_description: var(--text-ui-text-regular);
+}
+
+.empty[data-size='medium'] {
+  --_gap: var(--layout-small);
+  --_pad: var(--layout-xlarge);
+  --_badge: calc(var(--space-xxlarge) + var(--space-medium));
+  --_icon: var(--space-xlarge);
+  --_title: var(--text-ui-text-lead-bold);
+  --_description: var(--text-ui-text-regular);
+}
+
+.empty[data-size='small'] {
+  --_gap: var(--layout-tiny);
+  --_pad: var(--layout-default);
+  --_badge: var(--space-xxlarge);
+  --_icon: var(--space-medium);
+  --_title: var(--text-ui-text-bold);
+  --_description: var(--text-ui-text-small-regular);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  inline-size: var(--_badge);
+  block-size: var(--_badge);
+  border-radius: var(--radius-full);
+  color: var(--color-foreground-medium-emphasis);
+  background: var(--color-surface-level-3);
+}
+
+.empty[data-tone='error'] .icon {
+  color: var(--color-error);
+  background: var(--color-error-soft);
+}
+
+.icon > svg {
+  inline-size: var(--_icon);
+  block-size: var(--_icon);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-micro);
+  max-inline-size: var(--grid-column-3);
+}
+
+.title {
+  margin: 0;
+  font: var(--_title);
+  color: var(--color-foreground-high-emphasis);
+}
+
+.description {
+  margin: 0;
+  font: var(--_description);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--layout-tiny);
+}

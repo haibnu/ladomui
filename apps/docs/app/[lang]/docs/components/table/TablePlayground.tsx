@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Badge, Pagination, Table, type TableColumn } from '@ladom/ui';
+import { Badge, EmptyState, Pagination, Table, type TableColumn } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
@@ -19,8 +19,8 @@ const PEOPLE: Person[] = [
 ];
 const PAGE_SIZE = 4;
 const COPY = {
-  en: { sortable: 'Sortable columns', selectable: 'Row selection', paged: 'Pagination', empty: 'No rows', figma: 'Figma variant', code: 'Code', name: 'Name', team: 'Team', status: 'Status', projects: 'Projects', active: 'Active', away: 'Away', none: 'No people match.', selected: (n: number) => `${n} selected`, all: 'Select all rows', row: (p: Person) => `Select ${p.name}`, caption: 'People' },
-  tr: { sortable: 'Sıralanabilir sütunlar', selectable: 'Satır seçimi', paged: 'Sayfalama', empty: 'Satır yok', figma: 'Figma varyantı', code: 'Kod', name: 'Ad', team: 'Ekip', status: 'Durum', projects: 'Proje', active: 'Aktif', away: 'Uzakta', none: 'Eşleşen kişi yok.', selected: (n: number) => `${n} seçili`, all: 'Tüm satırları seç', row: (p: Person) => `${p.name} seç`, caption: 'Kişiler' },
+  en: { sortable: 'Sortable columns', selectable: 'Row selection', paged: 'Pagination', empty: 'No rows', figma: 'Figma variant', code: 'Code', name: 'Name', team: 'Team', status: 'Status', projects: 'Projects', active: 'Active', away: 'Away', none: 'No people match.', noneText: 'Try another search or filter.', selected: (n: number) => `${n} selected`, all: 'Select all rows', row: (p: Person) => `Select ${p.name}`, caption: 'People' },
+  tr: { sortable: 'Sıralanabilir sütunlar', selectable: 'Satır seçimi', paged: 'Sayfalama', empty: 'Satır yok', figma: 'Figma varyantı', code: 'Kod', name: 'Ad', team: 'Ekip', status: 'Durum', projects: 'Proje', active: 'Aktif', away: 'Uzakta', none: 'Eşleşen kişi yok.', noneText: 'Başka bir arama ya da filtre deneyin.', selected: (n: number) => `${n} seçili`, all: 'Tüm satırları seç', row: (p: Person) => `${p.name} seç`, caption: 'Kişiler' },
 };
 
 export function TablePlayground() {
@@ -55,7 +55,7 @@ export function TablePlayground() {
   ]}
   rows={people}
   rowKey={(p) => p.id}${selectable ? '\n  selectable\n  selected={selected}\n  onSelectedChange={setSelected}' : ''}
-  empty="${c.none}"
+  empty={<EmptyState size="medium" title="${c.none}" />}
 />${paged ? '\n<Pagination page={page} pageCount={pageCount} onPageChange={setPage} />' : ''}`;
   const figma = `Table\n.Table Header Cell › ↕ Sort=${sortable ? 'Ascending / Descending / None' : 'None'}\n.Table Cell › 🎛 Type=${selectable ? 'Checkbox + Text' : 'Text'}\n.Table Row › 🕹 State=Default / Hover${selectable ? ' / Selected' : ''}`;
 
@@ -71,7 +71,7 @@ export function TablePlayground() {
           selected={selected}
           onSelectedChange={setSelected}
           defaultSort={{ key: 'name', direction: 'ascending' }}
-          empty={c.none}
+          empty={<EmptyState size="medium" title={c.none} description={c.noneText} />}
           selectAllLabel={c.all}
           selectRowLabel={c.row}
         />
