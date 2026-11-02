@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Uploader, type UploaderFile } from '@ladom/ui';
+import { Button, Uploader, type UploaderFile } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -91,36 +92,18 @@ export function UploaderPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.direction}
-          <select value={direction} onChange={(e) => setDirection(e.target.value as 'horizontal' | 'vertical')}>
-            <option>horizontal</option>
-            <option>vertical</option>
-          </select>
-        </label>
-        <label>
-          {c.state}
-          <select value={state} onChange={(e) => setState(e.target.value as State)}>
-            <option>default</option>
-            <option>hover</option>
-            <option>pressed</option>
-            <option>drag</option>
-          </select>
-        </label>
+        <ControlSelect label={c.direction} value={direction} options={['horizontal', 'vertical'] as const} onChange={setDirection} />
+        <ControlSelect label={c.state} value={state} options={['default', 'hover', 'pressed', 'drag'] as const} onChange={setState} />
         {(
           [
             [c.error, error, setError],
             [c.disabled, disabled, setDisabled],
             [c.multiple, multiple, setMultiple],
           ] as [string, boolean, (v: boolean) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
-        <button type="button" onClick={() => setFiles([])} disabled={!files.length}>
+        ).map(([label, v, set]) => <ControlCheck key={label} label={label} checked={v} onChange={set} />)}
+        <Button variant="ghost" tone="secondary" size="small" onClick={() => setFiles([])} disabled={!files.length}>
           {c.reset}
-        </button>
+        </Button>
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

@@ -1,18 +1,5 @@
 .search {
-  box-sizing: border-box;
-  inline-size: 100%;
   max-inline-size: var(--grid-column-4);
-  padding: var(--space-small) var(--space-medium);
-  font: var(--text-ui-text-regular);
-  color: var(--color-foreground-high-emphasis);
-  background: var(--color-surface-level-1);
-  border: var(--border);
-  border-radius: var(--radius-form-element);
-}
-
-.search:focus-visible {
-  outline: none;
-  box-shadow: var(--shadow-focus-primary);
 }
 
 .empty {

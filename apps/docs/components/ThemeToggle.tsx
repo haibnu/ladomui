@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { IconDark, IconLight } from '@ladom/icons';
+import { Button } from '@ladom/ui';
 import { useLocale } from './useLocale';
-import styles from './shell.module.css';
 
 export const THEME_KEY = 'ladom-theme';
 
@@ -28,10 +28,5 @@ export function ThemeToggle() {
     }
   };
 
-  const Icon = dark ? IconLight : IconDark;
-  return (
-    <button type="button" className={styles.iconButton} onClick={toggle} aria-label={dark ? t.topBar.toLight : t.topBar.toDark}>
-      <Icon size={20} />
-    </button>
-  );
+  return <Button variant="ghost" tone="secondary" icon={dark ? IconLight : IconDark} onClick={toggle} aria-label={dark ? t.topBar.toLight : t.topBar.toDark} />;
 }

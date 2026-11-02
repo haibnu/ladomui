@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button, Drawer, Modal, type ModalSize } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -72,34 +73,13 @@ export function ModalPlayground({ kind = 'modal' }: { kind?: 'modal' | 'drawer' 
       </div>
       <div className={styles.controls}>
         {drawer ? (
-          <label>
-            {c.side}
-            <select value={side} onChange={(e) => setSide(e.target.value as 'right' | 'left')}>
-              <option>right</option>
-              <option>left</option>
-            </select>
-          </label>
+          <ControlSelect label={c.side} value={side} options={['right', 'left'] as const} onChange={setSide} />
         ) : (
-          <label>
-            {c.size}
-            <select value={size} onChange={(e) => setSize(e.target.value as ModalSize)}>
-              {SIZES.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-          </label>
+          <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
         )}
-        {(
-          [
-            [c.description, description, setDescription],
-            [c.footer, footer, setFooter],
-            [c.dismissible, dismissible, setDismissible],
-          ] as [string, boolean, (v: boolean) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
+        <ControlCheck label={c.description} checked={description} onChange={setDescription} />
+        <ControlCheck label={c.footer} checked={footer} onChange={setFooter} />
+        <ControlCheck label={c.dismissible} checked={dismissible} onChange={setDismissible} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Avatar, Button, Popover, type Placement } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -53,21 +54,8 @@ export function PopoverPlayground() {
         </Popover>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.type}
-          <select value={type} onChange={(e) => setType(e.target.value as 'default' | 'html')}>
-            <option value="default">default</option>
-            <option value="html">html</option>
-          </select>
-        </label>
-        <label>
-          {c.placement}
-          <select value={placement} onChange={(e) => setPlacement(e.target.value as Placement)}>
-            {PLACEMENTS.map((p) => (
-              <option key={p}>{p}</option>
-            ))}
-          </select>
-        </label>
+        <ControlSelect label={c.type} value={type} options={['default', 'html'] as const} onChange={setType} />
+        <ControlSelect label={c.placement} value={placement} options={PLACEMENTS} onChange={setPlacement} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

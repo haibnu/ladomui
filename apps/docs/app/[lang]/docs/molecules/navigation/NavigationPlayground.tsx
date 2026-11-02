@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { AppHeader, Avatar, Breadcrumb, Button, Input, PageHeader, PublicHeader, Segment, Tabs, Tooltip } from '@ladom/ui';
 import { IconEdit, IconInfo, IconShare } from '@ladom/icons';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -100,29 +101,20 @@ export function NavigationPlayground() {
         <div style={{ inlineSize: '100%', minInlineSize: 900 }}>{bar}</div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.kind}
-          <select value={kind} onChange={(e) => setKind(e.target.value as Kind)}>
-            <option value="app">App Header</option>
-            <option value="public">Public Page Navigation</option>
-          </select>
-        </label>
+        <ControlSelect
+          label={c.kind}
+          value={kind}
+          options={[
+            { value: 'app', label: 'App Header' },
+            { value: 'public', label: 'Public Page Navigation' },
+          ]}
+          onChange={setKind}
+        />
         {kind === 'public' ? (
-          <label>
-            {c.pub}
-            <select value={pub} onChange={(e) => setPub(e.target.value as typeof pub)}>
-              {Object.entries(c.pubTypes).map(([k, v]) => (
-                <option key={k} value={k}>
-                  {v}
-                </option>
-              ))}
-            </select>
-          </label>
+          <ControlSelect label={c.pub} value={pub} options={Object.entries(c.pubTypes).map(([k, v]) => ({ value: k as typeof pub, label: v }))} onChange={setPub} />
         ) : (
           (['large', 'back', 'breadcrumb', 'info', 'subtitle', 'actions', 'edit', 'search', 'right', 'tabs'] as const).map((k) => (
-            <label key={k} className={styles.check}>
-              <input type="checkbox" checked={f[k]} onChange={(e) => set(k, e.target.checked)} /> {c[k]}
-            </label>
+            <ControlCheck key={k} label={c[k]} checked={f[k]} onChange={(v) => set(k, v)} />
           ))
         )}
       </div>

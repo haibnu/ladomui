@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Accordion, Badge } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -45,17 +46,9 @@ export function AccordionPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        {(
-          [
-            [c.subtitle, subtitle, setSubtitle],
-            [c.bodycopy, bodycopy, setBodycopy],
-            [c.header, header, setHeader],
-          ] as [string, boolean, (v: boolean) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
+        <ControlCheck label={c.subtitle} checked={subtitle} onChange={setSubtitle} />
+        <ControlCheck label={c.bodycopy} checked={bodycopy} onChange={setBodycopy} />
+        <ControlCheck label={c.header} checked={header} onChange={setHeader} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

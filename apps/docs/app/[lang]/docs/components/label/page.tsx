@@ -128,10 +128,10 @@ export default async function LabelPage({ params }: Props) {
           <p>{c.usageText}</p>
           <Example
             stack
-            code={`import { Label } from '@ladom/ui';
+            code={`import { Input, Label } from '@ladom/ui';
 
 <Label htmlFor="email" withFormElement optional="${s.opt}">${s.label}</Label>
-<input id="email" type="email" />`}
+<Input id="email" type="email" />`}
           >
             <Label htmlFor="usage-email" withFormElement optional={s.opt}>
               {s.label}

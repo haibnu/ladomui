@@ -54,32 +54,10 @@
   color: var(--color-foreground-medium-emphasis);
 }
 
-.controls > label {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-micro);
-}
-
-.controls select,
-.controls input:not([type='checkbox']) {
-  font: var(--text-ui-text-regular);
-  color: var(--color-foreground-high-emphasis);
-  padding: var(--space-micro) var(--space-tiny);
-  background: var(--color-surface-level-2);
-  border: var(--border);
-  border-radius: var(--radius-form-element-small);
-}
-
 .toggles {
   display: flex;
   flex-direction: column;
   gap: var(--space-micro);
-}
-
-.check {
-  display: flex;
-  align-items: center;
-  gap: var(--space-tiny);
 }
 
 .output {

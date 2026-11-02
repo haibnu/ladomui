@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent } from 'react';
 import { Checkbox, ChoiceGroup, Radio, Switch } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -82,30 +83,11 @@ export function ChoicePlayground({ kind }: { kind: Kind }) {
     <div className={styles.playground}>
       <div className={styles.stage}>{preview}</div>
       <div className={styles.controls}>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value)}>
-            {sizes.map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.state}
-          <select value={state} onChange={(e) => setState(e.target.value as State)}>
-            <option>default</option>
-            <option>hover</option>
-            <option>focus</option>
-          </select>
-        </label>
-        <label>
-          {c.label}
-          <input value={label} onChange={(e) => setLabel(e.target.value)} />
-        </label>
+        <ControlSelect label={c.size} value={size} options={sizes} onChange={setSize} />
+        <ControlSelect label={c.state} value={state} options={['default', 'hover', 'focus'] as const} onChange={setState} />
+        <ControlText label={c.label} value={label} onChange={setLabel} />
         {toggles.map(([text, value, set]) => (
-          <label key={text} className={styles.check}>
-            <input type="checkbox" checked={value} onChange={(e) => set(e.target.checked)} /> {text}
-          </label>
+          <ControlCheck key={text} label={text} checked={value} onChange={set} />
         ))}
       </div>
       <div className={styles.output}>

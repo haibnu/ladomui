@@ -46,24 +46,6 @@
   background: var(--color-surface-level-3);
 }
 
-.iconButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-tiny);
-  color: var(--color-foreground-medium-emphasis);
-  background: none;
-  border: none;
-  border-radius: var(--radius-form-element-small);
-  cursor: pointer;
-}
-
-.iconButton:hover {
-  color: var(--color-foreground-high-emphasis);
-  background: var(--color-surface-level-3);
-}
-
-.iconButton:focus-visible,
 .topLink:focus-visible,
 .navLink:focus-visible,
 .searchButton:focus-visible,
@@ -137,11 +119,6 @@
 .searchInput {
   flex: 1;
   min-inline-size: 0;
-  font: var(--text-ui-text-lead-regular);
-  color: var(--color-foreground-high-emphasis);
-  background: none;
-  border: none;
-  outline: none;
 }
 
 .searchResults {
@@ -298,30 +275,6 @@ a.navLink:hover {
 .tocLink:hover,
 .tocLink[aria-current] {
   color: var(--color-foreground-high-emphasis);
-}
-
-/* Mobile drawer */
-.drawer {
-  inline-size: min(var(--grid-column-3), 85vw);
-  max-block-size: 100vh;
-  block-size: 100vh;
-  margin: 0;
-  padding: var(--space-medium);
-  color: var(--color-foreground-high-emphasis);
-  background: var(--color-surface-level-1);
-  border: none;
-  box-shadow: var(--shadow-form-level-1);
-}
-
-.drawer::backdrop {
-  background: var(--color-component-modal-overlay);
-}
-
-.drawerHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-block-end: var(--space-medium);
 }
 
 /* Page content */

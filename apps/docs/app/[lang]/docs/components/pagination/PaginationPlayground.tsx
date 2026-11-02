@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Pagination } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlNumber, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -36,28 +37,18 @@ export function PaginationPlayground() {
         />
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.pages}
-          <input
-            type="number"
-            min={1}
-            max={99}
-            value={pageCount}
-            onChange={(e) => {
-              const n = Math.max(1, Number(e.target.value) || 1);
-              setPageCount(n);
-              setPage((p) => Math.min(p, n));
-            }}
-          />
-        </label>
-        <label>
-          {c.siblings}
-          <select value={siblings} onChange={(e) => setSiblings(Number(e.target.value))}>
-            {[0, 1, 2].map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
-        </label>
+        <ControlNumber
+          label={c.pages}
+          value={pageCount}
+          min={1}
+          max={99}
+          onChange={(v) => {
+            const n = Math.max(1, v || 1);
+            setPageCount(n);
+            setPage((p) => Math.min(p, n));
+          }}
+        />
+        <ControlSelect label={c.siblings} value={String(siblings)} options={['0', '1', '2']} onChange={(v) => setSiblings(Number(v))} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

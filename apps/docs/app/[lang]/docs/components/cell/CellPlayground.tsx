@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Avatar, Badge, Cell, type CellSize } from '@ladom/ui';
 import { IconAdd, IconArrowRight } from '@ladom/icons';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -85,29 +86,11 @@ export function CellPlayground() {
         <div style={{ inlineSize: 320 }}>{cell}</div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.type}
-          <select value={type} onChange={(e) => setType(e.target.value as Type)}>
-            {Object.keys(FIGMA_TYPE).map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as CellSize)}>
-            <option>medium</option>
-            <option>small</option>
-          </select>
-        </label>
-        <label>
-          {c.text}
-          <input value={text} onChange={(e) => setText(e.target.value)} />
-        </label>
+        <ControlSelect label={c.type} value={type} options={Object.keys(FIGMA_TYPE) as Type[]} onChange={setType} />
+        <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
+        <ControlText label={c.text} value={text} onChange={setText} />
         {toggles.map((k) => (
-          <label key={k} className={styles.check}>
-            <input type="checkbox" checked={on(k)} onChange={(e) => setFlags({ ...flags, [k]: e.target.checked })} /> {c[k]}
-          </label>
+          <ControlCheck key={k} label={c[k]} checked={on(k)} onChange={(v) => setFlags({ ...flags, [k]: v })} />
         ))}
       </div>
       <div className={styles.output}>

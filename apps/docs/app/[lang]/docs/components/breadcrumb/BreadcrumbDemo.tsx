@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Breadcrumb } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -38,9 +39,7 @@ export function BreadcrumbDemo() {
         )}
       </div>
       <div className={styles.controls}>
-        <label className={styles.check}>
-          <input type="checkbox" checked={back} onChange={(e) => setBack(e.target.checked)} /> {c.back}
-        </label>
+        <ControlCheck label={c.back} checked={back} onChange={setBack} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

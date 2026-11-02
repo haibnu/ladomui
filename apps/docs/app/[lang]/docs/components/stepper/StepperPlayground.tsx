@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button, Stepper } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -38,14 +39,7 @@ export function StepperPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.count}
-          <select value={count} onChange={(e) => setCount(Number(e.target.value))}>
-            {[2, 3, 4, 5, 6].map((n) => (
-              <option key={n}>{n}</option>
-            ))}
-          </select>
-        </label>
+        <ControlSelect label={c.count} value={String(count)} options={[2, 3, 4, 5, 6].map(String)} onChange={(v) => setCount(Number(v))} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

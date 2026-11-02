@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Avatar, type AvatarSize } from '@ladom/ui';
 import { IconAdd } from '@ladom/icons';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -47,39 +48,12 @@ export function AvatarPlayground() {
         <Avatar size={size} status={status} notification={notification ? 2 : undefined} data-state={state === 'hover' ? 'hover' : undefined} {...content} />
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.content}
-          <select value={kind} onChange={(e) => setKind(e.target.value as Kind)}>
-            <option>image</option>
-            <option>name</option>
-            <option>icon</option>
-          </select>
-        </label>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as AvatarSize)}>
-            {SIZES.map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {c.state}
-          <select value={state} onChange={(e) => setState(e.target.value as State)}>
-            <option>default</option>
-            <option>hover</option>
-          </select>
-        </label>
-        <label>
-          {c.name}
-          <input value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
-        <label className={styles.check}>
-          <input type="checkbox" checked={status} onChange={(e) => setStatus(e.target.checked)} /> {c.status}
-        </label>
-        <label className={styles.check}>
-          <input type="checkbox" checked={notification} onChange={(e) => setNotification(e.target.checked)} /> {c.notification}
-        </label>
+        <ControlSelect label={c.content} value={kind} options={['image', 'name', 'icon'] as const} onChange={setKind} />
+        <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
+        <ControlSelect label={c.state} value={state} options={['default', 'hover'] as const} onChange={setState} />
+        <ControlText label={c.name} value={name} onChange={setName} />
+        <ControlCheck label={c.status} checked={status} onChange={setStatus} />
+        <ControlCheck label={c.notification} checked={notification} onChange={setNotification} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

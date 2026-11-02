@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Segment, type SegmentOption, type SegmentSize } from '@ladom/ui';
 import { IconDateRange, IconList, IconMap } from '@ladom/icons';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -49,39 +50,12 @@ export function SegmentPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as SegmentSize)}>
-            <option>medium</option>
-            <option>small</option>
-          </select>
-        </label>
-        <label>
-          {c.count}
-          <select value={count} onChange={(e) => setCount(Number(e.target.value))}>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </label>
-        <label>
-          {c.item}
-          <select value={item} onChange={(e) => setItem(e.target.value as ItemType)}>
-            {Object.keys(FIGMA_ITEM).map((k) => (
-              <option key={k}>{k}</option>
-            ))}
-          </select>
-        </label>
-        {(
-          [
-            [c.fluid, fluid, setFluid],
-            [c.disabled, disabled, setDisabled],
-            [c.spacing, spacing, setSpacing],
-          ] as [string, boolean, (v: boolean) => void][]
-        ).map(([label, v, set]) => (
-          <label key={label} className={styles.check}>
-            <input type="checkbox" checked={v} onChange={(e) => set(e.target.checked)} /> {label}
-          </label>
-        ))}
+        <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
+        <ControlSelect label={c.count} value={String(count)} options={['2', '3']} onChange={(v) => setCount(Number(v))} />
+        <ControlSelect label={c.item} value={item} options={Object.keys(FIGMA_ITEM) as ItemType[]} onChange={setItem} />
+        <ControlCheck label={c.fluid} checked={fluid} onChange={setFluid} />
+        <ControlCheck label={c.disabled} checked={disabled} onChange={setDisabled} />
+        <ControlCheck label={c.spacing} checked={spacing} onChange={setSpacing} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>

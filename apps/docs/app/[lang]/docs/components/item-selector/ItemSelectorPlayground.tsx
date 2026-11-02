@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FormField, ItemSelector } from '@ladom/ui';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -69,13 +70,9 @@ export function ItemSelectorPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label className={styles.check}>
-          <input type="checkbox" checked={Boolean(value)} onChange={(e) => setValue(e.target.checked ? FOLDERS[0]! : '')} /> {c.selected}
-        </label>
+        <ControlCheck label={c.selected} checked={Boolean(value)} onChange={(v) => setValue(v ? FOLDERS[0]! : '')} />
         {(['hover', 'disabled', 'error', 'label', 'hint', 'spacing'] as const).map((k) => (
-          <label key={k} className={styles.check}>
-            <input type="checkbox" checked={flags[k]} onChange={(e) => set(k, e.target.checked)} /> {c[k]}
-          </label>
+          <ControlCheck key={k} label={c[k]} checked={flags[k]} onChange={(v) => set(k, v)} />
         ))}
       </div>
       <div className={styles.output}>

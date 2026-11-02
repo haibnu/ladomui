@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { FormField, Input, type InputSize } from '@ladom/ui';
 import { IconEmoji, IconProfile } from '@ladom/icons';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
@@ -94,53 +95,17 @@ export function InputPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
-        <label>
-          {c.type}
-          <select value={kind} onChange={(e) => setKind(e.target.value as Kind)}>
-            <option>text</option>
-            <option>search</option>
-            <option>password</option>
-          </select>
-        </label>
-        <label>
-          {c.size}
-          <select value={size} onChange={(e) => setSize(e.target.value as InputSize)}>
-            <option>medium</option>
-            <option>small</option>
-          </select>
-        </label>
-        <label>
-          {c.state}
-          <select value={state} onChange={(e) => setState(e.target.value as State)}>
-            <option>default</option>
-            <option>hover</option>
-            <option>focus</option>
-            <option>typed</option>
-          </select>
-        </label>
-        <label>
-          {c.placeholder}
-          <input value={placeholder} onChange={(e) => setPlaceholder(e.target.value)} />
-        </label>
-        <label>
-          {c.prefix}
-          <input value={prefix} onChange={(e) => setPrefix(e.target.value)} placeholder="https://" />
-        </label>
-        <label>
-          {c.suffix}
-          <input value={suffix} onChange={(e) => setSuffix(e.target.value)} placeholder="@gmail.com" />
-        </label>
-        {[
-          [c.iconL, iconL, setIconL],
-          [c.iconR, iconR, setIconR],
-          [c.error, error, setError],
-          [c.disabled, disabled, setDisabled],
-          [c.field, inField, setInField],
-        ].map(([label, value, set]) => (
-          <label key={label as string} className={styles.check}>
-            <input type="checkbox" checked={value as boolean} onChange={(e) => (set as (v: boolean) => void)(e.target.checked)} /> {label as string}
-          </label>
-        ))}
+        <ControlSelect label={c.type} value={kind} options={['text', 'search', 'password'] as const} onChange={setKind} />
+        <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
+        <ControlSelect label={c.state} value={state} options={['default', 'hover', 'focus', 'typed'] as const} onChange={setState} />
+        <ControlText label={c.placeholder} value={placeholder} onChange={setPlaceholder} />
+        <ControlText label={c.prefix} value={prefix} onChange={setPrefix} placeholder="https://" />
+        <ControlText label={c.suffix} value={suffix} onChange={setSuffix} placeholder="@gmail.com" />
+        <ControlCheck label={c.iconL} checked={iconL} onChange={setIconL} />
+        <ControlCheck label={c.iconR} checked={iconR} onChange={setIconR} />
+        <ControlCheck label={c.error} checked={error} onChange={setError} />
+        <ControlCheck label={c.disabled} checked={disabled} onChange={setDisabled} />
+        <ControlCheck label={c.field} checked={inField} onChange={setInField} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>
