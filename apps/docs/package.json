@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node ../../scripts/registry/build.mjs && next dev",
-    "build": "node ../../scripts/registry/build.mjs && next build",
+    "build": "node ../../scripts/pro-checkout.mjs && node ../../scripts/registry/build.mjs && next build",
     "start": "next start",
     "typecheck": "node ../../scripts/registry/build.mjs && next typegen && tsc --noEmit",
     "landing:art": "node scripts/landing-art.mjs"

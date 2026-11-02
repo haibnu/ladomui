@@ -1,8 +1,14 @@
+import { existsSync } from 'node:fs';
 import type { NextConfig } from 'next';
+
+// The Pro components come from the private submodule packages/ui/src/pro; without it the molecule
+// pages render a notice instead (components/ProMissing.tsx).
+const hasPro = existsSync(new URL('../../packages/ui/src/pro/index.ts', import.meta.url));
 
 const nextConfig: NextConfig = {
   // @ladom/ui and @ladom/icons ship TypeScript source (and CSS Modules); Next compiles them.
   transpilePackages: ['@ladom/ui', '@ladom/icons'],
+  ...(hasPro ? {} : { turbopack: { resolveAlias: { '@ladom/ui/pro': './components/ProMissing.tsx' } }, typescript: { ignoreBuildErrors: true } }),
   redirects: async () => [
     // The site lives under /en and /tr: Turkish browsers go to /tr, everyone else to /en.
     { source: '/', has: [{ type: 'header', key: 'accept-language', value: 'tr(?:[-,;].*)?' }], destination: '/tr', permanent: false },
