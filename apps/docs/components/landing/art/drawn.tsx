@@ -463,6 +463,24 @@ const Accordion = () => (
   </Art>
 );
 
+const FileShare = () => (
+  <Art>
+    <Box x={-120} y={-85} w={240} d={170} h={6} r={14} top={FILL}>
+      <Bar x={18} y={18} w={70} h={6} />
+      <rect x={18} y={36} width={140} height={22} rx={8} fill="#FFFFFF" stroke={SIDE} />
+      <rect x={166} y={36} width={56} height={22} rx={8} fill={INK} />
+      {[0, 1].map((i) => (
+        <g key={i} transform={`translate(0 ${i * 36})`}>
+          <circle cx={30} cy={96} r={11} fill={SIDE} />
+          <Bar x={50} y={88} w={80} />
+          <Bar x={50} y={102} w={56} h={6} />
+          <rect x={170} y={88} width={52} height={18} rx={9} fill="#FFFFFF" stroke={SIDE} />
+        </g>
+      ))}
+    </Box>
+  </Art>
+);
+
 const Navigation = () => (
   <Art>
     <Box x={-130} y={-20} w={260} d={110} h={4} r={10} top={FILL} />
@@ -504,5 +522,6 @@ export const DRAWN: Record<string, () => ReactNode> = {
   tooltip: Tooltip,
   uploader: Uploader,
   accordion: Accordion,
+  'file-share': FileShare,
   navigation: Navigation,
 };

@@ -5,3 +5,4 @@ export const Accordion = Missing;
 export const PageHeader = Missing;
 export const AppHeader = Missing;
 export const PublicHeader = Missing;
+export const FileShare = Missing;

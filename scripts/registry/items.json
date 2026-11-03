@@ -37,6 +37,7 @@
     "alert": { "folder": "Alert", "tier": "free", "description": "An inline message about the page." },
     "toast": { "folder": "Toast", "tier": "free", "description": "A short message after an action, with ToastProvider and useToast." },
     "accordion": { "folder": "Accordion", "tier": "pro", "description": "A card whose content opens and closes under its title." },
-    "navigation": { "folder": "Navigation", "tier": "pro", "description": "PageHeader, AppHeader and PublicHeader." }
+    "navigation": { "folder": "Navigation", "tier": "pro", "description": "PageHeader, AppHeader and PublicHeader." },
+    "file-share": { "folder": "FileShare", "tier": "pro", "description": "A \"Share this file\" panel: link with Copy Link and the people with access." }
   }
 }
