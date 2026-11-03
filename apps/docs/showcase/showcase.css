@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
 
 /* The showcase's own layout. The tokens are generated into tokens.css, scoped to
-   .ladomui-showcase; everything here sits under that class too, so nothing reaches the host page. */
+   .ladomui-showcase; everything here sits under that class too, so nothing reaches the host page.
+
+   Wide containers (data-layout="canvas", set by entry.tsx) show the Figma composition: a fixed
+   1922 x 1081 canvas of real-size components, scaled to the container width with --ls-scale. That is
+   the Figma kit at 100% / 0.745, so --k below is one Figma unit. Narrow containers (data-layout="flow")
+   stack the same cards in 2 or 1 columns at real size. */
 
 .ladomui-showcase {
   --font-hanken-grotesk: 'Hanken Grotesk';
+  --k: 1.3423px;
+  --ls-scale: 1;
   container: ladomui / inline-size;
+  position: relative;
   box-sizing: border-box;
-  padding: var(--layout-default);
-  border-radius: var(--radius-card);
-  background: var(--color-surface-level-1);
   color: var(--color-foreground-high-emphasis);
   font: var(--text-ui-text-regular);
   text-align: start;
@@ -20,29 +25,40 @@
   letter-spacing: normal;
 }
 
-.ls-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
-  gap: var(--layout-default);
+.ls-stage {
+  position: relative;
 }
 
-@container ladomui (min-width: 34rem) {
-  .ls-wide {
-    grid-column: span 2;
-  }
+.ls-canvas {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card);
+  background: var(--color-surface-level-1);
 }
 
+/* ---- cards ---- */
 .ls-card {
+  position: relative;
   box-sizing: border-box;
   min-inline-size: 0;
-  padding: var(--layout-default);
+  min-block-size: 0;
+  padding: calc(30 * var(--k));
+  overflow: clip;
   border-radius: var(--radius-card);
   background: var(--color-surface-level-2);
 }
 
+/* An open menu may leave its card; the rest of the content is clipped again when it closes. */
+.ls-card:not(.c-nav):has([aria-expanded='true']) {
+  z-index: 5;
+  overflow: visible;
+}
+
 .ls-card-title {
-  margin: 0 0 var(--layout-small);
+  margin: 0 0 var(--layout-default);
   font: var(--text-ui-caption);
+  letter-spacing: 0.12em !important;
   text-transform: var(--text-ui-caption-text-transform);
   color: var(--color-foreground-low-emphasis);
 }
@@ -58,90 +74,408 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--layout-tiny);
+  gap: var(--layout-default);
 }
 
-.ls-row-end {
-  align-items: flex-end;
-}
-
-.ls-caption {
+.ls-caption,
+.ls-subtitle {
   margin: 0;
-  font: var(--text-ui-text-small-bold);
+  font: var(--text-ui-text-small-regular);
   color: var(--color-foreground-medium-emphasis);
 }
 
-/* The month is 7 fixed 48px cells wide; it shrinks in narrow containers. */
-.ls-calendar {
-  overflow-x: auto;
+.ls-subtitle {
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-high-emphasis);
 }
 
-@container ladomui (max-width: 25rem) {
-  .ls-cal {
-    zoom: 0.8;
+.ls-hint {
+  margin: 0;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.ls-round {
+  border-radius: var(--radius-full);
+}
+
+/* ---- canvas layout ---- */
+.ladomui-showcase[data-layout='canvas'] .ls-stage {
+  inline-size: 100%;
+  block-size: calc(1081px * var(--ls-scale));
+}
+
+.ladomui-showcase[data-layout='canvas'] .ls-canvas {
+  position: absolute;
+  inset: 0 auto auto 0;
+  inline-size: 1922px;
+  block-size: 1081px;
+  padding: calc(36 * var(--k));
+  gap: calc(36 * var(--k));
+  transform: scale(var(--ls-scale));
+  transform-origin: 0 0;
+}
+
+.ladomui-showcase[data-layout='canvas'] .ls-top {
+  display: grid;
+  flex: none;
+  grid-template-columns: calc(295 * var(--k)) calc(35 * var(--k)) calc(271 * var(--k)) calc(36 * var(--k)) calc(271 * var(--k)) calc(44 * var(--k)) calc(191 * var(--k)) calc(36 * var(--k)) calc(181 * var(--k));
+  grid-template-rows: calc(112 * var(--k)) calc(35 * var(--k)) calc(57 * var(--k)) calc(35 * var(--k)) calc(39 * var(--k)) calc(36 * var(--k)) calc(144 * var(--k));
+}
+
+.ladomui-showcase[data-layout='canvas'] .ls-bottom {
+  display: grid;
+  flex: none;
+  grid-template-columns: calc(400 * var(--k)) calc(41 * var(--k)) calc(475 * var(--k)) calc(36 * var(--k)) calc(408 * var(--k));
+  block-size: calc(240 * var(--k));
+}
+
+.ladomui-showcase[data-layout='canvas'] .c-date { grid-area: 1 / 1 / 6 / 2; }
+.ladomui-showcase[data-layout='canvas'] .c-icons { grid-area: 7 / 1 / 8 / 2; }
+.ladomui-showcase[data-layout='canvas'] .c-buttons { grid-area: 1 / 3 / 2 / 4; }
+.ladomui-showcase[data-layout='canvas'] .c-avatar { grid-area: 1 / 5 / 2 / 6; }
+.ladomui-showcase[data-layout='canvas'] .c-nav { grid-area: 3 / 3 / 8 / 6; }
+.ladomui-showcase[data-layout='canvas'] .c-sizes { grid-area: 1 / 7 / 8 / 8; }
+.ladomui-showcase[data-layout='canvas'] .c-segment { grid-area: 1 / 9 / 4 / 10; }
+.ladomui-showcase[data-layout='canvas'] .c-system { grid-area: 5 / 9 / 8 / 10; }
+.ladomui-showcase[data-layout='canvas'] .c-dropdown { grid-area: 1 / 1; }
+.ladomui-showcase[data-layout='canvas'] .c-share { grid-area: 1 / 3; }
+.ladomui-showcase[data-layout='canvas'] .c-status { grid-area: 1 / 5; }
+
+/* The share card is the FileShare panel itself, filling the cell. */
+.c-share {
+  padding: 0;
+}
+
+.ladomui-showcase .ls-share {
+  box-sizing: border-box;
+  block-size: 100%;
+  padding: calc(30 * var(--k));
+}
+
+/* ---- flow layout ---- */
+.ladomui-showcase[data-layout='flow'] {
+  padding: var(--layout-default);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-level-1);
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-canvas {
+  background: none;
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-top,
+.ladomui-showcase[data-layout='flow'] .ls-bottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--layout-default);
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-bottom {
+  margin-block-start: var(--layout-default);
+}
+
+@container ladomui (min-width: 34rem) {
+  .ladomui-showcase[data-layout='flow'] .ls-top,
+  .ladomui-showcase[data-layout='flow'] .ls-bottom {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ladomui-showcase[data-layout='flow'] .c-nav,
+  .ladomui-showcase[data-layout='flow'] .c-share {
+    grid-column: 1 / -1;
   }
 }
 
-@container ladomui (max-width: 19rem) {
-  .ls-cal {
+.ladomui-showcase[data-layout='flow'] .ls-card {
+  overflow: visible;
+  padding: var(--layout-default);
+}
+
+.ladomui-showcase[data-layout='flow'] .c-share {
+  padding: 0;
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-share {
+  padding: var(--layout-default);
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-icons {
+  flex-wrap: wrap;
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-app {
+  inline-size: auto;
+  block-size: auto;
+  min-block-size: 16rem;
+  overflow: clip;
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-dropdown-card,
+.ladomui-showcase[data-layout='flow'] .ls-status {
+  flex-direction: column;
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-select {
+  inline-size: 100%;
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-tones {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-plate {
+  flex-wrap: wrap;
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-plate-title {
+  font: var(--text-ui-text-lead-bold);
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-cal {
+  zoom: 0.8;
+}
+
+@container ladomui (max-width: 25rem) {
+  .ladomui-showcase[data-layout='flow'] .ls-cal {
     zoom: 0.68;
   }
 }
 
-.ls-nav {
-  display: flex;
-  flex-direction: column;
-  gap: var(--layout-small);
-  min-inline-size: 0;
+/* ---- parts ---- */
+.ls-date-input {
+  inline-size: calc(179 * var(--k));
+  max-inline-size: 100%;
+}
+
+.ls-cal {
+  margin-block-start: calc(2 * var(--k));
 }
 
 .ls-icons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
-  gap: var(--layout-tiny);
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(5 * var(--k)) calc(3 * var(--k));
+  inline-size: calc(6 * 96 * var(--k) + 5 * 3 * var(--k));
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-icons {
+  inline-size: auto;
 }
 
 .ls-icon {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 1;
-  border-radius: var(--radius-form-element-small);
-  background: var(--color-surface-level-1);
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--layout-tiny);
+  box-sizing: border-box;
+  inline-size: calc(96 * var(--k));
+  block-size: calc(66 * var(--k));
   color: var(--color-foreground-high-emphasis);
 }
 
-.ls-dropdown {
-  box-shadow: var(--shadow-card-style-1);
+.ls-pill {
+  padding: 0 var(--layout-small);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-level-3);
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+  white-space: nowrap;
 }
 
-.ls-menu {
+.ls-btn-groups {
+  display: flex;
+  gap: var(--layout-large);
+  align-items: flex-start;
+}
+
+.ls-btn-group {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--layout-default);
+}
+
+.ls-avatar-row {
+  flex-wrap: nowrap;
+  gap: calc(20 * var(--k));
+}
+
+.ladomui-showcase[data-layout='flow'] .ls-btn-groups,
+.ladomui-showcase[data-layout='flow'] .ls-avatar-row {
+  flex-wrap: wrap;
+}
+
+/* Navigation: a rail and the app header, wider than the card on purpose. */
+.ls-app {
+  display: flex;
+  inline-size: calc(959 * var(--k));
+  block-size: calc(597 * var(--k));
+  margin-block-start: calc(30 * var(--k));
+  border-radius: var(--radius-form-element);
+  background: var(--color-surface-level-1);
+  overflow: clip;
+}
+
+.ls-rail {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layout-default);
+  box-sizing: border-box;
+  inline-size: calc(48 * var(--k));
+  padding-block: var(--layout-tiny);
+  border-inline-end: var(--border-width) solid var(--color-surface-level-3);
+}
+
+.ls-logo {
+  margin-block-end: var(--layout-default);
+}
+
+.ls-app-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.ls-nav-title {
+  font: var(--text-ui-text-regular);
+  white-space: nowrap;
+}
+
+.ls-app-main > header {
+  border-block-end: var(--border-width) solid var(--color-surface-level-3);
+}
+
+/* the open Breadcrumb menu belongs to the app, so it must not be pushed out by the header */
+.ls-app-main > :nth-child(2) {
   position: relative;
-  display: inline-block;
-  align-self: flex-start;
+  min-block-size: 0;
 }
 
-.ls-menu-list {
-  position: absolute;
-  z-index: 2;
-  inset-block-start: calc(100% + var(--space-micro));
-  inset-inline-start: 0;
-  min-inline-size: 11rem;
+.ls-app-main > :nth-child(2) {
+  overflow: visible;
 }
 
-.ls-menu-item {
+.ls-sizes {
+  display: flex;
+  flex-direction: column;
+  gap: calc(14 * var(--k));
+}
+
+.ls-size-rows {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--k));
+}
+
+.ls-size-row {
+  display: grid;
+  grid-template-columns: calc(48 * var(--k)) auto;
+  align-items: center;
+  gap: var(--layout-default);
+}
+
+.ls-ratios {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(12 * var(--k));
+  margin-block-start: calc(8 * var(--k));
+}
+
+.ls-ratios span {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: calc(36 * var(--k));
+  border-radius: var(--radius-form-element-small);
+  background: var(--color-surface-level-3);
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.ls-segments {
+  align-items: flex-start;
+}
+
+.ls-system {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--layout-default);
+  align-items: start;
+}
+
+.ls-dropdown-card {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(30 * var(--k));
+}
+
+.ls-actions {
+  flex: none;
+  align-items: flex-start;
+}
+
+.ls-select {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.ls-option {
   border-radius: var(--radius-form-element-small);
   outline: none;
   cursor: pointer;
 }
 
-.ls-menu-item:focus-visible {
+.ls-option:focus-visible {
   box-shadow: var(--shadow-focus-primary);
 }
 
-.ls-variants {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+.ls-status {
+  display: flex;
+  gap: calc(30 * var(--k));
+}
+
+.ls-status-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: calc(36 * var(--k));
+  min-inline-size: 0;
+}
+
+.ls-plate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--layout-default);
+  padding: var(--layout-default);
+  border-radius: var(--radius-form-element);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-card-style-1);
+}
+
+.ls-plate-title {
+  font: var(--text-ui-title);
+  white-space: nowrap;
+}
+
+.ls-tones {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--layout-default);
+}
+
+.ls-tone {
+  display: grid;
+  grid-template-columns: calc(48 * var(--k)) auto;
+  align-items: center;
+  gap: var(--layout-tiny);
 }
 
 /* Radius: Modern is the token default. Rounded and Circle raise the radius tokens. */

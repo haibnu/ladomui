@@ -15,6 +15,9 @@ export type MountOptions = Partial<Settings> & {
 };
 
 const VERSION = 'v1';
+// The Figma composition is 1922px wide at real size; below CANVAS_MIN px the cards stack instead.
+const CANVAS_WIDTH = 1922;
+const CANVAS_MIN = 960;
 const ATTRS = { theme: 'data-ladomui-theme', radius: 'data-ladomui-radius', mode: 'data-ladomui-mode', density: 'data-ladomui-density' } as const;
 
 // The script's own address; showcase.css sits beside it.
@@ -40,6 +43,7 @@ export class ShowcaseInstance {
   private react: Root;
   private state: Settings = { ...DEFAULTS };
   private observer: MutationObserver;
+  private fit: ResizeObserver;
   private onSet = (e: Event) => this.set((e as CustomEvent<Partial<Settings>>).detail ?? {});
 
   constructor(container: HTMLElement, options: MountOptions = {}) {
@@ -48,6 +52,14 @@ export class ShowcaseInstance {
     this.root.className = 'ladomui-showcase';
     container.appendChild(this.root);
     this.react = createRoot(this.root);
+    // Wide containers show the fixed Figma composition scaled to fit; narrow ones stack the cards.
+    this.fit = new ResizeObserver(() => {
+      const w = this.root.clientWidth;
+      const canvas = w >= CANVAS_MIN;
+      this.root.dataset.layout = canvas ? 'canvas' : 'flow';
+      this.root.style.setProperty('--ls-scale', canvas ? String(w / CANVAS_WIDTH) : '1');
+    });
+    this.fit.observe(this.root);
     this.react.render(<Showcase locale={options.locale ?? (container.getAttribute('data-ladomui-locale') as Locale) ?? 'en'} />);
 
     // Initial values: options, then the container's data-ladomui-* attributes.
@@ -101,6 +113,7 @@ export class ShowcaseInstance {
 
   destroy() {
     this.observer.disconnect();
+    this.fit.disconnect();
     this.element.removeEventListener('ladomui:set', this.onSet);
     this.react.unmount();
     this.root.remove();
