@@ -81,6 +81,7 @@ const COPY = {
     tones: ['Default', 'Primary', 'Success', 'Error', 'Warning'],
     system: 'System',
     ui: 'UI',
+    status: 'Status',
     add: 'Add',
   },
   tr: {
@@ -121,6 +122,7 @@ const COPY = {
     tones: ['Varsayılan', 'Birincil', 'Başarılı', 'Hata', 'Uyarı'],
     system: 'Sistem',
     ui: 'UI',
+    status: 'Durum',
     add: 'Ekle',
   },
 };
@@ -164,215 +166,203 @@ export function Showcase({ locale }: { locale: Locale }) {
   return (
     <div className="ls-stage">
       <div className="ls-canvas">
-        <div className="ls-top">
-          <Card title={c.datePicker} className="c-date">
-            <div className="ls-stack">
-              <Input className="ls-date-input" iconLeft={<IconProfile />} placeholder={c.datePlaceholder} aria-label={c.datePicker} />
-              <div className="ls-cal">
-                <DatePicker mode="range" value={range} onChange={setRange} defaultMonth={new Date(2021, 0, 1)} locale={locale} weekStartsOn={1} />
-              </div>
+        <Card title={c.datePicker} className="c-date">
+          <div className="ls-stack">
+            <Input className="ls-date-input" iconLeft={<IconProfile />} placeholder={c.datePlaceholder} aria-label={c.datePicker} />
+            <div className="ls-cal">
+              <DatePicker mode="range" value={range} onChange={setRange} defaultMonth={new Date(2021, 0, 1)} locale={locale} weekStartsOn={1} />
             </div>
-          </Card>
+          </div>
+        </Card>
 
-          <Card title={c.icons} className="c-icons">
-            <div className="ls-icons">
-              {ICONS.map((Icon, i) => (
-                <span key={i} className="ls-icon">
-                  <Icon size={24} aria-hidden="true" />
-                  <span className="ls-pill">{c.iconNames[i]}</span>
-                </span>
-              ))}
+        <Card className="c-buttons">
+          <div className="ls-btn-groups">
+            <div className="ls-btn-group">
+              <p className="ls-caption">{c.button}</p>
+              <Button>{c.button}</Button>
             </div>
-          </Card>
-
-          <Card className="c-buttons">
-            <div className="ls-btn-groups">
-              <div className="ls-btn-group">
-                <p className="ls-caption">{c.button}</p>
-                <Button size="medium">{c.button}</Button>
-              </div>
-              <div className="ls-btn-group">
-                <p className="ls-caption">{c.dropdownButton}</p>
-                <Button dropdown>{c.button}</Button>
-              </div>
-              <div className="ls-btn-group">
-                <p className="ls-caption">{c.iconButton}</p>
-                <Button icon={IconSearch} aria-label={c.search} className="ls-round" />
-              </div>
+            <div className="ls-btn-group">
+              <p className="ls-caption">{c.dropdownButton}</p>
+              <Button dropdown>{c.button}</Button>
             </div>
-          </Card>
+            <div className="ls-btn-group">
+              <p className="ls-caption">{c.iconButton}</p>
+              <Button icon={IconSearch} aria-label={c.search} className="ls-round" />
+            </div>
+          </div>
+        </Card>
 
-          <Card title={c.avatar} className="c-avatar">
-            <div className="ls-row ls-avatar-row">
-              <AvatarGroup>
-                <Avatar size="small" src={face1} name="Olivia Martin" />
-                <Avatar size="small" src={face2} name="Isabella Nguyen" />
-                <Avatar size="small" src={face3} name="Sofia Davis" />
-                <Button icon={IconAdd} size="small" tone="tertiary" aria-label={c.add} className="ls-round" />
-              </AvatarGroup>
+        <Card title={c.avatar} className="c-avatar">
+          <div className="ls-stack">
+            <AvatarGroup>
+              <Avatar size="small" src={face1} name="Olivia Martin" />
+              <Avatar size="small" src={face2} name="Isabella Nguyen" />
+              <Avatar size="small" src={face3} name="Sofia Davis" />
+              <Button icon={IconAdd} size="small" tone="tertiary" aria-label={c.add} className="ls-round" />
+            </AvatarGroup>
+            <div className="ls-row">
               <Avatar size="medium" src={face1} name="Olivia Martin" status />
               <Avatar size="medium" src={face2} name="Isabella Nguyen" status notification={2} />
             </div>
-          </Card>
+          </div>
+        </Card>
 
-          <Card title={c.breadcrumb} className="c-nav">
-            <div className="ls-app">
-              <nav className="ls-rail" aria-hidden="true">
-                <Button icon={IconCampaign} tabIndex={-1} className="ls-round ls-logo" aria-label="Logo" />
-                <Button variant="ghost" tone="primary" icon={IconHome} tabIndex={-1} aria-label="Home" data-state="pressed" />
-                <Button variant="ghost" tone="primary" icon={IconDashboard} tabIndex={-1} aria-label="Dashboard" />
-                <Button variant="ghost" tone="primary" icon={IconStatistic} tabIndex={-1} aria-label="Statistic" />
-                <Button variant="ghost" tone="primary" icon={IconReport} tabIndex={-1} aria-label="Report" />
-              </nav>
-              <div className="ls-app-main">
-                <AppHeader
-                  border
-                  start={<span className="ls-nav-title">{c.navTitle}</span>}
-                  center={<Input type="search" size="small" placeholder={c.search} aria-label={c.search} />}
-                />
-                <PageHeader
-                  title={c.pageTitle}
-                  onBack={() => {}}
-                  backLabel={c.back}
-                  breadcrumb={<Breadcrumb key={navKey} defaultOpen menuLabel={c.pathLabel} backLabel={c.back} items={c.path.map((label) => ({ label }))} />}
-                />
-              </div>
-            </div>
-          </Card>
-
-          <Card title={c.avatar} className="c-sizes">
-            <div className="ls-sizes">
-              <div>
-                <p className="ls-subtitle">{c.size}</p>
-                <p className="ls-hint">{c.sizeHint}</p>
-              </div>
-              <div className="ls-size-rows">
-                {(['xlarge', 'medium', 'small', 'tiny'] as const).map((size, i) => (
-                  <div key={size} className="ls-size-row">
-                    <span className="ls-hint">{c.sizes[i]}</span>
-                    <Avatar size={size} src={face1} name="Olivia Martin" />
-                  </div>
-                ))}
-              </div>
-              <div>
-                <p className="ls-subtitle">{c.dimensions}</p>
-                <p className="ls-hint">{c.dimensionsHint}</p>
-              </div>
-              <div className="ls-ratios">
-                <span style={{ aspectRatio: '1 / 1' }}>1:1</span>
-                <span style={{ aspectRatio: '16 / 9' }}>16:9</span>
-                <span style={{ aspectRatio: '4 / 3' }}>4:3</span>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="c-segment">
-            <div className="ls-stack ls-segments">
-              <Segment aria-label={c.segments.gender.join(' / ')} defaultValue="0" options={c.segments.gender.map((label, i) => ({ value: String(i), label }))} />
-              <Segment
-                aria-label={c.segments.kind.join(' / ')}
-                defaultValue="0"
-                options={[
-                  { value: '0', label: c.segments.kind[0], icon: <IconCampaign /> },
-                  { value: '1', label: c.segments.kind[1], icon: <IconData /> },
-                ]}
+        <Card title={c.breadcrumb} className="c-nav">
+          <div className="ls-app">
+            <nav className="ls-rail" aria-hidden="true">
+              <Button icon={IconCampaign} tabIndex={-1} className="ls-round ls-logo" aria-label="Logo" />
+              <Button variant="ghost" tone="primary" icon={IconHome} tabIndex={-1} aria-label="Home" data-state="pressed" />
+              <Button variant="ghost" tone="primary" icon={IconDashboard} tabIndex={-1} aria-label="Dashboard" />
+              <Button variant="ghost" tone="primary" icon={IconStatistic} tabIndex={-1} aria-label="Statistic" />
+              <Button variant="ghost" tone="primary" icon={IconReport} tabIndex={-1} aria-label="Report" />
+            </nav>
+            <div className="ls-app-main">
+              <AppHeader
+                border
+                start={<span className="ls-nav-title">{c.navTitle}</span>}
+                center={<Input type="search" size="small" placeholder={c.search} aria-label={c.search} />}
               />
-              <Segment aria-label={c.segments.team.join(' / ')} defaultValue="0" options={c.segments.team.map((label, i) => ({ value: String(i), label, info: true }))} />
-              <Segment
-                aria-label={c.segments.filter.join(' / ')}
-                defaultValue="0"
-                options={[
-                  { value: '0', label: c.segments.filter[0], badge: '9+' },
-                  { value: '1', label: c.segments.filter[1], badge: '3' },
-                ]}
+              <PageHeader
+                title={c.pageTitle}
+                onBack={() => {}}
+                backLabel={c.back}
+                breadcrumb={<Breadcrumb key={navKey} defaultOpen menuLabel={c.pathLabel} backLabel={c.back} items={c.path.map((label) => ({ label }))} />}
               />
             </div>
-          </Card>
+          </div>
+        </Card>
 
-          <Card title={c.buttons} className="c-system">
-            <div className="ls-system">
-              <div className="ls-stack">
-                <p className="ls-subtitle">{c.system}</p>
-                <Button tone="primary">{c.button}</Button>
-                <Button tone="secondary">{c.button}</Button>
-                <Button tone="tertiary">{c.button}</Button>
-              </div>
-              <div className="ls-stack">
-                <p className="ls-subtitle">{c.ui}</p>
-                <Button tone="success">{c.button}</Button>
-                <Button tone="warning">{c.button}</Button>
-                <Button tone="error">{c.button}</Button>
-              </div>
+        <Card title={c.avatar} className="c-sizes">
+          <div className="ls-sizes">
+            <div>
+              <p className="ls-subtitle">{c.size}</p>
+              <p className="ls-hint">{c.sizeHint}</p>
             </div>
-          </Card>
-        </div>
-
-        <div className="ls-bottom">
-          <Card title={c.dropdown} className="c-dropdown">
-            <div className="ls-dropdown-card">
-              <div className="ls-stack ls-actions">
-                <Button dropdown>{c.actions}</Button>
-                <Dropdown>
-                  <Cell iconLeft={<IconEdit />}>{c.edit}</Cell>
-                  <Cell iconLeft={<IconProfile />}>{c.view}</Cell>
-                  <Cell iconLeft={<IconDelete />} tone="destructive">{c.remove}</Cell>
-                </Dropdown>
-              </div>
-              <div className="ls-stack ls-select">
-                <Label>{c.label}</Label>
-                <Selectbox fluid placeholder={c.selectCity} aria-label={c.selectCity} data-state="active" options={[]} />
-                <Dropdown>
-                  {c.cityOptions.map((label, i) => (
-                    <div key={i} role="checkbox" aria-checked={cities[i]} tabIndex={0} className="ls-option" onClick={() => setCities(cities.map((v, j) => (j === i ? !v : v)))} onKeyDown={(e) => (e.key === ' ' || e.key === 'Enter') && (e.preventDefault(), setCities(cities.map((v, j) => (j === i ? !v : v))))}>
-                      <Cell control="checkbox" selected={cities[i]}>{label}</Cell>
-                    </div>
-                  ))}
-                </Dropdown>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="c-share">
-            <FileShare
-              className="ls-share"
-              title={c.share.title}
-              linkLabel={c.share.linkLabel}
-              copyLabel={c.share.copyLabel}
-              copiedLabel={c.share.copiedLabel}
-              peopleLabel={c.share.peopleLabel}
-              roleLabel={c.share.roleLabel}
-              roles={[{ value: 'edit', label: c.share.roles[0]! }, { value: 'comment', label: c.share.roles[1]! }, { value: 'view', label: c.share.roles[2]! }]}
-              link="https://ladom.co/files/brand-guide"
-              people={PEOPLE.map((p, i) => ({ ...p, avatar: i === 0 ? undefined : p.avatar }))}
-            />
-          </Card>
-
-          <Card title={c.buttons} className="c-status">
-            <div className="ls-status">
-              <div className="ls-status-main">
-                <div className="ls-plate">
-                  <span className="ls-plate-title">{c.version}</span>
-                  <Badge tone="default" size="medium">{c.new}</Badge>
+            <div className="ls-size-rows">
+              {(['xlarge', 'medium', 'small', 'tiny'] as const).map((size, i) => (
+                <div key={size} className="ls-size-row">
+                  <span className="ls-hint">{c.sizes[i]}</span>
+                  <Avatar size={size} src={face1} name="Olivia Martin" />
                 </div>
-                <Dropdown>
-                  {c.countries.map(([name, level], i) => (
-                    <Cell key={name} badgeRight={<Badge size="small" tone={(['default', 'warning', 'error'] as const)[i]}>{level}</Badge>}>
-                      {name}
-                    </Cell>
-                  ))}
-                </Dropdown>
-              </div>
-              <div className="ls-tones">
-                {c.tones.map((label, i) => (
-                  <div key={label} className="ls-tone">
-                    <span className="ls-hint">{label}</span>
-                    <Badge size="small" tone={(['default', 'primary', 'success', 'error', 'warning'] as const)[i]}>{label}</Badge>
+              ))}
+            </div>
+            <div>
+              <p className="ls-subtitle">{c.dimensions}</p>
+              <p className="ls-hint">{c.dimensionsHint}</p>
+            </div>
+            <div className="ls-ratios">
+              <span style={{ aspectRatio: '1 / 1' }}>1:1</span>
+              <span style={{ aspectRatio: '16 / 9' }}>16:9</span>
+              <span style={{ aspectRatio: '4 / 3' }}>4:3</span>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="c-segment">
+          <div className="ls-stack ls-segments">
+            <Segment size="small" aria-label={c.segments.gender.join(' / ')} defaultValue="0" options={c.segments.gender.map((label, i) => ({ value: String(i), label }))} />
+            <Segment
+              size="small"
+              aria-label={c.segments.kind.join(' / ')}
+              defaultValue="0"
+              options={[
+                { value: '0', label: c.segments.kind[0], icon: <IconCampaign /> },
+                { value: '1', label: c.segments.kind[1], icon: <IconData /> },
+              ]}
+            />
+            <Segment size="small" aria-label={c.segments.team.join(' / ')} defaultValue="0" options={c.segments.team.map((label, i) => ({ value: String(i), label, info: true }))} />
+            <Segment
+              size="small"
+              aria-label={c.segments.filter.join(' / ')}
+              defaultValue="0"
+              options={[
+                { value: '0', label: c.segments.filter[0], badge: '9+' },
+                { value: '1', label: c.segments.filter[1], badge: '3' },
+              ]}
+            />
+          </div>
+        </Card>
+
+        <Card className="c-system">
+          <div className="ls-system">
+            <div className="ls-stack">
+              <p className="ls-subtitle">{c.system}</p>
+              <Button size="small" tone="primary">{c.button}</Button>
+              <Button size="small" tone="secondary">{c.button}</Button>
+              <Button size="small" tone="tertiary">{c.button}</Button>
+            </div>
+            <div className="ls-stack">
+              <p className="ls-subtitle">{c.ui}</p>
+              <Button size="small" tone="success">{c.button}</Button>
+              <Button size="small" tone="warning">{c.button}</Button>
+              <Button size="small" tone="error">{c.button}</Button>
+            </div>
+          </div>
+        </Card>
+
+        <Card title={c.icons} className="c-icons">
+          <div className="ls-icons">
+            {ICONS.map((Icon, i) => (
+              <span key={i} className="ls-icon">
+                <Icon size={24} aria-hidden="true" />
+                <span className="ls-pill">{c.iconNames[i]}</span>
+              </span>
+            ))}
+          </div>
+        </Card>
+
+        <Card title={c.dropdown} className="c-dropdown">
+          <div className="ls-dropdown-card">
+            <div className="ls-stack ls-actions">
+              <Button dropdown>{c.actions}</Button>
+              <Dropdown>
+                <Cell size="small" iconLeft={<IconEdit />}>{c.edit}</Cell>
+                <Cell size="small" iconLeft={<IconProfile />}>{c.view}</Cell>
+                <Cell size="small" iconLeft={<IconDelete />} tone="destructive">{c.remove}</Cell>
+              </Dropdown>
+            </div>
+            <div className="ls-stack ls-select">
+              <Label>{c.label}</Label>
+              <Selectbox fluid placeholder={c.selectCity} aria-label={c.selectCity} data-state="active" options={[]} />
+              <Dropdown>
+                {c.cityOptions.slice(0, 3).map((label, i) => (
+                  <div key={i} role="checkbox" aria-checked={cities[i]} tabIndex={0} className="ls-option" onClick={() => setCities(cities.map((v, j) => (j === i ? !v : v)))} onKeyDown={(e) => (e.key === ' ' || e.key === 'Enter') && (e.preventDefault(), setCities(cities.map((v, j) => (j === i ? !v : v))))}>
+                    <Cell size="small" control="checkbox" selected={cities[i]}>{label}</Cell>
                   </div>
                 ))}
-              </div>
+              </Dropdown>
             </div>
-          </Card>
-        </div>
+          </div>
+        </Card>
+
+        <Card className="c-share">
+          <FileShare
+            className="ls-share"
+            title={c.share.title}
+            linkLabel={c.share.linkLabel}
+            copyLabel={c.share.copyLabel}
+            copiedLabel={c.share.copiedLabel}
+            peopleLabel={c.share.peopleLabel}
+            roleLabel={c.share.roleLabel}
+            roles={[{ value: 'edit', label: c.share.roles[0]! }, { value: 'comment', label: c.share.roles[1]! }, { value: 'view', label: c.share.roles[2]! }]}
+            link="https://ladom.co/files/brand-guide"
+            people={PEOPLE.slice(0, 2).map((p, i) => ({ ...p, avatar: i === 0 ? undefined : p.avatar }))}
+          />
+        </Card>
+
+        <Card title={c.status} className="c-status">
+          <div className="ls-status">
+            <div className="ls-plate">
+              <span className="ls-plate-title">{c.version}</span>
+              <Badge tone="default" size="small">{c.new}</Badge>
+            </div>
+            <div className="ls-tones">
+              {c.tones.map((label, i) => (
+                <Badge key={label} size="small" tone={(['default', 'primary', 'success', 'error', 'warning'] as const)[i]}>{label}</Badge>
+              ))}
+            </div>
+          </div>
+        </Card>
       </div>
     </div>
   );

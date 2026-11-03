@@ -15,9 +15,13 @@ export type MountOptions = Partial<Settings> & {
 };
 
 const VERSION = 'v1';
-// The Figma composition is 1922px wide at real size; below CANVAS_MIN px the cards stack instead.
-const CANVAS_WIDTH = 1922;
-const CANVAS_MIN = 960;
+// Three bento canvases at real size, each scaled to the container width: 5 columns, 3 columns and a short
+// 2-column one for phones (showcase.css has the matching grids and sizes).
+const CANVASES = [
+  { layout: 'desktop', min: 1000, width: 1440 },
+  { layout: 'tablet', min: 600, width: 960 },
+  { layout: 'mobile', min: 0, width: 480 },
+] as const;
 const ATTRS = { theme: 'data-ladomui-theme', radius: 'data-ladomui-radius', mode: 'data-ladomui-mode', density: 'data-ladomui-density' } as const;
 
 // The script's own address; showcase.css sits beside it.
@@ -52,12 +56,12 @@ export class ShowcaseInstance {
     this.root.className = 'ladomui-showcase';
     container.appendChild(this.root);
     this.react = createRoot(this.root);
-    // Wide containers show the fixed Figma composition scaled to fit; narrow ones stack the cards.
+    // The bento canvas is picked by container width and scaled to fit it.
     this.fit = new ResizeObserver(() => {
       const w = this.root.clientWidth;
-      const canvas = w >= CANVAS_MIN;
-      this.root.dataset.layout = canvas ? 'canvas' : 'flow';
-      this.root.style.setProperty('--ls-scale', canvas ? String(w / CANVAS_WIDTH) : '1');
+      const c = CANVASES.find((x) => w >= x.min)!;
+      this.root.dataset.layout = c.layout;
+      this.root.style.setProperty('--ls-scale', String(w / c.width));
     });
     this.fit.observe(this.root);
     this.react.render(<Showcase locale={options.locale ?? (container.getAttribute('data-ladomui-locale') as Locale) ?? 'en'} />);

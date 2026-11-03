@@ -8,7 +8,7 @@ export type Settings = { theme: string; radius: Radius; mode: Mode; density: Den
 /** Example brand colors; any #rgb / #rrggbb works as well. */
 export const PRESETS: Record<string, string> = { stone: '#3c3c3c', sky: '#0ea5e9', sunrise: '#f97316' };
 
-export const DEFAULTS: Settings = { theme: 'stone', radius: 'modern', mode: 'light', density: 'comfort' };
+export const DEFAULTS: Settings = { theme: 'stone', radius: 'modern', mode: 'dark', density: 'comfort' };
 
 export const RADII: Radius[] = ['modern', 'rounded', 'circle'];
 
@@ -42,8 +42,11 @@ const luminance = ([r, g, b]: Rgb) => {
  * to #3c3c3c, and on-primary flips to dark text when white would not read.
  */
 export function brandTokens(hex: string, mode: Mode): Record<string, string> {
-  const c = toRgb(hex);
   const dark = mode === 'dark';
+  // A very dark brand color (Stone) would vanish on the dark surfaces; there it is lifted to a light tone.
+  const base = toRgb(hex);
+  const c = dark && luminance(base) < 0.12 ? mix(base, WHITE, 0.86) : base;
+  hex = toHex(c);
   const onPrimary = luminance(c) > 0.4 ? '#1a1711' : '#ffffff';
   return {
     '--color-static-brand-color': hex,

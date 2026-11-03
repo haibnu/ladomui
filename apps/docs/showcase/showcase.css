@@ -3,15 +3,20 @@
 /* The showcase's own layout. The tokens are generated into tokens.css, scoped to
    .ladomui-showcase; everything here sits under that class too, so nothing reaches the host page.
 
-   Wide containers (data-layout="canvas", set by entry.tsx) show the Figma composition: a fixed
-   1922 x 1081 canvas of real-size components, scaled to the container width with --ls-scale. That is
-   the Figma kit at 100% / 0.745, so --k below is one Figma unit. Narrow containers (data-layout="flow")
-   stack the same cards in 2 or 1 columns at real size. */
+   A bento canvas of real-size components that is scaled to the container width (--ls-scale, set by
+   entry.tsx). There are three canvases, picked by container width (data-layout): desktop (5 columns,
+   1440px), tablet (3 columns, 960px) and mobile (2 columns, 480px, fewer cards so it stays short).
+   Each grid tiles its rectangle exactly: fixed columns of 1fr and fixed rows, every card in its cell. */
 
 .ladomui-showcase {
   --font-hanken-grotesk: 'Hanken Grotesk';
-  --k: 1.3423px;
   --ls-scale: 1;
+  --ls-gap: 16px;
+  --ls-row: 260px;
+  --ls-pad: var(--space-large);
+  --ls-cols: 5;
+  --ls-rows: 4;
+  --ls-w: 1440px;
   container: ladomui / inline-size;
   position: relative;
   box-sizing: border-box;
@@ -25,42 +30,73 @@
   letter-spacing: normal;
 }
 
+.ladomui-showcase[data-layout='tablet'] {
+  --ls-cols: 3;
+  --ls-rows: 7;
+  --ls-w: 960px;
+}
+
+.ladomui-showcase[data-layout='mobile'] {
+  --ls-cols: 2;
+  --ls-rows: 3;
+  --ls-w: 480px;
+  --ls-row: 240px;
+}
+
 .ls-stage {
   position: relative;
+  inline-size: 100%;
+  block-size: calc((var(--ls-rows) * var(--ls-row) + (var(--ls-rows) - 1) * var(--ls-gap) + 2 * var(--ls-gap)) * var(--ls-scale));
 }
 
 .ls-canvas {
+  position: absolute;
+  inset: 0 auto auto 0;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(var(--ls-cols), 1fr);
+  grid-template-rows: repeat(var(--ls-rows), var(--ls-row));
+  gap: var(--ls-gap);
+  inline-size: var(--ls-w);
+  block-size: calc(var(--ls-rows) * var(--ls-row) + (var(--ls-rows) + 1) * var(--ls-gap));
+  padding: var(--ls-gap);
   border-radius: var(--radius-card);
   background: var(--color-surface-level-1);
+  transform: scale(var(--ls-scale));
+  transform-origin: 0 0;
 }
 
-/* ---- cards ---- */
+.ladomui-showcase[data-theme='dark'] .ls-canvas {
+  background: var(--color-surface-background);
+}
+
+/* ---- cards: one padding, one radius, one gap ---- */
 .ls-card {
   position: relative;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   min-inline-size: 0;
   min-block-size: 0;
-  padding: calc(30 * var(--k));
+  padding: var(--ls-pad);
   overflow: clip;
   border-radius: var(--radius-card);
   background: var(--color-surface-level-2);
 }
 
-/* An open menu may leave its card; the rest of the content is clipped again when it closes. */
+/* An open menu may leave its card; the content is clipped again when it closes. */
 .ls-card:not(.c-nav):has([aria-expanded='true']) {
   z-index: 5;
   overflow: visible;
 }
 
 .ls-card-title {
-  margin: 0 0 var(--layout-default);
+  flex: none;
+  margin: 0 0 var(--layout-small);
   font: var(--text-ui-caption);
   letter-spacing: 0.12em !important;
   text-transform: var(--text-ui-caption-text-transform);
-  color: var(--color-foreground-low-emphasis);
+  color: var(--color-foreground-medium-emphasis);
 }
 
 .ls-stack {
@@ -85,238 +121,141 @@
 }
 
 .ls-subtitle {
-  font: var(--text-ui-text-regular);
+  font: var(--text-ui-text-small-bold);
   color: var(--color-foreground-high-emphasis);
 }
 
 .ls-hint {
   margin: 0;
   font: var(--text-ui-text-small-regular);
-  color: var(--color-foreground-low-emphasis);
+  color: var(--color-foreground-medium-emphasis);
 }
 
 .ls-round {
   border-radius: var(--radius-full);
 }
 
-/* ---- canvas layout ---- */
-.ladomui-showcase[data-layout='canvas'] .ls-stage {
-  inline-size: 100%;
-  block-size: calc(1081px * var(--ls-scale));
+/* ---- the 5-column bento (desktop) ----
+   R1  date date nav nav segment
+   R2  date date nav nav system
+   R3  icons buttons share share sizes
+   R4  avatar status drop drop sizes */
+.c-date { grid-area: 1 / 1 / 3 / 3; }
+.c-nav { grid-area: 1 / 3 / 3 / 5; }
+.c-segment { grid-area: 1 / 5; }
+.c-system { grid-area: 2 / 5; }
+.c-icons { grid-area: 3 / 1; }
+.c-buttons { grid-area: 3 / 2; }
+.c-share { grid-area: 3 / 3 / 4 / 5; }
+.c-sizes { grid-area: 3 / 5 / 5 / 6; }
+.c-avatar { grid-area: 4 / 1; }
+.c-status { grid-area: 4 / 2; }
+.c-dropdown { grid-area: 4 / 3 / 5 / 5; }
+
+/* ---- 3 columns (tablet) ----
+   R1  date date segment      R5  share share buttons
+   R2  date date system       R6  drop drop avatar
+   R3  nav nav sizes          R7  icons icons status
+   R4  nav nav sizes */
+.ladomui-showcase[data-layout='tablet'] .c-date { grid-area: 1 / 1 / 3 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-segment { grid-area: 1 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-system { grid-area: 2 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-nav { grid-area: 3 / 1 / 5 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-sizes { grid-area: 3 / 3 / 5 / 4; }
+.ladomui-showcase[data-layout='tablet'] .c-share { grid-area: 5 / 1 / 6 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-buttons { grid-area: 5 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-dropdown { grid-area: 6 / 1 / 7 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-avatar { grid-area: 6 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-icons { grid-area: 7 / 1 / 8 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-status { grid-area: 7 / 3; }
+
+/* ---- 2 columns (mobile): a short selection ----
+   R1  buttons avatar    R2  segment system    R3  share share */
+.ladomui-showcase[data-layout='mobile'] .c-date,
+.ladomui-showcase[data-layout='mobile'] .c-nav,
+.ladomui-showcase[data-layout='mobile'] .c-sizes,
+.ladomui-showcase[data-layout='mobile'] .c-icons,
+.ladomui-showcase[data-layout='mobile'] .c-dropdown,
+.ladomui-showcase[data-layout='mobile'] .c-status {
+  display: none;
 }
 
-.ladomui-showcase[data-layout='canvas'] .ls-canvas {
-  position: absolute;
-  inset: 0 auto auto 0;
-  inline-size: 1922px;
-  block-size: 1081px;
-  padding: calc(36 * var(--k));
-  gap: calc(36 * var(--k));
-  transform: scale(var(--ls-scale));
-  transform-origin: 0 0;
-}
+.ladomui-showcase[data-layout='mobile'] .c-buttons { grid-area: 1 / 1; }
+.ladomui-showcase[data-layout='mobile'] .c-avatar { grid-area: 1 / 2; }
+.ladomui-showcase[data-layout='mobile'] .c-segment { grid-area: 2 / 1; }
+.ladomui-showcase[data-layout='mobile'] .c-system { grid-area: 2 / 2; }
+.ladomui-showcase[data-layout='mobile'] .c-share { grid-area: 3 / 1 / 4 / 3; }
 
-.ladomui-showcase[data-layout='canvas'] .ls-top {
-  display: grid;
-  flex: none;
-  grid-template-columns: calc(295 * var(--k)) calc(35 * var(--k)) calc(271 * var(--k)) calc(36 * var(--k)) calc(271 * var(--k)) calc(44 * var(--k)) calc(191 * var(--k)) calc(36 * var(--k)) calc(181 * var(--k));
-  grid-template-rows: calc(112 * var(--k)) calc(35 * var(--k)) calc(57 * var(--k)) calc(35 * var(--k)) calc(39 * var(--k)) calc(36 * var(--k)) calc(144 * var(--k));
-}
-
-.ladomui-showcase[data-layout='canvas'] .ls-bottom {
-  display: grid;
-  flex: none;
-  grid-template-columns: calc(400 * var(--k)) calc(41 * var(--k)) calc(475 * var(--k)) calc(36 * var(--k)) calc(408 * var(--k));
-  block-size: calc(240 * var(--k));
-}
-
-.ladomui-showcase[data-layout='canvas'] .c-date { grid-area: 1 / 1 / 6 / 2; }
-.ladomui-showcase[data-layout='canvas'] .c-icons { grid-area: 7 / 1 / 8 / 2; }
-.ladomui-showcase[data-layout='canvas'] .c-buttons { grid-area: 1 / 3 / 2 / 4; }
-.ladomui-showcase[data-layout='canvas'] .c-avatar { grid-area: 1 / 5 / 2 / 6; }
-.ladomui-showcase[data-layout='canvas'] .c-nav { grid-area: 3 / 3 / 8 / 6; }
-.ladomui-showcase[data-layout='canvas'] .c-sizes { grid-area: 1 / 7 / 8 / 8; }
-.ladomui-showcase[data-layout='canvas'] .c-segment { grid-area: 1 / 9 / 4 / 10; }
-.ladomui-showcase[data-layout='canvas'] .c-system { grid-area: 5 / 9 / 8 / 10; }
-.ladomui-showcase[data-layout='canvas'] .c-dropdown { grid-area: 1 / 1; }
-.ladomui-showcase[data-layout='canvas'] .c-share { grid-area: 1 / 3; }
-.ladomui-showcase[data-layout='canvas'] .c-status { grid-area: 1 / 5; }
-
-/* The share card is the FileShare panel itself, filling the cell. */
-.c-share {
-  padding: 0;
-}
-
-.ladomui-showcase .ls-share {
-  box-sizing: border-box;
-  block-size: 100%;
-  padding: calc(30 * var(--k));
-}
-
-/* ---- flow layout ---- */
-.ladomui-showcase[data-layout='flow'] {
-  padding: var(--layout-default);
-  border-radius: var(--radius-card);
-  background: var(--color-surface-level-1);
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-canvas {
-  background: none;
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-top,
-.ladomui-showcase[data-layout='flow'] .ls-bottom {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--layout-default);
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-bottom {
-  margin-block-start: var(--layout-default);
-}
-
-@container ladomui (min-width: 34rem) {
-  .ladomui-showcase[data-layout='flow'] .ls-top,
-  .ladomui-showcase[data-layout='flow'] .ls-bottom {
-    grid-template-columns: 1fr 1fr;
-  }
-  .ladomui-showcase[data-layout='flow'] .c-nav,
-  .ladomui-showcase[data-layout='flow'] .c-share {
-    grid-column: 1 / -1;
-  }
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-card {
-  overflow: visible;
-  padding: var(--layout-default);
-}
-
-.ladomui-showcase[data-layout='flow'] .c-share {
-  padding: 0;
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-share {
-  padding: var(--layout-default);
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-icons {
-  flex-wrap: wrap;
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-app {
-  inline-size: auto;
-  block-size: auto;
-  min-block-size: 16rem;
-  overflow: clip;
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-dropdown-card,
-.ladomui-showcase[data-layout='flow'] .ls-status {
-  flex-direction: column;
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-select {
-  inline-size: 100%;
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-tones {
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-plate {
-  flex-wrap: wrap;
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-plate-title {
-  font: var(--text-ui-text-lead-bold);
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-cal {
-  zoom: 0.8;
-}
-
-@container ladomui (max-width: 25rem) {
-  .ladomui-showcase[data-layout='flow'] .ls-cal {
-    zoom: 0.68;
-  }
-}
-
-/* ---- parts ---- */
+/* ---- card contents, sized to their cells ---- */
 .ls-date-input {
-  inline-size: calc(179 * var(--k));
+  box-sizing: border-box;
+  inline-size: 100%;
   max-inline-size: 100%;
 }
 
 .ls-cal {
-  margin-block-start: calc(2 * var(--k));
+  display: flex;
+  justify-content: center;
 }
 
 .ls-icons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: calc(5 * var(--k)) calc(3 * var(--k));
-  inline-size: calc(6 * 96 * var(--k) + 5 * 3 * var(--k));
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--layout-small) var(--layout-tiny);
 }
 
-.ladomui-showcase[data-layout='flow'] .ls-icons {
-  inline-size: auto;
+.ladomui-showcase[data-layout='tablet'] .ls-icons {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.ladomui-showcase:not([data-layout='tablet']) .ls-icon:nth-child(n + 7) {
+  display: none;
 }
 
 .ls-icon {
   display: flex;
-  flex: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: var(--layout-tiny);
-  box-sizing: border-box;
-  inline-size: calc(96 * var(--k));
-  block-size: calc(66 * var(--k));
+  min-inline-size: 0;
   color: var(--color-foreground-high-emphasis);
 }
 
 .ls-pill {
-  padding: 0 var(--layout-small);
+  max-inline-size: 100%;
+  overflow: hidden;
+  padding: 0 var(--layout-tiny);
   border-radius: var(--radius-full);
   background: var(--color-surface-level-3);
   font: var(--text-ui-text-small-regular);
   color: var(--color-foreground-medium-emphasis);
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .ls-btn-groups {
   display: flex;
-  gap: var(--layout-large);
-  align-items: flex-start;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--layout-tiny);
 }
 
 .ls-btn-group {
   display: flex;
-  flex: none;
   flex-direction: column;
-  gap: var(--layout-default);
+  align-items: flex-start;
+  gap: var(--layout-micro);
 }
 
-.ls-avatar-row {
-  flex-wrap: nowrap;
-  gap: calc(20 * var(--k));
-}
-
-.ladomui-showcase[data-layout='flow'] .ls-btn-groups,
-.ladomui-showcase[data-layout='flow'] .ls-avatar-row {
-  flex-wrap: wrap;
-}
-
-/* Navigation: a rail and the app header, wider than the card on purpose. */
+/* Navigation: a rail and the app header, filling the card. */
 .ls-app {
   display: flex;
-  inline-size: calc(959 * var(--k));
-  block-size: calc(597 * var(--k));
-  margin-block-start: calc(30 * var(--k));
+  flex: 1;
+  min-block-size: 0;
+  overflow: clip;
   border-radius: var(--radius-form-element);
   background: var(--color-surface-level-1);
-  overflow: clip;
 }
 
 .ls-rail {
@@ -326,8 +265,8 @@
   align-items: center;
   gap: var(--layout-default);
   box-sizing: border-box;
-  inline-size: calc(48 * var(--k));
-  padding-block: var(--layout-tiny);
+  inline-size: 56px;
+  padding-block: var(--layout-small);
   border-inline-end: var(--border-width) solid var(--color-surface-level-3);
 }
 
@@ -342,40 +281,38 @@
   min-inline-size: 0;
 }
 
-.ls-nav-title {
-  font: var(--text-ui-text-regular);
-  white-space: nowrap;
-}
-
 .ls-app-main > header {
   border-block-end: var(--border-width) solid var(--color-surface-level-3);
 }
 
-/* the open Breadcrumb menu belongs to the app, so it must not be pushed out by the header */
-.ls-app-main > :nth-child(2) {
-  position: relative;
-  min-block-size: 0;
+.ls-nav-title {
+  display: block;
+  min-inline-size: max-content;
+  font: var(--text-ui-text-regular);
+  white-space: nowrap;
 }
 
 .ls-app-main > :nth-child(2) {
-  overflow: visible;
+  position: relative;
 }
 
 .ls-sizes {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: calc(14 * var(--k));
+  justify-content: space-between;
+  min-block-size: 0;
 }
 
 .ls-size-rows {
   display: flex;
   flex-direction: column;
-  gap: calc(12 * var(--k));
+  gap: var(--layout-small);
 }
 
 .ls-size-row {
   display: grid;
-  grid-template-columns: calc(48 * var(--k)) auto;
+  grid-template-columns: 4.5rem auto;
   align-items: center;
   gap: var(--layout-default);
 }
@@ -383,46 +320,56 @@
 .ls-ratios {
   display: flex;
   align-items: flex-start;
-  gap: calc(12 * var(--k));
-  margin-block-start: calc(8 * var(--k));
+  gap: var(--layout-small);
 }
 
 .ls-ratios span {
   display: grid;
   place-items: center;
   box-sizing: border-box;
-  inline-size: calc(36 * var(--k));
+  inline-size: 40px;
   border-radius: var(--radius-form-element-small);
   background: var(--color-surface-level-3);
   font: var(--text-ui-footnote-regular);
-  color: var(--color-foreground-low-emphasis);
+  color: var(--color-foreground-medium-emphasis);
 }
 
 .ls-segments {
+  flex: 1;
+  justify-content: space-between;
   align-items: flex-start;
 }
 
 .ls-system {
   display: grid;
+  flex: 1;
   grid-template-columns: 1fr 1fr;
   gap: var(--layout-default);
   align-items: start;
 }
 
+.ls-system .ls-stack {
+  align-items: flex-start;
+}
+
 .ls-dropdown-card {
   display: flex;
+  flex: 1;
   align-items: flex-start;
-  gap: calc(30 * var(--k));
+  gap: var(--layout-large);
+  min-block-size: 0;
 }
 
 .ls-actions {
   flex: none;
   align-items: flex-start;
+  gap: var(--layout-micro);
 }
 
 .ls-select {
   flex: 1;
   min-inline-size: 0;
+  gap: var(--layout-micro);
 }
 
 .ls-option {
@@ -437,22 +384,17 @@
 
 .ls-status {
   display: flex;
-  gap: calc(30 * var(--k));
-}
-
-.ls-status-main {
-  display: flex;
   flex: 1;
   flex-direction: column;
-  gap: calc(36 * var(--k));
-  min-inline-size: 0;
+  justify-content: space-between;
+  gap: var(--layout-default);
 }
 
 .ls-plate {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--layout-default);
+  gap: var(--layout-tiny);
   padding: var(--layout-default);
   border-radius: var(--radius-form-element);
   background: var(--color-surface-level-1);
@@ -460,22 +402,37 @@
 }
 
 .ls-plate-title {
-  font: var(--text-ui-title);
+  font: var(--text-ui-text-lead-bold);
   white-space: nowrap;
 }
 
 .ls-tones {
   display: flex;
-  flex: none;
-  flex-direction: column;
-  gap: var(--layout-default);
+  flex-wrap: wrap;
+  gap: var(--layout-tiny);
 }
 
-.ls-tone {
-  display: grid;
-  grid-template-columns: calc(48 * var(--k)) auto;
-  align-items: center;
-  gap: var(--layout-tiny);
+/* The share card is the FileShare panel itself, tightened to fit its cell. */
+.c-share {
+  padding: 0;
+}
+
+.ladomui-showcase .ls-share {
+  box-sizing: border-box;
+  flex: 1;
+  gap: var(--layout-small);
+  min-block-size: 0;
+  padding: var(--ls-pad);
+  border-radius: inherit;
+  background: none;
+}
+
+.ladomui-showcase .ls-share li {
+  padding-block: 2px;
+}
+
+.ladomui-showcase .ls-share ul {
+  gap: 0;
 }
 
 /* Radius: Modern is the token default. Rounded and Circle raise the radius tokens. */
