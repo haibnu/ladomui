@@ -29,7 +29,7 @@ const withHeader = (path, text, tier) => {
 const walk = (dir) => readdirSync(dir).flatMap((f) => (statSync(join(dir, f)).isDirectory() ? walk(join(dir, f)) : [join(dir, f)]));
 const kebab = (s) => s.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 const proSrc = join(uiSrc, 'pro');
-const dirsIn = (dir) => (existsSync(dir) ? readdirSync(dir).filter((f) => statSync(join(dir, f)).isDirectory()) : []);
+const dirsIn = (dir) => (existsSync(dir) ? readdirSync(dir).filter((f) => !f.startsWith('.') && statSync(join(dir, f)).isDirectory()) : []);
 // Folder -> its source directory; Pro folders live one level down and import '../../<Folder>/'.
 const sourceOf = Object.fromEntries([...dirsIn(uiSrc).filter((f) => f !== 'pro').map((f) => [f, uiSrc]), ...dirsIn(proSrc).map((f) => [f, proSrc])]);
 const folders = Object.keys(sourceOf).sort();
