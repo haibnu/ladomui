@@ -41,6 +41,7 @@ React design system built from the Figma file "Ladom UI Design System v1.0" (fil
 - `scripts/bundle-package.mjs` is only used by `scripts/claude-design/` now.
 - The docs deploy on Vercel: project `ladom-ui` in the "Ladom's Projects" team, root `apps/docs`, domain ui.ladom.co (DNS on Cloudflare: a CNAME to Vercel). Pushes deploy; `main` is production.
 - `skills/ladom-ui/SKILL.md` is the Claude Code skill for projects that use Ladom UI (the registry serves it for `npx ladom-ui skill`); keep it in step with the components.
+- The ladom.co showcase: `apps/docs/showcase/` (React entry, `theme.ts`, `showcase.css`) is built by `apps/docs/scripts/build-showcase.mjs` (esbuild; runs in the docs `dev` and `build` scripts, or `pnpm --filter @ladom/docs showcase`) to `apps/docs/public/showcase/v1/showcase.js` + `showcase.css` (gitignored), served by ui.ladom.co with CORS headers (`next.config.ts`). It mounts the real components, Pro ones included, into a container on a static page and exposes `window.LadomShowcase` (setTheme, setRadius, setMode, setDensity; the same through `data-ladomui-*` attributes or a `ladomui:set` event). The token CSS is rewritten from `:root` to `.ladomui-showcase`, so it never styles the host page; the Rounded and Circle radius modes live in `showcase.css` (they are not Figma modes). Breaking changes go to a new `/showcase/v2/` path.
 - The claude.ai design system (https://claude.ai/artifact/GMGcccbEoBzuj6Q9Q5ZJdD) is built with `scripts/claude-design/` (see its README); re-sync it after token or component changes.
 
 ## Commands

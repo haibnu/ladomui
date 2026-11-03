@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+/* The showcase's own layout. The tokens are generated into tokens.css, scoped to
+   .ladomui-showcase; everything here sits under that class too, so nothing reaches the host page. */
+
+.ladomui-showcase {
+  --font-hanken-grotesk: 'Hanken Grotesk';
+  container: ladomui / inline-size;
+  box-sizing: border-box;
+  padding: var(--layout-default);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-level-1);
+  color: var(--color-foreground-high-emphasis);
+  font: var(--text-ui-text-regular);
+  text-align: start;
+  -webkit-text-size-adjust: 100%;
+}
+
+.ladomui-showcase * {
+  letter-spacing: normal;
+}
+
+.ls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--layout-default);
+}
+
+@container ladomui (min-width: 34rem) {
+  .ls-wide {
+    grid-column: span 2;
+  }
+}
+
+.ls-card {
+  box-sizing: border-box;
+  min-inline-size: 0;
+  padding: var(--layout-default);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-level-2);
+}
+
+.ls-card-title {
+  margin: 0 0 var(--layout-small);
+  font: var(--text-ui-caption);
+  text-transform: var(--text-ui-caption-text-transform);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.ls-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-small);
+  min-inline-size: 0;
+}
+
+.ls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--layout-tiny);
+}
+
+.ls-row-end {
+  align-items: flex-end;
+}
+
+.ls-caption {
+  margin: 0;
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+/* The month is 7 fixed 48px cells wide; it shrinks in narrow containers. */
+.ls-calendar {
+  overflow-x: auto;
+}
+
+@container ladomui (max-width: 25rem) {
+  .ls-cal {
+    zoom: 0.8;
+  }
+}
+
+@container ladomui (max-width: 19rem) {
+  .ls-cal {
+    zoom: 0.68;
+  }
+}
+
+.ls-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-small);
+  min-inline-size: 0;
+}
+
+.ls-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
+  gap: var(--layout-tiny);
+}
+
+.ls-icon {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: var(--radius-form-element-small);
+  background: var(--color-surface-level-1);
+  color: var(--color-foreground-high-emphasis);
+}
+
+.ls-dropdown {
+  box-shadow: var(--shadow-card-style-1);
+}
+
+.ls-menu {
+  position: relative;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.ls-menu-list {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: calc(100% + var(--space-micro));
+  inset-inline-start: 0;
+  min-inline-size: 11rem;
+}
+
+.ls-menu-item {
+  border-radius: var(--radius-form-element-small);
+  outline: none;
+  cursor: pointer;
+}
+
+.ls-menu-item:focus-visible {
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.ls-variants {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: var(--layout-default);
+}
+
+/* Radius: Modern is the token default. Rounded and Circle raise the radius tokens. */
+.ladomui-showcase[data-radius='rounded'] {
+  --radius-card: 24px;
+  --radius-card-inner: 16px;
+  --radius-checkbox: 8px;
+  --radius-form-element: 18px;
+  --radius-form-element-large: 18px;
+  --radius-form-element-small: 14px;
+  --radius-layout-base: 24px;
+  --radius-layout-small-base: 14px;
+}
+
+.ladomui-showcase[data-radius='circle'] {
+  --radius-card: 32px;
+  --radius-card-inner: 24px;
+  --radius-checkbox: 10px;
+  --radius-form-element: var(--radius-full);
+  --radius-form-element-large: var(--radius-full);
+  --radius-form-element-small: var(--radius-full);
+  --radius-layout-base: 32px;
+  --radius-layout-small-base: 24px;
+}
+
+/* The dark secondary and tertiary tokens in Figma are tinted green and not final; the showcase keeps its
+   surfaces neutral so every brand color sits on them. */
+.ladomui-showcase[data-theme='dark'] {
+  --color-secondary: var(--color-surface-level-3);
+  --color-secondary-natural: var(--color-surface-level-4);
+  --color-secondary-shade: var(--color-surface-level-2);
+  --color-secondary-soft: var(--color-surface-level-2);
+  --color-secondary-tint: var(--color-surface-level-4);
+  --color-on-secondary-tint: var(--color-foreground-medium-emphasis);
+}
