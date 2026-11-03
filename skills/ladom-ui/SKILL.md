@@ -45,6 +45,7 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Data | `Table` (columns, rows, rowKey, sortable columns, selectable), `Pagination` (page, pageCount, onPageChange) |
 | Messages | `Alert` (inline), `Toast` via `useToast()` |
 | Disclosure | `Accordion` |
+| Sharing | `FileShare` (Pro: link with Copy Link, people with access and their role) |
 
 CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-picker` (DatePicker, Calendar), `time-picker`, `tabs`, `chip`, `avatar` (Avatar, AvatarGroup), `dropdown`, `cell`, `navigation` (AppHeader, PageHeader, PublicHeader), `modal` (Modal, Drawer), `table`, `pagination`. `npx ladom-ui list` shows them all.
 

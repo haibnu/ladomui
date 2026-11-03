@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+/* The showcase's own layout. The tokens are generated into tokens.css, scoped to
+   .ladomui-showcase; everything here sits under that class too, so nothing reaches the host page.
+
+   A bento canvas of real-size components that is scaled to the container width (--ls-scale, set by
+   entry.tsx). There are three canvases, picked by container width (data-layout): desktop (5 columns,
+   1440px), tablet (3 columns, 960px) and mobile (2 columns, 480px, fewer cards so it stays short).
+   Each grid tiles its rectangle exactly: fixed columns of 1fr and fixed rows, every card in its cell. */
+
+.ladomui-showcase {
+  --font-hanken-grotesk: 'Hanken Grotesk';
+  --ls-scale: 1;
+  --ls-gap: 16px;
+  --ls-row: 260px;
+  --ls-pad: var(--space-large);
+  --ls-cols: 5;
+  --ls-rows: 4;
+  --ls-w: 1440px;
+  container: ladomui / inline-size;
+  position: relative;
+  box-sizing: border-box;
+  color: var(--color-foreground-high-emphasis);
+  font: var(--text-ui-text-regular);
+  text-align: start;
+  -webkit-text-size-adjust: 100%;
+}
+
+.ladomui-showcase * {
+  letter-spacing: normal;
+}
+
+.ladomui-showcase[data-layout='tablet'] {
+  --ls-cols: 3;
+  --ls-rows: 7;
+  --ls-w: 960px;
+}
+
+.ladomui-showcase[data-layout='mobile'] {
+  --ls-cols: 2;
+  --ls-rows: 3;
+  --ls-w: 480px;
+  --ls-row: 240px;
+}
+
+.ls-stage {
+  position: relative;
+  inline-size: 100%;
+  block-size: calc((var(--ls-rows) * var(--ls-row) + (var(--ls-rows) - 1) * var(--ls-gap) + 2 * var(--ls-gap)) * var(--ls-scale));
+}
+
+.ls-canvas {
+  position: absolute;
+  inset: 0 auto auto 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(var(--ls-cols), 1fr);
+  grid-template-rows: repeat(var(--ls-rows), var(--ls-row));
+  gap: var(--ls-gap);
+  inline-size: var(--ls-w);
+  block-size: calc(var(--ls-rows) * var(--ls-row) + (var(--ls-rows) + 1) * var(--ls-gap));
+  padding: var(--ls-gap);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-level-1);
+  transform: scale(var(--ls-scale));
+  transform-origin: 0 0;
+}
+
+.ladomui-showcase[data-theme='dark'] .ls-canvas {
+  background: var(--color-surface-background);
+}
+
+/* ---- cards: one padding, one radius, one gap ---- */
+.ls-card {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  min-block-size: 0;
+  padding: var(--ls-pad);
+  overflow: clip;
+  border-radius: var(--radius-card);
+  background: var(--color-surface-level-2);
+}
+
+/* An open menu may leave its card; the content is clipped again when it closes. */
+.ls-card:not(.c-nav):has([aria-expanded='true']) {
+  z-index: 5;
+  overflow: visible;
+}
+
+.ls-card-title {
+  flex: none;
+  margin: 0 0 var(--layout-small);
+  font: var(--text-ui-caption);
+  letter-spacing: 0.12em !important;
+  text-transform: var(--text-ui-caption-text-transform);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.ls-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-small);
+  min-inline-size: 0;
+}
+
+.ls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--layout-default);
+}
+
+.ls-caption,
+.ls-subtitle {
+  margin: 0;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.ls-subtitle {
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-high-emphasis);
+}
+
+.ls-hint {
+  margin: 0;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.ls-round {
+  border-radius: var(--radius-full);
+}
+
+/* ---- the 5-column bento (desktop) ----
+   R1  date date nav nav segment
+   R2  date date nav nav system
+   R3  icons buttons share share sizes
+   R4  avatar status drop drop sizes */
+.c-date { grid-area: 1 / 1 / 3 / 3; }
+.c-nav { grid-area: 1 / 3 / 3 / 5; }
+.c-segment { grid-area: 1 / 5; }
+.c-system { grid-area: 2 / 5; }
+.c-icons { grid-area: 3 / 1; }
+.c-buttons { grid-area: 3 / 2; }
+.c-share { grid-area: 3 / 3 / 4 / 5; }
+.c-sizes { grid-area: 3 / 5 / 5 / 6; }
+.c-avatar { grid-area: 4 / 1; }
+.c-status { grid-area: 4 / 2; }
+.c-dropdown { grid-area: 4 / 3 / 5 / 5; }
+
+/* ---- 3 columns (tablet) ----
+   R1  date date segment      R5  share share buttons
+   R2  date date system       R6  drop drop avatar
+   R3  nav nav sizes          R7  icons icons status
+   R4  nav nav sizes */
+.ladomui-showcase[data-layout='tablet'] .c-date { grid-area: 1 / 1 / 3 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-segment { grid-area: 1 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-system { grid-area: 2 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-nav { grid-area: 3 / 1 / 5 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-sizes { grid-area: 3 / 3 / 5 / 4; }
+.ladomui-showcase[data-layout='tablet'] .c-share { grid-area: 5 / 1 / 6 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-buttons { grid-area: 5 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-dropdown { grid-area: 6 / 1 / 7 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-avatar { grid-area: 6 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-icons { grid-area: 7 / 1 / 8 / 3; }
+.ladomui-showcase[data-layout='tablet'] .c-status { grid-area: 7 / 3; }
+
+/* ---- 2 columns (mobile): a short selection ----
+   R1  buttons avatar    R2  segment system    R3  share share */
+.ladomui-showcase[data-layout='mobile'] .c-date,
+.ladomui-showcase[data-layout='mobile'] .c-nav,
+.ladomui-showcase[data-layout='mobile'] .c-sizes,
+.ladomui-showcase[data-layout='mobile'] .c-icons,
+.ladomui-showcase[data-layout='mobile'] .c-dropdown,
+.ladomui-showcase[data-layout='mobile'] .c-status {
+  display: none;
+}
+
+.ladomui-showcase[data-layout='mobile'] .c-buttons { grid-area: 1 / 1; }
+.ladomui-showcase[data-layout='mobile'] .c-avatar { grid-area: 1 / 2; }
+.ladomui-showcase[data-layout='mobile'] .c-segment { grid-area: 2 / 1; }
+.ladomui-showcase[data-layout='mobile'] .c-system { grid-area: 2 / 2; }
+.ladomui-showcase[data-layout='mobile'] .c-share { grid-area: 3 / 1 / 4 / 3; }
+
+/* ---- card contents, sized to their cells ---- */
+.ls-date-input {
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: 100%;
+}
+
+.ls-cal {
+  display: flex;
+  justify-content: center;
+}
+
+.ls-icons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--layout-small) var(--layout-tiny);
+}
+
+.ladomui-showcase[data-layout='tablet'] .ls-icons {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.ladomui-showcase:not([data-layout='tablet']) .ls-icon:nth-child(n + 7) {
+  display: none;
+}
+
+.ls-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layout-tiny);
+  min-inline-size: 0;
+  color: var(--color-foreground-high-emphasis);
+}
+
+.ls-pill {
+  max-inline-size: 100%;
+  overflow: hidden;
+  padding: 0 var(--layout-tiny);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-level-3);
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ls-btn-groups {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--layout-tiny);
+}
+
+.ls-btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--layout-micro);
+}
+
+/* Navigation: a rail and the app header, filling the card. */
+.ls-app {
+  display: flex;
+  flex: 1;
+  min-block-size: 0;
+  overflow: clip;
+  border-radius: var(--radius-form-element);
+  background: var(--color-surface-level-1);
+}
+
+.ls-rail {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layout-default);
+  box-sizing: border-box;
+  inline-size: 56px;
+  padding-block: var(--layout-small);
+  border-inline-end: var(--border-width) solid var(--color-surface-level-3);
+}
+
+.ls-logo {
+  margin-block-end: var(--layout-default);
+}
+
+.ls-app-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.ls-app-main > header {
+  border-block-end: var(--border-width) solid var(--color-surface-level-3);
+}
+
+.ls-nav-title {
+  display: block;
+  min-inline-size: max-content;
+  font: var(--text-ui-text-regular);
+  white-space: nowrap;
+}
+
+.ls-app-main > :nth-child(2) {
+  position: relative;
+}
+
+.ls-sizes {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  min-block-size: 0;
+}
+
+.ls-size-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-small);
+}
+
+.ls-size-row {
+  display: grid;
+  grid-template-columns: 4.5rem auto;
+  align-items: center;
+  gap: var(--layout-default);
+}
+
+.ls-ratios {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--layout-small);
+}
+
+.ls-ratios span {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: 40px;
+  border-radius: var(--radius-form-element-small);
+  background: var(--color-surface-level-3);
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.ls-segments {
+  flex: 1;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ls-system {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--layout-default);
+  align-items: start;
+}
+
+.ls-system .ls-stack {
+  align-items: flex-start;
+}
+
+.ls-dropdown-card {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  gap: var(--layout-large);
+  min-block-size: 0;
+}
+
+.ls-actions {
+  flex: none;
+  align-items: flex-start;
+  gap: var(--layout-micro);
+}
+
+.ls-select {
+  flex: 1;
+  min-inline-size: 0;
+  gap: var(--layout-micro);
+}
+
+.ls-option {
+  border-radius: var(--radius-form-element-small);
+  outline: none;
+  cursor: pointer;
+}
+
+.ls-option:focus-visible {
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.ls-status {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--layout-default);
+}
+
+.ls-plate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--layout-tiny);
+  padding: var(--layout-default);
+  border-radius: var(--radius-form-element);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-card-style-1);
+}
+
+.ls-plate-title {
+  font: var(--text-ui-text-lead-bold);
+  white-space: nowrap;
+}
+
+.ls-tones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--layout-tiny);
+}
+
+/* The share card is the FileShare panel itself, tightened to fit its cell. */
+.c-share {
+  padding: 0;
+}
+
+.ladomui-showcase .ls-share {
+  box-sizing: border-box;
+  flex: 1;
+  gap: var(--layout-small);
+  min-block-size: 0;
+  padding: var(--ls-pad);
+  border-radius: inherit;
+  background: none;
+}
+
+.ladomui-showcase .ls-share li {
+  padding-block: 2px;
+}
+
+.ladomui-showcase .ls-share ul {
+  gap: 0;
+}
+
+/* Radius: Modern is the token default. Rounded and Circle raise the radius tokens. */
+.ladomui-showcase[data-radius='rounded'] {
+  --radius-card: 24px;
+  --radius-card-inner: 16px;
+  --radius-checkbox: 8px;
+  --radius-form-element: 18px;
+  --radius-form-element-large: 18px;
+  --radius-form-element-small: 14px;
+  --radius-layout-base: 24px;
+  --radius-layout-small-base: 14px;
+}
+
+.ladomui-showcase[data-radius='circle'] {
+  --radius-card: 32px;
+  --radius-card-inner: 24px;
+  --radius-checkbox: 10px;
+  --radius-form-element: var(--radius-full);
+  --radius-form-element-large: var(--radius-full);
+  --radius-form-element-small: var(--radius-full);
+  --radius-layout-base: 32px;
+  --radius-layout-small-base: 24px;
+}
+
+/* The dark secondary and tertiary tokens in Figma are tinted green and not final; the showcase keeps its
+   surfaces neutral so every brand color sits on them. */
+.ladomui-showcase[data-theme='dark'] {
+  --color-secondary: var(--color-surface-level-3);
+  --color-secondary-natural: var(--color-surface-level-4);
+  --color-secondary-shade: var(--color-surface-level-2);
+  --color-secondary-soft: var(--color-surface-level-2);
+  --color-secondary-tint: var(--color-surface-level-4);
+  --color-on-secondary-tint: var(--color-foreground-medium-emphasis);
+}

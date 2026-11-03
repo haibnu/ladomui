@@ -15,11 +15,11 @@ const PLANNED_COMPONENTS = [
   'Alert', 'Breadcrumb', 'Cell', 'Date Picker', 'Drawer', 'Dropdown', 'Empty State', 'Item Selector', 'Modal', 'Number Input',
   'Pagination', 'Popover', 'Segment', 'Selectbox', 'Stepper', 'Tab', 'Table', 'Textarea', 'Time Picker', 'Toast', 'Tooltip', 'Uploader',
 ];
-const PLANNED_MOLECULES = ['Accordion', 'Navigation'];
+const PLANNED_MOLECULES = ['Accordion', 'File Share', 'Navigation'];
 // Components that have a page, by their path segment.
 const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Number Input': 'number-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
-const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', Navigation: 'navigation' };
+const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', 'File Share': 'file-share', Navigation: 'navigation' };
 
 export function getNav(lang: Locale): NavSection[] {
   const t = getDictionary(lang);
