@@ -3,11 +3,11 @@ import { join } from 'node:path';
 import Link from 'next/link';
 import { iconNames } from '@ladom/icons';
 import meta from '@ladom/tokens/tokens.json';
-import { CodeBlock } from '@/components/docs/CodeBlock';
 import * as figmaArt from '@/components/landing/art/figma';
 import { DRAWN } from '@/components/landing/art/drawn';
 import { inter, jakarta, paprika } from '@/components/landing/fonts';
 import { FooterMark } from '@/components/landing/FooterMark';
+import { ThrowCoin } from '@/components/landing/ThrowCoin';
 import { HeroStrip } from '@/components/landing/HeroStrip';
 import styles from '@/components/landing/landing.module.css';
 import { PlayInView } from '@/components/landing/PlayInView';
@@ -125,22 +125,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </section>
 
         <div className={styles.sheets}>
-          <section className={styles.sheet} aria-labelledby="why">
-            <p className={styles.sheetEyebrow}>{t.library}</p>
-            <h2 id="why" className={styles.sheetTitle}>
-              {t.whyTitle}
-            </h2>
-            <p className={styles.sheetLead}>{t.whyLead}</p>
-            <ul className={styles.features}>
-              {t.features.map((f) => (
-                <li key={f.title} className={styles.feature}>
-                  <h3>{f.title}</h3>
-                  <p>{f.text}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-
           <section className={styles.sheet} aria-labelledby="components">
             <p className={styles.sheetEyebrow}>{t.library}</p>
             <h2 id="components" className={styles.sheetTitle}>
@@ -160,6 +144,22 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               ))}
             </ul>
           </section>
+
+          <section className={styles.sheet} aria-labelledby="why">
+            <p className={styles.sheetEyebrow}>{t.library}</p>
+            <h2 id="why" className={styles.sheetTitle}>
+              {t.whyTitle}
+            </h2>
+            <p className={styles.sheetLead}>{t.whyLead}</p>
+            <ul className={styles.features}>
+              {t.features.map((f) => (
+                <li key={f.title} className={styles.feature}>
+                  <h3>{f.title}</h3>
+                  <p>{f.text}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
 
         <section className={styles.cta} aria-labelledby="cta">
@@ -168,14 +168,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </h2>
           <div className={styles.ctaStage}>
             <span className={styles.ctaGlow} aria-hidden />
-            <Svg svg={figmaArt.logo} className={`${styles.coin} ${styles.coinTop}`} />
-            <Svg svg={figmaArt.logo} className={`${styles.coin} ${styles.coinBottom}`} />
+            <ThrowCoin svg={figmaArt.logo} className={styles.coinTop} />
+            <ThrowCoin svg={figmaArt.logo} className={styles.coinBottom} hint={t.throwIt} />
             <Link href={href(lang, '/docs/installation')} className={styles.glass}>
               {t.ctaButton}
             </Link>
           </div>
-          <p className={styles.ctaText}>{t.ctaText}</p>
-          <CodeBlock className={styles.ctaCode} code={'npx ladom-ui init\nnpx ladom-ui skill\nnpx ladom-ui add button input table modal'} />
         </section>
       </main>
 

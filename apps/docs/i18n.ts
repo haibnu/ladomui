@@ -111,11 +111,11 @@ const en = {
     freeTier: 'Free',
     ctaTitle: ['Describe the screen.', 'Claude builds it.'],
     ctaButton: 'Start building',
-    ctaText: 'Set up the tokens, add the skill, then ask Claude for a screen.',
     docsLinks: ['Introduction', 'Installation', 'Components', 'License'],
     products: ['Ladom UI Figma', 'Ladom UI React', 'Ladom UI Mobile'],
     rights: 'Ladom design system',
     founded: 'Founded in 2024',
+    throwIt: 'Throw it',
   },
 };
 
@@ -224,11 +224,11 @@ const tr: Dictionary = {
     freeTier: 'Ücretsiz',
     ctaTitle: ['Ekranı anlatın,', 'Claude kursun.'],
     ctaButton: 'Kurmaya başla',
-    ctaText: 'Tokenları kurun, skill’i ekleyin, sonra Claude’dan bir ekran isteyin.',
     docsLinks: ['Giriş', 'Kurulum', 'Bileşenler', 'Lisans'],
     products: ['Ladom UI Figma', 'Ladom UI React', 'Ladom UI Mobil'],
     rights: 'Ladom tasarım sistemi',
     founded: '2024’te kuruldu',
+    throwIt: 'Fırlat',
   },
 };
 
