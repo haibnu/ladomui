@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import Link from 'next/link';
 import { iconNames } from '@ladom/icons';
 import meta from '@ladom/tokens/tokens.json';
@@ -5,6 +7,7 @@ import { CodeBlock } from '@/components/docs/CodeBlock';
 import * as figmaArt from '@/components/landing/art/figma';
 import { DRAWN } from '@/components/landing/art/drawn';
 import { inter, jakarta, paprika } from '@/components/landing/fonts';
+import { FooterMark } from '@/components/landing/FooterMark';
 import { HeroStrip } from '@/components/landing/HeroStrip';
 import styles from '@/components/landing/landing.module.css';
 import { PlayInView } from '@/components/landing/PlayInView';
@@ -14,6 +17,7 @@ import { getDictionary, href, type Locale } from '@/i18n';
 
 // Built from the Ladom Agency Website Figma file, LP - Desktop (173:25296).
 const FIGMA_FILE = 'https://www.figma.com/design/VCJ6ew9Vk1gAqfnvQ1gfOz/Ladom-UI-Design-System';
+const footerMarkSvg = readFileSync(join(process.cwd(), 'components/landing/art/footer-mark.svg'), 'utf8');
 const tokenCount = meta.groups.reduce((n, g) => n + g.variables.length + g.tokens.length, 0);
 
 // Illustrations from the Figma Component Cards, by docs page; the rest are drawn in drawn.tsx.
@@ -176,53 +180,21 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </main>
 
       <footer className={styles.footer}>
-        <nav className={styles.footerColumns} aria-label="Footer">
-          <div>
-            <h2>{t.footerDocs}</h2>
-            <ul>
-              {(['/docs/introduction', '/docs/installation', '/docs/components/button', '/docs/license'] as const).map((path, i) => (
-                <li key={path}>
-                  <Link href={href(lang, path)}>{t.docsLinks[i]}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2>{t.footerProducts}</h2>
-            <ul>
-              <li>
-                <a href={FIGMA_FILE} target="_blank" rel="noreferrer">
-                  {t.products[0]}
-                </a>
-              </li>
-              <li>
-                <Link href={href(lang, '/docs/installation')}>{t.products[1]}</Link>
-              </li>
-              <li className={styles.footerLater}>
-                {t.products[2]} <span className={styles.status}>{t.later}</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2>{t.footerFollow}</h2>
-            <ul>
-              <li>
-                <a href="https://ladom.co" target="_blank" rel="noreferrer">
-                  ladom.co
-                </a>
-              </li>
-              <li>
-                <a href="https://www.npmjs.com/package/ladom-ui" target="_blank" rel="noreferrer">
-                  npm
-                </a>
-              </li>
-            </ul>
-          </div>
+        <nav className={styles.footerLinks} aria-label="Footer">
+          <a className={styles.footerPill} href="https://www.npmjs.com/package/ladom-ui" target="_blank" rel="noreferrer">
+            <span>npm</span>
+          </a>
+          <a className={styles.footerPill} href="https://ladom.co" target="_blank" rel="noreferrer">
+            <span>ladom.co</span>
+          </a>
+          <Link className={styles.footerPill} href={href(lang, '/docs/license')}>
+            <span>{t.docsLinks[3]}</span>
+          </Link>
         </nav>
         <p className={styles.rights}>
-          {t.rights} © {new Date().getFullYear()}
+          {t.rights} <i aria-hidden>C</i> <small>{t.founded}</small>
         </p>
-        <Svg svg={figmaArt.logo} className={styles.footerLogo} />
+        <FooterMark svg={footerMarkSvg} label="Ladom" />
       </footer>
       <PlayInView />
     </div>
