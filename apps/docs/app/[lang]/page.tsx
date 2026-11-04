@@ -3,7 +3,6 @@ import { join } from 'node:path';
 import Link from 'next/link';
 import { iconNames } from '@ladom/icons';
 import meta from '@ladom/tokens/tokens.json';
-import { CodeBlock } from '@/components/docs/CodeBlock';
 import * as figmaArt from '@/components/landing/art/figma';
 import { DRAWN } from '@/components/landing/art/drawn';
 import { inter, jakarta, paprika } from '@/components/landing/fonts';
@@ -175,8 +174,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               {t.ctaButton}
             </Link>
           </div>
-          <p className={styles.ctaText}>{t.ctaText}</p>
-          <CodeBlock className={styles.ctaCode} code={'npx ladom-ui init\nnpx ladom-ui skill\nnpx ladom-ui add button input table modal'} />
         </section>
       </main>
 

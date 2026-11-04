@@ -586,19 +586,6 @@ a.heroButton:focus-visible,
   transform: translateY(2px);
 }
 
-.ctaText {
-  margin: clamp(48px, 6vw, 72px) auto 16px;
-  max-inline-size: 32em;
-  font: 400 17px/1.5 var(--lp-text);
-  color: var(--lp-ink-2);
-}
-
-.ctaCode {
-  max-inline-size: 520px;
-  margin-inline: auto;
-  text-align: start;
-}
-
 /* Footer: same look as ladom.co (pill links, small caps line, throwable mark) */
 .footer {
   position: relative;
