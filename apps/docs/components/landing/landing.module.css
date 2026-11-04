@@ -388,8 +388,7 @@ a.heroButton:focus-visible,
   color: var(--lp-ink);
 }
 
-.metaLater,
-.footerLater {
+.metaLater {
   color: var(--lp-ink-2);
 }
 
@@ -461,8 +460,7 @@ a.heroButton:focus-visible,
   filter: drop-shadow(0 8px 16px rgb(28 26 9 / 0.2));
 }
 
-.coin svg,
-.footerLogo svg {
+.coin svg {
   display: block;
   inline-size: 100%;
 }
@@ -522,59 +520,125 @@ a.heroButton:focus-visible,
   text-align: start;
 }
 
-/* Footer */
+/* Footer: same look as ladom.co (pill links, small caps line, throwable mark) */
 .footer {
-  padding: 64px var(--lp-gutter) 40px;
+  position: relative;
+  padding: 80px var(--lp-gutter) 72px;
   background: var(--lp-bg);
   text-align: center;
+  overflow: hidden;
 }
 
-.footerColumns {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 270px));
-  justify-content: center;
-  gap: 32px;
-}
-
-.footer h2 {
-  margin: 0 0 24px;
-  font: 300 clamp(24px, 2.4vw, 31px) / 1.4 var(--lp-text);
-  color: var(--lp-ink-2);
-}
-
-.footer ul {
+.footerLinks {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
 }
 
-.footer li,
+.footerPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 56px;
+  padding-inline: 32px;
+  border-radius: 1000px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--lp-ink-3);
+  color: var(--lp-ink);
+  font: 500 14px/1.7 var(--lp-display, var(--lp-text));
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: scale 350ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 250ms;
+}
+
+.footerPill span {
+  display: inline-block;
+}
+
+@media (hover: hover) {
+  .footerPill:hover {
+    scale: 1.05;
+  }
+}
+
+.footerPill:active {
+  scale: 0.98;
+}
+
+.footerPill:focus-visible {
+  outline: 2px solid #d9480f;
+  outline-offset: 3px;
+}
+
+/* label flips in on X when the page loads */
+@media (prefers-reduced-motion: no-preference) {
+  .footerPill span {
+    animation: pillFlip 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+}
+
+@keyframes pillFlip {
+  from {
+    transform: rotateX(90deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+
 .rights {
-  font: 500 14px/1.4 var(--lp-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 72px 0 0;
+  font: 500 14px/1.5 var(--lp-text);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--lp-ink-2);
+  color: var(--lp-ink-3);
 }
 
-.footer a {
-  color: var(--lp-ink-2);
-  text-decoration: none;
+.rights i {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 18px;
+  block-size: 18px;
+  border: 1px solid var(--lp-ink-3);
+  border-radius: 5px;
+  font: normal 500 12px/16px var(--lp-text);
+  letter-spacing: 0;
 }
 
-.footer a:hover {
-  color: var(--lp-ink);
+.rights small {
+  font: 500 9px/1.5 var(--lp-text);
+  letter-spacing: 0.1em;
 }
 
-.rights {
-  margin: 72px 0 24px;
+.footerMark {
+  display: block;
+  inline-size: 70px;
+  block-size: 70px;
+  margin: 52px auto 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.footerLogo {
-  display: inline-block;
-  inline-size: 48px;
+.footerMark:active {
+  cursor: grabbing;
+}
+
+.footerMark svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
 }
 
 @media (max-width: 1279px) {
@@ -604,10 +668,6 @@ a.heroButton:focus-visible,
 
   .card {
     padding-inline: 0;
-  }
-
-  .footerColumns {
-    grid-template-columns: 1fr;
   }
 
   .coinTop {
