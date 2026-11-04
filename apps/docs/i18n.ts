@@ -116,6 +116,7 @@ const en = {
     products: ['Ladom UI Figma', 'Ladom UI React', 'Ladom UI Mobile'],
     rights: 'Ladom design system',
     founded: 'Founded in 2024',
+    throwIt: 'Throw it',
   },
 };
 
@@ -229,6 +230,7 @@ const tr: Dictionary = {
     products: ['Ladom UI Figma', 'Ladom UI React', 'Ladom UI Mobil'],
     rights: 'Ladom tasarım sistemi',
     founded: '2024’te kuruldu',
+    throwIt: 'Fırlat',
   },
 };
 
