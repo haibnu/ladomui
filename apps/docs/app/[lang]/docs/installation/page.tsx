@@ -47,6 +47,13 @@ npx ladom-ui init --yes                                 # the Ladom defaults`,
 npx ladom-ui update    # updates the files you have not changed
 npx ladom-ui diff button
 npx ladom-ui update button --overwrite`,
+  contrast: `/* npx ladom-ui init --brand "#8ce99a" */
+/* #8ce99a is 1.3:1 on the light surfaces, too low for text and icons (4.5:1) and lines (3:1). */
+:root {
+  --color-primary-foreground: #187d27;
+  --color-primary-line: #1e9f32;
+  --color-link-color: var(--color-primary-foreground);
+}`,
   layout: `// app/layout.tsx
 import { DM_Sans } from 'next/font/google';
 import '@/components/ladom/theme.css';
@@ -133,6 +140,16 @@ const COPY = {
       </>
     ),
     themeText: 'theme.css loads the tokens and sets your brand on top of them:',
+    contrast: 'Light brand colors',
+    contrastText: (
+      <>
+        The brand color fills buttons, checkboxes and switches, and it is also text and lines on light surfaces: links, active tabs, field
+        borders. Those use two roles, <code>--color-primary-foreground</code> (text and icons, at least 4.5:1) and{' '}
+        <code>--color-primary-line</code> (lines, at least 3:1). They are the brand color as long as it is dark enough. When it is not, for
+        example a light green, init writes a darker step of the same hue for them in theme.css (a lighter one for the Dark theme), and the
+        fills keep the brand color:
+      </>
+    ),
     setup: '2. Load the theme and the font',
     setupText: (
       <>
@@ -203,6 +220,16 @@ const COPY = {
       </>
     ),
     themeText: 'theme.css tokenları yükler ve markanızı onların üstüne kurar:',
+    contrast: 'Açık marka renkleri',
+    contrastText: (
+      <>
+        Marka rengi butonları, checkbox’ları ve switch’leri doldurur; açık zeminlerde de yazı ve çizgi olur: linkler, aktif tab’lar, alan
+        kenarları. Bunlar iki rol kullanır: <code>--color-primary-foreground</code> (yazı ve ikon, en az 4.5:1) ve{' '}
+        <code>--color-primary-line</code> (çizgi, en az 3:1). Marka rengi yeterince koyuysa ikisi de odur. Değilse, örneğin açık bir
+        yeşilde, init theme.css’e onlar için aynı tonun daha koyu bir adımını yazar (Dark temada daha açık bir adımını); dolgular marka
+        renginde kalır:
+      </>
+    ),
     setup: '2. Temayı ve fontu yükleyin',
     setupText: (
       <>
@@ -267,6 +294,9 @@ export default async function InstallationPage({ params }: Props) {
       <CodeBlock code={CODE.initFlags} />
       <p>{c.themeText}</p>
       <CodeBlock code={CODE.theme} />
+      <h3 id="contrast">{c.contrast}</h3>
+      <p>{c.contrastText}</p>
+      <CodeBlock code={CODE.contrast} />
 
       <h2 id="setup">{c.setup}</h2>
       <p>{c.setupText}</p>
