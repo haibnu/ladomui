@@ -5,7 +5,7 @@ into your code, like shadcn/ui: they are yours to read and change, and nothing f
 up in your `node_modules`.
 
 ```bash
-npx ladom-ui init                 # writes ladom-ui.json, copies the tokens to components/ladom
+npx ladom-ui init                 # asks for your brand color and font, copies the tokens to components/ladom
 npx ladom-ui add button input     # copies components and what they need
 npx ladom-ui icons share calendar # copies extra icons for your own code
 npx ladom-ui update               # brings installed components up to date
@@ -14,8 +14,19 @@ npx ladom-ui list                 # every component and its tier
 npx ladom-ui skill                # the Claude Code skill, in .claude/skills/ladom-ui
 ```
 
-Then import the tokens once (`import '@/components/ladom/tokens/index.css'`), load Hanken Grotesk
-as `--font-hanken-grotesk` on `<html>`, and import components from `@/components/ladom`.
+`init` asks two questions: your brand color (a hex code) and your font, by its name on
+[Google Fonts](https://fonts.google.com) (e.g. Inter, DM Sans). Press Enter to keep the Ladom
+defaults (#3c3c3c, Hanken Grotesk). The answers go to `ladom-ui.json` and to
+`components/ladom/theme.css`, which loads the tokens and sets the primary colors and the font. Run
+`init` again to change them. Without a terminal (CI, scripts, Claude), pass them as flags:
+
+```bash
+npx ladom-ui init --brand "#2563eb" --font "DM Sans"
+```
+
+Then import `@/components/ladom/theme.css` once, load your font as `--font-brand` on `<html>`
+(init prints the next/font lines; with the default font, `--font-hanken-grotesk`), and import
+components from `@/components/ladom`.
 
 ## Pro components
 
@@ -36,6 +47,8 @@ run `npx ladom-ui update --overwrite` once (after committing your changes).
 ## Options
 
 - `init --dir <path>`: where the files go (default `components/ladom`).
+- `init --brand <hex> --font <name>`: answer the brand questions up front; `--yes` keeps the defaults.
+- `init --overwrite`: rewrite `theme.css` even if you edited it.
 - `add --overwrite`: replace files you changed; without it they are kept and listed.
 - `LADOM_UI_REGISTRY`: another registry URL (default `https://ui.ladom.co/r`).
 

@@ -16,20 +16,28 @@ Ladom UI is the design system of Ladom products, built 1:1 from the Figma file "
 - Keep accessibility the components provide: give icon-only buttons an `aria-label`, wrap fields in `FormField`, name groups (`Segment`, `Tabs`, `Stepper`) with `aria-label`.
 
 ## Setup (once per app)
+Before running `init`, ask the user two questions and wait for the answers:
+1. "What is your brand color?" (a hex code such as #2563eb)
+2. "What is your font? It must be on Google Fonts: find it at https://fonts.google.com and tell me its name." (e.g. Inter, DM Sans)
+
+If they have none, keep the Ladom defaults (#3c3c3c, Hanken Grotesk). `init` cannot ask questions when Claude runs it, so pass the answers as flags; it checks the font name against Google Fonts.
 ```bash
-npx ladom-ui init                      # ladom-ui.json + tokens in components/ladom
+npx ladom-ui init --brand "#2563eb" --font "DM Sans"   # ladom-ui.json, tokens and theme.css in components/ladom
+npx ladom-ui init --yes                                 # the Ladom defaults
 npx ladom-ui add button input selectbox  # components, the parts they need, their icons
 npx ladom-ui list                      # every component, its tier and updates
 npx ladom-ui update                    # updates the files you have not changed
 ```
 Pro components (marked Pro on ui.ladom.co) need `LADOM_UI_KEY` set to a license key; never write the key into files. If it is missing, tell the user instead of rebuilding the component.
 ```tsx
-// app/layout.tsx
-import { Hanken_Grotesk } from 'next/font/google';
-import '@/components/ladom/tokens/index.css';
-const font = Hanken_Grotesk({ subsets: ['latin', 'latin-ext'], variable: '--font-hanken-grotesk' });
+// app/layout.tsx (init prints these lines for the chosen font)
+import { DM_Sans } from 'next/font/google';
+import '@/components/ladom/theme.css'; // loads the tokens, then the brand color and font
+const font = DM_Sans({ subsets: ['latin', 'latin-ext'], variable: '--font-brand' });
+// With the default font: Hanken_Grotesk({ …, variable: '--font-hanken-grotesk' })
 // <html className={font.variable}> … <body style={{ background: 'var(--color-surface-background)' }}>
 ```
+To change the brand later, run `init` again with new flags; never hard-code the brand color in components, use `--color-primary*`.
 Import components and icons from `@/components/ladom` (the folder in `ladom-ui.json`). Before using a component, check it is in that folder; add it with the CLI if not. Toasts need `<ToastProvider>` (a client component) around the app. Modes go on `<html>`: `data-theme="dark"`, `data-density="narrow"`, `data-device="mobile|tablet|desktop"`.
 
 ## Components
