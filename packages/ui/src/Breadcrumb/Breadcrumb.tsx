@@ -5,6 +5,7 @@ import { IconArrowBottom, IconArrowTop, IconBack } from '@ladom/icons';
 import { Button } from '../Button/Button';
 import { Cell } from '../Cell/Cell';
 import { Dropdown } from '../Dropdown/Dropdown';
+import { useUnclipped } from '../Floating/useUnclipped';
 import styles from './Breadcrumb.module.css';
 
 // Figma: Components / Breadcrumb (node 4748:15272): a compact pill before the page title with a
@@ -33,6 +34,7 @@ export function Breadcrumb({ items, onBack, backLabel = 'Back', menuLabel = 'Pat
   const root = useRef<HTMLElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLDivElement>(null);
+  useUnclipped(menu, open);
   const Arrow = open ? IconArrowTop : IconArrowBottom;
 
   const close = (refocus: boolean) => {

@@ -117,3 +117,14 @@
 .floating:is([data-placement='left-end'], [data-placement='right-end']) > .beak {
   inset-block-end: var(--_beak-offset);
 }
+
+/* Pinned by useUnclipped inside a dialog: the same spot, measured, with position: fixed. It wins
+   over each panel's own placement rules. */
+.pinned {
+  position: fixed !important;
+  inset: var(--_pin-top) auto auto var(--_pin-left) !important;
+  inline-size: var(--_pin-width) !important;
+  min-inline-size: 0 !important;
+  margin: 0 !important;
+  translate: none !important;
+}

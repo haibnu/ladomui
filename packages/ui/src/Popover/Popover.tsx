@@ -5,6 +5,7 @@ import { IconClose } from '@ladom/icons';
 import { Button } from '../Button/Button';
 import floating from '../Floating/floating.module.css';
 import type { Placement } from '../Floating/placement';
+import { useUnclipped } from '../Floating/useUnclipped';
 import styles from './Popover.module.css';
 
 // Figma: Components / Popover (node 4201:12502). placement = 👉 Position (the beak's side, so
@@ -41,6 +42,8 @@ export function Popover({
   const [inner, setInner] = useState(defaultOpen);
   const open = controlled ?? inner;
   const anchor = useRef<HTMLSpanElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
+  useUnclipped(panel, open);
   const set = (next: boolean) => {
     if (controlled === undefined) setInner(next);
     onOpenChange?.(next);
@@ -76,6 +79,7 @@ export function Popover({
       {opener}
       {open && (
         <div
+          ref={panel}
           id={id}
           role="dialog"
           aria-labelledby={title != null ? `${id}-title` : undefined}

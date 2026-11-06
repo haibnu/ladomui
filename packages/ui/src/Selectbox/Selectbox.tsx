@@ -7,6 +7,7 @@ import { Cell, CellSearch } from '../Cell/Cell';
 import { EmptyState } from '../EmptyState/EmptyState';
 import { Chip } from '../Chip/Chip';
 import { Dropdown } from '../Dropdown/Dropdown';
+import { useUnclipped } from '../Floating/useUnclipped';
 import { useFieldContext } from '../FormField/FormField';
 import { Input } from '../Input/Input';
 import styles from './Selectbox.module.css';
@@ -104,6 +105,8 @@ export function Selectbox(props: SelectboxProps) {
   const root = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const list = useRef<HTMLDivElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
+  useUnclipped(panel, open);
   const typed = useRef({ text: '', at: 0 });
 
   const visible = useMemo(
@@ -286,7 +289,7 @@ export function Selectbox(props: SelectboxProps) {
         <Arrow className={styles.arrow} aria-hidden="true" />
       </button>
       {open && (
-        <Dropdown className={styles.dropdown}>
+        <Dropdown ref={panel} className={styles.dropdown}>
           {searchable && (
             <CellSearch>
               <Input
