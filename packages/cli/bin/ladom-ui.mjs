@@ -12,7 +12,8 @@ const DEFAULTS = { registry: 'https://ui.ladom.co/r', dir: 'components/ladom' };
 const HELP = `ladom-ui — add Ladom UI to your project
 
 Usage
-  npx ladom-ui init [--dir components/ladom]   Set up the folder and copy the tokens
+  npx ladom-ui init [--dir components/ladom]   Set up the folder, copy the tokens and ask for
+       [--brand #hex] [--font "Name"] [--yes]  your brand color and Google Fonts font (theme.css)
   npx ladom-ui add <name...> [--overwrite]     Copy components (and what they need)
   npx ladom-ui update [name...] [--overwrite]  Bring installed components up to date
   npx ladom-ui diff <name>                     Show how your files differ from the latest
@@ -196,6 +197,183 @@ function diffLines(a, b) {
   return out.join('\n');
 }
 
+// --- Brand: init asks for the brand color and the font and writes <dir>/theme.css, which loads the
+// tokens and sets them. The primary scale is derived from the brand color with the same steps the
+// default palette uses (#3c3c3c → natural #494949, tint #5e5e5e, soft #ededed, shade #222222).
+const DEFAULT_BRAND = '#3c3c3c';
+const DEFAULT_FONT = 'Hanken Grotesk';
+const FONT_WEIGHTS = [400, 500, 700]; // --font-weight-regular, -normal, -bold
+
+const parseHex = (value) => {
+  const m = String(value).trim().replace(/^#/, '').match(/^([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if (!m) return null;
+  const h = m[1].length === 3 ? [...m[1]].map((c) => c + c).join('') : m[1];
+  return `#${h.toLowerCase()}`;
+};
+const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+const toHex = (c) => `#${c.map((v) => Math.round(Math.min(255, Math.max(0, v))).toString(16).padStart(2, '0')).join('')}`;
+const mix = (hex, target, t) => toHex(rgb(hex).map((v) => v + (target - v) * t));
+const luminance = (hex) => {
+  const [r, g, b] = rgb(hex).map((v) => {
+    const s = v / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrast = (a, b) => {
+  const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p);
+  return (x + 0.05) / (y + 0.05);
+};
+const primaryScale = (brand) => {
+  const lightText = contrast(brand, '#ffffff') >= contrast(brand, '#1a1711');
+  return {
+    natural: mix(brand, 255, 0.067),
+    tint: mix(brand, 255, 0.174),
+    soft: mix(brand, 255, 0.908),
+    shade: mix(brand, 0, 0.433),
+    on: lightText ? '#ffffff' : 'var(--color-static-black-alpha-96)',
+    onTint: lightText ? 'var(--color-static-white-alpha-64)' : 'var(--color-static-black-alpha-72)',
+  };
+};
+
+const googleFontsCss = (font, weights = FONT_WEIGHTS) =>
+  `https://fonts.googleapis.com/css2?family=${font.trim().replace(/\s+/g, '+')}${weights ? `:wght@${weights.join(';')}` : ''}&display=swap`;
+
+// The font's name as Google Fonts spells it, or null if Google Fonts does not have it. The family
+// list makes "dm sans" find "DM Sans"; without it, the CSS API checks the name as written.
+let googleFamilies;
+async function findGoogleFont(name) {
+  const key = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (googleFamilies === undefined) {
+    try {
+      const text = await (await fetch('https://fonts.google.com/metadata/fonts')).text();
+      googleFamilies = JSON.parse(text.slice(text.indexOf('{'))).familyMetadataList.map((f) => ({ family: f.family, weights: Object.keys(f.fonts ?? {}) }));
+    } catch {
+      googleFamilies = null;
+    }
+  }
+  if (googleFamilies) {
+    const match = googleFamilies.find((f) => key(f.family) === key(name));
+    return match ? { font: match.family, allWeights: FONT_WEIGHTS.every((w) => match.weights.includes(String(w))) } : null;
+  }
+  for (const font of [name.trim()]) {
+    for (const weights of [FONT_WEIGHTS, null]) {
+      try {
+        const res = await fetch(googleFontsCss(font, weights));
+        if (res.ok) return { font, allWeights: Boolean(weights) };
+      } catch {
+        return { font: name.trim(), allWeights: true, offline: true };
+      }
+    }
+  }
+  return null;
+}
+
+async function askTheme(current, { brand, font, yes }) {
+  const theme = { ...current };
+  if (typeof brand === 'string') {
+    const hex = parseHex(brand);
+    if (!hex) fail(`--brand must be a hex color such as #2563eb (got "${brand}").`);
+    theme.brand = hex;
+  }
+  if (typeof font === 'string') {
+    const found = await findGoogleFont(font);
+    if (!found) fail(`Google Fonts has no font called "${font}". Find the exact name at https://fonts.google.com.`);
+    theme.font = found.font;
+  }
+  const interactive = process.stdin.isTTY && process.stdout.isTTY && !yes;
+  if (!interactive) {
+    if (theme.brand === undefined || theme.font === undefined)
+      console.log('  Using the Ladom defaults for what was not given. Set your brand with --brand <hex> and --font "<Google Fonts name>".');
+    return { brand: theme.brand ?? DEFAULT_BRAND, font: theme.font ?? DEFAULT_FONT };
+  }
+  const { createInterface } = await import('node:readline/promises');
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    console.log('\nYour brand (press Enter to keep the value in brackets)\n');
+    if (typeof brand !== 'string') {
+      for (;;) {
+        const answer = (await rl.question(`  Brand color, as a hex code [${theme.brand ?? DEFAULT_BRAND}]: `)).trim();
+        if (!answer) break;
+        const hex = parseHex(answer);
+        if (hex) {
+          theme.brand = hex;
+          break;
+        }
+        console.log('  That is not a hex color; write it like #2563eb.');
+      }
+    }
+    if (typeof font !== 'string') {
+      console.log('\n  Your font must be on Google Fonts. Find it at https://fonts.google.com and copy its name (e.g. Inter, DM Sans).');
+      for (;;) {
+        const answer = (await rl.question(`  Font [${theme.font ?? DEFAULT_FONT}]: `)).trim();
+        if (!answer) break;
+        const found = await findGoogleFont(answer);
+        if (found) {
+          theme.font = found.font;
+          if (found.offline) console.log('  Could not reach Google Fonts to check the name; using it as written.');
+          else if (!found.allWeights) console.log(`  Note: ${found.font} does not have every weight Ladom UI uses (400, 500, 700); the browser will fill in.`);
+          break;
+        }
+        console.log(`  Google Fonts has no font called "${answer}". Check the name at https://fonts.google.com.`);
+      }
+    }
+    console.log('');
+  } finally {
+    rl.close();
+  }
+  return { brand: theme.brand ?? DEFAULT_BRAND, font: theme.font ?? DEFAULT_FONT };
+}
+
+function themeCss({ brand, font }) {
+  const lines = [
+    '/* Your brand, written by `npx ladom-ui init` from ladom-ui.json ("theme"). Import this file once',
+    '   at the root of your app: it loads the Ladom UI tokens, then sets your brand color and font.',
+    '   Run init again to change them (an edited file is kept unless you pass --overwrite). */',
+    '@import "./tokens/index.css";',
+  ];
+  if (brand !== DEFAULT_BRAND) {
+    const p = primaryScale(brand);
+    lines.push(
+      '',
+      ':root {',
+      `  --color-static-brand-color: ${brand};`,
+      '}',
+      '',
+      '/* The primary scale, derived from the brand color. The Dark theme uses it too. */',
+      ':root,',
+      ':root[data-theme="dark"] {',
+      `  --color-primary-natural: ${p.natural};`,
+      `  --color-primary-tint: ${p.tint};`,
+      `  --color-primary-soft: ${p.soft};`,
+      `  --color-primary-shade: ${p.shade};`,
+      `  --color-on-primary: ${p.on};`,
+      `  --color-on-primary-tint: ${p.onTint};`,
+      '}',
+    );
+  }
+  if (font !== DEFAULT_FONT) {
+    lines.push(
+      '',
+      `/* ${font} from Google Fonts, loaded by the app as --font-brand (next/font) or by name (<link>). */`,
+      ':root {',
+      `  --font-family: var(--font-brand, "${font}"), system-ui, sans-serif;`,
+      '}',
+    );
+  }
+  return `${lines.join('\n')}\n`;
+}
+
+function writeTheme(config, overwrite) {
+  const dir = resolve(root, config.dir);
+  const report = { written: [], updated: [], skipped: [] };
+  writeInto(config, dir, 'theme.css', themeCss(config.theme), overwrite, report);
+  writeConfig(config);
+  const { brand, font } = config.theme;
+  if (report.skipped.length) console.log(`  Kept your changed ${report.skipped[0]}; use --overwrite to rewrite it from ladom-ui.json.`);
+  else ok(`Theme: brand ${brand}${brand === DEFAULT_BRAND ? ' (Ladom default)' : ''}, font ${font}${font === DEFAULT_FONT ? ' (Ladom default)' : ''} → ${config.dir}/theme.css`);
+}
+
 const command = args.shift();
 const overwrite = flag('overwrite') === true;
 if (!command || command === '--help' || command === '-h' || command === 'help') {
@@ -204,13 +382,22 @@ if (!command || command === '--help' || command === '-h' || command === 'help') 
   const dir = flag('dir');
   const registry = flag('registry');
   const config = { ...DEFAULTS, ...(readConfig() ?? {}), ...(typeof dir === 'string' ? { dir } : {}), ...(typeof registry === 'string' ? { registry } : {}), installed: readConfig()?.installed ?? {} };
+  config.theme = await askTheme(config.theme ?? {}, { brand: flag('brand'), font: flag('font'), yes: flag('yes') === true });
   writeConfig(config);
   ok(`Wrote ${CONFIG}.`);
   await add(['tokens'], { overwrite });
+  writeTheme(readConfig(), overwrite);
+  const at = config.dir.startsWith('.') ? config.dir : `@/${config.dir}`;
+  const font = config.theme.font ?? DEFAULT_FONT;
+  const custom = font !== DEFAULT_FONT;
   console.log(`
 Next:
-  1. Import the tokens once, at the root of your app:   import '@/${config.dir}/tokens/index.css';
-  2. Load Hanken Grotesk as --font-hanken-grotesk on <html> (next/font: variable: '--font-hanken-grotesk').
+  1. Import the theme once, at the root of your app:    import '${at}/theme.css';
+  2. Load ${font} as ${custom ? '--font-brand' : '--font-hanken-grotesk'} on <html>. With next/font:
+       import { ${font.replace(/[^A-Za-z0-9]+/g, '_')} } from 'next/font/google';
+       const font = ${font.replace(/[^A-Za-z0-9]+/g, '_')}({ subsets: ['latin', 'latin-ext'], variable: '${custom ? '--font-brand' : '--font-hanken-grotesk'}' });
+       <html className={font.variable}>
+     Without Next.js: <link rel="stylesheet" href="${googleFontsCss(font)}">
   3. Add components:                                    npx ladom-ui add button input`);
 } else if (command === 'add') {
   if (!args.length) fail('Name the components to add, e.g. "npx ladom-ui add button input".');

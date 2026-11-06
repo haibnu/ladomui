@@ -12,7 +12,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const LICENSE = [href('en', '/docs/license'), href('tr', '/docs/license')] as const;
 
 const CODE = {
-  init: `npx ladom-ui init`,
+  init: `npx ladom-ui init
+
+Your brand (press Enter to keep the value in brackets)
+
+  Brand color, as a hex code [#3c3c3c]: #2563eb
+
+  Your font must be on Google Fonts. Find it at https://fonts.google.com and copy its name (e.g. Inter, DM Sans).
+  Font [Hanken Grotesk]: DM Sans`,
+  initFlags: `npx ladom-ui init --brand "#2563eb" --font "DM Sans"   # no questions (CI, scripts, Claude)
+npx ladom-ui init --yes                                 # the Ladom defaults`,
+  theme: `/* components/ladom/theme.css */
+@import "./tokens/index.css";
+
+:root {
+  --color-static-brand-color: #2563eb;
+}
+:root,
+:root[data-theme="dark"] {
+  --color-primary-natural: #346dec;
+  --color-primary-tint: #4b7eee;
+  --color-primary-soft: #ebf1fd;
+  --color-primary-shade: #153885;
+  --color-on-primary: #ffffff;
+  --color-on-primary-tint: var(--color-static-white-alpha-64);
+}
+:root {
+  --font-family: var(--font-brand, "DM Sans"), system-ui, sans-serif;
+}`,
   add: `npx ladom-ui add button input form-field`,
   pro: `LADOM_UI_KEY=ldm_pro_… npx ladom-ui add accordion navigation`,
   icons: `npx ladom-ui icons share calendar`,
@@ -21,17 +48,19 @@ npx ladom-ui update    # updates the files you have not changed
 npx ladom-ui diff button
 npx ladom-ui update button --overwrite`,
   layout: `// app/layout.tsx
-import { Hanken_Grotesk } from 'next/font/google';
-import '@/components/ladom/tokens/index.css';
+import { DM_Sans } from 'next/font/google';
+import '@/components/ladom/theme.css';
 
-const hankenGrotesk = Hanken_Grotesk({
+// Your font from init, as --font-brand. With the default font:
+// Hanken_Grotesk({ subsets: ['latin', 'latin-ext'], variable: '--font-hanken-grotesk' })
+const font = DM_Sans({
   subsets: ['latin', 'latin-ext'],
-  variable: '--font-hanken-grotesk',
+  variable: '--font-brand',
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={hankenGrotesk.variable}>
+    <html lang="en" className={font.variable}>
       <body style={{ background: 'var(--color-surface-background)', color: 'var(--color-foreground-high-emphasis)' }}>
         {children}
       </body>
@@ -68,11 +97,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
   box-shadow: var(--shadow-card-style-1);
   font: var(--text-ui-text-regular);
 }`,
-  vite: `// main.tsx
-import './components/ladom/tokens/index.css';
-import '@fontsource-variable/hanken-grotesk';
+  vite: `<!-- index.html: your font from Google Fonts, by name -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" />
 
-document.documentElement.style.setProperty('--font-hanken-grotesk', "'Hanken Grotesk Variable'");`,
+// main.tsx
+import './components/ladom/theme.css';`,
 };
 
 const COPY = {
@@ -84,14 +113,32 @@ const COPY = {
     initText: (
       <>
         <code>init</code> writes <code>ladom-ui.json</code> and copies the tokens to <code>components/ladom</code> (change it with{' '}
-        <code>--dir</code>). The files are yours: read them, change them, commit them.
+        <code>--dir</code>). The files are yours: read them, change them, commit them. It then asks two questions about your brand:
       </>
     ),
-    setup: '2. Load the tokens and the font',
+    brandList: [
+      <>
+        <strong>Brand color</strong>: a hex code such as <code>#2563eb</code>. It becomes the primary color of buttons, links, focus rings and
+        selections; the lighter and darker steps are derived from it.
+      </>,
+      <>
+        <strong>Font</strong>: the name of a font on <a href="https://fonts.google.com">Google Fonts</a>, as it is written there (Inter, DM
+        Sans, Plus Jakarta Sans). Look it up before you run init; the CLI checks the name.
+      </>,
+    ],
+    brandText: (
+      <>
+        Press Enter to keep the Ladom defaults (#3c3c3c and Hanken Grotesk). The answers are saved in <code>ladom-ui.json</code> and written to{' '}
+        <code>components/ladom/theme.css</code>. Run <code>init</code> again to change them. Where nobody can answer, pass them as flags:
+      </>
+    ),
+    themeText: 'theme.css loads the tokens and sets your brand on top of them:',
+    setup: '2. Load the theme and the font',
     setupText: (
       <>
-        Import the tokens once at the root and load Hanken Grotesk as <code>--font-hanken-grotesk</code> on <code>{'<html>'}</code>. Give the
-        body the background and text tokens.
+        Import <code>theme.css</code> once at the root and load your font as <code>--font-brand</code> on <code>{'<html>'}</code> (with the
+        default font, Hanken Grotesk as <code>--font-hanken-grotesk</code>). init prints the exact lines for your font. Give the body the
+        background and text tokens.
       </>
     ),
     add: '3. Add components',
@@ -115,12 +162,13 @@ const COPY = {
     styling: 'Your own styles',
     stylingText: 'Use the tokens in your CSS so your screens follow the same scale and themes. Every token is listed under Foundations.',
     vite: 'Other bundlers (Vite)',
-    viteText: 'Outside Next.js, import with relative paths, load the font any way you like and set the variable yourself:',
+    viteText: 'Outside Next.js, import with relative paths and load your font from Google Fonts by name; theme.css uses the name when --font-brand is not set:',
     claude: 'With Claude',
     claudeText: (
       <>
         A Claude Code skill, <code>ladom-ui</code>, teaches Claude the components, the tokens and the rules. <code>npx ladom-ui skill</code>{' '}
-        adds it to your project’s <code>.claude/skills</code> folder.
+        adds it to your project’s <code>.claude/skills</code> folder. When Claude sets up Ladom UI, it asks you for the brand color and the font
+        first and passes them to <code>init</code>.
       </>
     ),
     next: 'Next',
@@ -134,14 +182,33 @@ const COPY = {
     initText: (
       <>
         <code>init</code>, <code>ladom-ui.json</code> dosyasını yazar ve tokenları <code>components/ladom</code> klasörüne kopyalar (
-        <code>--dir</code> ile değiştirin). Dosyalar sizindir: okuyun, değiştirin, commit edin.
+        <code>--dir</code> ile değiştirin). Dosyalar sizindir: okuyun, değiştirin, commit edin. Ardından markanızla ilgili iki soru sorar:
       </>
     ),
-    setup: '2. Tokenları ve fontu yükleyin',
+    brandList: [
+      <>
+        <strong>Marka rengi</strong>: <code>#2563eb</code> gibi bir hex kodu. Butonların, linklerin, odak halkalarının ve seçimlerin ana rengi
+        olur; açık ve koyu tonlar ondan türetilir.
+      </>,
+      <>
+        <strong>Font</strong>: <a href="https://fonts.google.com">Google Fonts</a>’taki bir fontun orada yazıldığı haliyle adı (Inter, DM
+        Sans, Plus Jakarta Sans). init’i çalıştırmadan önce bakın; CLI adı kontrol eder.
+      </>,
+    ],
+    brandText: (
+      <>
+        Enter’a basarsanız Ladom varsayılanları kalır (#3c3c3c ve Hanken Grotesk). Cevaplar <code>ladom-ui.json</code> içine kaydedilir ve{' '}
+        <code>components/ladom/theme.css</code> dosyasına yazılır. Değiştirmek için <code>init</code>’i yeniden çalıştırın. Soruları
+        cevaplayacak kimse yoksa bayrak olarak verin:
+      </>
+    ),
+    themeText: 'theme.css tokenları yükler ve markanızı onların üstüne kurar:',
+    setup: '2. Temayı ve fontu yükleyin',
     setupText: (
       <>
-        Tokenları kökte bir kez import edin ve Hanken Grotesk’i <code>{'<html>'}</code> üzerinde <code>--font-hanken-grotesk</code> olarak
-        yükleyin. Body’ye zemin ve metin tokenlarını verin.
+        <code>theme.css</code>’i kökte bir kez import edin ve fontunuzu <code>{'<html>'}</code> üzerinde <code>--font-brand</code> olarak
+        yükleyin (varsayılan fontta Hanken Grotesk’i <code>--font-hanken-grotesk</code> olarak). init, fontunuz için gereken satırları
+        yazdırır. Body’ye zemin ve metin tokenlarını verin.
       </>
     ),
     add: '3. Bileşenleri ekleyin',
@@ -165,12 +232,13 @@ const COPY = {
     styling: 'Kendi stilleriniz',
     stylingText: 'Ekranlarınız aynı ölçeği ve temaları izlesin diye CSS’inizde tokenları kullanın. Tüm tokenlar Foundations altında listelenir.',
     vite: 'Diğer bundler’lar (Vite)',
-    viteText: 'Next.js dışında göreli yollarla import edin, fontu istediğiniz gibi yükleyip değişkeni kendiniz tanımlayın:',
+    viteText: 'Next.js dışında göreli yollarla import edin ve fontunuzu Google Fonts’tan adıyla yükleyin; --font-brand yoksa theme.css adı kullanır:',
     claude: 'Claude ile',
     claudeText: (
       <>
         Bir Claude Code skill’i, <code>ladom-ui</code>, Claude’a bileşenleri, tokenları ve kuralları öğretir.{' '}
-        <code>npx ladom-ui skill</code> onu projenizin <code>.claude/skills</code> klasörüne ekler.
+        <code>npx ladom-ui skill</code> onu projenizin <code>.claude/skills</code> klasörüne ekler. Claude Ladom UI’ı kurarken önce size marka
+        rengini ve fontu sorar, sonra bunları <code>init</code>’e verir.
       </>
     ),
     next: 'Sonra',
@@ -190,6 +258,15 @@ export default async function InstallationPage({ params }: Props) {
       <h2 id="init">{c.init}</h2>
       <p>{c.initText}</p>
       <CodeBlock code={CODE.init} />
+      <ul>
+        {c.brandList.map((item, i) => (
+          <li key={i}>{item}</li>
+        ))}
+      </ul>
+      <p>{c.brandText}</p>
+      <CodeBlock code={CODE.initFlags} />
+      <p>{c.themeText}</p>
+      <CodeBlock code={CODE.theme} />
 
       <h2 id="setup">{c.setup}</h2>
       <p>{c.setupText}</p>
