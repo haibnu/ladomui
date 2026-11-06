@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef, type HTMLAttributes, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type HTMLAttributes, type ReactNode } from 'react';
 import { IconClose } from '@ladom/icons';
 import { Button } from '../Button/Button';
 import styles from './Modal.module.css';
@@ -38,6 +38,8 @@ function Dialog({
 }: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const id = useId();
+  // The header has no line under it, so it casts a shadow while the body is scrolled.
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const dialog = ref.current;
@@ -61,7 +63,7 @@ function Dialog({
       {...rest}
     >
       <div className={styles.surface}>
-        <div className={styles.header}>
+        <div className={styles.header} data-scrolled={scrolled || undefined}>
           <div className={styles.text}>
             <h2 id={`${id}-title`} className={styles.title}>
               {title}
@@ -74,7 +76,11 @@ function Dialog({
           </div>
           <Button variant="ghost" tone="tertiary" size="small" icon={IconClose} aria-label={closeLabel} onClick={onClose} />
         </div>
-        {children != null && <div className={styles.body}>{children}</div>}
+        {children != null && (
+          <div className={styles.body} onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}>
+            {children}
+          </div>
+        )}
         {footer != null && <div className={styles.footer}>{footer}</div>}
       </div>
     </dialog>
