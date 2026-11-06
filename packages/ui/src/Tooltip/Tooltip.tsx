@@ -2,6 +2,7 @@
 
 import { cloneElement, isValidElement, useId, useRef, useState, type HTMLAttributes, type ReactElement, type ReactNode } from 'react';
 import floating from '../Floating/floating.module.css';
+import { useUnclipped } from '../Floating/useUnclipped';
 import type { Placement } from '../Floating/placement';
 import styles from './Tooltip.module.css';
 
@@ -26,6 +27,8 @@ export function Tooltip({ content, children, placement = 'top', beak = true, ope
   const [shown, setShown] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const open = forced ?? shown;
+  const bubble = useRef<HTMLSpanElement>(null);
+  useUnclipped(bubble, open);
   const show = () => {
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setShown(true), delay);
@@ -50,7 +53,7 @@ export function Tooltip({ content, children, placement = 'top', beak = true, ope
     >
       {child}
       {open && (
-        <span id={id} role="tooltip" className={[floating.floating, styles.tooltip, className].filter(Boolean).join(' ')} data-placement={placement} {...rest}>
+        <span ref={bubble} id={id} role="tooltip" className={[floating.floating, styles.tooltip, className].filter(Boolean).join(' ')} data-placement={placement} {...rest}>
           {content}
           {beak && <span className={floating.beak} aria-hidden="true" />}
         </span>

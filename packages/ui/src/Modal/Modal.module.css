@@ -98,10 +98,23 @@
 }
 
 .header {
+  /* Positioned so its shadow is painted over the body. */
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: var(--layout-default);
   padding: var(--space-modal) var(--space-modal) 0;
+  transition: box-shadow var(--motion-fade-default);
+}
+
+/* While the body is scrolled: Depth SM under the header (Figma has no scrolled state). */
+/* With a body, the gap above it belongs to the header, so the scroll shadow sits below the gap. */
+.header:has(+ .body) {
+  padding-block-end: var(--space-modal-horizontal);
+}
+
+.header[data-scrolled] {
+  box-shadow: var(--shadow-depth-sm);
 }
 
 .text {
@@ -126,7 +139,7 @@
 .body {
   flex: 1;
   overflow: auto;
-  padding: var(--space-modal-horizontal) var(--space-modal) 0;
+  padding: 0 var(--space-modal);
   font: var(--text-content-paragraphy-regular);
   color: var(--color-foreground-medium-emphasis);
 }
