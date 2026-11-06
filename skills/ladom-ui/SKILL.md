@@ -60,7 +60,7 @@ CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-p
 Icon props: `Button` takes icon components (`icon={IconAdd}`); other components take elements (`iconLeft={<IconAdd />}`).
 
 ## Tokens
-- Colors: `--color-primary|secondary|tertiary|success|error|warning|info` with `-soft`, `-tint`, `-shade`, `-natural` and `--color-on-*`; surfaces `--color-surface-background`, `--color-surface-level-1…4`; text `--color-foreground-high|medium|low-emphasis`.
+- Colors: `--color-primary|secondary|tertiary|success|error|warning|info` with `-soft`, `-tint`, `-shade`, `-natural` and `--color-on-*`. The brand color as text or an icon on a surface is `--color-primary-foreground`, as a line (border, indicator) `--color-primary-line`; `--color-primary` is for fills. These two stay readable when the brand color is light; surfaces `--color-surface-background`, `--color-surface-level-1…4`; text `--color-foreground-high|medium|low-emphasis`.
 - Space: `--space-atom` 2, `--space-micro` 4, `--space-tiny` 8, `--space-small` 12, `--space-medium` 16, `--space-large` 20, `--space-xlarge` 24, `--space-xxlarge` 32; `--layout-*` for layout gaps; `--space-form-gutter`, `--space-container`.
 - Radius: `--radius-form-element`, `--radius-form-element-small`, `--radius-card`, `--radius-layout-base`, `--radius-full`.
 - Shadow: `--shadow-card-style-1`, `--shadow-card-hover`, `--shadow-form-level-1`, `--shadow-focus-primary`, `--shadow-depth-*`.

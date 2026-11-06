@@ -18,7 +18,9 @@ npx ladom-ui skill                # the Claude Code skill, in .claude/skills/lad
 [Google Fonts](https://fonts.google.com) (e.g. Inter, DM Sans). Press Enter to keep the Ladom
 defaults (#3c3c3c, Hanken Grotesk). The answers go to `ladom-ui.json` and to
 `components/ladom/theme.css`, which loads the tokens and sets the primary colors and the font. Run
-`init` again to change them. Without a terminal (CI, scripts, Claude), pass them as flags:
+`init` again to change them. When the brand color is too light to be text or a line on the light
+surfaces (below 4.5:1 or 3:1), `theme.css` gives `--color-primary-foreground` and
+`--color-primary-line` a darker step of the same hue; fills keep the brand color. Without a terminal (CI, scripts, Claude), pass them as flags:
 
 ```bash
 npx ladom-ui init --brand "#2563eb" --font "DM Sans"
