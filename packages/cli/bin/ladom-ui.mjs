@@ -325,7 +325,70 @@ async function askTheme(current, { brand, font, yes }) {
   return { brand: theme.brand ?? DEFAULT_BRAND, font: theme.font ?? DEFAULT_FONT };
 }
 
-function themeCss({ brand, font }) {
+// Text and lines in the primary color must stand out from the surfaces (config/color-roles.json in
+// the tokens: 4.5:1 for text and icons, 3:1 for lines). The surfaces come from the copied tokens.
+const ROLES = [
+  { name: 'primary-foreground', min: 4.5, what: 'text and icons' },
+  { name: 'primary-line', min: 3, what: 'lines' },
+];
+const SURFACES = ['surface-background', 'surface-level-1', 'surface-level-2'];
+function readSurfaces(dir) {
+  const fallback = { light: ['#f2f2f2', '#ffffff', '#fafafa'], dark: ['#030805', '#1a1a1a', '#232323'] };
+  try {
+    const css = readFileSync(join(dir, 'tokens', 'color.css'), 'utf8');
+    const block = (selector) => css.split(selector)[1]?.split('}')[0] ?? '';
+    const values = (text) => SURFACES.map((n) => parseHex(text.match(new RegExp(`--color-${n}:\\s*(#[0-9a-f]{3,6})\\b`, 'i'))?.[1] ?? '')).filter(Boolean);
+    const light = values(block(':root {'));
+    const dark = values(block(':root[data-theme="dark"] {'));
+    return { light: light.length ? light : fallback.light, dark: dark.length ? dark : fallback.dark };
+  } catch {
+    return fallback;
+  }
+}
+// The brand color, darkened (light theme) or lightened (dark theme) in small steps of HSL lightness,
+// keeping its hue and saturation, until it reaches the contrast on every surface.
+const toHsl = (hex) => {
+  const [r, g, b] = rgb(hex).map((v) => v / 255);
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  if (max === min) return [0, 0, l];
+  const d = max - min;
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  const h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return [h / 6, s, l];
+};
+const fromHsl = ([h, s, l]) => {
+  const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+  const p = 2 * l - q;
+  const ch = (t) => {
+    const u = t < 0 ? t + 1 : t > 1 ? t - 1 : t;
+    return u < 1 / 6 ? p + (q - p) * 6 * u : u < 1 / 2 ? q : u < 2 / 3 ? p + (q - p) * (2 / 3 - u) * 6 : p;
+  };
+  return toHex([ch(h + 1 / 3), ch(h), ch(h - 1 / 3)].map((v) => v * 255));
+};
+function contrastSafe(brand, surfaces, min, target) {
+  const passes = (c) => Math.min(...surfaces.map((s) => contrast(c, s))) >= min;
+  if (passes(brand)) return brand;
+  const [h, s, l] = toHsl(brand);
+  for (let step = 1; step <= 100; step++) {
+    const c = fromHsl([h, s, Math.min(1, Math.max(0, l + (target ? 0.01 : -0.01) * step))]);
+    if (passes(c)) return c;
+  }
+  return toHex([target, target, target]);
+}
+function contrastRoles(brand, surfaces) {
+  const out = { light: {}, dark: {} };
+  for (const r of ROLES) {
+    const light = contrastSafe(brand, [...surfaces.light, primaryScale(brand).soft], r.min, 0);
+    const dark = contrastSafe(brand, surfaces.dark, r.min, 255);
+    if (light !== brand) out.light[r.name] = { color: light, ...r, was: Math.min(...surfaces.light.map((s) => contrast(brand, s))) };
+    if (dark !== brand) out.dark[r.name] = { color: dark, ...r, was: Math.min(...surfaces.dark.map((s) => contrast(brand, s))) };
+  }
+  return out;
+}
+
+function themeCss({ brand, font }, surfaces) {
   const lines = [
     '/* Your brand, written by `npx ladom-ui init` from ladom-ui.json ("theme"). Import this file once',
     '   at the root of your app: it loads the Ladom UI tokens, then sets your brand color and font.',
@@ -351,6 +414,20 @@ function themeCss({ brand, font }) {
       `  --color-on-primary-tint: ${p.onTint};`,
       '}',
     );
+    const roles = contrastRoles(brand, surfaces);
+    for (const [theme, selector] of [['light', ':root'], ['dark', ':root[data-theme="dark"]']]) {
+      const set = Object.values(roles[theme]);
+      if (!set.length) continue;
+      lines.push(
+        '',
+        `/* ${brand} is ${set[0].was.toFixed(1)}:1 on the ${theme} surfaces, too low for ${set.map((r) => `${r.what} (${r.min}:1)`).join(' and ')}.`,
+        `   They use a ${theme === 'light' ? 'darker' : 'lighter'} step of it; fills (buttons, checkboxes, switches) keep the brand color. */`,
+        `${selector} {`,
+        ...set.map((r) => `  --color-${r.name}: ${r.color};`),
+        ...(roles[theme]['primary-foreground'] ? ['  --color-link-color: var(--color-primary-foreground);'] : []),
+        '}',
+      );
+    }
   }
   if (font !== DEFAULT_FONT) {
     lines.push(
@@ -367,11 +444,17 @@ function themeCss({ brand, font }) {
 function writeTheme(config, overwrite) {
   const dir = resolve(root, config.dir);
   const report = { written: [], updated: [], skipped: [] };
-  writeInto(config, dir, 'theme.css', themeCss(config.theme), overwrite, report);
+  const surfaces = readSurfaces(dir);
+  writeInto(config, dir, 'theme.css', themeCss(config.theme, surfaces), overwrite, report);
   writeConfig(config);
   const { brand, font } = config.theme;
   if (report.skipped.length) console.log(`  Kept your changed ${report.skipped[0]}; use --overwrite to rewrite it from ladom-ui.json.`);
-  else ok(`Theme: brand ${brand}${brand === DEFAULT_BRAND ? ' (Ladom default)' : ''}, font ${font}${font === DEFAULT_FONT ? ' (Ladom default)' : ''} → ${config.dir}/theme.css`);
+  else {
+    ok(`Theme: brand ${brand}${brand === DEFAULT_BRAND ? ' (Ladom default)' : ''}, font ${font}${font === DEFAULT_FONT ? ' (Ladom default)' : ''} → ${config.dir}/theme.css`);
+    const fix = brand === DEFAULT_BRAND ? null : contrastRoles(brand, surfaces).light;
+    if (fix && Object.keys(fix).length)
+      console.log(`  ${brand} is ${Object.values(fix)[0].was.toFixed(1)}:1 on light surfaces, so text and lines in the brand color use ${Object.values(fix).map((r) => `${r.color} (${r.what})`).join(' and ')}; fills keep ${brand}.`);
+  }
 }
 
 const command = args.shift();

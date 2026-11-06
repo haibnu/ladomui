@@ -165,7 +165,7 @@ button.body {
 
 .chip[data-tone='default'][data-selected] {
   --_bg: var(--color-primary-soft);
-  --_fg: var(--color-primary);
+  --_fg: var(--color-primary-foreground);
 }
 
 .chip[data-tone='default'],

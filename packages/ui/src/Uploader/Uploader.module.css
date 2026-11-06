@@ -84,7 +84,7 @@
 
 .drop {
   font: var(--text-ui-text-regular);
-  color: var(--color-primary);
+  color: var(--color-primary-foreground);
 }
 
 .uploader[data-direction='vertical'] .zone:not([data-compact]) .drop {
@@ -201,7 +201,7 @@
 }
 
 .uploader[data-direction][data-drag] {
-  --_dash: var(--color-primary);
+  --_dash: var(--color-primary-line);
 }
 
 .uploader:has(:focus-visible) .zone {

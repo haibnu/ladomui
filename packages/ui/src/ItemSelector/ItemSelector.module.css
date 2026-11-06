@@ -71,7 +71,7 @@
 
 .selector:focus-visible {
   outline: none;
-  --_line: var(--color-primary);
+  --_line: var(--color-primary-line);
   --_ring: var(--shadow-focus-primary);
 }
 

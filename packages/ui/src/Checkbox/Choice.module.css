@@ -120,7 +120,7 @@
 
 /* States */
 .choice:not([data-indeterminate]):is(:hover, [data-state='hover']) .input:not(:checked, :disabled) + .box {
-  --_line: var(--color-primary);
+  --_line: var(--color-primary-line);
 }
 
 /* Figma has a focus state for Checkbox only; Radio uses the same ring for keyboard users. */
@@ -131,7 +131,7 @@
 
 .input:focus-visible:not(:checked) + .box,
 .choice[data-state='focus'] .input:not(:checked) + .box {
-  --_line: var(--color-primary);
+  --_line: var(--color-primary-line);
 }
 
 .choice[data-error]:not([data-indeterminate]) .input:not(:checked) + .box {

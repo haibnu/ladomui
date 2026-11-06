@@ -131,7 +131,7 @@
 }
 
 .cell:is(:hover, [data-state='hover'], [data-active]) .control:not([data-checked]) {
-  --_line: var(--color-primary);
+  --_line: var(--color-primary-line);
 }
 
 /* States */
@@ -141,7 +141,7 @@
 
 .cell[data-selected] {
   --_bg: var(--color-primary-soft);
-  --_fg: var(--color-primary);
+  --_fg: var(--color-primary-foreground);
 }
 
 .cell[data-selected]:is(:hover, [data-state='hover'], [data-active]) {

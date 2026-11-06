@@ -108,9 +108,15 @@
   block-size: var(--line-height-base);
 }
 
-/* Tones (💅 Style): the color family each variant reads from. */
+/* Tones (💅 Style): the color family each variant reads from. --_c-fg is the color as text
+   (ghost); only primary has its own, the contrast-safe --color-primary-foreground. */
+.button {
+  --_c-fg: initial; /* not inherited from a parent */
+}
+
 .button[data-tone='primary'] {
   --_c: var(--color-primary);
+  --_c-fg: var(--color-primary-foreground);
   --_c-natural: var(--color-primary-natural);
   --_c-shade: var(--color-primary-shade);
   --_c-tint: var(--color-primary-tint);
@@ -237,8 +243,8 @@
 /* Ghost (🎛 Type=Ghost): no fill until hovered. */
 .button[data-variant='ghost'] {
   --_bg: transparent;
-  --_fg: var(--_c);
-  --_sub: var(--_c);
+  --_fg: var(--_c-fg, var(--_c));
+  --_sub: var(--_c-fg, var(--_c));
   --_shadow: none;
   --_hover-bg: var(--_c-soft);
   --_active-bg: var(--_c-tint);

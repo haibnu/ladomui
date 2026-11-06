@@ -127,7 +127,7 @@
 
 .innerLabel {
   font: var(--text-ui-footnote-regular);
-  color: var(--color-primary);
+  color: var(--color-primary-foreground);
 }
 
 /* The resting inner label stays in the accessible name. */
@@ -147,7 +147,7 @@
 
 .box:is(:focus-visible, [data-open], [data-state='focus']) {
   outline: none;
-  --_line: var(--color-primary);
+  --_line: var(--color-primary-line);
   --_ring: var(--shadow-focus-primary);
 }
 
