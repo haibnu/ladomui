@@ -143,3 +143,8 @@
   --color-surface-level-4: #343434;
   --color-tertiary-natural: var(--color-surface-level-3);
 }
+
+:root {
+  --color-primary-foreground: var(--color-primary);
+  --color-primary-line: var(--color-primary);
+}

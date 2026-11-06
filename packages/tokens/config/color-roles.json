@@ -1,0 +1,5 @@
+{
+  "$description": "Code-side color roles, not in Figma. Components use them where the brand color is text, an icon or a line on a surface, and keep --color-primary for fills. By default they are the primary color, so the Figma look is unchanged; the ladom-ui CLI darkens (or, in the Dark theme, lightens) them in theme.css when a brand color does not reach the contrast below against the surfaces.",
+  "primary-foreground": { "value": "primary/primary", "minContrast": 4.5, "usedFor": "Text and icons in the primary color on a surface: links, active tabs, breadcrumbs, ghost buttons, selected cells" },
+  "primary-line": { "value": "primary/primary", "minContrast": 3, "usedFor": "Lines in the primary color: focus borders of fields, the active tab indicator, checkbox borders, outline badges, the loader" }
+}

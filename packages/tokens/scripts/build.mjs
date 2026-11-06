@@ -12,6 +12,7 @@ const bindings = await readJson('figma/typography-bindings.json');
 const pages = await readJson('figma/pages.json');
 const legacyStyles = await readJson('config/legacy-styles.json');
 const breakpoints = await readJson('config/breakpoints.json');
+const colorRoles = await readJson('config/color-roles.json');
 const selectors = modeSelectors(breakpoints);
 
 // Figma variables that are not design tokens.
@@ -86,6 +87,13 @@ for (const style of styles.effect) {
     });
   const last = style.name.split('/').at(-1);
   extras('shadow').push({ name: `--shadow-${slug(last)}`, value: shadows.join(', ') || 'none', source: style.name });
+}
+
+// Color roles: code-side tokens that default to a theme color; see config/color-roles.json.
+for (const [name, role] of Object.entries(colorRoles)) {
+  if (name.startsWith('$')) continue;
+  if (!vars.has(key('02 Theme', role.value))) errors.push(`config/color-roles.json: ${name} points to unknown theme color ${role.value}`);
+  extras('color').push({ name: `--color-${name}`, value: themeVar(role.value), source: `${role.usedFor} (min contrast ${role.minContrast}:1)` });
 }
 
 // Border: the Figma Border page uses the legacy "Helper Color / Border" style; see config/legacy-styles.json.
