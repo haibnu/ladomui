@@ -33,7 +33,7 @@
   block-size: var(--line-height-text-small);
   border: none;
   border-radius: var(--radius-full);
-  color: var(--color-primary);
+  color: var(--color-primary-foreground);
   background: var(--color-surface-level-4);
   cursor: pointer;
   transition: background-color var(--motion-fade-default);

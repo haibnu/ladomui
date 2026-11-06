@@ -5,7 +5,7 @@
 /* Tones: --_c is the spinner circle and the bar fill, --_soft the bar track. */
 .infinite[data-tone='primary'],
 .finite[data-tone='primary'] {
-  --_c: var(--color-primary);
+  --_c: var(--color-primary-line);
   --_on: var(--color-on-primary);
   --_soft: var(--color-primary-soft);
 }

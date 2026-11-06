@@ -14,8 +14,8 @@
   background: var(--_bg);
   box-shadow: inset 0 0 0 var(--border-width) var(--_line);
   --_bg: var(--color-surface-level-1);
-  --_line: var(--_c);
-  --_fg: var(--_c);
+  --_line: var(--_c-line, var(--_c));
+  --_fg: var(--_c-fg, var(--_c));
 }
 
 .icon {
@@ -76,9 +76,17 @@
   padding-inline-end: var(--layout-micro);
 }
 
-/* Tones: --_c is the line and text color in outline, the background in filled. */
+/* Tones: --_c is the line and text color in outline, the background in filled. Primary has
+   contrast-safe line and text colors of its own. */
+.badge {
+  --_c-line: initial; /* not inherited from a parent */
+  --_c-fg: initial;
+}
+
 .badge[data-tone='primary'] {
   --_c: var(--color-primary);
+  --_c-line: var(--color-primary-line);
+  --_c-fg: var(--color-primary-foreground);
   --_on: var(--color-on-primary);
 }
 

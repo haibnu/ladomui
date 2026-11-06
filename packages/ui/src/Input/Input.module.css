@@ -98,7 +98,7 @@
 }
 
 .box:is(:focus-within, [data-state='focus']) {
-  --_line: var(--color-primary);
+  --_line: var(--color-primary-line);
   --_ring: var(--shadow-focus-primary);
 }
 

@@ -11,7 +11,7 @@
   color: var(--color-foreground-high-emphasis);
   background: var(--_bg);
   --_bg: var(--color-surface-level-3);
-  --_icon: var(--color-primary);
+  --_icon: var(--color-primary-foreground);
 }
 
 .icon {

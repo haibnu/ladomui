@@ -149,8 +149,8 @@
 }
 
 .day[data-today] {
-  --_fg: var(--color-primary);
-  --_circle-line: var(--color-primary);
+  --_fg: var(--color-primary-foreground);
+  --_circle-line: var(--color-primary-line);
 }
 
 .day:not(:disabled, [data-selected]):is(:hover, [data-state='hover']) {

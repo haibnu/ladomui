@@ -42,7 +42,7 @@
   block-size: var(--space-xxlarge);
   padding: var(--space-tiny) var(--space-small) var(--space-tiny) var(--space-micro);
   --_bg: var(--color-primary-soft);
-  --_fg: var(--color-primary);
+  --_fg: var(--color-primary-foreground);
 }
 
 .title {
