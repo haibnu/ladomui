@@ -15,7 +15,8 @@ Ladom UI is the design system of Ladom products: quiet neutral surfaces, one bra
 ### Color
 - Pages sit on `color-surface-background`; cards, panels, inputs and dropdowns on `color-surface-level-1`. Step up with `color-surface-level-2` (hover, disabled), `color-surface-level-3` (tracks, neutral chips, pressed) and `color-surface-level-4` (lines and borders).
 - Body text is `color-foreground-high-emphasis` on those surfaces; secondary text `color-foreground-medium-emphasis`; placeholders and disabled text `color-foreground-low-emphasis`, never for content that must be read.
-- `color-primary` (the brand gray) fills the main action and marks selection; text on it is `color-on-primary`. Its `-soft` step is the selected background of cells, chips and tabs, with `color-primary` text.
+- `color-primary` (the brand gray) fills the main action and marks selection; text on it is `color-on-primary`. Its `-soft` step is the selected background of cells, chips and tabs.
+- The brand color as text or an icon on a surface is `color-primary-foreground`, as a line (field focus border, tab indicator, checkbox border) `color-primary-line`. They equal `color-primary` for Ladom; when an app sets a light brand color, they become a darker step of it so they stay readable (4.5:1 for text, 3:1 for lines).
 - Status colors are `success`, `error`, `warning`, `info`, each with `-soft` (background), `-tint`, `-natural`, `-shade` steps and an `on-` color. Use them for status only: a filled badge, an alert, a hint, a destructive action (`error`). Always pair the color with words.
 - Contrast: white `on-` text on the solid `success`, `warning` and `info` fills stays under 4.5:1. Use those fills for icons, badges and short labels, not for paragraphs; on soft backgrounds, write the text in `color-foreground-high-emphasis`.
 - Dark theme is opt-in (`data-theme="dark"`) and not final in Figma: primary stays the light brand gray, and some secondary steps carry green leftovers.
@@ -57,12 +58,13 @@ Ladom UI is the design system of Ladom products: quiet neutral surfaces, one bra
 
 Build screens from the components, not from raw elements:
 - Actions: `Button` (solid or ghost, seven tones, four sizes).
-- Forms: wrap every field in `FormField` (label, hint, error). Fields are `Input`, `Selectbox`, `Checkbox` and `Radio` inside `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`, `TimePicker`.
+- Forms: wrap every field in `FormField` (label, hint, error). Fields are `Input`, `Textarea`, `NumberInput`, `Selectbox`, `Checkbox` and `Radio` inside `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`, `TimePicker`.
 - Display: `Badge`, `Chip`, `Avatar`, `Loader`, `Stepper`.
 - Lists: `Dropdown` holding `Cell`s.
 - Navigation: `AppHeader` with a `PageHeader`; `PublicHeader`; `Tabs`; `Breadcrumb`.
-- Overlays: `Tooltip` for short labels, `Popover` for content people use.
-- Feedback: `Alert` inline, `Toast` after an action (`ToastProvider` + `useToast`).
+- Overlays: `Tooltip` for short labels, `Popover` for content people use, `Modal` for a decision or a short form over the page, `Drawer` for details and longer forms beside it.
+- Data: `Table` (sortable columns, row selection) with `Pagination` under it; `FileShare` (Pro) for sharing a link with people.
+- Feedback: `Alert` inline, `Toast` after an action (`ToastProvider` + `useToast`), `EmptyState` where there is no content yet or a load failed.
 - Layout: `Accordion`.
 
 ## Not synced

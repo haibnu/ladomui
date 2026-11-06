@@ -69,6 +69,11 @@ for (const folder of folders)
   if (tierOf[folder] === 'free') for (const d of units[folder].deps) if (tierOf[d] !== 'free') errors.push(`${folder} (free) depends on ${d} (pro)`);
 if (errors.length) throw new Error(`Registry tiers:\n${errors.join('\n')}`);
 
+// Every component also needs a card in the claude.ai design system (scripts/claude-design).
+const { missingCards } = await import('../claude-design/check.mjs');
+const noCard = missingCards(repo);
+if (noCard.length) throw new Error(`No card in scripts/claude-design/components.mjs for ${noCard.join(', ')}; add one and re-sync the design system (scripts/claude-design/README.md).`);
+
 const items = { tokens: {
   name: 'tokens', type: 'tokens', tier: 'free', description: 'The Ladom UI design tokens as CSS variables; import tokens/index.css once.', dependencies: [], icons: [],
   files: readdirSync(join(repo, 'packages/tokens/css')).filter((f) => f.endsWith('.css')).sort().map((f) => ({ path: `tokens/${f}`, content: withHeader(f, readFileSync(join(repo, 'packages/tokens/css', f), 'utf8'), 'free') })),

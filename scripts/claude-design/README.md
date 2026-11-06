@@ -10,3 +10,5 @@ node scripts/claude-design/gen.mjs "$PWD" /tmp/ds "$(git rev-parse --short HEAD)
 ```
 
 `/tmp/ds/project/` then holds the files to publish to the artifact (with Claude Code's Artifact tool). `static/` holds the hand-written files (the brand book, the cover, the asset group READMEs): copy them into `/tmp/ds/project/`. Read the live `design-system.json` from the artifact before publishing a new one. Icons and the logo are uploads: render them with `assets.tsx` (bundle it with esbuild for Node) and upload them to the artifact's asset store.
+
+`check.mjs` lists the components exported by `@ladom/ui` (and Pro) that have no card in `components.mjs`; the registry build runs it and fails on any. Parts shown on a parent card are in its `PARTS`.
