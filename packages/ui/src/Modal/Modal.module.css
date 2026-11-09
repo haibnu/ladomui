@@ -83,6 +83,10 @@
 }
 
 .surface {
+  /* Room inside the scrolling body for the shadows and focus rings of the first and last
+     controls (Depth SM reaches 5px, the focus ring 3px). It is taken out of the header and
+     footer padding, so the Figma gaps stay the same. */
+  --_bleed: var(--space-tiny);
   display: flex;
   flex-direction: column;
   min-block-size: 100%;
@@ -110,7 +114,7 @@
 /* While the body is scrolled: Depth SM under the header (Figma has no scrolled state). */
 /* With a body, the gap above it belongs to the header, so the scroll shadow sits below the gap. */
 .header:has(+ .body) {
-  padding-block-end: var(--space-modal-horizontal);
+  padding-block-end: calc(var(--space-modal-horizontal) - var(--_bleed));
 }
 
 .header[data-scrolled] {
@@ -139,7 +143,7 @@
 .body {
   flex: 1;
   overflow: auto;
-  padding: 0 var(--space-modal);
+  padding: var(--_bleed) var(--space-modal);
   font: var(--text-content-paragraphy-regular);
   color: var(--color-foreground-medium-emphasis);
 }
@@ -155,4 +159,8 @@
   justify-content: flex-end;
   gap: var(--layout-tiny);
   padding: var(--space-modal);
+}
+
+.body + .footer {
+  padding-block-start: calc(var(--space-modal) - var(--_bleed));
 }
