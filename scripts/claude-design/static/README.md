@@ -58,7 +58,7 @@ Ladom UI is the design system of Ladom products: quiet neutral surfaces, one bra
 
 Build screens from the components, not from raw elements:
 - Actions: `Button` (solid or ghost, seven tones, four sizes).
-- Forms: wrap every field in `FormField` (label, hint, error). Fields are `Input`, `Textarea`, `NumberInput`, `Selectbox`, `Checkbox` and `Radio` inside `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`, `TimePicker`.
+- Forms: wrap every field in `FormField` (label, hint, error). Fields are `Input`, `Textarea`, `NumberInput`, `CurrencyInput`, `Selectbox`, `Checkbox` and `Radio` inside `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`, `TimePicker`.
 - Display: `Badge`, `Chip`, `Avatar`, `Loader`, `Stepper`.
 - Lists: `Dropdown` holding `Cell`s.
 - Navigation: `AppHeader` with a `PageHeader`; `PublicHeader`; `Tabs`; `Breadcrumb`.
