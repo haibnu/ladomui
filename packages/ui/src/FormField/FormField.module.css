@@ -2,6 +2,8 @@
 
 .field {
   display: grid;
+  /* Stretched in a grid row, the extra height goes below the field, not between its rows. */
+  align-content: start;
 }
 
 .field[data-align='horizontal'] {
