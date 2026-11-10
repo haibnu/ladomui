@@ -80,6 +80,7 @@ export function Uploader({
   hint,
   removeLabel = 'Remove',
   className,
+  onClick,
   'data-state': forcedState,
   ...rest
 }: UploaderProps) {
@@ -102,14 +103,7 @@ export function Uploader({
   };
 
   const zone = (compact: boolean) => (
-    <div
-      className={styles.zone}
-      data-compact={compact || undefined}
-      onClick={(e) => {
-        // A press anywhere on the zone opens the file dialog, like the Browse button.
-        if (!disabled && e.target === e.currentTarget) input.current?.click();
-      }}
-    >
+    <div className={styles.zone} data-compact={compact || undefined}>
       {drag ? (
         <span className={styles.drop}>{dropText}</span>
       ) : loading ? (
@@ -150,6 +144,13 @@ export function Uploader({
       data-disabled={disabled || undefined}
       data-drag={drag || undefined}
       data-state={forcedState}
+      onClick={(e) => {
+        // A press anywhere on the uploader opens the file dialog, like the Browse button; the
+        // buttons (which open it or remove a file themselves) and the file list do not.
+        const target = e.target as Element;
+        if (!disabled && !target.closest('button, input, a, ul')) input.current?.click();
+        onClick?.(e);
+      }}
       onDragOver={onDragOver}
       onDragLeave={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setDragging(false);
