@@ -6,7 +6,10 @@
   overflow-x: auto;
   border-radius: var(--radius-card);
   background: var(--color-surface-level-1);
-  box-shadow: inset 0 0 0 var(--border-width) var(--border-color);
+  /* The card's line is an outline, painted over the cells: an inset shadow would sit under the
+     header's and the selected rows' backgrounds and vanish there. */
+  outline: var(--border);
+  outline-offset: calc(-1 * var(--border-width));
 }
 
 .table {
@@ -67,6 +70,12 @@
 .check {
   inline-size: 1px;
   padding-inline-end: 0;
+}
+
+/* A checkbox without a label takes its baseline from its icon, which appears when it is checked;
+   centering it keeps it from moving down on check. */
+.check > * {
+  vertical-align: middle;
 }
 
 .sort {
