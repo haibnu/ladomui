@@ -33,4 +33,5 @@ export { Pagination, paginationRange, type PaginationProps } from './Pagination/
 export { Textarea, type TextareaProps } from './Textarea/Textarea';
 export { NumberInput, type NumberInputProps } from './NumberInput/NumberInput';
 export { CurrencyInput, type CurrencyInputProps } from './CurrencyInput/CurrencyInput';
+export { GsmInput, DEFAULT_COUNTRIES, type GsmInputProps, type GsmCountry } from './GsmInput/GsmInput';
 export { EmptyState, type EmptyStateProps, type EmptyStateSize } from './EmptyState/EmptyState';

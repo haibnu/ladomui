@@ -1,0 +1,39 @@
+/* GsmInput: Input 🎛 Type=GSM (1591:5). The flag with its 12px chevron, then the calling code and
+   the number as one text: 12px between the flag and the text, a space's width after the code. */
+
+.box {
+  position: relative;
+}
+
+/* While open, the list sits above the boxes that follow (there is no z-index token yet). */
+.box:has([aria-expanded='true']) {
+  z-index: 1;
+}
+
+.lead {
+  display: inline-flex;
+  align-items: center;
+  /* The 24px flag sits in the text's line box without stretching it. */
+  vertical-align: top;
+  block-size: var(--line-height-base);
+  gap: var(--layout-small);
+  /* The box puts layout-tiny between this and the number; the code and number are one text. */
+  margin-inline-end: calc(var(--layout-micro) - var(--layout-tiny));
+}
+
+.flag {
+  display: inline-flex;
+}
+
+.code {
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.dial {
+  color: var(--color-foreground-high-emphasis);
+}
+
+.box:has(input:placeholder-shown) .dial {
+  color: var(--color-foreground-low-emphasis);
+}
