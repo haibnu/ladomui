@@ -5,7 +5,7 @@ belongs to.
 
 | Part | License |
 |---|---|
-| Design tokens, icons, every component (Button, Badge, Chip, Avatar, Loader, Label, Hint, FormField, Input, Checkbox, Radio, ChoiceGroup, Switch, Selectbox, Dropdown, Cell, Segment, ItemSelector, Uploader, SidebarNav, TopNav, DatePicker, TimePicker, Tabs, Breadcrumb, Stepper, Tooltip, Popover, Alert, Toast, Modal, Drawer, Table, Pagination, Textarea, NumberInput, CurrencyInput, EmptyState) and the `ladom-ui` CLI | MIT, below |
+| Design tokens, icons, every component (Button, Badge, Chip, Avatar, Loader, Label, Hint, FormField, Input, Checkbox, Radio, ChoiceGroup, Switch, Selectbox, Dropdown, Cell, Segment, ItemSelector, Uploader, SidebarNav, TopNav, DatePicker, TimePicker, Tabs, Breadcrumb, Stepper, Tooltip, Popover, Alert, Toast, Modal, Drawer, Table, Pagination, Textarea, NumberInput, CurrencyInput, GsmInput, EmptyState) and the `ladom-ui` CLI | MIT, below |
 | Pro molecules (Accordion, FileShare, Navigation) | [Ladom UI Pro License](LICENSE-PRO.md) |
 | This repository as a whole (the docs site, the scripts, the Pro sources) | All rights reserved, unless a part above says otherwise |
 

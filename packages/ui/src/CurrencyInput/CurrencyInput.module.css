@@ -16,54 +16,9 @@
 }
 
 .picker {
-  display: inline-flex;
   margin-inline-start: var(--layout-tiny);
 }
 
 .picker:not(:first-child) {
   margin-inline-start: var(--layout-small);
-}
-
-.trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--layout-micro);
-  margin: 0;
-  padding: 0;
-  font: inherit;
-  color: var(--color-foreground-high-emphasis);
-  background: none;
-  border: none;
-  border-radius: var(--radius-form-element-small);
-  cursor: pointer;
-}
-
-.trigger > svg {
-  inline-size: var(--line-height-text-small);
-  block-size: var(--line-height-text-small);
-  color: var(--color-foreground-low-emphasis);
-}
-
-.trigger:focus-visible {
-  outline: none;
-  box-shadow: var(--shadow-focus-primary);
-}
-
-.trigger:disabled {
-  color: inherit;
-  cursor: not-allowed;
-}
-
-.dropdown {
-  position: absolute;
-  inset-block-start: calc(100% + var(--space-form-dropdown-top));
-  inset-inline-end: 0;
-  max-block-size: calc(6 * (var(--line-height-base) + 2 * var(--space-tiny)) + 5 * var(--border-width) + 2 * var(--layout-tiny));
-  white-space: nowrap;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--border-width);
 }

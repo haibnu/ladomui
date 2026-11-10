@@ -12,15 +12,15 @@ export type NavSection = { title: string; items: NavItem[] };
 // Components from PLAN.md phases 3-5; each gets a page as it is built. Names stay as in Figma.
 const PLANNED_COMPONENTS = [
   'Avatar', 'Badge', 'Brand', 'Button', 'Checkbox', 'Chips', 'Hint', 'Input', 'Label', 'Loader', 'Radio', 'Switch',
-  'Alert', 'Breadcrumb', 'Cell', 'Currency Input', 'Date Picker', 'Drawer', 'Dropdown', 'Empty State', 'Item Selector', 'Modal', 'Nav Menu', 'Number Input',
+  'Alert', 'Breadcrumb', 'Cell', 'Currency Input', 'Date Picker', 'Drawer', 'Dropdown', 'Empty State', 'GSM Input', 'Item Selector', 'Modal', 'Nav Menu', 'Number Input',
   'Pagination', 'Popover', 'Segment', 'Selectbox', 'Stepper', 'Tab', 'Table', 'Textarea', 'Time Picker', 'Toast', 'Tooltip', 'Uploader',
 ];
 // Separate components that the nav lists under a parent component.
-const SUBCOMPONENTS: Record<string, string[]> = { Input: ['Number Input', 'Currency Input'] };
+const SUBCOMPONENTS: Record<string, string[]> = { Input: ['Number Input', 'Currency Input', 'GSM Input'] };
 const IS_SUBCOMPONENT = new Set(Object.values(SUBCOMPONENTS).flat());
 const PLANNED_MOLECULES = ['Accordion', 'File Share', 'Navigation'];
 // Components that have a page, by their path segment.
-const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
+const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
 const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', 'File Share': 'file-share', Navigation: 'navigation' };
 

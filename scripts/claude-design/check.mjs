@@ -15,7 +15,8 @@ export function missingCards(repo) {
     .filter(existsSync)
     .flatMap((f) => [...readFileSync(f, 'utf8').matchAll(/^export \{([^}]*)\}/gm)].flatMap((m) => m[1].split(',')))
     .map((s) => s.trim())
-    .filter((s) => /^[A-Z]/.test(s));
+    // Components are PascalCase; constants such as DEFAULT_COUNTRIES are not.
+    .filter((s) => /^[A-Z][a-z]/.test(s));
   const cards = new Set(COMPONENTS.map((c) => c.name));
   return exported.filter((name) => !cards.has(name) && !PARTS[name]);
 }

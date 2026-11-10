@@ -232,6 +232,27 @@ const Loader = () => (
   </Art>
 );
 
+const GsmInput = () => (
+  <Art>
+    <Shadow x={-130} y={-30} w={260} d={60} r={8} />
+    <Box x={-130} y={-30} w={260} d={60} h={14} r={8}>
+      <g className="a-num1">
+        <Label x={76} y={30} size={18} anchor="start">
+          +90 0532 123 45 67
+        </Label>
+      </g>
+      <g className="a-num2">
+        <Label x={76} y={30} size={18} anchor="start">
+          90 (532) 123 45 67
+        </Label>
+      </g>
+    </Box>
+    <g className="a-tap">
+      <Box x={-112} y={-14} w={36} d={28} h={6} z={14} r={3} top="#E92434" />
+    </g>
+  </Art>
+);
+
 const CurrencyInput = () => (
   <Art>
     <Shadow x={-120} y={-30} w={240} d={60} r={8} />
@@ -563,6 +584,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   loader: Loader,
   'number-input': NumberInput,
   'currency-input': CurrencyInput,
+  'gsm-input': GsmInput,
   'nav-menu': NavMenu,
   pagination: Pagination,
   popover: Popover,

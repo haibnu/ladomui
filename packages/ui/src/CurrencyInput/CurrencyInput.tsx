@@ -1,11 +1,8 @@
 'use client';
 
-import { forwardRef, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
-import { IconArrowBottom, IconArrowTop } from '@ladom/icons';
-import { Cell } from '../Cell/Cell';
-import { Dropdown } from '../Dropdown/Dropdown';
-import { useUnclipped } from '../Floating/useUnclipped';
+import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Input, type InputProps } from '../Input/Input';
+import { InlinePicker } from '../Picker/InlinePicker';
 import { currencyName, currencySymbol, formatAmount, fractionDigits, mask, separators } from './currencyFormat';
 import styles from './CurrencyInput.module.css';
 
@@ -114,7 +111,17 @@ export const CurrencyInput = forwardRef<HTMLInputElement, CurrencyInputProps>(fu
 
   const affix = showSymbol ? <span className={styles.symbol}>{symbol.symbol}</span> : undefined;
   const picker = currencySelect ? (
-    <CurrencyPicker value={currency} currencies={currencies} locale={locale} size={size} disabled={disabled} label={currencyLabel} onPick={pickCurrency} onDone={() => field.current?.focus()} />
+    <InlinePicker
+      value={currency}
+      options={currencies.map((code) => ({ value: code, trigger: code, title: code, bodycopy: currencyName(locale, code), search: code }))}
+      size={size}
+      disabled={disabled}
+      label={currencyLabel}
+      align="end"
+      className={styles.picker}
+      onPick={pickCurrency}
+      onDone={() => field.current?.focus()}
+    />
   ) : null;
 
   return (
@@ -168,138 +175,3 @@ export const CurrencyInput = forwardRef<HTMLInputElement, CurrencyInputProps>(fu
     </>
   );
 });
-
-type PickerProps = {
-  value: string;
-  currencies: string[];
-  locale: string;
-  size: InputProps['size'];
-  disabled?: boolean;
-  label: string;
-  onPick: (code: string) => void;
-  onDone: () => void;
-};
-
-// A select-only combobox in the end of the box, with the Selectbox keyboard: arrows, Home/End,
-// Enter/Space, Escape and type-ahead on the code.
-function CurrencyPicker({ value, currencies, locale, size, disabled, label, onPick, onDone }: PickerProps) {
-  const uid = useId();
-  const listId = `${uid}-list`;
-  const optionId = (i: number) => `${uid}-option-${i}`;
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(-1);
-  const root = useRef<HTMLSpanElement>(null);
-  const trigger = useRef<HTMLButtonElement>(null);
-  const panel = useRef<HTMLDivElement>(null);
-  useUnclipped(panel, open);
-
-  const show = () => {
-    if (disabled) return;
-    setOpen(true);
-    setActive(Math.max(0, currencies.indexOf(value)));
-  };
-  const hide = (focus = true) => {
-    setOpen(false);
-    if (focus) trigger.current?.focus();
-  };
-  const pick = (code: string | undefined) => {
-    if (!code) return;
-    onPick(code);
-    setOpen(false);
-    onDone();
-  };
-
-  useEffect(() => {
-    if (!open) return;
-    const onDown = (e: PointerEvent) => {
-      if (!root.current?.contains(e.target as Node)) hide(false);
-    };
-    document.addEventListener('pointerdown', onDown);
-    return () => document.removeEventListener('pointerdown', onDown);
-  }, [open]);
-
-  useEffect(() => {
-    if (open && active >= 0) document.getElementById(optionId(active))?.scrollIntoView({ block: 'nearest' });
-  }, [open, active]);
-
-  const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
-    const key = e.key;
-    if (!open) {
-      if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(key)) {
-        e.preventDefault();
-        show();
-      }
-      return;
-    }
-    if (key === 'ArrowDown' || key === 'ArrowUp') {
-      e.preventDefault();
-      setActive((a) => Math.min(currencies.length - 1, Math.max(0, a + (key === 'ArrowDown' ? 1 : -1))));
-    } else if (key === 'Home' || key === 'End') {
-      e.preventDefault();
-      setActive(key === 'Home' ? 0 : currencies.length - 1);
-    } else if (key === 'Enter' || key === ' ') {
-      e.preventDefault();
-      pick(currencies[active]);
-    } else if (key === 'Escape') {
-      e.preventDefault();
-      hide();
-    } else if (key === 'Tab') {
-      hide(false);
-    } else if (/^[a-z]$/i.test(key)) {
-      const from = active + 1;
-      const order = [...currencies.slice(from), ...currencies.slice(0, from)];
-      const hit = order.find((c) => c.toLowerCase().startsWith(key.toLowerCase()));
-      if (hit) setActive(currencies.indexOf(hit));
-    }
-  };
-
-  const Arrow = open ? IconArrowTop : IconArrowBottom;
-  return (
-    <span ref={root} className={styles.picker}>
-      <button
-        ref={trigger}
-        type="button"
-        role="combobox"
-        className={styles.trigger}
-        disabled={disabled}
-        aria-label={label}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        aria-controls={listId}
-        aria-activedescendant={open && active >= 0 ? optionId(active) : undefined}
-        onClick={(e) => {
-          e.stopPropagation();
-          if (open) hide();
-          else show();
-        }}
-        onKeyDown={onKeyDown}
-      >
-        {value}
-        <Arrow aria-hidden="true" />
-      </button>
-      {open && (
-        <Dropdown ref={panel} className={styles.dropdown}>
-          <div id={listId} role="listbox" aria-label={label} className={styles.list}>
-            {currencies.map((code, i) => (
-              <Cell
-                key={code}
-                id={optionId(i)}
-                role="option"
-                size={size === 'small' ? 'small' : 'medium'}
-                selected={code === value}
-                aria-selected={code === value}
-                data-active={i === active || undefined}
-                bodycopy={currencyName(locale, code)}
-                onMouseDown={(e) => e.preventDefault()}
-                onMouseEnter={() => setActive(i)}
-                onClick={() => pick(code)}
-              >
-                {code}
-              </Cell>
-            ))}
-          </div>
-        </Dropdown>
-      )}
-    </span>
-  );
-}
