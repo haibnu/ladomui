@@ -14,6 +14,7 @@ const ITEMS: TabsItem[] = [
   { value: 'a', label: 'Overview' },
   { value: 'b', label: 'Activity', badge: 3 },
   { value: 'c', label: 'Members', info: true },
+  { value: 'e', label: 'Review', badge: 9, badgeTone: 'warning' },
   { value: 'd', label: 'Archive', disabled: true },
 ];
 
@@ -43,7 +44,7 @@ const COPY = {
     ],
     mapping: 'Figma to code',
     props: {
-      items: 'Tabs: value, label, and optional badge, info, disabled, content.',
+      items: 'Tabs: value, label, and optional badge, badgeTone (Badge tone, primary by default), info, disabled, content.',
       value: 'Controlled active tab.',
       defaultValue: 'Initial active tab; the first enabled one when omitted.',
       onChange: 'Called with the selected value.',
@@ -77,7 +78,7 @@ const COPY = {
     ],
     mapping: 'Figma’dan koda',
     props: {
-      items: 'Sekmeler: value, label ve isteğe bağlı badge, info, disabled, content.',
+      items: 'Sekmeler: value, label ve isteğe bağlı badge, badgeTone (Badge tonu, varsayılan primary), info, disabled, content.',
       value: 'Kontrollü aktif sekme.',
       defaultValue: 'Başlangıçtaki aktif sekme; verilmezse ilk etkin olan.',
       onChange: 'Seçilen değerle çağrılır.',
@@ -142,6 +143,7 @@ export default async function TabPage({ params }: Props) {
   items={[
     { value: 'overview', label: 'Overview', content: <Overview /> },
     { value: 'activity', label: 'Activity', badge: 3, content: <Activity /> },
+    { value: 'review', label: 'Review', badge: 9, badgeTone: 'warning', content: <Review /> },
   ]}
 />`}
           />
@@ -177,6 +179,7 @@ export default async function TabPage({ params }: Props) {
             ['Tab Border Bottom', 'border'],
             ['Tab 02 … Tab 07', 'items.length'],
             ['Tab Item Badge / Info / Disabled', '{ badge } / { info: true } / { disabled: true }'],
+            ['Tab Item › Badge 💅 Style', "{ badgeTone: 'warning' }"],
             ['Tab Item Active / State=Hover', 'value / :hover'],
           ]}
         />

@@ -2,18 +2,20 @@
 
 import { useId, useRef, useState, type HTMLAttributes, type KeyboardEvent, type ReactNode } from 'react';
 import { IconInfo } from '@ladom/icons';
-import { Badge } from '../Badge/Badge';
+import { Badge, type BadgeTone } from '../Badge/Badge';
 import styles from './Tabs.module.css';
 
 // Figma: Components / Tab (node 99:14457) with Tab Item (99:14488). variant = Tab Item Type
 // (Primary underline, Secondary pills, Button), align = Align, border = Border Bottom,
-// badge / info = Badge / Info. Follows the WAI-ARIA tabs pattern: arrow keys, Home and End move
+// badge / info = Badge / Info; badgeTone = the nested Badge's 💅 Style. Follows the WAI-ARIA tabs pattern: arrow keys, Home and End move
 // and select. Give items content to render the active tab panel.
 export type TabsItem = {
   value: string;
   label: ReactNode;
   /** Count in a Micro badge after the label. */
   badge?: ReactNode;
+  /** Tone of the badge, e.g. `warning` for counts that need attention. */
+  badgeTone?: BadgeTone;
   /** Shows the info icon after the label. */
   info?: boolean;
   disabled?: boolean;
@@ -87,7 +89,7 @@ export function Tabs({ items, value, defaultValue, onChange, variant = 'primary'
                 {item.label}
                 {item.info && <IconInfo className={styles.info} aria-hidden="true" />}
                 {item.badge != null && (
-                  <Badge size="micro" tone="primary" disabled={item.disabled}>
+                  <Badge size="micro" tone={item.badgeTone ?? 'primary'} disabled={item.disabled}>
                     {item.badge}
                   </Badge>
                 )}
