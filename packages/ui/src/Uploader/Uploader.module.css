@@ -15,13 +15,24 @@
   --_line: var(--color-foreground-low-emphasis);
   --_dash: var(--color-surface-level-4);
   --_title: var(--color-foreground-high-emphasis);
+  cursor: pointer;
 }
 
-/* Vertical without files: the zone is the box. */
+/* Vertical without files: the zone is the box, so it takes the box's radius and the box draws no
+   line of its own (hover and error color the dashes instead). */
 .uploader[data-direction='vertical']:not(:has(.files)) {
   padding: 0;
+  box-shadow: none;
   --_bg: transparent;
-  --_line: transparent;
+}
+
+.uploader[data-direction='vertical']:not(:has(.files)) .zone {
+  border-radius: inherit;
+}
+
+/* The file list is not a target for the file dialog. */
+.files {
+  cursor: default;
 }
 
 .zone {
