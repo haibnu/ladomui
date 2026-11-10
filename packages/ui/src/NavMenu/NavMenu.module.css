@@ -1,0 +1,175 @@
+/* NavMenu: SidebarNav and TopNav, built from existing parts (no Figma drawing yet). Items are
+   links with the Cell look: hover surface/level-2, the current page primary soft. */
+
+.list,
+.topList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  display: flex;
+}
+
+/* Item */
+.item {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  box-sizing: border-box;
+  min-inline-size: 0;
+  color: var(--_fg);
+  text-decoration: none;
+  background: var(--_bg);
+  transition: background var(--motion-fade-default);
+  cursor: pointer;
+  --_bg: transparent;
+  --_fg: var(--color-foreground-medium-emphasis);
+}
+
+.item:hover {
+  --_bg: var(--color-surface-level-2);
+  --_fg: var(--color-foreground-high-emphasis);
+}
+
+.item[aria-current='page'] {
+  --_bg: var(--color-primary-soft);
+  --_fg: var(--color-primary-foreground);
+}
+
+.item[aria-current='page']:hover {
+  --_bg: var(--color-surface-level-3);
+}
+
+.item:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.item[aria-disabled='true'] {
+  cursor: not-allowed;
+  --_bg: transparent;
+  --_fg: var(--color-foreground-low-emphasis);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.icon > svg {
+  inline-size: var(--_icon);
+  block-size: var(--_icon);
+}
+
+.label {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  /* The badge never changes the row height: it sits in the text's 24px line. */
+  block-size: var(--line-height-base);
+}
+
+/* SidebarNav: Medium Cell rows. */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-default);
+  box-sizing: border-box;
+  block-size: 100%;
+  padding: var(--layout-default) var(--layout-small);
+  background: var(--color-surface-level-1);
+  box-shadow: inset calc(-1 * var(--border-width)) 0 0 var(--color-surface-level-4);
+}
+
+/* The header lines up with the item text; the footer holds a SidebarNavSection of its own. */
+.header {
+  padding-inline: var(--space-medium);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--layout-default);
+  min-block-size: 0;
+  overflow-y: auto;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-tiny);
+}
+
+.sectionTitle {
+  margin: 0;
+  padding-inline: var(--space-medium);
+  font: var(--text-ui-caption);
+  text-transform: var(--text-ui-caption-text-transform);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-atom);
+}
+
+.item[data-kind='side'] {
+  gap: var(--layout-small);
+  padding: var(--space-tiny) var(--space-medium);
+  border-radius: var(--radius-form-element);
+  font: var(--text-ui-text-regular);
+  --_icon: var(--space-large);
+}
+
+/* TopNav: a bar of the App Header's height with secondary Tabs pills. */
+.top {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-xlarge);
+  box-sizing: border-box;
+  min-block-size: calc(var(--space-xxlarge) + var(--space-xlarge));
+  padding: var(--layout-tiny) var(--space-container);
+  background: var(--color-surface-level-1);
+  box-shadow: inset 0 calc(-1 * var(--border-width)) 0 var(--color-surface-level-4);
+}
+
+.brand,
+.actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--layout-tiny);
+}
+
+.topList {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-micro);
+  min-inline-size: 0;
+  /* The links never widen the bar, even in a flex or grid parent; they scroll instead. */
+  contain: inline-size;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.item[data-kind='top'] {
+  flex: none;
+  gap: var(--space-tiny);
+  padding: var(--space-tiny) var(--space-small);
+  border-radius: var(--radius-form-element-small);
+  font: var(--text-ui-text-regular);
+  --_icon: var(--line-height-text-small);
+}
