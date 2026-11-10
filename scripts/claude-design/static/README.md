@@ -61,7 +61,7 @@ Build screens from the components, not from raw elements:
 - Forms: wrap every field in `FormField` (label, hint, error). Fields are `Input`, `Textarea`, `NumberInput`, `CurrencyInput`, `Selectbox`, `Checkbox` and `Radio` inside `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`, `TimePicker`.
 - Display: `Badge`, `Chip`, `Avatar`, `Loader`, `Stepper`.
 - Lists: `Dropdown` holding `Cell`s.
-- Navigation: `AppHeader` with a `PageHeader`; `PublicHeader`; `Tabs`; `Breadcrumb`.
+- Navigation: `SidebarNav` or `TopNav` for the app's menu of pages (mark the page you are on with `current`); `AppHeader` with a `PageHeader`; `PublicHeader`; `Tabs`; `Breadcrumb`.
 - Overlays: `Tooltip` for short labels, `Popover` for content people use, `Modal` for a decision or a short form over the page, `Drawer` for details and longer forms beside it.
 - Data: `Table` (sortable columns, row selection) with `Pagination` under it; `FileShare` (Pro) for sharing a link with people.
 - Feedback: `Alert` inline, `Toast` after an action (`ToastProvider` + `useToast`), `EmptyState` where there is no content yet or a load failed.

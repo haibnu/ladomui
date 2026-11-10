@@ -31,6 +31,7 @@
     "textarea": { "folder": "Textarea", "tier": "free", "description": "A multi-line text field with an optional character count." },
     "number-input": { "folder": "NumberInput", "tier": "free", "description": "A number field with decrease and increase buttons." },
     "currency-input": { "folder": "CurrencyInput", "tier": "free", "description": "An amount field masked as it is typed, with a currency picker." },
+    "nav-menu": { "folder": "NavMenu", "tier": "free", "description": "SidebarNav and TopNav: simple side and top menus of links for web apps." },
     "empty-state": { "folder": "EmptyState", "tier": "free", "description": "Shows that there is nothing to list, no result or a failed load; large, medium and small." },
     "modal": { "folder": "Modal", "tier": "free", "description": "Modal and Drawer: dialogs over the page, on the native <dialog>." },
     "table": { "folder": "Table", "tier": "free", "description": "A data table with sorting and row selection." },

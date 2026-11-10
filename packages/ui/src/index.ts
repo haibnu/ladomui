@@ -34,3 +34,4 @@ export { Textarea, type TextareaProps } from './Textarea/Textarea';
 export { NumberInput, type NumberInputProps } from './NumberInput/NumberInput';
 export { CurrencyInput, type CurrencyInputProps } from './CurrencyInput/CurrencyInput';
 export { EmptyState, type EmptyStateProps, type EmptyStateSize } from './EmptyState/EmptyState';
+export { SidebarNav, SidebarNavSection, SidebarNavItem, TopNav, TopNavItem, type SidebarNavProps, type SidebarNavSectionProps, type TopNavProps, type NavItemProps } from './NavMenu/NavMenu';
