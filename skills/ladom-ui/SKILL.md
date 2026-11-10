@@ -47,7 +47,7 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Form fields | `FormField` (label, hint, error) + `Input`, `Textarea` (showCount, maxLength), `NumberInput` (value, min, max, step), `CurrencyInput` (value, currency, currencies, locale, currencySelect), `GsmInput` (E.164 value, country, countries, countrySelect; pasted +90/0 are dropped), `Selectbox`, `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
 | Labels and status | `Label`, `Hint`, `Badge`, `Chip`, `Avatar`/`AvatarGroup`, `Loader`, `Stepper` |
 | Lists and menus | `Dropdown` with `Cell`, `CellHelper`, `CellSearch`, `CellActions` |
-| Navigation | `AppHeader` with `PageHeader`, `PublicHeader`, `Tabs`, `Breadcrumb` |
+| Navigation | `SidebarNav` (`SidebarNavSection`, `SidebarNavItem`) and `TopNav` (`TopNavItem`): simple free menus of links (`href`, `as`, `icon`, `badge`, `current`); `AppHeader` with `PageHeader`, `PublicHeader` (Pro), `Tabs`, `Breadcrumb` |
 | Overlays | `Tooltip`, `Popover` (placement = where it opens), `Modal` (size), `Drawer` (side); both need `open` and `onClose` |
 | Empty and error states | `EmptyState` (size large on pages, medium in tables and cards, small inside components; tone error for failed loads) |
 | Data | `Table` (columns, rows, rowKey, sortable columns, selectable), `Pagination` (page, pageCount, onPageChange) |
@@ -55,7 +55,7 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Disclosure | `Accordion` |
 | Sharing | `FileShare` (Pro: link with Copy Link, people with access and their role) |
 
-CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-picker` (DatePicker, Calendar), `time-picker`, `tabs`, `chip`, `avatar` (Avatar, AvatarGroup), `dropdown`, `cell`, `navigation` (AppHeader, PageHeader, PublicHeader), `modal` (Modal, Drawer), `table`, `pagination`. `npx ladom-ui list` shows them all.
+CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-picker` (DatePicker, Calendar), `time-picker`, `tabs`, `chip`, `avatar` (Avatar, AvatarGroup), `dropdown`, `cell`, `navigation` (AppHeader, PageHeader, PublicHeader), `nav-menu` (SidebarNav, TopNav), `modal` (Modal, Drawer), `table`, `pagination`. `npx ladom-ui list` shows them all.
 
 Icon props: `Button` takes icon components (`icon={IconAdd}`); other components take elements (`iconLeft={<IconAdd />}`).
 

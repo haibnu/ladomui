@@ -548,6 +548,26 @@ const Navigation = () => (
   </Art>
 );
 
+const NavMenu = () => (
+  <Art>
+    <Shadow x={-90} y={-110} w={180} d={220} r={10} />
+    <Box x={-90} y={-110} w={180} d={220} h={10} r={10}>
+      {[0, 1, 2, 3].map((i) => (
+        <Bar key={i} x={52} y={40 + i * 44} w={i === 1 ? 80 : 96} />
+      ))}
+      {[0, 1, 2, 3].map((i) => (
+        <Bar key={`d${i}`} x={24} y={40 + i * 44} w={16} />
+      ))}
+    </Box>
+    <g className="a-tap">
+      <Box x={-78} y={-62} w={156} d={36} h={6} z={10} r={8} top={FILL}>
+        <Bar x={40} y={18} w={70} fill={DARK} />
+        <Bar x={12} y={18} w={16} fill={DARK} />
+      </Box>
+    </g>
+  </Art>
+);
+
 export const DRAWN: Record<string, () => ReactNode> = {
   switch: Switch,
   alert: Alert,
@@ -565,6 +585,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'number-input': NumberInput,
   'currency-input': CurrencyInput,
   'gsm-input': GsmInput,
+  'nav-menu': NavMenu,
   pagination: Pagination,
   popover: Popover,
   segment: Segment,
