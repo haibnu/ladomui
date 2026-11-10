@@ -33,3 +33,4 @@ export { Pagination, paginationRange, type PaginationProps } from './Pagination/
 export { Textarea, type TextareaProps } from './Textarea/Textarea';
 export { NumberInput, type NumberInputProps } from './NumberInput/NumberInput';
 export { EmptyState, type EmptyStateProps, type EmptyStateSize } from './EmptyState/EmptyState';
+export { SidebarNav, SidebarNavSection, SidebarNavItem, TopNav, TopNavItem, type SidebarNavProps, type SidebarNavSectionProps, type TopNavProps, type NavItemProps } from './NavMenu/NavMenu';
