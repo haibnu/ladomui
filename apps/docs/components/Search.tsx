@@ -16,7 +16,7 @@ type Result = { kind: Kind; title: string; detail?: string; href: string };
 function buildIndex(lang: Locale): Result[] {
   const t = getDictionary(lang);
   return [
-    ...getNav(lang).flatMap((s) => s.items.filter((i) => i.href).map((i) => ({ kind: 'Page' as const, title: i.title, detail: s.title, href: i.href! }))),
+    ...getNav(lang).flatMap((s) => s.items.flatMap((i) => [i, ...(i.children ?? [])]).filter((i) => i.href).map((i) => ({ kind: 'Page' as const, title: i.title, detail: s.title, href: i.href! }))),
     ...meta.groups.flatMap((g) =>
       [...g.variables.map((v) => v.name), ...g.tokens.map((tk) => tk.name)].map((name) => ({
         kind: 'Token' as const,

@@ -212,6 +212,13 @@
   list-style: none;
 }
 
+.navSubList {
+  margin: 0 0 0 var(--space-small);
+  padding: 0 0 0 var(--space-micro);
+  list-style: none;
+  border-inline-start: var(--border);
+}
+
 .navLink {
   display: flex;
   align-items: center;

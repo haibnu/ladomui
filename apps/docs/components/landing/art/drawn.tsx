@@ -232,6 +232,37 @@ const Loader = () => (
   </Art>
 );
 
+const CurrencyInput = () => (
+  <Art>
+    <Shadow x={-120} y={-30} w={240} d={60} r={8} />
+    <Box x={-120} y={-30} w={240} d={60} h={14} r={8}>
+      <Label x={28} y={30} size={20}>
+        $
+      </Label>
+      <g className="a-num1">
+        <Label x={96} y={30} size={20}>
+          1,250
+        </Label>
+      </g>
+      <g className="a-num2">
+        <Label x={96} y={30} size={20}>
+          1,250.00
+        </Label>
+      </g>
+    </Box>
+    <g className="a-tap">
+      <Box x={44} y={-20} w={64} d={40} h={8} z={14} r={8}>
+        <Label x={24} y={20} size={14}>
+          USD
+        </Label>
+        <Icon x={42} y={12}>
+          <IconArrowBottom size={16} />
+        </Icon>
+      </Box>
+    </g>
+  </Art>
+);
+
 const NumberInput = () => (
   <Art>
     <Shadow x={-100} y={-30} w={200} d={60} r={8} />
@@ -531,6 +562,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   label: LabelArt,
   loader: Loader,
   'number-input': NumberInput,
+  'currency-input': CurrencyInput,
   'nav-menu': NavMenu,
   pagination: Pagination,
   popover: Popover,
