@@ -47,7 +47,7 @@ export default async function NumberInputPage({ params }: Props) {
   const c = COPY[lang];
   return (
     <ViewProvider>
-      <DocPage eyebrow={t.nav.components} title="Number Input" description={c.description}>
+      <DocPage eyebrow={`${t.nav.components} / Input`} title="Number Input" description={c.description}>
         <ComponentToolbar lang={lang} figmaNode="4238:3913" />
         <h2 id="playground">{t.component.playground}</h2>
         <NumberInputPlayground />

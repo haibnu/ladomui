@@ -93,7 +93,7 @@ export default async function CurrencyInputPage({ params }: Props) {
   const c = COPY[lang];
   return (
     <ViewProvider>
-      <DocPage eyebrow={t.nav.components} title="Currency Input" description={c.description}>
+      <DocPage eyebrow={`${t.nav.components} / Input`} title="Currency Input" description={c.description}>
         <ComponentToolbar lang={lang} figmaNode="1133:303" />
         <h2 id="playground">{t.component.playground}</h2>
         <CurrencyInputPlayground />
