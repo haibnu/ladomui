@@ -201,7 +201,6 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'data-toolbar': [{ date: '2026-11-11', en: 'First release: search, filters and actions above a Table, with bulk actions while rows are selected.', tr: 'İlk sürüm: Table üstünde arama, filtreler ve aksiyonlar; satır seçilince toplu aksiyonlar.' }],
   'person-cell': [{ date: '2026-11-11', en: 'First release: Avatar, name and a line under it, in a table or list; a button with onClick.', tr: 'İlk sürüm: tabloda ya da listede Avatar, isim ve alt satır; onClick ile buton.' }],
   'stat-card': [{ date: '2026-11-11', en: 'First release: a dashboard card with a label, a value and a note or trend.', tr: 'İlk sürüm: etiket, değer ve not ya da trend gösteren panel kartı.' }],
-  'summary-list': [{ date: '2026-11-11', en: 'First release: label and value pairs as rows with a total or as a grid of facts.', tr: 'İlk sürüm: toplamlı satırlar ya da bilgi ızgarası olarak etiket-değer çiftleri.' }],
   'wizard-modal': [
     {
       date: '2026-11-11',
@@ -214,6 +213,6 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
 
 /** The changelog of a docs path (/en/docs/components/<slug>), or null for other pages. */
 export function changelogOf(pathname: string): ChangelogEntry[] | null {
-  const m = pathname.match(/\/docs\/(?:components|molecules)\/([^/]+)/);
+  const m = pathname.match(/\/docs\/(?:components|pro)\/([^/]+)/);
   return (m && CHANGELOG[m[1]!]) ?? null;
 }

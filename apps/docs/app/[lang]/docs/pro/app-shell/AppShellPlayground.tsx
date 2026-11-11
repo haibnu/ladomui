@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { IconContacts, IconCurrencyTl, IconDashboard, IconDateRange, IconNotification, IconSearch, IconSetting, IconTime } from '@ladom/icons';
-import { Avatar, Button, Input } from '@ladom/ui';
-import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection, Card, StatCard, SummaryList } from '@ladom/ui/pro';
+import { Avatar, Button, Cell, Input } from '@ladom/ui';
+import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection, Card, StatCard } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck } from '@/components/docs/Controls';
 import styles from '@/components/docs/docs.module.css';
@@ -152,15 +152,16 @@ export function AppShellPlayground() {
               <StatCard label={c.requests} value="7" note={c.requestsNote} />
             </div>
             <Card title={c.nextRun}>
-              <SummaryList
-                layout="grid"
-                items={[
-                  { key: 'period', label: c.period, value: c.periodValue },
-                  { key: 'payday', label: c.payday, value: c.paydayValue },
-                  { key: 'employees', label: c.employees, value: '48' },
-                  { key: 'status', label: c.status, value: c.statusValue },
-                ]}
-              />
+              {[
+                { key: 'period', label: c.period, value: c.periodValue },
+                { key: 'payday', label: c.payday, value: c.paydayValue },
+                { key: 'employees', label: c.employees, value: '48' },
+                { key: 'status', label: c.status, value: c.statusValue },
+              ].map((r) => (
+                <Cell key={r.key} size="small" subtitle={r.label}>
+                  {r.value}
+                </Cell>
+              ))}
             </Card>
           </AppShell>
         </div>

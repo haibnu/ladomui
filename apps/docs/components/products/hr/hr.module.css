@@ -142,6 +142,21 @@
   gap: var(--space-form-gutter);
 }
 
+/* Label and value rows (Rows) */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--border-width);
+  margin-inline: calc(-1 * var(--space-small));
+}
+
+.rowsTitle {
+  margin: 0 var(--space-small) var(--space-tiny);
+  font: var(--text-ui-caption);
+  text-transform: var(--text-ui-caption-text-transform);
+  color: var(--color-foreground-low-emphasis);
+}
+
 /* Timesheet */
 .shift {
   display: inline-flex;

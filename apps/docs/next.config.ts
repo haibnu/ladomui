@@ -30,6 +30,8 @@ const nextConfig: NextConfig = {
     { source: '/license', destination: '/en/docs/license', permanent: false },
     // Alert and Toast were molecules.
     { source: '/:lang(en|tr)/docs/molecules/:name(alert|toast)', destination: '/:lang/docs/components/:name', permanent: true },
+    // The Pro components moved from /docs/molecules to /docs/pro.
+    { source: '/:lang(en|tr)/docs/molecules/:name', destination: '/:lang/docs/pro/:name', permanent: true },
     // Pages from before the languages.
     { source: '/docs/:path*', destination: '/en/docs/:path*', permanent: true },
     { source: '/tokens', destination: '/en/docs/foundations/color', permanent: true },

@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { IconDownload, IconPlay, IconSuccess } from '@ladom/icons';
 import { Alert, Badge, Button, Checkbox, Drawer, Loader, Selectbox, Table, useToast, type BadgeTone, type TableColumn } from '@ladom/ui';
-import { PageHeader, PersonCell, StatCard, SummaryList, WizardModal } from '@ladom/ui/pro';
+import { PageHeader, PersonCell, StatCard, WizardModal } from '@ladom/ui/pro';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { LEAVES, PAYROLL_MONTHS, money, monthName, payrollEmployees, payslip, type Employee, type Payslip, type PayrollMonth } from './data';
+import { Rows } from './Rows';
 import styles from './hr.module.css';
 
 const STATUS_TONE: Record<PayrollMonth['status'], BadgeTone> = {
@@ -182,8 +183,8 @@ function PayslipView({ row }: { row: Row }) {
   const minus = (n: number) => `−${m(n)}`;
   return (
     <div className={styles.slip}>
-      <SummaryList title={t.earnings} items={[{ label: t.baseSalary, value: m(s.gross) }]} />
-      <SummaryList
+      <Rows title={t.earnings} items={[{ label: t.baseSalary, value: m(s.gross) }]} />
+      <Rows
         title={t.employeeDeductions}
         items={[
           { label: t.sgkEmployee, value: minus(s.sgk) },
@@ -193,7 +194,7 @@ function PayslipView({ row }: { row: Row }) {
         ]}
         total={{ label: t.netPay, value: m(s.net) }}
       />
-      <SummaryList
+      <Rows
         title={t.employerShare}
         items={[
           { label: t.sgkEmployer, value: m(s.employerSgk) },
@@ -271,7 +272,7 @@ function RunPayroll({ open, rows, onClose, onApprove }: { open: boolean; rows: R
         <>
           <h3 className={styles.stepTitle}>{f.reviewTitle}</h3>
           <p className={styles.muted}>{f.reviewText}</p>
-          <SummaryList
+          <Rows
             items={[
               { label: `${t.totalGross} · ${t.people(rows.length)}`, value: money(lang, total('gross')) },
               { label: t.totalCost, value: money(lang, total('cost')) },
