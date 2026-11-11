@@ -18,7 +18,7 @@ const COPY = {
     usage: 'Usage',
     usageText: 'value is the number in E.164 (“+905321234567”), or null when the field is empty. onValueChange also gives the country, the national digits and whether the number is complete.',
     countries: 'Countries',
-    countriesText: 'Figma draws the Turkish and US flags, so the default list is TR and US. Pass countries to add more: each has its code, calling code and a format with # for every digit; a country without a flag shows its code. countrySelect={false} fixes the country.',
+    countriesText: 'Every country is listed by default (about 240): Turkey first, the rest sorted by name in the locale, with its calling code and a mobile number format. Flags are Figma’s for Turkey and the US and country-flag-icons (MIT) for the others. Pass countries for a shorter list, in your order: each has its code, calling code and a format with # for every digit, and gets its built-in flag. countrySelect={false} fixes the country and shows only its calling code, without a flag.',
     api: 'API reference',
     apiText: 'GsmInput also takes Input’s size, error and disabled, and the other input attributes.',
     a11y: 'Accessibility',
@@ -36,7 +36,7 @@ const COPY = {
       defaultCountry: 'The first country (uncontrolled); the first of countries by default.',
       onCountryChange: 'Called with the picked code.',
       countries: 'The countries in the list.',
-      countrySelect: 'Shows the country list.',
+      countrySelect: 'Shows the flag and the country list; false shows only the calling code.',
       locale: 'Language of the country names.',
       name: 'Form name of the number (E.164).',
       countryName: 'Form name of the country code.',
@@ -53,7 +53,7 @@ const COPY = {
     usage: 'Kullanım',
     usageText: 'value numaranın E.164 hâlidir (“+905321234567”), alan boşsa null. onValueChange ülkeyi, ulusal basamakları ve numaranın tamam olup olmadığını da verir.',
     countries: 'Ülkeler',
-    countriesText: 'Figma’da Türkiye ve ABD bayrakları çizili, bu yüzden varsayılan liste TR ve US. Başka ülke eklemek için countries verin: her birinin kodu, ülke kodu ve her basamak için # içeren bir formatı olur; bayrağı olmayan ülke kodunu gösterir. countrySelect={false} ülkeyi sabitler.',
+    countriesText: 'Varsayılan olarak tüm ülkeler listelenir (yaklaşık 240): Türkiye başta, gerisi yerel ayardaki adına göre sıralı; her birinin ülke kodu ve mobil numara formatı vardır. Bayraklar Türkiye ve ABD için Figma’dan, diğerleri için country-flag-icons’tan (MIT) gelir. Daha kısa bir liste için countries verin; sıranız korunur, her ülke kodu, ülke telefon kodu ve her basamak için # içeren bir formatla gelir ve kendi bayrağını alır. countrySelect={false} ülkeyi sabitler ve bayraksız, yalnızca ülke telefon kodunu gösterir.',
     api: 'API',
     apiText: 'GsmInput, Input’un size, error ve disabled prop’larını ve diğer input özniteliklerini de alır.',
     a11y: 'Erişilebilirlik',
@@ -71,7 +71,7 @@ const COPY = {
       defaultCountry: 'İlk ülke (kontrolsüz); varsayılan countries’in ilki.',
       onCountryChange: 'Seçilen kodla çağrılır.',
       countries: 'Listedeki ülkeler.',
-      countrySelect: 'Ülke listesini gösterir.',
+      countrySelect: 'Bayrağı ve ülke listesini gösterir; false yalnızca ülke telefon kodunu gösterir.',
       locale: 'Ülke adlarının dili.',
       name: 'Numaranın form adı (E.164).',
       countryName: 'Ülke kodunun form adı.',
@@ -110,7 +110,7 @@ export default async function GsmInputPage({ params }: Props) {
           <h3 id="countries">{c.countries}</h3>
           <p>{c.countriesText}</p>
           <CodeBlock
-            code={`import { DEFAULT_COUNTRIES, GsmInput } from '@/components/ladom';\n\n<GsmInput\n  countries={[\n    ...DEFAULT_COUNTRIES,\n    { code: 'DE', dial: '49', format: '#### #######' },\n  ]}\n/>`}
+            code={`import { DEFAULT_COUNTRIES, GsmInput } from '@/components/ladom';\n\nconst EU = ['TR', 'DE', 'FR', 'NL', 'GB'];\n\n<GsmInput countries={EU.map((code) => DEFAULT_COUNTRIES.find((c) => c.code === code)!)} />`}
           />
           <h2 id="api">{c.api}</h2>
           <p>{c.apiText}</p>
@@ -122,7 +122,7 @@ export default async function GsmInputPage({ params }: Props) {
               ['country', 'string', '—'],
               ['defaultCountry', 'string', 'countries[0]'],
               ['onCountryChange', '(country: string) => void', '—'],
-              ['countries', 'GsmCountry[]', 'DEFAULT_COUNTRIES (TR, US)'],
+              ['countries', 'GsmCountry[]', 'DEFAULT_COUNTRIES (all)'],
               ['countrySelect', 'boolean', 'true'],
               ['locale', 'string', "'en-US'"],
               ['name', 'string', '—'],
@@ -146,7 +146,7 @@ export default async function GsmInputPage({ params }: Props) {
             ['👕 Size = Medium / Small', "size='medium' / 'small'"],
             ['🕹 State = Hover / Focus / Typed', ':hover / :focus-within / value'],
             ['Error / Disable', 'error / disabled'],
-            ['Flags / TR, Flags / EN', "countries: 'TR', 'US'"],
+            ['Flags / TR, Flags / EN', "'TR', 'US' (other flags: country-flag-icons)"],
           ]}
         />
       </DocPage>

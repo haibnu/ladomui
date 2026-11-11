@@ -337,7 +337,7 @@ return h('div', { style: { display: 'grid', gap: 12 } },
   {
     name: 'GsmInput', group: 'Forms', height: 300,
     summary: 'A phone number field: a flag that opens the country list, the calling code and the number masked as it is typed. A pasted “+90 0532 …” is written as (532) …',
-    use: ['The value is E.164 (`"+905321234567"`); pasting a number with its country code (`+90`, `0090`) or a leading `0` drops them, and a code of another listed country switches to it.', 'Figma draws the TR and US flags; pass more `countries` with their `format` (`"(###) ### ## ##"`) and `flag`. `countrySelect={false}` fixes the country. Label it with `FormField`.'],
+    use: ['The value is E.164 (`"+905321234567"`); pasting a number with its country code (`+90`, `0090`) or a leading `0` drops them, and a code of another listed country switches to it.', 'Every country is listed by default (Turkey first, the rest by name) with its flag; pass `countries` for a shorter list. `countrySelect={false}` fixes the country and shows only its calling code, without a flag. Label it with `FormField`.'],
     provides: '`value` + `onValueChange` (E.164 or null, with country, national digits and complete), `country` + `onCountryChange`, `countries`, `locale` (country names), `size`, `name` and `countryName` for forms.',
     code: `return h('div', { style: { display: 'grid', gap: 12, maxWidth: 280 } },
   h(FormField, { label: 'Phone' }, h(GsmInput, { defaultValue: '+905321234567' })),

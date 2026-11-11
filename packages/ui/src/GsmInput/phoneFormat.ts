@@ -10,6 +10,10 @@ export type Country = {
   format: string;
   /** Shown while the field is empty; the format with "X" by default. */
   placeholder?: string;
+  /** The shortest complete number, where it is shorter than the format. */
+  minDigits?: number;
+  /** The main country of a calling code that several share (+1 the US, +44 the UK). */
+  primary?: boolean;
 };
 
 export const digitCount = (format: string) => format.split('').filter((c) => c === '#').length;
@@ -59,8 +63,8 @@ export function cleanPaste(raw: string, current: Country, countries: Country[]):
   let country = current;
   const international = trimmed.startsWith('+') || digits.startsWith('00');
   if (digits.startsWith('00')) digits = digits.slice(2);
-  // The current country first, then the longest matching calling code.
-  const byDial = [current, ...countries.filter((c) => c !== current).sort((a, b) => b.dial.length - a.dial.length)];
+  // The current country first, then the longest matching calling code, its main country first.
+  const byDial = [current, ...countries.filter((c) => c !== current).sort((a, b) => b.dial.length - a.dial.length || Number(!!b.primary) - Number(!!a.primary))];
   if (international) {
     const hit = byDial.find((c) => digits.startsWith(c.dial));
     if (hit) {
