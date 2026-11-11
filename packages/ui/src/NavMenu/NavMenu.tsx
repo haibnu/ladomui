@@ -1,5 +1,6 @@
 import { forwardRef, type AnchorHTMLAttributes, type ElementType, type HTMLAttributes, type MouseEvent, type ReactNode } from 'react';
 import { Badge } from '../Badge/Badge';
+import { ScrollArea } from '../ScrollArea/ScrollArea';
 import styles from './NavMenu.module.css';
 
 // Not drawn in Figma yet: built from the existing parts. A SidebarNav item is a Medium Cell
@@ -59,7 +60,9 @@ export const SidebarNav = forwardRef<HTMLElement, SidebarNavProps>(function Side
   return (
     <nav ref={ref} className={[styles.sidebar, className].filter(Boolean).join(' ')} {...rest}>
       {header != null && <div className={styles.header}>{header}</div>}
-      <div className={styles.body}>{children}</div>
+      <ScrollArea className={styles.body} viewportProps={{ className: styles.bodyContent }}>
+        {children}
+      </ScrollArea>
       {footer != null && <div className={styles.footer}>{footer}</div>}
     </nav>
   );
