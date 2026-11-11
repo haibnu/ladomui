@@ -71,6 +71,8 @@ const en = {
     custom: 'custom',
     categories: { common: 'Common', direction: 'Direction', electric: 'Electric' } as Record<string, string>,
   },
+  changelog: { title: 'Changelog', pr: 'PR' },
+  readiness: { label: 'Status', figma: 'Figma', code: 'Code', ready: 'Ready', notReady: 'Not ready' },
   component: {
     designer: 'Designer',
     developer: 'Developer',
@@ -184,6 +186,8 @@ const tr: Dictionary = {
     custom: 'özel',
     categories: { common: 'Genel', direction: 'Yön', electric: 'Elektrik' },
   },
+  changelog: { title: 'Değişiklik geçmişi', pr: 'PR' },
+  readiness: { label: 'Durum', figma: 'Figma', code: 'Kod', ready: 'Hazır', notReady: 'Hazır değil' },
   component: {
     designer: 'Tasarımcı',
     developer: 'Geliştirici',

@@ -289,6 +289,13 @@ a.navLink:hover {
   margin-block-end: var(--space-xxlarge);
 }
 
+.readiness {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-tiny);
+  margin-block-start: var(--space-medium);
+}
+
 .eyebrow {
   margin: 0 0 var(--space-tiny);
   font: var(--text-ui-text-small-bold);
@@ -374,4 +381,34 @@ a.navLink:hover {
   .menuButton {
     display: inline-flex;
   }
+}
+
+/* Changelog at the bottom of component and molecule pages: date column, then the change. */
+.changelog {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-small) var(--space-medium);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.changelog li {
+  display: contents;
+}
+
+.changelogDate {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-low-emphasis);
+  font-variant-numeric: tabular-nums;
+  padding-block-start: var(--space-atom);
+}
+
+.changelogText {
+  margin: 0;
+}
+
+.changelogPr {
+  margin-inline-start: var(--space-tiny);
+  color: var(--color-foreground-medium-emphasis);
 }
