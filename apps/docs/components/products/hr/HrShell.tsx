@@ -20,6 +20,7 @@ import { Avatar, Badge, Button, Input, ToastProvider } from '@ladom/ui';
 import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection } from '@ladom/ui/pro';
 import { href } from '@/i18n';
 import { useLocale } from '../../useLocale';
+import { ProductLogo } from '../ProductLogo';
 import { HR_COPY } from './copy';
 import { COMPANY, LEAVES } from './data';
 import styles from './hr.module.css';
@@ -48,15 +49,7 @@ export function HrShell({ children }: { children: ReactNode }) {
       collapsible={collapsible}
       collapseLabel={c.nav.collapse}
       expandLabel={c.nav.expand}
-      header={
-        <span className={styles.brand}>
-          <Avatar size="small" name={COMPANY} />
-          <span className={styles.brandText}>
-            <strong>{COMPANY}</strong>
-            <span>{c.app}</span>
-          </span>
-        </span>
-      }
+      header={<ProductLogo product="hr" name={COMPANY} sub={c.app} />}
       footer={
         <AppSidebarSection>
           <AppSidebarItem icon={<IconSetting />} label={c.nav.settings} disabled />

@@ -12,24 +12,6 @@
   gap: var(--space-small);
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: var(--space-small);
-}
-
-.brandText {
-  display: flex;
-  flex-direction: column;
-  font: var(--text-ui-text-small-bold);
-  color: var(--color-foreground-high-emphasis);
-}
-
-.brandText span {
-  font: var(--text-ui-footnote-regular);
-  color: var(--color-foreground-low-emphasis);
-}
-
 /* Screens */
 .pageHeader {
   margin-inline: calc(-1 * var(--space-container));

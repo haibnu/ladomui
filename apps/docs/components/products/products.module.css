@@ -191,3 +191,30 @@ a.card:hover {
   border-radius: var(--radius-full);
   box-shadow: 0 0 0 var(--border-width) var(--color-static-white);
 }
+
+/* Demo product logos: one shape in the brand color, the name beside it. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-small);
+  min-inline-size: 0;
+}
+
+.logoMark {
+  flex: none;
+  fill: var(--color-primary);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-high-emphasis);
+  white-space: nowrap;
+}
+
+.logoText span {
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-low-emphasis);
+}
