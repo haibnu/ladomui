@@ -1,5 +1,6 @@
 // Ladom UI logo, rebuilt from the "Ladom UI" heading on ladom.co (#prod): the Ladom wordmark in
-// Plus Jakarta Sans ExtraBold (converted to a path) and the glass "keycap" holding ui-letters.svg.
+// Plus Jakarta Sans ExtraBold (converted to a path) and the "keycap" holding ui-letters.svg, drawn as
+// a key in the black-and-white isometric style of the landing illustrations.
 // Geometry is in that heading's units (48px font): origin at the wordmark's left edge and baseline.
 import { useId } from 'react';
 import styles from './logo.module.css';
@@ -8,83 +9,47 @@ const WORDMARK = 'M25.73 0L3.17 0L3.17-35.76L10.61-35.76L10.61-6.48L25.73-6.48L2
 const UI_LETTERS = ["M13.98 11.494c-1.348 0-2.441-1.07-2.441-2.391V0c1.348 0 2.441 1.071 2.441 2.391Z","M4.804 11.679c-.924 0-1.748-.19-2.473-.57-.724-.381-1.297-.9-1.717-1.559C.205 8.882 0 8.126 0 7.282V0c1.348 0 2.441 1.071 2.441 2.391v4.737c0 .453.1.864.299 1.234.211.36.494.643.851.849.357.206.761.308 1.213.308.462 0 .866-.102 1.212-.308.358-.206.636-.489.835-.849.21-.37.315-.781.315-1.234V0c1.349 0 2.442 1.071 2.442 2.391v4.891c0 .844-.211 1.6-.63 2.268-.41.659-.977 1.178-1.701 1.559-.725.38-1.549.57-2.473.57Z"];
 // Keycap: 112x88, corners 4px 24px (top-left/bottom-right 4, top-right/bottom-left 24).
 const KEY = 'M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z';
-// key-texture.png: a warm light edge on the left fading into a translucent dark tint.
-const TEXTURE = [
-  [0, 'rgb(240 218 191 / 0.41)'],
-  [0.05, 'rgb(222 200 173 / 0.36)'],
-  [0.12, 'rgb(197 178 151 / 0.33)'],
-  [0.2, 'rgb(171 154 122 / 0.29)'],
-  [0.3, 'rgb(87 77 53 / 0.21)'],
-  [0.4, 'rgb(29 29 12 / 0.17)'],
-] as const;
+// Depth of the key's side, in the same units, as in the isometric illustrations on the landing page.
+const DEPTH = 10;
 
 export function Logo({ title = 'Ladom UI' }: { title?: string }) {
   const id = useId().replace(/:/g, '');
-  const ref = (name: string) => `${name}-${id}`;
   return (
     <svg className={styles.logo} viewBox="0 -65.3 289.6 88" role="img" aria-label={title}>
       <defs>
-        <linearGradient id={ref('texture')} x1="0" y1="0" x2="1" y2="0.35">
-          {TEXTURE.map(([offset, color]) => (
-            <stop key={offset} offset={offset} style={{ stopColor: color }} />
-          ))}
-        </linearGradient>
-        <clipPath id={ref('key')}>
+        <clipPath id={`key-${id}`}>
           <path d={KEY} />
         </clipPath>
-        {/* Outer shadows, drawn only outside the keycap (like box-shadow). */}
-        <filter id={ref('drop')} x="-50%" y="-50%" width="200%" height="260%">
-          <feOffset in="SourceAlpha" dy="4" />
-          <feGaussianBlur stdDeviation="4" result="d1" />
-          <feOffset in="SourceAlpha" dy="4" />
-          <feGaussianBlur stdDeviation="16" result="d2" />
-          <feOffset in="SourceAlpha" dy="16" />
-          <feGaussianBlur stdDeviation="12" result="d3" />
-          <feFlood floodColor="rgb(0 0 0)" floodOpacity="0.08" />
-          <feComposite in2="d1" operator="in" result="s1" />
-          <feFlood floodColor="rgb(28 26 9)" floodOpacity="0.12" />
-          <feComposite in2="d2" operator="in" result="s2" />
-          <feFlood floodColor="rgb(28 26 9)" floodOpacity="0.08" />
-          <feComposite in2="d3" operator="in" result="s3" />
-          <feMerge result="all">
-            <feMergeNode in="s3" />
-            <feMergeNode in="s2" />
-            <feMergeNode in="s1" />
-          </feMerge>
-          <feComposite in="all" in2="SourceAlpha" operator="out" />
-        </filter>
-        {/* Inset shadows along the bottom edge: a hard dark line, a wide white glow, a tight white glow. */}
-        <filter id={ref('inset')} x="-10%" y="-10%" width="120%" height="120%">
-          <feOffset in="SourceAlpha" dy="-4" result="up" />
-          <feComposite in="SourceAlpha" in2="up" operator="out" result="hard" />
-          <feGaussianBlur in="up" stdDeviation="16" result="upWide" />
-          <feComposite in="SourceAlpha" in2="upWide" operator="out" result="wide" />
-          <feGaussianBlur in="up" stdDeviation="2" result="upTight" />
-          <feComposite in="SourceAlpha" in2="upTight" operator="out" result="tight" />
-          <feFlood floodColor="rgb(28 26 9)" floodOpacity="0.33" />
-          <feComposite in2="hard" operator="in" result="i1" />
-          <feFlood floodColor="rgb(255 255 255)" floodOpacity="0.4" />
-          <feComposite in2="wide" operator="in" result="i2" />
-          <feFlood floodColor="rgb(255 255 255)" floodOpacity="0.8" />
-          <feComposite in2="tight" operator="in" result="i3" />
-          <feMerge>
-            <feMergeNode in="i1" />
-            <feMergeNode in="i2" />
-            <feMergeNode in="i3" />
-          </feMerge>
-        </filter>
+        <linearGradient id={`shine-${id}`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" className={styles.shineEdge} />
+          <stop offset="0.5" className={styles.shineMid} />
+          <stop offset="1" className={styles.shineEdge} />
+        </linearGradient>
       </defs>
       <path className={styles.word} d={WORDMARK} />
-      <g className={styles.key} transform="translate(177.59 -65.3)">
+      {/* The keycap as an isometric key: a solid side under a flat top, outlined, no shadows. */}
+      <g className={styles.key} transform={`translate(177.59 -65.3) scale(${88 / (88 + DEPTH)})`}>
         <g className={styles.keyPop}>
-          <path d={KEY} filter={`url(#${ref('drop')})`} />
-          <path d={KEY} fill={`url(#${ref('texture')})`} />
-          <path d={KEY} filter={`url(#${ref('inset')})`} clipPath={`url(#${ref('key')})`} />
-          <g transform="translate(24 16.57) scale(4.5714)">
-            <g className={styles.letters}>
-              {UI_LETTERS.map((d) => (
-                <path key={d} d={d} />
-              ))}
+          {/* The side: the key's outline swept down DEPTH units; each step hides the one above. */}
+          {/* Pressed, every step moves down by its share of the press, so the side gets shallower while
+              its bottom stays on the line. */}
+          {Array.from({ length: DEPTH }, (_, i) => (
+            <g key={i} className={styles.keyStep} style={{ '--step': 1 - (i + 1) / DEPTH } as React.CSSProperties}>
+              <path className={styles.keySide} d={KEY} transform={`translate(0 ${i + 1})`} vectorEffect="non-scaling-stroke" />
+            </g>
+          ))}
+          {/* The face: a button that is pressed into the side on hover, with a shine passing over it. */}
+          <g className={styles.keyFace}>
+            <path className={styles.keyTop} d={KEY} vectorEffect="non-scaling-stroke" />
+            <g clipPath={`url(#key-${id})`}>
+              <rect className={styles.shine} x={-70} y={-20} width={44} height={130} fill={`url(#shine-${id})`} />
+            </g>
+            <g transform="translate(24 16.57) scale(4.5714)">
+              <g className={styles.letters}>
+                {UI_LETTERS.map((d) => (
+                  <path key={d} d={d} />
+                ))}
+              </g>
             </g>
           </g>
         </g>

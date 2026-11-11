@@ -26,7 +26,7 @@
   /* Fixed layout so wide previews (e.g. a 1328px grid bar) cannot widen the columns. */
   table-layout: fixed;
   border-collapse: collapse;
-  background: var(--color-surface-level-1);
+  background: var(--color-surface-level-2);
   border-radius: var(--radius-card);
   overflow: hidden;
   box-shadow: var(--shadow-depth-none);
