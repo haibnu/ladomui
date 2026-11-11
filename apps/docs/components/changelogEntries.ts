@@ -49,6 +49,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   cell: [ROLES, first()],
   checkbox: [ROLES, first()],
   chips: [ROLES, first()],
+  'color-input': [first('2026-11-11')],
   'currency-input': [
     {
       date: '2026-11-10',
