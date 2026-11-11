@@ -6,6 +6,7 @@ import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { orientation: 'Orientation', always: 'Always show the scrollbars', code: 'Code', region: 'Release notes', note: (i: number) => `Release ${i}: a short note about what changed in this version.` },
@@ -58,6 +59,7 @@ export function ScrollAreaPlayground() {
         </ScrollArea>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.orientation} value={orientation} options={['vertical', 'horizontal', 'both']} onChange={setOrientation} />
         <ControlCheck label={c.always} checked={always} onChange={setAlways} />
       </div>
