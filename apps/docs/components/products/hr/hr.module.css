@@ -233,3 +233,16 @@
     flex-shrink: 0;
   }
 }
+
+/* Reports: the department donut beside its legend, under it on narrow cards. */
+.donut {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-large);
+}
+
+.donut > [role='table'] {
+  flex: 1 1 var(--grid-column-2);
+}
