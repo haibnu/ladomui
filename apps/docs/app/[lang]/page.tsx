@@ -4,12 +4,10 @@ import meta from "@ladom/tokens/tokens.json";
 import * as figmaArt from "@/components/landing/art/figma";
 import { DRAWN } from "@/components/landing/art/drawn";
 import { FIGMA_ART } from "@/components/landing/art/figmaCards";
-import { coinOutline } from "@/components/landing/art/coinOutline";
 import { FEATURE_ART } from "@/components/landing/art/features";
 import { inter, jakarta, paprika } from "@/components/landing/fonts";
 import { CopyButton } from "@/components/landing/CopyButton";
 import { ReactMark } from "@/components/landing/ReactMark";
-import { ThrowCoin } from "@/components/landing/ThrowCoin";
 import { HeroL } from "@/components/landing/HeroL";
 import { HeroStrip } from "@/components/landing/HeroStrip";
 import styles from "@/components/landing/landing.module.css";
@@ -220,13 +218,6 @@ export default async function Home({
             {t.ctaTitle[0]} <span>{t.ctaTitle[1]}</span>
           </h2>
           <div className={styles.ctaStage}>
-            <span className={styles.ctaGlow} aria-hidden />
-            <ThrowCoin svg={coinOutline} className={styles.coinTop} />
-            <ThrowCoin
-              svg={coinOutline}
-              className={styles.coinBottom}
-              hint={t.throwIt}
-            />
             <Link
               href={href(lang, "/docs/installation")}
               className={styles.glass}
