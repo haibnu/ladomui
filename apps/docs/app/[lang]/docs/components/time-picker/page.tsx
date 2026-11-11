@@ -18,7 +18,7 @@ const COPY = {
     notesItems: [
       'The items use the legacy “Paragraph Small / Regular” style (12/16); code uses ui/text small/regular with tabular numbers.',
       'The item radius is a raw 4px; code uses half of --radius-form-element-small.',
-      'The scroll bar is a Custom Scroll component; code styles the native scroll bar with surface/level-3 and level-4.',
+      'The scroll bar is a Custom Scroll component; code uses ScrollArea, whose thin thumb shows on hover and while scrolling.',
       'The panel pads 12px on the right only and 0 on the left; code keeps this.',
     ],
     usage: 'Usage',
@@ -49,7 +49,7 @@ const COPY = {
     notesItems: [
       'Öğeler eski “Paragraph Small / Regular” stilini (12/16) kullanıyor; kod tabular rakamlarla ui/text small/regular kullanır.',
       'Öğe köşesi ham 4px; kod --radius-form-element-small’ın yarısını kullanır.',
-      'Kaydırma çubuğu bir Custom Scroll bileşeni; kod yerel kaydırma çubuğunu surface/level-3 ve level-4 ile biçimlendirir.',
+      'Kaydırma çubuğu bir Custom Scroll bileşeni; kod, ince tutamacı üzerine gelince ve kaydırırken görünen ScrollArea’yı kullanır.',
       'Panel yalnızca sağda 12px, solda 0 boşluk bırakıyor; kod bunu korur.',
     ],
     usage: 'Kullanım',

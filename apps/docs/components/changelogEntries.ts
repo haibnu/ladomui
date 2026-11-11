@@ -24,7 +24,15 @@ const UNCLIPPED = (what: { en: string; tr: string }): ChangelogEntry => ({
   tr: `Modal ya da Drawer içinde ${what.tr} artık kaydırılan gövdenin kenarında kesilmiyor.`,
 });
 
+// 2026-11-11: scrolling parts moved to the ScrollArea's thin overlay scrollbars.
+const SCROLL = (what: { en: string; tr: string }): ChangelogEntry => ({
+  date: '2026-11-11',
+  en: `The ${what.en} scrolls with the thin ScrollArea scrollbars that show on hover and while scrolling.`,
+  tr: `${what.tr} artık üzerine gelince ve kaydırırken görünen ince ScrollArea çubuklarıyla kayıyor.`,
+});
+
 const DIALOG: ChangelogEntry[] = [
+  SCROLL({ en: 'body', tr: 'Gövde' }),
   {
     date: '2026-11-10',
     pr: 10,
@@ -44,7 +52,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   alert: [ROLES, first()],
   avatar: [first()],
   badge: [ROLES, first()],
-  breadcrumb: [UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
+  breadcrumb: [SCROLL({ en: 'path menu', tr: 'Yol menüsü' }), UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
   button: [ROLES, first()],
   cell: [ROLES, first()],
   checkbox: [ROLES, first()],
@@ -60,7 +68,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   'date-picker': [ROLES, first()],
   drawer: DIALOG,
-  dropdown: [first()],
+  dropdown: [SCROLL({ en: 'panel', tr: 'Panel' }), first()],
   'empty-state': [
     {
       date: '2026-11-02',
@@ -92,6 +100,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   loader: [ROLES, first()],
   modal: DIALOG,
   'nav-menu': [
+    SCROLL({ en: 'SidebarNav body', tr: 'SidebarNav gövdesi' }),
     {
       date: '2026-11-10',
       pr: 12,
@@ -103,8 +112,10 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   pagination: [first()],
   popover: [UNCLIPPED({ en: 'panel', tr: 'panel' }), first()],
   radio: [first()],
+  'scroll-area': [{ ...first('2026-11-11'), en: 'First release: thin, rounded overlay scrollbars over native scrolling.', tr: 'İlk sürüm: yerel kaydırmanın üstünde ince, yuvarlak kaydırma çubukları.' }],
   segment: [ROLES, first()],
   selectbox: [
+    SCROLL({ en: 'list', tr: 'Liste' }),
     UNCLIPPED({ en: 'list', tr: 'liste' }),
     ROLES,
     {
@@ -127,6 +138,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first(),
   ],
   table: [
+    SCROLL({ en: 'wide table', tr: 'Geniş tablo' }),
     {
       date: '2026-11-10',
       pr: 13,
@@ -136,7 +148,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first(),
   ],
   textarea: [first('2026-11-02')],
-  'time-picker': [first()],
+  'time-picker': [SCROLL({ en: 'hour, minute and second columns', tr: 'Saat, dakika ve saniye sütunları' }), first()],
   toast: [ROLES, first()],
   tooltip: [
     {
