@@ -4,6 +4,7 @@ import meta from "@ladom/tokens/tokens.json";
 import * as figmaArt from "@/components/landing/art/figma";
 import { DRAWN } from "@/components/landing/art/drawn";
 import { FIGMA_ART } from "@/components/landing/art/figmaCards";
+import { coinOutline } from "@/components/landing/art/coinOutline";
 import { FEATURE_ART } from "@/components/landing/art/features";
 import { inter, jakarta, paprika } from "@/components/landing/fonts";
 import { CopyButton } from "@/components/landing/CopyButton";
@@ -106,22 +107,27 @@ export default async function Home({
         <section className={styles.hero}>
           <div
             className={styles.heroInner}
-            style={{ "--hero-lines": t.title.script.length } as React.CSSProperties}
+            style={
+              {
+                "--hero-display-lines": t.title.filter((l) => !l.script).length,
+                "--hero-script-lines": t.title.filter((l) => l.script).length,
+              } as React.CSSProperties
+            }
           >
             <div className={styles.heroText}>
               <p className={styles.eyebrow}>{t.eyebrow}</p>
               <h1 className={styles.title}>
-                <span className={styles.titleRow}>
-                  {t.title.lead}{" "}
-                  <Svg svg={figmaArt.uiMark} className={styles.uiMark} />
-                  <span className={styles.visuallyHidden}>UI</span>{" "}
-                  {t.title.name}
-                </span>
-                {t.title.script.map((line) => (
-                  <em key={line} className={styles.titleScript}>
-                    {line}
-                  </em>
-                ))}
+                {t.title.map((line) =>
+                  line.script ? (
+                    <em key={line.text} className={styles.titleScript}>
+                      {line.text}
+                    </em>
+                  ) : (
+                    <span key={line.text} className={styles.titleRow}>
+                      {line.text}
+                    </span>
+                  ),
+                )}
               </h1>
               <p className={styles.lead}>{t.lead}</p>
               <div className={styles.heroActions}>
@@ -215,9 +221,9 @@ export default async function Home({
           </h2>
           <div className={styles.ctaStage}>
             <span className={styles.ctaGlow} aria-hidden />
-            <ThrowCoin svg={figmaArt.logo} className={styles.coinTop} />
+            <ThrowCoin svg={coinOutline} className={styles.coinTop} />
             <ThrowCoin
-              svg={figmaArt.logo}
+              svg={coinOutline}
               className={styles.coinBottom}
               hint={t.throwIt}
             />
