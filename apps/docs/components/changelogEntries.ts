@@ -32,6 +32,12 @@ const SCROLL = (what: { en: string; tr: string }): ChangelogEntry => ({
 });
 
 const DIALOG: ChangelogEntry[] = [
+  {
+    date: '2026-11-11',
+    pr: 27,
+    en: 'Modal: headerContent puts content such as a Stepper between the title and the close button. On docs pages the title no longer takes the page heading spacing.',
+    tr: 'Modal: headerContent, Stepper gibi bir içeriği başlık ile kapatma butonu arasına koyuyor. Doküman sayfalarında başlık artık sayfa başlığı boşluklarını almıyor.',
+  },
   SCROLL({ en: 'body', tr: 'Gövde' }),
   {
     date: '2026-11-10',
@@ -189,7 +195,14 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'person-cell': [{ date: '2026-11-11', en: 'First release: Avatar, name and a line under it, in a table or list; a button with onClick.', tr: 'İlk sürüm: tabloda ya da listede Avatar, isim ve alt satır; onClick ile buton.' }],
   'stat-card': [{ date: '2026-11-11', en: 'First release: a dashboard card with a label, a value and a note or trend.', tr: 'İlk sürüm: etiket, değer ve not ya da trend gösteren panel kartı.' }],
   'summary-list': [{ date: '2026-11-11', en: 'First release: label and value pairs as rows with a total or as a grid of facts.', tr: 'İlk sürüm: toplamlı satırlar ya da bilgi ızgarası olarak etiket-değer çiftleri.' }],
-  'wizard-modal': [{ date: '2026-11-11', en: 'First release: a Modal that walks through steps with a Stepper and Back / Next.', tr: 'İlk sürüm: Stepper ve Geri / İleri ile adım adım ilerleyen Modal.' }],
+  'wizard-modal': [
+    {
+      date: '2026-11-11',
+      pr: 27,
+      en: 'First release: a Modal that walks through steps, with the Stepper in the header between the title and the close button, and Back / Next.',
+      tr: 'İlk sürüm: adım adım ilerleyen bir Modal; Stepper başlık ile kapatma butonu arasında, altta Geri / İleri.',
+    },
+  ],
 };
 
 /** The changelog of a docs path (/en/docs/components/<slug>), or null for other pages. */

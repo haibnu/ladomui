@@ -389,7 +389,7 @@ return h(Pagination, { page, pageCount: 12, onPageChange: setPage });`,
     name: 'Modal', group: 'Overlays', height: 360,
     summary: 'A dialog in the middle of the page over the overlay, with a title, an optional description, a body and a footer of actions. Escape and a press on the overlay close it.',
     use: ['Keep `open` in your state and close it in `onClose`; `dismissible={false}` keeps it open until the person answers.', 'Put the main action last in `footer`, after a ghost cancel button.', 'Menus and dropdowns inside it are not clipped; the header casts a shadow while the body scrolls.'],
-    provides: '`open`, `onClose`, `title`, optionally `description`, `children`, `footer`, `size` (small, medium, large), `closeLabel`.',
+    provides: '`open`, `onClose`, `title`, optionally `description`, `children`, `footer`, `size` (small, medium, large), `closeLabel`, `dismissible`, `headerContent` (between the title and the close button, e.g. a Stepper).',
     code: `const [open, setOpen] = React.useState(true);
 return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Open modal'),
   h(Modal, { open, onClose: () => setOpen(false), size: 'small', title: 'Delete report?', description: 'This cannot be undone.',
@@ -470,8 +470,8 @@ return h(DataToolbar, { search: { value: q, onChange: setQ, placeholder: 'Search
   },
   {
     name: 'WizardModal', group: 'Overlays', height: 160,
-    summary: 'Pro. A task in steps inside a Modal: a Stepper on top, the step’s content, Back / Next in the footer and the finish action on the last step; after it a single Close.',
-    use: ['Keep `step` in state; set `finishStep` before a final done step.', '`busy` holds Next and keeps the Modal open while work runs.'],
+    summary: 'Pro. A task in steps inside a Modal: the Stepper in the header between the title (one line, cut with an ellipsis) and the close button, the step’s content, Back / Next in the footer and the finish action on the last step; after it a single Close.',
+    use: ['Keep `step` in state; set `finishStep` before a final done step. Keep the title short, or use a larger `size`, so it is not cut next to the steps.', '`busy` holds Next and keeps the Modal open while work runs.'],
     provides: '`open`, `onClose`, `title`, `description`, `steps`, `step`, `onStepChange`, `finishStep`, `onFinish`, `nextDisabled`, `busy`, `finishTone`, `size`, `labels`.',
     code: `const [open, setOpen] = React.useState(false); const [step, setStep] = React.useState(0);
 return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Run payroll'),

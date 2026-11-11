@@ -134,6 +134,37 @@
   font: var(--text-ui-page-title);
 }
 
+/* With headerContent: title, content and close button on one row (the title keeps one line and is
+   cut with an ellipsis), the description under them at full width. No Figma state. */
+.header[data-content] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  column-gap: var(--layout-default);
+  row-gap: var(--layout-micro);
+}
+
+.header[data-content] .text {
+  display: contents;
+}
+
+.header[data-content] .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header[data-content] .description {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.headerContent {
+  display: flex;
+  min-inline-size: 0;
+  align-items: center;
+}
+
 .description {
   margin: 0;
   font: var(--text-ui-text-regular);
@@ -166,4 +197,13 @@
 
 .body + .footer {
   padding-block-start: calc(var(--space-modal) - var(--_bleed));
+}
+
+/* Phones: headerContent moves under the title and description; the close button stays at the top. */
+@media (width < 768px) {
+  .header[data-content] .headerContent {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    padding-block-start: var(--layout-tiny);
+  }
 }
