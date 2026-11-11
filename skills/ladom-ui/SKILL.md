@@ -47,6 +47,7 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Form fields | `FormField` (label, hint, error) + `Input`, `Textarea` (showCount, maxLength), `NumberInput` (value, min, max, step), `CurrencyInput` (value, currency, currencies, locale, currencySelect), `GsmInput` (E.164 value, country, countries (every country by default), countrySelect; pasted +90/0 are dropped), `Selectbox`, `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
 | Labels and status | `Label`, `Hint`, `Badge`, `Chip`, `Avatar`/`AvatarGroup`, `Loader`, `Stepper` |
 | Lists and menus | `Dropdown` with `Cell`, `CellHelper`, `CellSearch`, `CellActions` |
+| Scrolling | `ScrollArea` (orientation vertical/horizontal/both, scrollbars auto/always, viewportRef, viewportProps): any box that scrolls; give it a size or max size. Dropdown, TimePicker, Modal/Drawer body, Table and SidebarNav already use it |
 | Navigation | `SidebarNav` (`SidebarNavSection`, `SidebarNavItem`) and `TopNav` (`TopNavItem`): simple free menus of links (`href`, `as`, `icon`, `badge`, `current`); `AppSidebar` (`AppSidebarSection`, `AppSidebarItem`; Pro): a side menu that collapses to a rail of icons and holds nested groups (`collapsed`, `onCollapsedChange`, nested items, `defaultOpen`); `AppHeader` with `PageHeader`, `PublicHeader` (Pro), `Tabs`, `Breadcrumb` |
 | Overlays | `Tooltip`, `Popover` (placement = where it opens), `Modal` (size), `Drawer` (side); both need `open` and `onClose` |
 | Empty and error states | `EmptyState` (size large on pages, medium in tables and cards, small inside components; tone error for failed loads) |
@@ -55,7 +56,7 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Disclosure | `Accordion` |
 | Sharing | `FileShare` (Pro: link with Copy Link, people with access and their role) |
 
-CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-picker` (DatePicker, Calendar), `time-picker`, `tabs`, `chip`, `avatar` (Avatar, AvatarGroup), `dropdown`, `cell`, `navigation` (AppHeader, PageHeader, PublicHeader), `nav-menu` (SidebarNav, TopNav), `app-sidebar` (AppSidebar; Pro), `modal` (Modal, Drawer), `table`, `pagination`. `npx ladom-ui list` shows them all.
+CLI names are kebab-case: `form-field`, `choice-group`, `item-selector`, `date-picker` (DatePicker, Calendar), `time-picker`, `tabs`, `chip`, `avatar` (Avatar, AvatarGroup), `dropdown`, `cell`, `navigation` (AppHeader, PageHeader, PublicHeader), `nav-menu` (SidebarNav, TopNav), `app-sidebar` (AppSidebar; Pro), `modal` (Modal, Drawer), `table`, `pagination`, `scroll-area`. `npx ladom-ui list` shows them all.
 
 Icon props: `Button` takes icon components (`icon={IconAdd}`); other components take elements (`iconLeft={<IconAdd />}`).
 
