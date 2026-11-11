@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState, type HTMLAttributes, type ReactNode } from 'react';
 import { IconClose } from '@ladom/icons';
 import { Button } from '../Button/Button';
+import { ScrollArea } from '../ScrollArea/ScrollArea';
 import styles from './Modal.module.css';
 
 // Figma: Components / Modal (4212:111) and Drawer (4212:199), with the shared .Modal Header
@@ -77,9 +78,13 @@ function Dialog({
           <Button variant="ghost" tone="tertiary" size="small" icon={IconClose} aria-label={closeLabel} onClick={onClose} />
         </div>
         {children != null && (
-          <div className={styles.body} onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}>
+          <ScrollArea
+            orientation="both"
+            className={styles.body}
+            viewportProps={{ className: styles.bodyContent, onScroll: (e) => setScrolled(e.currentTarget.scrollTop > 0) }}
+          >
             {children}
-          </div>
+          </ScrollArea>
         )}
         {footer != null && <div className={styles.footer}>{footer}</div>}
       </div>

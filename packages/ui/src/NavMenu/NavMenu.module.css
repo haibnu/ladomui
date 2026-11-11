@@ -96,13 +96,15 @@
   padding-inline: var(--space-medium);
 }
 
+/* The body is a ScrollArea; its viewport (.bodyContent) lays out the sections. */
 .body {
-  display: flex;
   flex: 1;
+}
+
+.bodyContent {
+  display: flex;
   flex-direction: column;
   gap: var(--layout-default);
-  min-block-size: 0;
-  overflow-y: auto;
 }
 
 .section {

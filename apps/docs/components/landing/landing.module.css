@@ -846,6 +846,8 @@ a.heroButton:focus-visible,
 .art :global(.a-line3) { animation-delay: 0.8s; }
 .art :global(.a-hour) { transform-origin: center bottom; animation-name: spin; animation-duration: 12s; animation-timing-function: linear; }
 .art :global(.a-minute) { transform-origin: center bottom; animation-name: spin; animation-duration: 3s; animation-timing-function: linear; }
+.art :global(.a-scrollrows) { animation-name: scrollRows; animation-duration: 4.8s; animation-timing-function: ease-in-out; }
+.art :global(.a-scrollthumb) { animation-name: scrollThumb; animation-duration: 4.8s; animation-timing-function: ease-in-out; }
 .art :global(.a-toast) { animation-name: toast; animation-duration: 4s; }
 .art :global(.a-file) { animation-name: file; animation-duration: 4s; animation-timing-function: cubic-bezier(0.3, 1.3, 0.5, 1); }
 .art :global(.a-progress) { transform-origin: left center; animation-name: progress; animation-duration: 4s; }
@@ -906,6 +908,8 @@ a.heroButton:focus-visible,
 @keyframes drop { 0%, 8% { transform: translateY(-36px); opacity: 0; } 22%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translateY(-36px); opacity: 0; } }
 @keyframes pop { 0%, 15% { transform: scale(0); } 30%, 85% { transform: none; } 95%, 100% { transform: scale(0); } }
 @keyframes remove { 0%, 25%, 80%, 100% { transform: none; opacity: 1; } 38%, 65% { transform: scale(0.2); opacity: 0; } }
+@keyframes scrollRows { 0%, 15% { transform: none; } 45%, 65% { transform: translateY(-76px); } 95%, 100% { transform: none; } }
+@keyframes scrollThumb { 0%, 15% { transform: none; } 45%, 65% { transform: translateY(92px); } 95%, 100% { transform: none; } }
 @keyframes hop { 0%, 18% { transform: none; } 25%, 43% { transform: translate(41.6px, -24px); } 50%, 68% { transform: translate(62.4px, -12px); } 75%, 93% { transform: translate(20.8px, 12px); } 100% { transform: none; } }
 @keyframes unfold { 0%, 15% { transform: translate(-14px, -8px); opacity: 0; } 30%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translate(-14px, -8px); opacity: 0; } }
 @keyframes float { 0%, 100% { transform: none; } 50% { transform: translateY(-12px); } }

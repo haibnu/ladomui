@@ -444,6 +444,32 @@ const TimePicker = () => (
   </Art>
 );
 
+const ScrollArea = () => (
+  <Art>
+    <Shadow x={-80} y={-90} w={160} d={180} r={12} />
+    <Box x={-80} y={-90} w={160} d={180} h={14} r={12}>
+      <defs>
+        <clipPath id="art-scroll-clip">
+          <rect x={6} y={8} width={148} height={164} rx={8} />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#art-scroll-clip)">
+        <g className="a-scrollrows">
+          {Array.from({ length: 8 }, (_, i) => (
+            <g key={i}>
+              {i === 2 && <rect x={8} y={10 + i * 30} width={126} height={26} rx={6} fill={FILL} />}
+              <circle cx={24} cy={23 + i * 30} r={6} fill={SIDE} />
+              <Bar x={38} y={19 + i * 30} w={i % 3 ? 70 : 88} />
+            </g>
+          ))}
+        </g>
+      </g>
+      <rect x={142} y={12} width={8} height={156} rx={4} fill={FILL} />
+      <rect className="a-scrollthumb" x={143} y={14} width={6} height={60} rx={3} fill={DARK} />
+    </Box>
+  </Art>
+);
+
 const Toast = () => (
   <Art>
     <g className="a-toast">
@@ -614,6 +640,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'nav-menu': NavMenu,
   pagination: Pagination,
   popover: Popover,
+  'scroll-area': ScrollArea,
   segment: Segment,
   stepper: Stepper,
   table: Table,

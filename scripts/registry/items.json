@@ -35,6 +35,7 @@
     "nav-menu": { "folder": "NavMenu", "tier": "free", "description": "SidebarNav and TopNav: simple side and top menus of links for web apps." },
     "empty-state": { "folder": "EmptyState", "tier": "free", "description": "Shows that there is nothing to list, no result or a failed load; large, medium and small." },
     "modal": { "folder": "Modal", "tier": "free", "description": "Modal and Drawer: dialogs over the page, on the native <dialog>." },
+    "scroll-area": { "folder": "ScrollArea", "tier": "free", "description": "A scrolling box with thin, rounded scrollbars that show on hover and while scrolling." },
     "table": { "folder": "Table", "tier": "free", "description": "A data table with sorting and row selection." },
     "pagination": { "folder": "Pagination", "tier": "free", "description": "Moves between the pages of a list or a table." },
     "alert": { "folder": "Alert", "tier": "free", "description": "An inline message about the page." },

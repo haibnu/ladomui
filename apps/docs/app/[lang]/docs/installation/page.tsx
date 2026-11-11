@@ -9,6 +9,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: getDictionary((await params).lang as Locale).nav.installation };
 }
 
+const DESIGN_SYSTEM = 'https://claude.ai/artifact/GMGcccbEoBzuj6Q9Q5ZJdD';
+
 const LICENSE = [href('en', '/docs/license'), href('tr', '/docs/license')] as const;
 
 const CODE = {
@@ -104,6 +106,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   box-shadow: var(--shadow-card-style-1);
   font: var(--text-ui-text-regular);
 }`,
+  skill: `npx ladom-ui skill`,
   vite: `<!-- index.html: your font from Google Fonts, by name -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" />
 
@@ -181,11 +184,19 @@ const COPY = {
     vite: 'Other bundlers (Vite)',
     viteText: 'Outside Next.js, import with relative paths and load your font from Google Fonts by name; theme.css uses the name when --font-brand is not set:',
     claude: 'With Claude',
+    claudeCode: 'Claude Code',
     claudeText: (
       <>
         A Claude Code skill, <code>ladom-ui</code>, teaches Claude the components, the tokens and the rules. <code>npx ladom-ui skill</code>{' '}
         adds it to your project’s <code>.claude/skills</code> folder. When Claude sets up Ladom UI, it asks you for the brand color and the font
         first and passes them to <code>init</code>.
+      </>
+    ),
+    claudeDesign: 'Design system on claude.ai',
+    claudeDesignText: (
+      <>
+        The <a href={DESIGN_SYSTEM}>Ladom UI design system on claude.ai</a> holds the tokens, the brand book and every component with a live
+        preview and its guidelines. Open it to browse the system, or use it when you design screens with Claude.
       </>
     ),
     next: 'Next',
@@ -261,11 +272,19 @@ const COPY = {
     vite: 'Diğer bundler’lar (Vite)',
     viteText: 'Next.js dışında göreli yollarla import edin ve fontunuzu Google Fonts’tan adıyla yükleyin; --font-brand yoksa theme.css adı kullanır:',
     claude: 'Claude ile',
+    claudeCode: 'Claude Code',
     claudeText: (
       <>
         Bir Claude Code skill’i, <code>ladom-ui</code>, Claude’a bileşenleri, tokenları ve kuralları öğretir.{' '}
         <code>npx ladom-ui skill</code> onu projenizin <code>.claude/skills</code> klasörüne ekler. Claude Ladom UI’ı kurarken önce size marka
         rengini ve fontu sorar, sonra bunları <code>init</code>’e verir.
+      </>
+    ),
+    claudeDesign: 'claude.ai’daki tasarım sistemi',
+    claudeDesignText: (
+      <>
+        <a href={DESIGN_SYSTEM}>claude.ai’daki Ladom UI tasarım sistemi</a> tokenları, marka kitabını ve her bileşeni canlı önizlemesi ve
+        kullanım kurallarıyla birlikte barındırır. Sistemi incelemek için açın ya da Claude ile ekran tasarlarken kullanın.
       </>
     ),
     next: 'Sonra',
@@ -334,7 +353,11 @@ export default async function InstallationPage({ params }: Props) {
       <CodeBlock code={CODE.vite} />
 
       <h2 id="claude">{c.claude}</h2>
+      <h3 id="claude-code">{c.claudeCode}</h3>
       <p>{c.claudeText}</p>
+      <CodeBlock code={CODE.skill} />
+      <h3 id="claude-design">{c.claudeDesign}</h3>
+      <p>{c.claudeDesignText}</p>
 
       <h2 id="next">{c.next}</h2>
       <p>
