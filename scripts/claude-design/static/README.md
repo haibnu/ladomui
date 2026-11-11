@@ -61,12 +61,20 @@ Build screens from the components, not from raw elements:
 - Forms: wrap every field in `FormField` (label, hint, error). Fields are `Input`, `Textarea`, `NumberInput`, `CurrencyInput`, `GsmInput` (phone numbers), `ColorInput` (hex colors), `Selectbox`, `Checkbox` and `Radio` inside `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`, `TimePicker`.
 - Display: `Badge`, `Chip`, `Avatar`, `Loader`, `Stepper`.
 - Lists: `Dropdown` holding `Cell`s.
-- Navigation: `SidebarNav` or `TopNav` for the app's menu of pages (mark the page you are on with `current`); `AppSidebar` (Pro) when the side menu should collapse to a rail of icons or hold nested groups; `AppHeader` with a `PageHeader`; `PublicHeader`; `Tabs`; `Breadcrumb`.
+- Navigation: `SidebarNav` or `TopNav` for the app's menu of pages (mark the page you are on with `current`); `AppSidebar` (Pro) when the side menu should collapse to a rail of icons or hold nested groups; `AppHeader` with a `PageHeader` (Pro); `PublicHeader` (Pro); `Tabs`; `Breadcrumb`.
 - Overlays: `Tooltip` for short labels, `Popover` for content people use, `Modal` for a decision or a short form over the page, `Drawer` for details and longer forms beside it.
 - Data: `Table` (sortable columns, row selection) with `Pagination` under it; `FileShare` (Pro) for sharing a link with people.
 - Feedback: `Alert` inline, `Toast` after an action (`ToastProvider` + `useToast`), `EmptyState` where there is no content yet or a load failed.
-- Layout: `Accordion`; for admin apps the Pro `AppShell` (side menu, sticky header, a Drawer on phones) and `Card` for dashboard sections.
+- Layout: `Accordion` (Pro); for admin apps the Pro `AppShell` (side menu, sticky header, a Drawer on phones) and `Card` for dashboard sections.
 - Admin data (Pro): `StatCard` for dashboard figures, `BarList` / `Meter` for amounts and shares, `SummaryList` for label/value rows with a total or a grid of facts, `PersonCell` for people in tables, `DataToolbar` above a Table, `WizardModal` for a task in steps.
+
+## Free and Pro
+
+Ladom UI comes in two tiers. The free components are MIT licensed. The Pro components need a Ladom UI Pro license to ship in an app: Accordion, AppHeader, AppShell, AppSidebar, BarList and Meter, Card, DataToolbar, FileShare, PageHeader, PersonCell, PublicHeader, StatCard, SummaryList and WizardModal. Their previews carry a PRO badge, their cards start with "Ladom UI Pro", and their types say `@pro`.
+
+- Designs may use Pro components freely; the license is needed when the design is built: `LADOM_UI_KEY=<key> npx ladom-ui add <name>` copies them into an app, and the CLI refuses Pro components without a key. Licenses: https://ui.ladom.co/license.
+- When a design uses any Pro component, end the hand-off with a line that names them, for example: "Uses Ladom UI Pro: AppShell, StatCard, WizardModal. Building it needs a Ladom UI Pro license (https://ui.ladom.co/license)." Do this every time, also for one Pro component.
+- When the person cannot use Pro, build the same screen from free components: `SidebarNav` for `AppSidebar`, a `Table` and `Input` for `DataToolbar`, `Modal` with a `Stepper` for `WizardModal`, plain surfaces for `Card` and `StatCard`.
 
 ## Not synced
 
