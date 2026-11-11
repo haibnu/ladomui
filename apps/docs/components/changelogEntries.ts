@@ -214,6 +214,11 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'bar-list': [
     {
       date: '2026-11-11',
+      en: 'Rows of the row variant can start with a leading element (leading), e.g. a flag image or an Avatar.',
+      tr: 'Row görünümünün satırları bir öncül öğeyle (leading) başlayabiliyor, örneğin bir bayrak görseli ya da Avatar.',
+    },
+    {
+      date: '2026-11-11',
       en: 'Rows of the row variant can end with a change (delta), drawn as a small Delta pill.',
       tr: 'Row görünümünün satırları bir değişimle (delta) bitebiliyor; küçük bir Delta hapı olarak çiziliyor.',
     },
@@ -277,6 +282,13 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       date: '2026-11-11',
       en: 'First release: a chart key as a small table with series dots, value columns and a Delta.',
       tr: 'İlk sürüm: seri noktaları, değer sütunları ve bir Delta ile küçük bir tablo olarak grafik anahtarı.',
+    },
+  ],
+  'funnel-chart': [
+    {
+      date: '2026-11-11',
+      en: 'First release: a stepped funnel with each stage’s value and Delta, slanted steps in a soft tint, conversion in the tooltip and blocks that rise in.',
+      tr: 'İlk sürüm: her aşamanın değeri ve Delta’sıyla basamaklı bir huni; soluk tonda eğik basamaklar, ipucunda dönüşüm ve yükselerek gelen bloklar.',
     },
   ],
 };
