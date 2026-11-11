@@ -821,6 +821,22 @@ const ChartLegend = () => (
   </Art>
 );
 
+// FunnelChart: four blocks stepping down on a plate, each lower than the one before.
+const FunnelChart = () => {
+  const heights = [70, 34, 16, 10];
+  return (
+    <Art>
+      <Shadow x={-130} y={-50} w={260} d={100} r={12} />
+      <Box x={-130} y={-50} w={260} d={100} h={8} r={12} />
+      {heights.map((hh, i) => (
+        <g key={i} className={`a-row${(i % 3) + 1}`}>
+          <Box x={-120 + i * 62} y={-24} w={44} d={48} h={hh} z={8} r={4} top={i ? SIDE : DARK} side={i ? DARK : INK} />
+        </g>
+      ))}
+    </Art>
+  );
+};
+
 const BarList = () => {
   const rows = [176, 128, 92, 56];
   return (
@@ -970,6 +986,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'bar-chart': BarChart,
   'donut-chart': DonutChart,
   'chart-legend': ChartLegend,
+  'funnel-chart': FunnelChart,
   'bar-list': BarList,
   'data-toolbar': DataToolbar,
   'wizard-modal': WizardModal,

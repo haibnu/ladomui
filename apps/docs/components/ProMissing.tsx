@@ -13,6 +13,7 @@ export const BarChart = Missing;
 export const Card = Missing;
 export const Delta = Missing;
 export const DonutChart = Missing;
+export const FunnelChart = Missing;
 export const ChartLegend = Missing;
 export const StatCard = Missing;
 export const PersonCell = Missing;

@@ -53,6 +53,7 @@
     "bar-chart": { "folder": "BarChart", "tier": "pro", "description": "Values per category as bars: one series, grouped or stacked, with a grid and a tooltip." },
     "donut-chart": { "folder": "DonutChart", "tier": "pro", "description": "Parts of a whole as a ring with a total in the middle; small ones make small multiples." },
     "chart-legend": { "folder": "ChartLegend", "tier": "pro", "description": "The key of a chart: series dot, name, value columns and a change." },
+    "funnel-chart": { "folder": "FunnelChart", "tier": "pro", "description": "A stepped funnel of stages with values, changes and conversion on hover." },
     "data-toolbar": { "folder": "DataToolbar", "tier": "pro", "description": "Search, filters and actions above a Table, with bulk actions while rows are selected." },
     "person-cell": { "folder": "PersonCell", "tier": "pro", "description": "A person in a table or list: Avatar, name and a line under it." },
     "stat-card": { "folder": "StatCard", "tier": "pro", "description": "A dashboard figure: label, value and a note or trend." },
