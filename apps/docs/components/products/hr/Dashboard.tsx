@@ -122,7 +122,11 @@ export function Dashboard() {
             </div>
           </Card>
           <Card title={d.byDepartment}>
-            <BarList items={counts.map(({ k, n }) => ({ key: k, label: c.departments[k], value: n }))} />
+            <BarList
+              variant="row"
+              columns={[c.employees.department, d.headcount, c.status.onLeave]}
+              items={counts.map(({ k, n }) => ({ key: k, label: c.departments[k], value: n, values: [EMPLOYEES.filter((e) => e.department === k && e.status === 'onLeave').length] }))}
+            />
           </Card>
         </div>
         <div className={styles.stack}>

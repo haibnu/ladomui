@@ -443,13 +443,13 @@ return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Open drawer')
   h(PersonCell, { name: 'Elif Aydın', subtitle: 'CEO', onClick: () => {} }), h(PersonCell, { name: 'Mert Kaya', subtitle: 'Engineering Manager', status: true }));`,
   },
   {
-    name: 'BarList', group: 'Data', height: 220,
-    summary: 'Pro. Labelled amounts as bars: label, a surface/level-3 track with a primary fill and the value. Meter is one bar on its own (a share or progress).',
-    use: ['The largest value fills the bar unless you pass `max`; `display` replaces the shown number.', 'Name a Meter with `aria-label`.'],
-    provides: '`BarList` (`items`: `{ label, value, display?, key? }`, `max`), `Meter` (`value`, `max`).',
+    name: 'BarList', group: 'Data', height: 300,
+    summary: 'Pro. Labelled amounts as bars that grow in: track (label, a surface/level-3 track with a primary fill and the value) or row (a small table with column headings, a see-through brand bar behind each row and more value columns), and Meter, one bar on its own.',
+    use: ['The largest value fills the bar unless you pass `max`; `display` replaces the shown number.', 'For a ranked table such as visits per page use `variant="row"` with `columns` and `values`, inside a Card for its title. Name a Meter with `aria-label`.'],
+    provides: '`BarList` (`items`: `{ label, value, display?, values?, key? }`, `max`, `variant` (track, row), `columns`, `animate`), `Meter` (`value`, `max`).',
     code: `return h('div', { style: { display: 'grid', gap: 16 } },
-  h(BarList, { items: [{ label: 'Engineering', value: 5 }, { label: 'Sales', value: 3 }, { label: 'Finance', value: 2 }] }),
-  h(Meter, { value: 13, max: 14, 'aria-label': 'Checked in' }));`,
+  h(Card, { title: 'Visits per page' }, h(BarList, { variant: 'row', columns: ['Content', 'Views', 'Unique'], items: [{ label: '/', value: 963, values: [567] }, { label: '/blog', value: 414, values: [124] }, { label: '/about-me', value: 251, values: [203] }] })),
+  h(Meter, { value: 13, max: 14, 'aria-label': 'Checked in' }));`
   },
   {
     name: 'DataToolbar', group: 'Data', height: 150,
