@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { IconArrowRight } from '@ladom/icons';
 import { Badge } from '@ladom/ui';
 import { PRODUCTS } from '@/components/products/products';
+import { TopBar } from '@/components/TopBar';
 import styles from '@/components/products/products.module.css';
 import { getDictionary, href, type Locale } from '@/i18n';
 
@@ -17,7 +18,9 @@ export default async function ProductsPage({ params }: Props) {
   const lang = (await params).lang as Locale;
   const t = getDictionary(lang);
   return (
-    <main className={styles.index}>
+    <>
+      <TopBar lang={lang} />
+      <main className={styles.index}>
       <h1 className={styles.title}>{t.products.title}</h1>
       <p className={styles.lead}>{t.products.lead}</p>
       <div className={styles.grid}>
@@ -52,5 +55,6 @@ export default async function ProductsPage({ params }: Props) {
         })}
       </div>
     </main>
+    </>
   );
 }

@@ -160,3 +160,34 @@ a.card:hover {
     padding-block: var(--space-xlarge);
   }
 }
+
+/* The black bar on top of a product demo, which opens Customize. Black in both themes. */
+.customizeBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-tiny);
+  inline-size: 100%;
+  padding: var(--space-small) var(--space-container);
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-static-white);
+  background: var(--color-static-black);
+  border: 0;
+  cursor: pointer;
+}
+
+.customizeBar:hover {
+  text-decoration: underline;
+}
+
+.customizeBar:focus-visible {
+  outline: none;
+  box-shadow: inset var(--shadow-focus-primary);
+}
+
+.customizeDot {
+  inline-size: var(--space-small);
+  block-size: var(--space-small);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 0 var(--border-width) var(--color-static-white);
+}

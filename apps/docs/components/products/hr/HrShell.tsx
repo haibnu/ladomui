@@ -32,9 +32,6 @@ const PAGES = [
   { key: 'payroll', path: '/payroll', icon: IconCurrencyTl },
 ] as const;
 
-// The docs TopBar above the demo: the Customize key, its padding and the line under it.
-const TOP_BAR = 'calc(var(--space-xxlarge) + 3px + 2 * var(--space-small) + var(--border-width))';
-
 const SOON = [IconAnalytics, IconLead, IconTransactions];
 
 /** The HR demo app: an AppShell with an AppSidebar (a Drawer on phones) around each screen. */
@@ -85,7 +82,6 @@ export function HrShell({ children }: { children: ReactNode }) {
   return (
     <ToastProvider closeLabel={c.employees.close}>
       <AppShell
-        offsetTop={TOP_BAR}
         menuLabel={c.nav.menu}
         closeLabel={c.employees.close}
         sidebar={({ drawer }) => menu(!drawer)}

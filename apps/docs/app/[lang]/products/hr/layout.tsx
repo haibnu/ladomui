@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { HrShell } from '@/components/products/hr/HrShell';
+import { CustomizeBar } from '@/components/products/CustomizeBar';
 import { getDictionary, type Locale } from '@/i18n';
 
 type Props = { params: Promise<{ lang: string }> };
@@ -18,5 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function HrLayout({ children }: { children: ReactNode }) {
-  return <HrShell>{children}</HrShell>;
+  return (
+    <>
+      <CustomizeBar />
+      <HrShell>{children}</HrShell>
+    </>
+  );
 }

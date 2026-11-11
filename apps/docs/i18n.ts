@@ -108,6 +108,7 @@ const en = {
     title: 'Products',
     lead: 'Admin panels built only with Ladom UI components and tokens, one per industry. Change the brand color with Customize and they follow it.',
     sample: 'Demo with sample data',
+    customizeBar: 'Customize this product with your own brand color',
   },
   component: {
     designer: 'Designer',
@@ -267,6 +268,7 @@ const tr: Dictionary = {
     title: 'Ürünler',
     lead: 'Sadece Ladom UI bileşenleri ve token’larıyla kurulmuş, sektöre göre yönetim panelleri. Customize ile marka rengini değiştirin, paneller de değişir.',
     sample: 'Örnek verili demo',
+    customizeBar: 'Bu ürünü kendi marka renginize göre özelleştirin',
   },
   component: {
     designer: 'Tasarımcı',
