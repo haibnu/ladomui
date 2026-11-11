@@ -66,7 +66,7 @@ Build screens from the components, not from raw elements:
 - Data: `Table` (sortable columns, row selection) with `Pagination` under it; `FileShare` (Pro) for sharing a link with people.
 - Feedback: `Alert` inline, `Toast` after an action (`ToastProvider` + `useToast`), `EmptyState` where there is no content yet or a load failed.
 - Layout: `Accordion`; for admin apps the Pro `AppShell` (side menu, sticky header, a Drawer on phones) and `Card` for dashboard sections.
-- Admin data (Pro): `StatCard` for dashboard figures, `BarList` / `Meter` for amounts and shares, `SummaryList` for label/value rows with a total or a grid of facts, `PersonCell` for people in tables, `DataToolbar` above a Table, `WizardModal` for a task in steps.
+- Admin data (Pro): `StatCard` for dashboard figures, `BarList` / `Meter` for amounts and shares, `PersonCell` for people in tables, `DataToolbar` above a Table, `WizardModal` for a task in steps.
 
 ## Not synced
 

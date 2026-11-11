@@ -51,7 +51,6 @@
     "data-toolbar": { "folder": "DataToolbar", "tier": "pro", "description": "Search, filters and actions above a Table, with bulk actions while rows are selected." },
     "person-cell": { "folder": "PersonCell", "tier": "pro", "description": "A person in a table or list: Avatar, name and a line under it." },
     "stat-card": { "folder": "StatCard", "tier": "pro", "description": "A dashboard figure: label, value and a note or trend." },
-    "summary-list": { "folder": "SummaryList", "tier": "pro", "description": "Label and value pairs: receipt rows with a total, or a grid of facts." },
     "wizard-modal": { "folder": "WizardModal", "tier": "pro", "description": "A Modal that walks through steps with a Stepper and Back / Next." }
   }
 }

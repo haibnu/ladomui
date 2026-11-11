@@ -14,7 +14,6 @@ export const StatCard = Missing;
 export const PersonCell = Missing;
 export const BarList = Missing;
 export const Meter = Missing;
-export const SummaryList = Missing;
 export const DataToolbar = Missing;
 export const WizardModal = Missing;
 export const AppShell = Missing;

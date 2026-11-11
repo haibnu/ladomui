@@ -2,14 +2,14 @@
 // A page exists only for built components, so code is ready unless listed in CODE_NOT_READY.
 // Components built from existing parts before a Figma drawing go in FIGMA_NOT_READY; take them out
 // once they are drawn.
-export const FIGMA_NOT_READY = new Set(['color-input', 'currency-input', 'nav-menu', 'app-sidebar', 'scroll-area', 'app-shell', 'bar-list', 'card', 'data-toolbar', 'person-cell', 'stat-card', 'summary-list', 'wizard-modal']);
+export const FIGMA_NOT_READY = new Set(['color-input', 'currency-input', 'nav-menu', 'app-sidebar', 'scroll-area', 'app-shell', 'bar-list', 'card', 'data-toolbar', 'person-cell', 'stat-card', 'wizard-modal']);
 export const CODE_NOT_READY = new Set<string>();
 
 export type Readiness = { figma: boolean; code: boolean };
 
 /** The readiness of a docs path (/en/docs/components/<slug>), or null for other pages. */
 export function readinessOf(pathname: string): Readiness | null {
-  const m = pathname.match(/\/docs\/(?:components|molecules)\/([^/]+)/);
+  const m = pathname.match(/\/docs\/(?:components|pro)\/([^/]+)/);
   if (!m) return null;
   const slug = m[1]!;
   return { figma: !FIGMA_NOT_READY.has(slug), code: !CODE_NOT_READY.has(slug) };
