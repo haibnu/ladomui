@@ -338,20 +338,21 @@ a.navLink:hover {
   color: var(--color-foreground-medium-emphasis);
 }
 
-.prose h2 {
+/* Page text only: dialogs opened from a playground (Modal, Drawer) keep their own styles. */
+.prose h2:not(dialog *) {
   margin: var(--space-xxlarge) 0 var(--space-small);
   font: var(--text-content-h4-semibold);
   scroll-margin-block-start: var(--space-landing-section-v-gutter);
 }
 
-.prose h3 {
+.prose h3:not(dialog *) {
   margin: var(--space-xlarge) 0 var(--space-tiny);
   font: var(--text-content-h6-semibold);
   scroll-margin-block-start: var(--space-landing-section-v-gutter);
 }
 
-.prose p,
-.prose li {
+.prose p:not(dialog *),
+.prose li:not(dialog *) {
   color: var(--color-foreground-medium-emphasis);
 }
 
@@ -387,6 +388,13 @@ a.navLink:hover {
 @media (width < 768px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Room for the Products button next to Customize. */
+  .topBar,
+  .topBarStart,
+  .topBarEnd {
+    gap: var(--space-tiny);
   }
 
   .sidebar,

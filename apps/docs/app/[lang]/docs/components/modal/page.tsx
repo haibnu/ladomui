@@ -26,7 +26,7 @@ const COPY = {
       'Give the close button a translated closeLabel.',
     ],
     mapping: 'Figma to code',
-    props: { open: 'Whether it is shown.', onClose: 'Called by the close button, Escape and the overlay.', size: 'Figma 👕 Size.', title: '.Modal Header Title.', description: '.Modal Header Description.', children: 'The body.', footer: 'Figma Footer: the actions.', dismissible: 'Escape and overlay presses close it.', closeLabel: 'Name of the close button.' },
+    props: { open: 'Whether it is shown.', onClose: 'Called by the close button, Escape and the overlay.', size: 'Figma 👕 Size.', title: '.Modal Header Title.', description: '.Modal Header Description.', children: 'The body.', footer: 'Figma Footer: the actions.', dismissible: 'Escape and overlay presses close it.', headerContent: 'Between the title and the close button, e.g. a Stepper; the title then keeps one line and the description goes under them. Not in Figma.', closeLabel: 'Name of the close button.' },
   },
   tr: {
     description: 'Kararmış bir overlay üzerinde, sayfanın ortasında bir diyalog: bir onay, kısa bir form, cevap bekleyen bir mesaj.',
@@ -45,7 +45,7 @@ const COPY = {
       'Kapatma butonuna çevrilmiş bir closeLabel verin.',
     ],
     mapping: 'Figma’dan koda',
-    props: { open: 'Gösterilip gösterilmediği.', onClose: 'Kapatma butonu, Escape ve overlay çağırır.', size: 'Figma 👕 Size.', title: '.Modal Header Title.', description: '.Modal Header Description.', children: 'İçerik.', footer: 'Figma Footer: eylemler.', dismissible: 'Escape ve overlay onu kapatır.', closeLabel: 'Kapatma butonunun adı.' },
+    props: { open: 'Gösterilip gösterilmediği.', onClose: 'Kapatma butonu, Escape ve overlay çağırır.', size: 'Figma 👕 Size.', title: '.Modal Header Title.', description: '.Modal Header Description.', children: 'İçerik.', footer: 'Figma Footer: eylemler.', dismissible: 'Escape ve overlay onu kapatır.', headerContent: 'Başlık ile kapatma butonu arasında, örneğin bir Stepper; başlık o zaman tek satırda kalır, açıklama altlarına geçer. Figma’da yok.', closeLabel: 'Kapatma butonunun adı.' },
   },
 };
 
@@ -118,6 +118,7 @@ export default async function ModalPage({ params }: Props) {
               ['children', 'ReactNode', '—'],
               ['footer', 'ReactNode', '—'],
               ['dismissible', 'boolean', 'true'],
+              ['headerContent', 'ReactNode', '—'],
               ['closeLabel', 'string', "'Close'"],
             ]}
             descriptions={c.props}

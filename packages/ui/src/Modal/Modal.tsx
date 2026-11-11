@@ -23,6 +23,8 @@ type DialogProps = Omit<HTMLAttributes<HTMLDialogElement>, 'title'> & {
   closeLabel?: string;
   /** false keeps it open on Escape and overlay presses, for steps that need an answer. */
   dismissible?: boolean;
+  /** Between the title and the close button, e.g. a Stepper. The title then stays on one line. */
+  headerContent?: ReactNode;
 };
 
 function Dialog({
@@ -34,6 +36,7 @@ function Dialog({
   footer,
   closeLabel = 'Close',
   dismissible = true,
+  headerContent,
   className,
   ...rest
 }: DialogProps) {
@@ -64,9 +67,9 @@ function Dialog({
       {...rest}
     >
       <div className={styles.surface}>
-        <div className={styles.header} data-scrolled={scrolled || undefined}>
+        <div className={styles.header} data-scrolled={scrolled || undefined} data-content={headerContent != null || undefined}>
           <div className={styles.text}>
-            <h2 id={`${id}-title`} className={styles.title}>
+            <h2 id={`${id}-title`} className={styles.title} title={headerContent != null && typeof title === 'string' ? title : undefined}>
               {title}
             </h2>
             {description != null && (
@@ -75,6 +78,7 @@ function Dialog({
               </p>
             )}
           </div>
+          {headerContent != null && <div className={styles.headerContent}>{headerContent}</div>}
           <Button variant="ghost" tone="tertiary" size="small" icon={IconClose} aria-label={closeLabel} onClick={onClose} />
         </div>
         {children != null && (
