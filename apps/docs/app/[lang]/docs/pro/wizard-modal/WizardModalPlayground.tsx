@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { IconCurrencyTl, IconSuccess } from '@ladom/icons';
-import { Alert, Button, Checkbox, EmptyState, FormField, Loader, Selectbox, type ModalSize } from '@ladom/ui';
-import { SummaryList, WizardModal } from '@ladom/ui/pro';
+import { Alert, Button, Cell, Checkbox, EmptyState, FormField, Loader, Selectbox, type ModalSize } from '@ladom/ui';
+import { WizardModal } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import styles from '@/components/docs/docs.module.css';
@@ -116,16 +116,20 @@ export function WizardModalPlayground() {
         <span aria-hidden="true">{c.calculating}</span>
       </div>
     ) : (
-      <SummaryList
-        title={`${c.totals} · ${c.months[month as (typeof MONTHS)[number]]}`}
-        items={[
+      <div>
+        <p className={styles.outputTitle}>{`${c.totals} · ${c.months[month as (typeof MONTHS)[number]]}`}</p>
+        {[
           { key: 'employees', label: c.employees, value: '48' },
           { key: 'gross', label: c.gross, value: money(3864000 + extra) },
           { key: 'deductions', label: c.deductions, value: money(-(1043280 + extra * 0.27)) },
           { key: 'employer', label: c.employer, value: money((3864000 + extra) * 1.1575) },
-        ]}
-        total={{ label: c.net, value: money(2820720 + extra * 0.73) }}
-      />
+          { key: 'net', label: c.net, value: money(2820720 + extra * 0.73) },
+        ].map((r) => (
+          <Cell key={r.key} size="small" subtitle={r.label}>
+            {r.value}
+          </Cell>
+        ))}
+      </div>
     ),
     <>
       <Alert tone="warning" title={c.payday} description={c.paydayText} />

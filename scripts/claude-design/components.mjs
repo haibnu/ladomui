@@ -452,13 +452,6 @@ return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Open drawer')
   h(Meter, { value: 13, max: 14, 'aria-label': 'Checked in' }));`,
   },
   {
-    name: 'SummaryList', group: 'Data', height: 240,
-    summary: 'Pro. Label and value pairs as a <dl>: rows like a receipt (label at the start, value at the end, a total under a line), or a grid of facts.',
-    use: ['Use rows for payslips and order summaries, `layout="grid"` for a profile’s facts.'],
-    provides: '`items` (`{ label, value, key? }`), `title`, `layout` (rows | grid), `total`.',
-    code: `return h(SummaryList, { title: 'Employee deductions', items: [{ label: 'SGK (14%)', value: '−₺18.480' }, { label: 'Income tax', value: '−₺22.440' }], total: { label: 'Net pay', value: '₺88.758' } });`,
-  },
-  {
     name: 'DataToolbar', group: 'Data', height: 150,
     summary: 'Pro. The row above a Table: a search that grows, filters and end actions; while rows are selected it shows the count with bulk actions instead. Wraps on narrow screens.',
     use: ['Control the search with `search.value` and `search.onChange`; put Selectboxes in `filters`.', 'Pass the Table selection length as `selectedCount`.'],

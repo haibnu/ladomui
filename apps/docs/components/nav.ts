@@ -18,7 +18,7 @@ const PLANNED_COMPONENTS = [
 // Separate components that the nav lists under a parent component.
 const SUBCOMPONENTS: Record<string, string[]> = { Input: ['Number Input', 'Currency Input', 'GSM Input', 'Color Input'] };
 const IS_SUBCOMPONENT = new Set(Object.values(SUBCOMPONENTS).flat());
-const PLANNED_MOLECULES = ['Accordion', 'App Shell', 'App Sidebar', 'Bar List', 'Card', 'Data Toolbar', 'File Share', 'Navigation', 'Person Cell', 'Stat Card', 'Summary List', 'Wizard Modal'];
+const PLANNED_MOLECULES = ['Accordion', 'App Shell', 'App Sidebar', 'Bar List', 'Card', 'Data Toolbar', 'File Share', 'Navigation', 'Person Cell', 'Stat Card', 'Wizard Modal'];
 // Components that have a page, by their path segment.
 const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Color Input': 'color-input', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', 'Scroll Area': 'scroll-area', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
@@ -33,7 +33,6 @@ const BUILT_MOLECULES: Record<string, string> = {
   Navigation: 'navigation',
   'Person Cell': 'person-cell',
   'Stat Card': 'stat-card',
-  'Summary List': 'summary-list',
   'Wizard Modal': 'wizard-modal',
 };
 
@@ -71,7 +70,7 @@ export function getNav(lang: Locale): NavSection[] {
     {
       title: t.nav.molecules,
       items: PLANNED_MOLECULES.map((title) =>
-        BUILT_MOLECULES[title] ? { title, href: href(lang, `/docs/molecules/${BUILT_MOLECULES[title]}`), pro: isPro(BUILT_MOLECULES[title]!) } : { title, soon: true },
+        BUILT_MOLECULES[title] ? { title, href: href(lang, `/docs/pro/${BUILT_MOLECULES[title]}`), pro: isPro(BUILT_MOLECULES[title]!) } : { title, soon: true },
       ),
     },
   ];
@@ -88,7 +87,7 @@ export function getCatalog(lang: Locale): CatalogItem[] {
       .filter((title) => built[title])
       .map((title) => {
         const slug = built[title]!;
-        return { title, slug, href: href(lang, `/docs/${molecule ? 'molecules' : 'components'}/${slug}`), pro: isPro(slug), molecule };
+        return { title, slug, href: href(lang, `/docs/${molecule ? 'pro' : 'components'}/${slug}`), pro: isPro(slug), molecule };
       });
   return [...pick(PLANNED_COMPONENTS, BUILT, false), ...pick(PLANNED_MOLECULES, BUILT_MOLECULES, true)];
 }

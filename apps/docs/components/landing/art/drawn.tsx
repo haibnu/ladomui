@@ -720,32 +720,6 @@ const BarList = () => {
   );
 };
 
-const SummaryList = () => (
-  <Art>
-    <Shadow x={-100} y={-80} w={200} d={160} r={12} />
-    <Box x={-100} y={-80} w={200} d={160} h={10} r={12}>
-      {[70, 56, 84].map((w, i) => (
-        <g key={i}>
-          <Bar x={18} y={22 + i * 28} w={w} />
-          <Bar x={142} y={22 + i * 28} w={40} fill={DARK} />
-        </g>
-      ))}
-      <line x1={18} x2={182} y1={110} y2={110} stroke={INK} />
-      <Bar x={18} y={128} w={50} h={10} fill={DARK} />
-      <g className="a-num1">
-        <Label x={182} y={133} size={16} anchor="end">
-          $1,250
-        </Label>
-      </g>
-      <g className="a-num2">
-        <Label x={182} y={133} size={16} anchor="end">
-          $1,480
-        </Label>
-      </g>
-    </Box>
-  </Art>
-);
-
 const DataToolbar = () => (
   <Art>
     <Shadow x={-150} y={-32} w={300} d={64} r={12} />
@@ -870,7 +844,6 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'stat-card': StatCard,
   'person-cell': PersonCell,
   'bar-list': BarList,
-  'summary-list': SummaryList,
   'data-toolbar': DataToolbar,
   'wizard-modal': WizardModal,
   'app-shell': AppShell,

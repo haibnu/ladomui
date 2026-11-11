@@ -21,10 +21,11 @@ import {
   type TableColumn,
   type TableSort,
 } from '@ladom/ui';
-import { DataToolbar, PageHeader, PersonCell, SummaryList } from '@ladom/ui/pro';
+import { DataToolbar, PageHeader, PersonCell } from '@ladom/ui/pro';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { EMPLOYEES, LEAVES, date, employee, money, payslip, type Department, type Employee, type EmployeeStatus } from './data';
+import { Rows } from './Rows';
 import styles from './hr.module.css';
 
 const STATUS_TONE: Record<EmployeeStatus, BadgeTone> = {
@@ -262,9 +263,8 @@ function Profile({ e, tab, setTab }: { e: Employee; tab: string; setTab: (v: str
             value: 'overview',
             label: t.tabs.overview,
             content: (
-              <SummaryList
+              <Rows
                 className={styles.tabBody}
-                layout="grid"
                 items={[
                   { label: t.department, value: c.departments[e.department] },
                   { label: t.location, value: c.locations[e.location] },
@@ -280,9 +280,8 @@ function Profile({ e, tab, setTab }: { e: Employee; tab: string; setTab: (v: str
             label: t.tabs.leave,
             badge: leaves.length || undefined,
             content: leaves.length ? (
-              <SummaryList
+              <Rows
                 className={styles.tabBody}
-                layout="grid"
                 items={leaves.map((l) => ({ key: l.id, label: `${date(lang, l.start)} – ${date(lang, l.end)}`, value: `${c.leaveTypes[l.type]} · ${c.leaveStatus[l.status]}` }))}
               />
             ) : (
@@ -295,9 +294,8 @@ function Profile({ e, tab, setTab }: { e: Employee; tab: string; setTab: (v: str
             value: 'payroll',
             label: t.tabs.payroll,
             content: (
-              <SummaryList
+              <Rows
                 className={styles.tabBody}
-                layout="grid"
                 items={[
                   { label: t.gross, value: money(lang, slip.gross) },
                   { label: t.net, value: money(lang, slip.net) },
