@@ -1,7 +1,8 @@
 // Generates the Ladom UI design system files (project/…) from the ladomui repository.
-import { cpSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { COMPONENTS } from './components.mjs';
+import { PARTS } from './check.mjs';
 
 const [repo, outRoot, sha] = process.argv.slice(2);
 const P = join(outRoot, 'project');
@@ -140,19 +141,45 @@ const dts = [];
 const walk = (d) => readdirSync(d).flatMap((f) => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
 for (const f of walk(join(repo, 'packages/ui/dist')).filter((f) => f.endsWith('.d.ts') && !f.endsWith('index.d.ts')).sort()) {
   const body = readFileSync(f, 'utf8').split('\n').filter((l) => !/^import .* from '\.\.?\//.test(l) && !/^import .* from "\.\.?\//.test(l) && !/^export \{\};?$/.test(l) && !/^import .*react'/.test(l)).join('\n').trim();
-  if (body) dts.push(`// ${relative(join(repo, 'packages/ui/dist'), f).replace(/\.d\.ts$/, '')}\n${body}`);
+  const path = relative(join(repo, 'packages/ui/dist'), f).replace(/\.d\.ts$/, '');
+  // Pro declarations say so on every exported component, where a model reading the types will see it.
+  const pro = path.startsWith('pro/');
+  const marked = pro ? body.replace(/^export declare (const|function) ([A-Z]\w*)/gm, (m) => `/** @pro Ladom UI Pro: free to use in designs; shipping it in an app needs a license (https://ui.ladom.co/license). */\n${m}`) : body;
+  if (body) dts.push(`// ${path}${pro ? ' (Ladom UI Pro, licensed)' : ''}\n${marked}`);
 }
 w('components/index.d.ts', `// Types of @ladom/ui (window.LadomUI). Icons are window.LadomUI.Icons.\nimport type { ComponentType, ReactNode, ReactElement, HTMLAttributes, ButtonHTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEventHandler } from 'react';\n\n${dts.join('\n\n')}\n`);
+
+// Pro components: every name exported from packages/ui/src/pro, with its registry name for the CLI.
+const LICENSE_URL = 'https://ui.ladom.co/license';
+const proIndex = join(repo, 'packages/ui/src/pro/index.ts');
+const registryByFolder = Object.fromEntries(Object.entries(JSON.parse(readFileSync(join(repo, 'scripts/registry/items.json'), 'utf8')).items).map(([name, item]) => [item.folder, name]));
+const PRO = new Map();
+if (existsSync(proIndex)) {
+  for (const m of readFileSync(proIndex, 'utf8').matchAll(/^export \{([^}]*)\} from '\.\/([^/]+)\//gm)) {
+    for (const name of m[1].split(',').map((x) => x.trim()).filter((x) => /^[A-Z]/.test(x))) PRO.set(name, registryByFolder[m[2]]);
+  }
+}
+// The first sentence of a Pro card names the license, so it shows wherever the card summary does.
+const summaryOf = (c) => (PRO.has(c.name) ? `Ladom UI Pro (needs a license to ship): ${c.summary.replace(/^Pro\. /, '')}` : c.summary);
+const licenseOf = (c) =>
+  PRO.has(c.name)
+    ? `\n## License\nLadom UI Pro. Use it freely in designs; shipping it in an app needs a Ladom UI Pro license (${LICENSE_URL}). In code: \`LADOM_UI_KEY=<your key> npx ladom-ui add ${PRO.get(c.name)}\`. When a design uses it, say so in the hand-off (see the README).\n`
+    : '';
+// A Pro badge at the top right of every Pro preview, in a strip of its own, drawn with the Badge component.
+const proBadge = (c) =>
+  PRO.has(c.name)
+    ? `<style>body{padding-top:48px!important}</style>\n<div id="pro" style="position:absolute;top:16px;right:16px"></div>\n<script>ReactDOM.createRoot(document.getElementById('pro')).render(React.createElement(window.LadomUI.Badge, { size: 'small', tone: 'primary', filled: true, title: 'Ladom UI Pro: needs a license to ship (${LICENSE_URL})' }, 'PRO'));</script>\n`
+    : '';
 
 // Component cards.
 for (const c of COMPONENTS) {
   w(
     `components/${c.name}/README.md`,
-    `# ${c.name}\n\n${c.summary}\n\n## When to use\n${c.use.map((u) => `- ${u}`).join('\n')}\n\n## What you provide\n${c.provides}\n\nFull guide and playground: https://ui.ladom.co/en/docs\n`,
+    `# ${c.name}\n\n${summaryOf(c)}\n${licenseOf(c)}\n## When to use\n${c.use.map((u) => `- ${u}`).join('\n')}\n\n## What you provide\n${c.provides}\n\nFull guide and playground: https://ui.ladom.co/en/docs\n`,
   );
   w(
     `components/${c.name}/preview.html`,
-    `<!-- @dsCard group="${c.group}" height=${c.height} -->\n<style>body{margin:0;padding:16px;background:var(--color-surface-background);color:var(--color-foreground-high-emphasis);font:var(--text-ui-text-regular)}</style>\n<div id="root"></div>\n<script>\nconst h = React.createElement;\nconst { ${Object.keys({ ...Object.fromEntries(COMPONENTS.map((x) => [x.name, 1])), CellHelper: 1, AvatarGroup: 1, Icons: 1 }).join(', ')} } = window.LadomUI;\nfunction Preview() {\n${c.code}\n}\nReactDOM.createRoot(document.getElementById('root')).render(h(Preview));\n</script>\n`,
+    `<!-- @dsCard group="${c.group}" height=${c.height + (PRO.has(c.name) ? 32 : 0)} -->\n<style>body{margin:0;padding:16px;background:var(--color-surface-background);color:var(--color-foreground-high-emphasis);font:var(--text-ui-text-regular)}</style>\n${proBadge(c)}<div id="root"></div>\n<script>\nconst h = React.createElement;\nconst { ${[...new Set([...COMPONENTS.map((x) => x.name), ...Object.keys(PARTS), 'Icons'])].join(', ')} } = window.LadomUI;\nfunction Preview() {\n${c.code}\n}\nReactDOM.createRoot(document.getElementById('root')).render(h(Preview));\n</script>\n`,
   );
 }
 writeFileSync(join(outRoot, 'names.json'), JSON.stringify(COMPONENTS.map((c) => c.name)));
