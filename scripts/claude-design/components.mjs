@@ -426,6 +426,15 @@ return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Open drawer')
   h('p', { style: { margin: 0 } }, 'November is ready to calculate.'));`,
   },
   {
+    name: 'Delta', group: 'Data', height: 120,
+    summary: 'Pro. A change with a trend arrow that leans up, down or lies flat, as text or a pill; colored by whether the change is good (success) or bad (error), not by its direction.',
+    use: ['Pass the change formatted with its sign; set `tone` when down is good news (a lower churn).', 'Use the pill in tables and lists, plain text under a big number; `label` adds the comparison.'],
+    provides: '`value`, `direction` (up, down, flat), `tone` (success, error, neutral), `variant` (pill, plain), `size` (medium, small), `label`.',
+    code: `return h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 12 } },
+  h(Delta, { value: '+94.3%', direction: 'up', variant: 'pill' }), h(Delta, { value: '−31.7%', direction: 'down', variant: 'pill' }),
+  h(Delta, { value: '−0.4%', direction: 'down', tone: 'success', label: 'vs last month' }));`,
+  },
+  {
     name: 'StatCard', group: 'Data', height: 240,
     summary: 'Pro. One number of a dashboard: a big tabular figure that counts up, an optional unit, a change with a trend arrow (success or error) and a small chart that draws in: area with a fading fill, line with points, steps or bars, under the number or beside it.',
     use: ['Pass a number as `value` (it counts up; shape it with `format`) and the series as `data`, oldest first; `labels` name the points for the `hover` tooltip.', 'Color the change by whether it is good (`tone: success`) or bad (`error`), not by its direction. Keep one `layout` and `chart` across a row.'],

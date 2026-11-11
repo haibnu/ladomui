@@ -10,6 +10,7 @@ export const AppSidebar = Missing;
 export const AppSidebarSection = Missing;
 export const AppSidebarItem = Missing;
 export const Card = Missing;
+export const Delta = Missing;
 export const StatCard = Missing;
 export const PersonCell = Missing;
 export const BarList = Missing;

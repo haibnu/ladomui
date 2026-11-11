@@ -18,7 +18,7 @@ const PLANNED_COMPONENTS = [
 // Separate components that the nav lists under a parent component.
 const SUBCOMPONENTS: Record<string, string[]> = { Input: ['Number Input', 'Currency Input', 'GSM Input', 'Color Input'] };
 const IS_SUBCOMPONENT = new Set(Object.values(SUBCOMPONENTS).flat());
-const PLANNED_MOLECULES = ['Accordion', 'App Shell', 'App Sidebar', 'Bar List', 'Card', 'Data Toolbar', 'File Share', 'Navigation', 'Person Cell', 'Stat Card', 'Wizard Modal'];
+const PLANNED_MOLECULES = ['Accordion', 'App Shell', 'App Sidebar', 'Bar List', 'Card', 'Data Toolbar', 'Delta', 'File Share', 'Navigation', 'Person Cell', 'Stat Card', 'Wizard Modal'];
 // Components that have a page, by their path segment.
 const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Color Input': 'color-input', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', 'Scroll Area': 'scroll-area', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
@@ -29,6 +29,7 @@ const BUILT_MOLECULES: Record<string, string> = {
   'Bar List': 'bar-list',
   Card: 'card',
   'Data Toolbar': 'data-toolbar',
+  Delta: 'delta',
   'File Share': 'file-share',
   Navigation: 'navigation',
   'Person Cell': 'person-cell',

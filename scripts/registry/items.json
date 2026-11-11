@@ -48,6 +48,7 @@
     "app-shell": { "folder": "AppShell", "tier": "pro", "description": "The frame of an admin app: side menu, sticky header and page, with the menu in a Drawer on phones." },
     "bar-list": { "folder": "BarList", "tier": "pro", "description": "Labelled bars for amounts, and Meter, a single bar for a share or progress." },
     "card": { "folder": "Card", "tier": "pro", "description": "A dashboard section: a titled surface with actions, content and a footer." },
+    "delta": { "folder": "Delta", "tier": "pro", "description": "A change with a trend arrow: green when it is good news, red when it is bad." },
     "data-toolbar": { "folder": "DataToolbar", "tier": "pro", "description": "Search, filters and actions above a Table, with bulk actions while rows are selected." },
     "person-cell": { "folder": "PersonCell", "tier": "pro", "description": "A person in a table or list: Avatar, name and a line under it." },
     "stat-card": { "folder": "StatCard", "tier": "pro", "description": "A dashboard figure: label, value and a note or trend." },
