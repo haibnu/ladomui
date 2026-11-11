@@ -47,7 +47,7 @@ export function ProductsMenu() {
             const cell = (
               <Cell
                 iconLeft={<Icon size={20} />}
-                subtitle={p.description[lang]}
+                subtitle={p.path ? p.description[lang] : <span className={styles.soon}>{p.description[lang]}</span>}
                 badgeRight={p.path ? undefined : <Badge size="tiny">{t.products.soon}</Badge>}
                 aria-disabled={p.path ? undefined : true}
                 className={p.path ? undefined : styles.soon}
