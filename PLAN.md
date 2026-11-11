@@ -58,5 +58,6 @@ pnpm workspace, TypeScript.
 Each component is checked against a Figma screenshot before commit. Small commits.
 
 ## Open
+- ColorInput (Input + Popover) has no Figma drawing yet; draw it, compare, then remove `color-input` from `FIGMA_NOT_READY` in `apps/docs/components/readiness.ts`.
 - Brand logos (Brands / *) and flags on the Icons page are not Tabler icons; where they live (icons package or assets) is undecided.
 - DNS for ui.ladom.co: a CNAME on Cloudflare to Vercel (see Decisions).
