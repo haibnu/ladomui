@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: var(--color-surface-background);
+  background: var(--color-surface-level-1);
   color: var(--color-foreground-high-emphasis);
   font: var(--text-ui-text-regular);
 }

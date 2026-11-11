@@ -286,7 +286,32 @@ a.navLink:hover {
 
 /* Page content */
 .pageHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xlarge);
   margin-block-end: var(--space-xxlarge);
+}
+
+.pageHeaderText {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+/* The page's isometric illustration (DocArt), in the landing card tile. The drawings use fixed
+   greys, so the dark theme inverts the tile as the landing page does. */
+.pageArt {
+  flex: none;
+  inline-size: 200px;
+}
+
+:global(:root[data-theme='dark']) .pageArt {
+  --lp-art-filter: invert(0.86) hue-rotate(180deg);
+}
+
+@media (max-width: 767px) {
+  .pageArt {
+    inline-size: 112px;
+  }
 }
 
 .readiness {
