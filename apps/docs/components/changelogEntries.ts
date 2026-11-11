@@ -265,6 +265,20 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       tr: 'İlk sürüm: marka renginden türeyen grafik renkleriyle tek seri, gruplu ya da yığılmış çubuklar; ızgara, hover ipucu, gizli veri tablosu ve büyüyerek gelen çubuklar.',
     },
   ],
+  'donut-chart': [
+    {
+      date: '2026-11-11',
+      en: 'First release: a ring in the chart colors with a total in the middle, three sizes, captions for small multiples, a hover tooltip and a sweep-in.',
+      tr: 'İlk sürüm: grafik renkleriyle, ortada toplamı olan bir halka; üç boyut, küçük çoklular için başlık, hover ipucu ve dönerek giriş.',
+    },
+  ],
+  'chart-legend': [
+    {
+      date: '2026-11-11',
+      en: 'First release: a chart key as a small table with series dots, value columns and a Delta.',
+      tr: 'İlk sürüm: seri noktaları, değer sütunları ve bir Delta ile küçük bir tablo olarak grafik anahtarı.',
+    },
+  ],
 };
 
 /** The changelog of a docs path (/en/docs/components/<slug>), or null for other pages. */

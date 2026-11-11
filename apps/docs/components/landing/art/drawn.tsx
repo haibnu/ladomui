@@ -761,6 +761,40 @@ const BarChart = () => {
   );
 };
 
+// DonutChart: a raised ring in three parts on a plate, its parts lifting one after another.
+const DonutChart = () => (
+  <Art>
+    <Shadow x={-110} y={-110} w={220} d={220} r={110} />
+    <Disc cx={0} cy={0} r={92} z={0} h={8} top={FILL} side={SIDE} />
+    <g className="a-row1">
+      <Disc cx={0} cy={0} r={76} z={8} h={14} top={DARK} side={INK} />
+    </g>
+    <g className="a-row2">
+      <Disc cx={0} cy={0} r={46} z={22} h={2} top={SIDE} side={DARK} />
+    </g>
+    <Label x={0} y={4} size={16} anchor="middle">
+      4.78M
+    </Label>
+  </Art>
+);
+
+// ChartLegend: rows of a dot, a name line and two value lines.
+const ChartLegend = () => (
+  <Art>
+    <Shadow x={-120} y={-60} w={240} d={120} r={12} />
+    <Box x={-120} y={-60} w={240} d={120} h={8} r={12}>
+      {[DARK, INK, SIDE].map((c, i) => (
+        <g key={i} className={`a-line${i + 1}`}>
+          <Bar x={18} y={24 + i * 32} w={10} h={10} fill={c} />
+          <Bar x={40} y={26 + i * 32} w={80 - i * 12} h={6} />
+          <Bar x={150} y={26 + i * 32} w={34} h={6} fill={FILL} />
+          <Bar x={196} y={26 + i * 32} w={26} h={6} fill={DARK} />
+        </g>
+      ))}
+    </Box>
+  </Art>
+);
+
 const BarList = () => {
   const rows = [176, 128, 92, 56];
   return (
@@ -907,6 +941,8 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'person-cell': PersonCell,
   delta: Delta,
   'bar-chart': BarChart,
+  'donut-chart': DonutChart,
+  'chart-legend': ChartLegend,
   'bar-list': BarList,
   'data-toolbar': DataToolbar,
   'wizard-modal': WizardModal,
