@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const SIZES: ModalSize[] = ['small', 'medium', 'large'];
 const COPY = {
@@ -72,6 +73,7 @@ export function ModalPlayground({ kind = 'modal' }: { kind?: 'modal' | 'drawer' 
         {drawer ? <Drawer side={side} {...shared} /> : <Modal size={size} {...shared} />}
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         {drawer ? (
           <ControlSelect label={c.side} value={side} options={['right', 'left'] as const} onChange={setSide} />
         ) : (

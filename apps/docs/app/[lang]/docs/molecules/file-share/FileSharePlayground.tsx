@@ -7,6 +7,7 @@ import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: {
@@ -52,6 +53,7 @@ export function FileSharePlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlCheck label={c.pictures} checked={pictures} onChange={setPictures} />
         <ControlCheck label={c.online} checked={online} onChange={setOnline} />
       </div>

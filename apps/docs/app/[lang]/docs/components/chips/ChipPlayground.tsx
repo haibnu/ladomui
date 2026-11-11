@@ -8,6 +8,7 @@ import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Cont
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const TONES: ChipTone[] = ['default', 'primary', 'success', 'error', 'warning'];
 const SIZES: ChipSize[] = ['medium', 'small', 'tiny', 'micro'];
@@ -73,6 +74,7 @@ export function ChipPlayground() {
         )}
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />
         <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
         <ControlText label={c.text} value={text} onChange={setText} />

@@ -8,6 +8,7 @@ import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { subtitle: 'Subtitle', bodycopy: 'Bodycopy', header: 'Header slot', figma: 'Figma variant', code: 'Code', items: [['Shipping', 'Delivery times and costs', 'Orders ship within 2 working days. Shipping is free over 500 TL.'], ['Returns', 'Within 14 days', 'Send items back unused, in their box, within 14 days of delivery.'], ['Payment', 'Cards and bank transfer', 'We take all major cards and bank transfers.']], extra: '2 min read', badge: 'New' },
@@ -47,6 +48,7 @@ export function AccordionPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlCheck label={c.subtitle} checked={subtitle} onChange={setSubtitle} />
         <ControlCheck label={c.bodycopy} checked={bodycopy} onChange={setBodycopy} />
         <ControlCheck label={c.header} checked={header} onChange={setHeader} />

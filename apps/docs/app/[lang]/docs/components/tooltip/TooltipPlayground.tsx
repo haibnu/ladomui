@@ -8,6 +8,7 @@ import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
 import { FIGMA_POSITION } from './positions';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const PLACEMENTS: Placement[] = ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'];
 const COPY = {
@@ -36,6 +37,7 @@ export function TooltipPlayground() {
         </Tooltip>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.placement} value={placement} options={PLACEMENTS} onChange={setPlacement} />
         <ControlText label={c.text} value={text} onChange={setText} />
         <ControlCheck label={c.beak} checked={beak} onChange={setBeak} />

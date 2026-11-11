@@ -8,6 +8,7 @@ import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Cont
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Type = 'default' | 'checkbox' | 'radio' | 'destructive';
 const FIGMA_TYPE: Record<Type, string> = { default: 'Default', checkbox: 'Checkbox', radio: 'Radio', destructive: 'Destructive' };
@@ -86,6 +87,7 @@ export function CellPlayground() {
         <div style={{ inlineSize: 320 }}>{cell}</div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.type} value={type} options={Object.keys(FIGMA_TYPE) as Type[]} onChange={setType} />
         <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
         <ControlText label={c.text} value={text} onChange={setText} />

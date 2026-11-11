@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Variant = 'primary' | 'secondary' | 'button';
 type Align = 'start' | 'center' | 'end';
@@ -47,6 +48,7 @@ export function TabPlayground() {
         <Tabs aria-label="Sections" items={items} variant={variant} align={align} border={border} value={value} onChange={setValue} style={{ inlineSize: '100%' }} />
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.variant} value={variant} options={['primary', 'secondary', 'button'] as const} onChange={setVariant} />
         <ControlSelect label={c.align} value={align} options={['start', 'center', 'end'] as const} onChange={setAlign} />
         <ControlSelect label={c.count} value={String(count)} options={[2, 3, 4, 5, 6, 7].map(String)} onChange={(v) => setCount(Number(v))} />

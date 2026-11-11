@@ -8,6 +8,7 @@ import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Cont
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Kind = 'image' | 'name' | 'icon';
 type State = 'default' | 'hover';
@@ -48,6 +49,7 @@ export function AvatarPlayground() {
         <Avatar size={size} status={status} notification={notification ? 2 : undefined} data-state={state === 'hover' ? 'hover' : undefined} {...content} />
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.content} value={kind} options={['image', 'name', 'icon'] as const} onChange={setKind} />
         <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
         <ControlSelect label={c.state} value={state} options={['default', 'hover'] as const} onChange={setState} />

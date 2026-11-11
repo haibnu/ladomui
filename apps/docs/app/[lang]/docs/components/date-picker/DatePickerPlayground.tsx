@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Type = 'basic' | 'default' | 'full';
 const COPY = {
@@ -70,6 +71,7 @@ export function DatePickerPlayground() {
         </p>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect
           label={c.type}
           value={type}

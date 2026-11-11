@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Variant = 'infinite' | 'finite' | 'brand';
 const TONES: LoaderTone[] = ['primary', 'secondary', 'tertiary', 'success', 'error', 'warning', 'info'];
@@ -52,6 +53,7 @@ export function LoaderPlayground() {
     <div className={styles.playground}>
       <div className={styles.stage}>{preview}</div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.variant} value={variant} options={['infinite', 'finite', 'brand'] as const} onChange={setVariant} />
         {variant !== 'brand' && <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />}
         {variant === 'finite' && (

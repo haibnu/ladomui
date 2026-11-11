@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Cont
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 // One playground for Checkbox, Radio and Switch; the controls follow each component's Figma properties.
 type Kind = 'checkbox' | 'radio' | 'switch';
@@ -83,6 +84,7 @@ export function ChoicePlayground({ kind }: { kind: Kind }) {
     <div className={styles.playground}>
       <div className={styles.stage}>{preview}</div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.size} value={size} options={sizes} onChange={setSize} />
         <ControlSelect label={c.state} value={state} options={['default', 'hover', 'focus'] as const} onChange={setState} />
         <ControlText label={c.label} value={label} onChange={setLabel} />

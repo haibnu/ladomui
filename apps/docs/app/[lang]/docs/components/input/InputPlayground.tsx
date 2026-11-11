@@ -8,6 +8,7 @@ import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Cont
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Kind = 'text' | 'search' | 'password';
 type State = 'default' | 'hover' | 'focus' | 'typed';
@@ -95,6 +96,7 @@ export function InputPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.type} value={kind} options={['text', 'search', 'password'] as const} onChange={setKind} />
         <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
         <ControlSelect label={c.state} value={state} options={['default', 'hover', 'focus', 'typed'] as const} onChange={setState} />

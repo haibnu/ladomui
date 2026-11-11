@@ -1,0 +1,250 @@
+/* Customize: the top-bar button, the drawer and the playground theme row. */
+
+/* The top-bar button: a key in the isometric style of ui.ladom.co (flat top, solid side, outline), with
+   a shine that passes over it every few seconds so it is noticed. */
+.key {
+  --key-top: var(--color-surface-level-1);
+  --key-side: color-mix(in srgb, var(--color-static-black) 20%, var(--color-static-white));
+  --key-line: var(--color-static-black-alpha-64);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-tiny);
+  block-size: var(--space-xxlarge);
+  padding: 0 var(--space-medium);
+  border: 0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: var(--key-top);
+  box-shadow:
+    inset 0 0 0 1px var(--key-line),
+    0 3px 0 var(--key-side),
+    0 3px 0 1px var(--key-line);
+  margin-block-end: 3px;
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-high-emphasis);
+  cursor: pointer;
+  transition: translate 140ms cubic-bezier(0.3, 0.7, 0.4, 1), box-shadow 140ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+:global(:root[data-theme='dark']) .key {
+  --key-top: var(--color-surface-level-2);
+  --key-side: var(--color-surface-level-4);
+  --key-line: var(--color-static-white-alpha-40);
+}
+
+.key:hover {
+  translate: 0 -1px;
+  box-shadow:
+    inset 0 0 0 1px var(--key-line),
+    0 4px 0 var(--key-side),
+    0 4px 0 1px var(--key-line);
+}
+
+.key:active {
+  translate: 0 2px;
+  box-shadow:
+    inset 0 0 0 1px var(--key-line),
+    0 1px 0 var(--key-side),
+    0 1px 0 1px var(--key-line);
+}
+
+.key:focus-visible {
+  outline: 2px solid var(--color-primary-line);
+  outline-offset: 4px;
+}
+
+.key::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 40%;
+  /* The brand color, so the shine shows on the white key and hints at what the button does. */
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 55%, transparent), transparent);
+  transform: translateX(-150%) skewX(-20deg);
+  pointer-events: none;
+  animation: key-shine 5s cubic-bezier(0.3, 0.7, 0.4, 1) 1s infinite;
+}
+
+/* One quick pass, then a pause. */
+@keyframes key-shine {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  18%,
+  100% {
+    transform: translateX(350%) skewX(-20deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key::after {
+    animation: none;
+    display: none;
+  }
+
+  .key {
+    transition: none;
+  }
+}
+
+.dot {
+  display: inline-block;
+  inline-size: var(--space-small);
+  block-size: var(--space-small);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 0 1px var(--color-static-black-alpha-24);
+}
+
+@media (max-width: 767px) {
+  .buttonLabel {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Drawer */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xlarge);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-small);
+}
+
+.advanced > summary {
+  margin-block-end: var(--space-small);
+}
+
+.heading {
+  margin: 0;
+  font: var(--text-ui-text-bold);
+  color: var(--color-foreground-high-emphasis);
+}
+
+.advanced > summary {
+  cursor: pointer;
+}
+
+.label {
+  margin: 0;
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.note {
+  margin: 0;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-tiny);
+}
+
+.swatch {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--space-xxlarge);
+  block-size: var(--space-xxlarge);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 0 1px var(--color-static-black-alpha-24);
+  cursor: pointer;
+}
+
+.swatch[aria-pressed='true'] {
+  outline: 2px solid var(--color-foreground-high-emphasis);
+  outline-offset: 2px;
+}
+
+.swatch:focus-visible,
+.mini:focus-visible,
+.rowLink:focus-visible {
+  outline: 2px solid var(--color-primary-line);
+  outline-offset: 2px;
+}
+
+.colorField {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tiny);
+}
+
+.picker {
+  flex: none;
+  inline-size: var(--space-xxlarge);
+  block-size: var(--space-xxlarge);
+  padding: 0;
+  border: var(--border);
+  border-radius: var(--radius-form-element-small);
+  background: none;
+  cursor: pointer;
+}
+
+.override {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-tiny);
+}
+
+.prompt pre {
+  white-space: pre-wrap;
+}
+
+/* Playground theme row */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-tiny);
+  padding-block-end: var(--space-small);
+  border-block-end: var(--border);
+}
+
+.rowLabel {
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.rowSwatches {
+  display: flex;
+  gap: var(--space-micro);
+}
+
+.mini {
+  inline-size: var(--space-medium);
+  block-size: var(--space-medium);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 0 1px var(--color-static-black-alpha-24);
+  cursor: pointer;
+}
+
+.mini[aria-pressed='true'] {
+  outline: 2px solid var(--color-foreground-high-emphasis);
+  outline-offset: 1px;
+}
+
+.rowLink {
+  margin-inline-start: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-link-color);
+  cursor: pointer;
+}

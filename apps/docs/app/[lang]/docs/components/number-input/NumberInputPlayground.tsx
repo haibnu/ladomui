@@ -7,6 +7,7 @@ import { ControlCheck, ControlNumber, ControlSelect } from '@/components/docs/Co
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { size: 'Size', min: 'Min', max: 'Max', step: 'Step', error: 'Error', disabled: 'Disabled', figma: 'Figma variant', code: 'Code', label: 'Quantity', errorText: 'Not enough in stock.', value: 'Value', decrease: 'Decrease', increase: 'Increase' },
@@ -46,6 +47,7 @@ export function NumberInputPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
         <ControlNumber label={c.min} value={min} onChange={setMin} />
         <ControlNumber label={c.max} value={max} onChange={setMax} />

@@ -7,6 +7,7 @@ import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { back: 'Back button', figma: 'Figma variant', code: 'Code', path: ['Projects', 'Ladom UI', 'Settings'], title: 'Settings', went: 'Went to' },
@@ -39,6 +40,7 @@ export function BreadcrumbDemo() {
         )}
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlCheck label={c.back} checked={back} onChange={setBack} />
       </div>
       <div className={styles.output}>

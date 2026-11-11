@@ -7,6 +7,7 @@ import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck } from '@/components/docs/Controls';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { collapsed: 'Collapsed', badges: 'Badge', header: 'Header', footer: 'Footer', code: 'Code', main: 'Main', expand: 'Expand menu', collapse: 'Collapse menu', home: 'Home', reports: 'Reports', monthly: 'Monthly', yearly: 'Yearly', archive: 'Archive', y2025: '2025', y2024: '2024', files: 'Files', members: 'Members', audit: 'Audit log', workspace: 'Workspace', settings: 'Settings' },
@@ -71,6 +72,7 @@ export function AppSidebarPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlCheck label={c.collapsed} checked={collapsed} onChange={setCollapsed} />
         <ControlCheck label={c.badges} checked={badges} onChange={setBadges} />
         <ControlCheck label={c.header} checked={header} onChange={setHeader} />

@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Cont
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Kind = 'default' | 'icon' | 'subtitle' | 'hint';
 const FIGMA_TYPE: Record<Kind, string> = { default: 'Default', icon: 'Icon', subtitle: 'Subtitle', hint: 'Hint' };
@@ -53,6 +54,7 @@ export function LabelPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.type} value={kind} options={Object.keys(FIGMA_TYPE) as Kind[]} onChange={setKind} />
         <ControlText label={c.text} value={text} onChange={setText} />
         {(kind === 'subtitle' || kind === 'hint') && <ControlText label={c.extra} value={extra} onChange={setExtra} />}
