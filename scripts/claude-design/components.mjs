@@ -345,7 +345,7 @@ return h('div', { style: { display: 'grid', gap: 12 } },
   },
   {
     name: 'ColorInput', group: 'Forms', height: 300,
-    summary: 'A color field: a swatch that opens the color picker (or a Popover of preset colors) and the hex code after a “#”.',
+    summary: 'A color field: a round swatch that opens the color picker (or a Popover of preset colors) and the hex code after a “#”, shown in capitals.',
     use: ['The value is `"#rrggbb"`; the field takes 3 or 6 digits with or without `#` and in any case, and `onValueChange` only gets a valid, lower-case code. `normalizeHex` does the same parsing for your own code.', 'Pass `presets` to offer brand colors under the swatch; the last “+” swatch opens the picker. Label it with `FormField`.'],
     provides: '`value` + `onValueChange` (`"#rrggbb"`), `defaultValue`, `presets`, `size`, `error`, `disabled`, `name` for forms, `pickerLabel`, `customLabel`, `presetsLabel`.',
     code: `return h('div', { style: { display: 'grid', gap: 12, maxWidth: 240 } },
