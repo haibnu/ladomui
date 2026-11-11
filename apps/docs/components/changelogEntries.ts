@@ -236,6 +236,13 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       tr: 'İlk sürüm: eğik bir trend oklu değişim; metin ya da hap olarak, iyi haber olup olmamasına göre renkli.',
     },
   ],
+  'bar-chart': [
+    {
+      date: '2026-11-11',
+      en: 'First release: one series, grouped or stacked bars in the brand-derived chart colors, with a grid, a hover tooltip, a hidden data table and bars that grow in.',
+      tr: 'İlk sürüm: marka renginden türeyen grafik renkleriyle tek seri, gruplu ya da yığılmış çubuklar; ızgara, hover ipucu, gizli veri tablosu ve büyüyerek gelen çubuklar.',
+    },
+  ],
 };
 
 /** The changelog of a docs path (/en/docs/components/<slug>), or null for other pages. */
