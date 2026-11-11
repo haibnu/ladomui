@@ -196,11 +196,21 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     },
   ],
   'app-shell': [{ date: '2026-11-11', en: 'First release: side menu, sticky header and page; on phones the menu moves to a Drawer.', tr: 'İlk sürüm: kenar menüsü, yapışkan başlık ve sayfa; telefonda menü bir Drawer’a geçiyor.' }],
-  'bar-list': [{ date: '2026-11-11', en: 'First release: labelled bars for amounts, and Meter for a single bar.', tr: 'İlk sürüm: miktarlar için etiketli çubuklar ve tek çubuklu Meter.' }],
+  'bar-list': [
+    {
+      date: '2026-11-11',
+      en: 'A row variant: a small table with column headings and a see-through brand bar behind each row, as in “visits per page”. Bars grow in when they first show.',
+      tr: 'Row görünümü: sütun başlıkları ve her satırın arkasında şeffaf bir marka rengi çubuğu olan küçük bir tablo, “sayfa başına ziyaret” listelerindeki gibi. Çubuklar ilk göründüklerinde büyüyerek gelir.',
+    },{ date: '2026-11-11', en: 'First release: labelled bars for amounts, and Meter for a single bar.', tr: 'İlk sürüm: miktarlar için etiketli çubuklar ve tek çubuklu Meter.' }],
   'card': [{ date: '2026-11-11', en: 'First release: a dashboard section with a title, actions and a footer.', tr: 'İlk sürüm: başlıklı, aksiyonlu ve alt kısımlı bir panel bölümü.' }],
   'data-toolbar': [{ date: '2026-11-11', en: 'First release: search, filters and actions above a Table, with bulk actions while rows are selected.', tr: 'İlk sürüm: Table üstünde arama, filtreler ve aksiyonlar; satır seçilince toplu aksiyonlar.' }],
   'person-cell': [{ date: '2026-11-11', en: 'First release: Avatar, name and a line under it, in a table or list; a button with onClick.', tr: 'İlk sürüm: tabloda ya da listede Avatar, isim ve alt satır; onClick ile buton.' }],
-  'stat-card': [{ date: '2026-11-11', en: 'First release: a dashboard card with a label, a value and a note or trend.', tr: 'İlk sürüm: etiket, değer ve not ya da trend gösteren panel kartı.' }],
+  'stat-card': [
+    {
+      date: '2026-11-11',
+      en: 'A bigger number that counts up, an optional unit, a change with a trend arrow, and a chart that draws in: area, line with points, steps or bars, beside the number or under it, with a hover tooltip.',
+      tr: 'Sayarak gelen daha büyük bir rakam, isteğe bağlı birim, eğilimli oklu değişim ve çizilerek beliren bir grafik: alan, noktalı çizgi, basamak ya da çubuk; rakamın yanında ya da altında, hover ipucuyla.',
+    },{ date: '2026-11-11', en: 'First release: a dashboard card with a label, a value and a note or trend.', tr: 'İlk sürüm: etiket, değer ve not ya da trend gösteren panel kartı.' }],
   'wizard-modal': [
     {
       date: '2026-11-11',
