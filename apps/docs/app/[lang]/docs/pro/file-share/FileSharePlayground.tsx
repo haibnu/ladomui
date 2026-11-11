@@ -16,7 +16,7 @@ const COPY = {
     figma: 'Figma variant',
     code: 'Code',
     roles: [{ value: 'edit', label: 'Can Edit' }, { value: 'comment', label: 'Can Comment' }, { value: 'view', label: 'Can View' }],
-    strings: { title: 'Share this file', linkLabel: 'Link', copyLabel: 'Copy Link', copiedLabel: 'Copied', peopleLabel: 'People with access', roleLabel: 'Access level' },
+    strings: { title: 'Share this file', linkLabel: 'Link', copyLabel: 'Copy Link', copyShortLabel: 'Copy', copiedLabel: 'Link copied', copyErrorLabel: 'Could not copy the link', peopleLabel: 'People with access', roleLabel: 'Access level' },
   },
   tr: {
     pictures: 'Görseller',
@@ -24,7 +24,7 @@ const COPY = {
     figma: 'Figma varyantı',
     code: 'Kod',
     roles: [{ value: 'edit', label: 'Düzenleyebilir' }, { value: 'comment', label: 'Yorum yapabilir' }, { value: 'view', label: 'Görüntüleyebilir' }],
-    strings: { title: 'Bu dosyayı paylaş', linkLabel: 'Bağlantı', copyLabel: 'Bağlantıyı kopyala', copiedLabel: 'Kopyalandı', peopleLabel: 'Erişimi olanlar', roleLabel: 'Erişim düzeyi' },
+    strings: { title: 'Bu dosyayı paylaş', linkLabel: 'Bağlantı', copyLabel: 'Bağlantıyı kopyala', copyShortLabel: 'Kopyala', copiedLabel: 'Bağlantı kopyalandı', copyErrorLabel: 'Bağlantı kopyalanamadı', peopleLabel: 'Erişimi olanlar', roleLabel: 'Erişim düzeyi' },
   },
 };
 

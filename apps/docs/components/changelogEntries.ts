@@ -163,7 +163,15 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   textarea: [first('2026-11-02')],
   'time-picker': [SCROLL({ en: 'hour, minute and second columns', tr: 'Saat, dakika ve saniye sütunları' }), first()],
-  toast: [ROLES, first()],
+  toast: [
+    {
+      date: '2026-11-11',
+      en: 'useOptionalToast returns the ToastProvider’s API or null, for components that bring their own provider when the page has none.',
+      tr: 'useOptionalToast, ToastProvider’ın API’sini ya da null döndürür; sayfada provider yoksa kendisininkini getiren bileşenler için.',
+    },
+    ROLES,
+    first(),
+  ],
   tooltip: [
     {
       date: '2026-11-11',
@@ -186,7 +194,14 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   accordion: [first()],
   navigation: [first()],
-  'file-share': [first('2026-11-03')],
+  'file-share': [
+    {
+      date: '2026-11-11',
+      en: 'Copy Link keeps its label and reports the result in a Toast; a narrow panel shows the short label (copyShortLabel); less space around the title.',
+      tr: 'Bağlantıyı kopyala butonu metnini koruyor ve sonucu bir Toast ile bildiriyor; dar panelde kısa metin (copyShortLabel) görünüyor; başlığın etrafındaki boşluk azaldı.',
+    },
+    first('2026-11-03'),
+  ],
   'app-sidebar': [
     {
       date: '2026-11-11',
@@ -207,7 +222,14 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       en: 'A row variant: a small table with column headings and a see-through brand bar behind each row, as in “visits per page”. Bars grow in when they first show.',
       tr: 'Row görünümü: sütun başlıkları ve her satırın arkasında şeffaf bir marka rengi çubuğu olan küçük bir tablo, “sayfa başına ziyaret” listelerindeki gibi. Çubuklar ilk göründüklerinde büyüyerek gelir.',
     },{ date: '2026-11-11', en: 'First release: labelled bars for amounts, and Meter for a single bar.', tr: 'İlk sürüm: miktarlar için etiketli çubuklar ve tek çubuklu Meter.' }],
-  'card': [{ date: '2026-11-11', en: 'First release: a dashboard section with a title, actions and a footer.', tr: 'İlk sürüm: başlıklı, aksiyonlu ve alt kısımlı bir panel bölümü.' }],
+  'card': [
+    {
+      date: '2026-11-11',
+      en: 'A tighter header: the title and the actions share one centred line, the description sits just under it, and page heading margins no longer reach it. New titleStyle (default, caption).',
+      tr: 'Daha sıkı bir başlık: başlık ve aksiyonlar ortalı tek satırda, açıklama hemen altında; sayfanın başlık boşlukları artık ona ulaşmıyor. Yeni titleStyle (default, caption).',
+    },
+    { date: '2026-11-11', en: 'First release: a dashboard section with a title, actions and a footer.', tr: 'İlk sürüm: başlıklı, aksiyonlu ve alt kısımlı bir panel bölümü.' },
+  ],
   'data-toolbar': [{ date: '2026-11-11', en: 'First release: search, filters and actions above a Table, with bulk actions while rows are selected.', tr: 'İlk sürüm: Table üstünde arama, filtreler ve aksiyonlar; satır seçilince toplu aksiyonlar.' }],
   'person-cell': [{ date: '2026-11-11', en: 'First release: Avatar, name and a line under it, in a table or list; a button with onClick.', tr: 'İlk sürüm: tabloda ya da listede Avatar, isim ve alt satır; onClick ile buton.' }],
   'stat-card': [
