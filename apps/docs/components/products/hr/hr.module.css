@@ -1,0 +1,238 @@
+/* HR demo: layout of the screens around the Ladom UI (Pro) components. Values are tokens. */
+
+/* Header and side menu */
+.search {
+  inline-size: var(--grid-column-3);
+  min-inline-size: 0;
+}
+
+.headerEnd {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  font: var(--text-ui-text-small-bold);
+  color: var(--color-foreground-high-emphasis);
+}
+
+.brandText span {
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+/* Screens */
+.pageHeader {
+  margin-inline: calc(-1 * var(--space-container));
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-medium);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-medium);
+  align-items: start;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-medium);
+  min-inline-size: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--border-width);
+  margin-inline: calc(-1 * var(--space-small));
+}
+
+.muted {
+  margin: 0;
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.statNote {
+  margin: 0;
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.cardTitle,
+.stepTitle {
+  margin: 0;
+  font: var(--text-ui-card-title);
+  color: var(--color-foreground-high-emphasis);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.filter {
+  inline-size: var(--grid-column-2);
+}
+
+.tableWrap {
+  min-inline-size: 0;
+  overflow-x: auto;
+  background: var(--color-surface-level-1);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-style-1);
+}
+
+.tableWrap table {
+  min-inline-size: var(--grid-column-8);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-tiny);
+  white-space: nowrap;
+}
+
+.footRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-small);
+}
+
+/* Employee profile */
+.profileTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-medium);
+  margin-block-end: var(--space-medium);
+}
+
+.personText {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.tabBody {
+  margin-block-start: var(--space-medium);
+}
+
+.slip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-large);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-form-gutter);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-form-gutter);
+}
+
+/* Timesheet */
+.shift {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-atom);
+  white-space: nowrap;
+}
+
+.shiftHours {
+  font: var(--text-ui-footnote-regular);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-tiny);
+}
+
+/* Payroll run */
+.center {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-small);
+  text-align: center;
+}
+
+@media (width < 1280px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sample {
+    display: none;
+  }
+}
+
+@media (width < 768px) {
+  .search {
+    inline-size: auto;
+    flex: 1;
+  }
+
+  .filter {
+    inline-size: auto;
+    flex: 1 1 var(--grid-column-2);
+  }
+
+  .formRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* PageHeader keeps one line on desktop; on phones the title stays whole and the rest wraps under it. */
+  .pageHeader {
+    flex-wrap: wrap;
+  }
+
+  .pageHeader > :first-child {
+    flex-basis: 100%;
+  }
+
+  .pageHeader > :first-child > * {
+    flex-wrap: wrap;
+  }
+
+  .pageHeader h1 {
+    flex-shrink: 0;
+  }
+}

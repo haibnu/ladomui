@@ -5,6 +5,7 @@ import { LanguageLink } from './LanguageLink';
 import { Logo } from './Logo';
 import { MobileNav } from './MobileNav';
 import { CustomizeButton } from './customize/CustomizeButton';
+import { ProductsMenu } from './products/ProductsMenu';
 import { Search } from './Search';
 import { ThemeToggle } from './ThemeToggle';
 import { GITHUB_URL } from './nav';
@@ -20,6 +21,7 @@ export function TopBar({ lang, withMenu = false }: { lang: Locale; withMenu?: bo
           <Logo />
         </Link>
         <CustomizeButton />
+        <ProductsMenu />
       </div>
       <div className={styles.topBarEnd}>
         <Search />

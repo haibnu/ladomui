@@ -389,6 +389,13 @@ a.navLink:hover {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* Room for the Products button next to Customize. */
+  .topBar,
+  .topBarStart,
+  .topBarEnd {
+    gap: var(--space-tiny);
+  }
+
   .sidebar,
   .searchLabel,
   .topLink:not(.langLink) {
