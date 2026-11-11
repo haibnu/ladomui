@@ -1,0 +1,110 @@
+/* ColorInput: the Input box with a color swatch and "#" as Leading Text. The swatch is as tall as
+   the text line (24px medium, 16px small); with presets it opens a Popover of swatches. The
+   browser's color input sits invisibly over a swatch so a press opens its picker. */
+
+.box {
+  position: relative;
+}
+
+/* While open, the Popover sits above the boxes that follow (there is no z-index token yet). */
+.box:has([aria-expanded='true']) {
+  z-index: 1;
+}
+
+.lead {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--layout-tiny);
+  /* On the baseline the swatch would make the line taller than the text. */
+  vertical-align: top;
+}
+
+.box[data-size='small'] .lead {
+  gap: var(--space-micro);
+}
+
+.swatch,
+.preset {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-checkbox);
+  background: var(--_color);
+  box-shadow: inset 0 0 0 var(--border-width) var(--color-surface-level-4);
+  cursor: pointer;
+  transition: box-shadow var(--motion-fade-default);
+}
+
+.swatch {
+  inline-size: var(--line-height-base);
+  block-size: var(--line-height-base);
+}
+
+.box[data-size='small'] .swatch {
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+}
+
+.swatch:disabled,
+.box[data-disabled] .swatch {
+  cursor: not-allowed;
+}
+
+.swatch:focus-visible,
+.preset:focus-visible,
+.swatch:has(.native:focus-visible),
+.preset:has(.native:focus-visible) {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--border-width) var(--color-surface-level-4), var(--shadow-focus-primary);
+}
+
+.native {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.popover {
+  padding: var(--space-small);
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: repeat(6, var(--line-height-base));
+  gap: var(--space-tiny);
+}
+
+.preset {
+  inline-size: var(--line-height-base);
+  block-size: var(--line-height-base);
+}
+
+/* The chosen color: a primary ring outside a gap of the surface. */
+.preset[aria-pressed='true'],
+.preset[data-selected] {
+  box-shadow:
+    inset 0 0 0 var(--border-width) var(--color-surface-level-4),
+    0 0 0 calc(var(--border-width) * 2) var(--color-surface-level-1),
+    0 0 0 calc(var(--border-width) * 4) var(--color-primary-line);
+}
+
+.preset[data-custom] {
+  color: var(--color-foreground-medium-emphasis);
+  background: var(--color-surface-level-2);
+}
+
+.preset[data-custom] > svg {
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+}

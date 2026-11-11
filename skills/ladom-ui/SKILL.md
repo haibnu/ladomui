@@ -44,7 +44,7 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Need | Component |
 |---|---|
 | Actions | `Button` (variant solid/ghost, tone, size, icon, iconLeft/Right, loading) |
-| Form fields | `FormField` (label, hint, error) + `Input`, `Textarea` (showCount, maxLength), `NumberInput` (value, min, max, step), `CurrencyInput` (value, currency, currencies, locale, currencySelect), `GsmInput` (E.164 value, country, countries (every country by default), countrySelect; pasted +90/0 are dropped), `Selectbox`, `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
+| Form fields | `FormField` (label, hint, error) + `Input`, `Textarea` (showCount, maxLength), `NumberInput` (value, min, max, step), `CurrencyInput` (value, currency, currencies, locale, currencySelect), `GsmInput` (E.164 value, country, countries (every country by default), countrySelect; pasted +90/0 are dropped), `ColorInput` ("#rrggbb" value, presets; `normalizeHex` parses 3/6-digit codes), `Selectbox`, `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
 | Labels and status | `Label`, `Hint`, `Badge`, `Chip`, `Avatar`/`AvatarGroup`, `Loader`, `Stepper` |
 | Lists and menus | `Dropdown` with `Cell`, `CellHelper`, `CellSearch`, `CellActions` |
 | Scrolling | `ScrollArea` (orientation vertical/horizontal/both, scrollbars auto/always, viewportRef, viewportProps): any box that scrolls; give it a size or max size. Dropdown, TimePicker, Modal/Drawer body, Table and SidebarNav already use it |

@@ -289,6 +289,27 @@ const CurrencyInput = () => (
   </Art>
 );
 
+const ColorInput = () => (
+  <Art>
+    <Shadow x={-110} y={-30} w={220} d={60} r={8} />
+    <Box x={-110} y={-30} w={220} d={60} h={14} r={8}>
+      <g className="a-num1">
+        <Label x={66} y={30} size={18} anchor="start">
+          # 4F46E5
+        </Label>
+      </g>
+      <g className="a-num2">
+        <Label x={66} y={30} size={18} anchor="start">
+          # 111827
+        </Label>
+      </g>
+    </Box>
+    <g className="a-tap">
+      <Box x={-94} y={-15} w={30} d={30} h={8} z={14} r={6} top={DARK} />
+    </g>
+  </Art>
+);
+
 const NumberInput = () => (
   <Art>
     <Shadow x={-100} y={-30} w={200} d={60} r={8} />
@@ -636,6 +657,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   loader: Loader,
   'number-input': NumberInput,
   'currency-input': CurrencyInput,
+  'color-input': ColorInput,
   'gsm-input': GsmInput,
   'nav-menu': NavMenu,
   pagination: Pagination,

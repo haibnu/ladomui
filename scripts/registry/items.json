@@ -30,6 +30,7 @@
     "popover": { "folder": "Popover", "tier": "free", "description": "A small non-modal dialog that opens from a button." },
     "textarea": { "folder": "Textarea", "tier": "free", "description": "A multi-line text field with an optional character count." },
     "number-input": { "folder": "NumberInput", "tier": "free", "description": "A number field with decrease and increase buttons." },
+    "color-input": { "folder": "ColorInput", "tier": "free", "description": "A color field: a swatch that opens a color picker or presets, next to the hex code." },
     "currency-input": { "folder": "CurrencyInput", "tier": "free", "description": "An amount field masked as it is typed, with a currency picker." },
     "gsm-input": { "folder": "GsmInput", "tier": "free", "description": "A phone number field with a country picker; pasted numbers lose their country code and leading 0." },
     "nav-menu": { "folder": "NavMenu", "tier": "free", "description": "SidebarNav and TopNav: simple side and top menus of links for web apps." },
