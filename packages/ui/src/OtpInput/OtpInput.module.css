@@ -1,0 +1,169 @@
+/* OtpInput: a row of square Input boxes (Figma Components / Input, 1133:303), one per character.
+   Not drawn in Figma yet; the boxes take Input's fill, lines, radius, focus ring and states. */
+
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--layout-tiny);
+  inline-size: max-content;
+  max-inline-size: 100%;
+}
+
+.root[data-size='medium'] {
+  --_box: calc(var(--line-height-base) + 2 * var(--layout-tiny));
+  --_radius: var(--radius-form-element);
+  --_dot: var(--layout-small);
+  font: var(--text-ui-text-lead-regular);
+}
+
+.root[data-size='small'] {
+  --_box: calc(var(--line-height-text-small) + 2 * var(--layout-tiny));
+  --_radius: var(--radius-form-element-small);
+  --_dot: var(--layout-tiny);
+  font: var(--text-ui-text-regular);
+}
+
+/* The real input sits under the boxes, invisible: it takes the keyboard, autofill and paste. */
+.input {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  font: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* In a narrow container the boxes shrink and stay square. */
+.group {
+  display: flex;
+  flex: 0 1 auto;
+  min-inline-size: 0;
+  gap: var(--layout-tiny);
+}
+
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  inline-size: var(--_box);
+  min-inline-size: 0;
+  aspect-ratio: 1;
+  border-radius: var(--_radius);
+  background: var(--color-surface-level-1);
+  color: var(--color-foreground-high-emphasis);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line), var(--_ring, 0 0 #0000);
+  transition: box-shadow var(--motion-fade-default);
+  cursor: text;
+  user-select: none;
+  --_line: var(--color-surface-level-4);
+}
+
+.separator {
+  display: inline-flex;
+  flex: none;
+  color: var(--color-foreground-low-emphasis);
+}
+
+.separator > svg {
+  inline-size: var(--line-height-text-small);
+  block-size: var(--line-height-text-small);
+}
+
+/* mask: the character and a circle share the box; the character shrinks away as the circle
+   grows in its place. */
+.masked {
+  display: grid;
+  place-items: center;
+}
+
+.char,
+.dot {
+  grid-area: 1 / 1;
+  transition:
+    transform var(--motion-fade-default),
+    opacity var(--motion-fade-default);
+}
+
+.dot {
+  inline-size: var(--_dot);
+  block-size: var(--_dot);
+  border-radius: var(--radius-full);
+  background: currentColor;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.masked[data-hidden] .char {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.masked[data-hidden] .dot {
+  transform: none;
+  opacity: 1;
+}
+
+/* The caret in the active, empty box. */
+.caret {
+  inline-size: var(--border-width);
+  block-size: 1em;
+  background: var(--color-primary-foreground);
+  animation: blink calc(4 * var(--duration-speed-m)) step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+
+  .char,
+  .dot {
+    transition: none;
+  }
+}
+
+/* States, as in Input. */
+.slot:hover {
+  --_line: var(--color-primary-tint);
+}
+
+.slot[data-filled] {
+  --_line: var(--color-foreground-low-emphasis);
+}
+
+.slot[data-active] {
+  --_line: var(--color-primary-line);
+  --_ring: var(--shadow-focus-primary);
+}
+
+.root[data-error] .slot {
+  --_line: var(--color-error);
+}
+
+.root[data-error] .slot[data-active] {
+  --_ring: var(--shadow-focus-error);
+}
+
+.root[data-disabled] .slot {
+  --_line: var(--color-surface-level-4);
+  --_ring: 0 0 #0000;
+  background: var(--color-surface-level-2);
+  color: var(--color-foreground-low-emphasis);
+  cursor: not-allowed;
+}

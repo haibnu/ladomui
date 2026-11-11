@@ -831,6 +831,8 @@ a.heroButton:focus-visible,
 .art :global(.a-num1) { animation-name: numOut; }
 .art :global(.a-num2) { animation-name: numIn; }
 .art :global(.a-tap) { animation-name: tap; }
+.art :global(.a-otpdigit) { animation-name: otpDigit; animation-duration: 5s; }
+.art :global(.a-otpdot) { animation-name: otpDot; animation-duration: 5s; }
 .art :global(.a-page) { animation-name: page; animation-duration: 5s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.2); }
 .art :global(.a-popover) { transform-origin: bottom center; animation-name: popover; }
 .art :global(.a-seg) { animation-name: seg; animation-duration: 4.5s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.2); }
@@ -917,6 +919,8 @@ a.heroButton:focus-visible,
 @keyframes fadeIn { 0%, 20% { transform: translateY(-6px); opacity: 0; } 35%, 85% { transform: none; opacity: 1; } 95%, 100% { opacity: 0; } }
 @keyframes type { 0%, 10% { transform: scaleX(0); } 60%, 90% { transform: none; } 100% { transform: scaleX(0); } }
 @keyframes caret { 0%, 10% { transform: translateX(-124px); } 60%, 90% { transform: none; } 100% { transform: translateX(-124px); } }
+@keyframes otpDigit { 0%, 30% { transform: none; opacity: 1; } 36%, 88% { transform: scale(0); opacity: 0; } 96%, 100% { transform: none; opacity: 1; } }
+@keyframes otpDot { 0%, 30% { transform: scale(0); opacity: 0; } 36%, 80% { transform: none; opacity: 1; } 86%, 100% { transform: scale(0); opacity: 0; } }
 @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 @keyframes move { 0%, 20% { transform: none; } 50%, 80% { transform: translate(129.9px, -75px); } 100% { transform: none; } }
 @keyframes blip { 0%, 60%, 100% { transform: none; } 25% { transform: translateY(-12px); } }
