@@ -310,6 +310,32 @@ const ColorInput = () => (
   </Art>
 );
 
+// One-time code: six boxes in two groups; each digit shows, shrinks into a circle (mask), then is typed again.
+const OtpInput = () => (
+  <Art>
+    {[0, 1, 2, 3, 4, 5].map((i) => {
+      const x = -132 + i * 42 + (i > 2 ? 28 : 0);
+      const delay = { animationDelay: `${i * 0.25}s` };
+      return (
+        <g key={i}>
+          <Shadow x={x} y={-17} w={34} d={34} r={8} />
+          <Box x={x} y={-17} w={34} d={34} h={10} r={8}>
+            <g className="a-otpdigit" style={delay}>
+              <Label x={17} y={17} size={16}>
+                {'482193'[i]}
+              </Label>
+            </g>
+            <g className="a-otpdot" style={delay}>
+              <circle cx={17} cy={17} r={5} fill={INK} />
+            </g>
+          </Box>
+        </g>
+      );
+    })}
+    <Box x={-2} y={-3} w={12} d={6} h={4} r={3} top={DARK} />
+  </Art>
+);
+
 const NumberInput = () => (
   <Art>
     <Shadow x={-100} y={-30} w={200} d={60} r={8} />
@@ -935,6 +961,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'number-input': NumberInput,
   'currency-input': CurrencyInput,
   'color-input': ColorInput,
+  'otp-input': OtpInput,
   'gsm-input': GsmInput,
   'nav-menu': NavMenu,
   pagination: Pagination,

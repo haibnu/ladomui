@@ -123,6 +123,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     },
   ],
   'number-input': [first('2026-11-02')],
+  'otp-input': [first('2026-11-11')],
   pagination: [first()],
   popover: [UNCLIPPED({ en: 'panel', tr: 'panel' }), first()],
   radio: [first()],
