@@ -2,7 +2,7 @@
 // A page exists only for built components, so code is ready unless listed in CODE_NOT_READY.
 // Components built from existing parts before a Figma drawing go in FIGMA_NOT_READY; take them out
 // once they are drawn.
-export const FIGMA_NOT_READY = new Set(['color-input', 'currency-input', 'nav-menu', 'app-sidebar', 'scroll-area', 'app-shell', 'bar-list', 'card', 'data-toolbar', 'delta', 'person-cell', 'stat-card', 'wizard-modal']);
+export const FIGMA_NOT_READY = new Set(['color-input', 'currency-input', 'nav-menu', 'app-sidebar', 'scroll-area', 'app-shell', 'bar-chart', 'bar-list', 'card', 'data-toolbar', 'delta', 'person-cell', 'stat-card', 'wizard-modal']);
 export const CODE_NOT_READY = new Set<string>();
 
 export type Readiness = { figma: boolean; code: boolean };

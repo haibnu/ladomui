@@ -733,6 +733,34 @@ const Delta = () => (
   </Art>
 );
 
+// BarChart: pairs of columns standing on a plate, a dark and a light one per month, rising as
+// they go; the plate's grid lines run under them.
+const BarChart = () => {
+  const pairs: [number, number][] = [
+    [34, 18],
+    [52, 26],
+    [44, 22],
+    [70, 30],
+    [60, 38],
+  ];
+  return (
+    <Art>
+      <Shadow x={-130} y={-70} w={260} d={140} r={14} />
+      <Box x={-130} y={-70} w={260} d={140} h={8} r={14}>
+        {[30, 70, 110].map((y) => (
+          <Bar key={y} x={16} y={y} w={228} h={2} fill={FILL} />
+        ))}
+      </Box>
+      {pairs.map(([a, b], i) => (
+        <g key={i} className={`a-row${(i % 3) + 1}`}>
+          <Box x={-112 + i * 48} y={-12} w={16} d={16} h={a} z={8} r={3} top={DARK} side={INK} />
+          <Box x={-94 + i * 48} y={-12} w={16} d={16} h={b} z={8} r={3} top={SIDE} side={DARK} />
+        </g>
+      ))}
+    </Art>
+  );
+};
+
 const BarList = () => {
   const rows = [176, 128, 92, 56];
   return (
@@ -878,6 +906,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'stat-card': StatCard,
   'person-cell': PersonCell,
   delta: Delta,
+  'bar-chart': BarChart,
   'bar-list': BarList,
   'data-toolbar': DataToolbar,
   'wizard-modal': WizardModal,

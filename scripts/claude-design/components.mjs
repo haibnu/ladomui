@@ -426,6 +426,13 @@ return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Open drawer')
   h('p', { style: { margin: 0 } }, 'November is ready to calculate.'));`,
   },
   {
+    name: 'BarChart', group: 'Data', height: 300,
+    summary: 'Pro. Values per category as vertical bars: one series, grouped side by side or stacked, in the chart colors derived from the brand, with a dashed grid, a hover tooltip and bars that grow in.',
+    use: ['Give it a `title` (names the figure and captions its hidden data table); pass `format` for the tooltip values.', 'Use `mode="stacked"` for parts of a whole; keep to three series or fewer, and put it in a Card.'],
+    provides: '`title`, `categories`, `series` (`{ name, data, color? }`), `mode` (grouped, stacked), `height`, `format`, `axisFormat`, `legend`, `tooltip`, `animate`, `locale`.',
+    code: `return h(BarChart, { title: 'Hires and exits', categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], series: [{ name: 'Hires', data: [8, 12, 6, 14, 9, 11] }, { name: 'Exits', data: [3, 5, 4, 2, 6, 3] }] });`,
+  },
+  {
     name: 'Delta', group: 'Data', height: 120,
     summary: 'Pro. A change with a trend arrow that leans up, down or lies flat, as text or a pill; colored by whether the change is good (success) or bad (error), not by its direction.',
     use: ['Pass the change formatted with its sign; set `tone` when down is good news (a lower churn).', 'Use the pill in tables and lists, plain text under a big number; `label` adds the comparison.'],

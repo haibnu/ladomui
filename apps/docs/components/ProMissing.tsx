@@ -9,6 +9,7 @@ export const FileShare = Missing;
 export const AppSidebar = Missing;
 export const AppSidebarSection = Missing;
 export const AppSidebarItem = Missing;
+export const BarChart = Missing;
 export const Card = Missing;
 export const Delta = Missing;
 export const StatCard = Missing;
