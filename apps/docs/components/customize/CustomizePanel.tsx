@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { IconCheck } from "@ladom/icons";
-import { Button, Drawer, FormField, Input, Segment, Switch } from "@ladom/ui";
+import { Button, ColorInput, Drawer, FormField, Segment, Switch } from "@ladom/ui";
 import { CodeBlock } from "../docs/CodeBlock";
 import { useLocale } from "../useLocale";
 import { setOpen, setTheme, useCustomize } from "./store";
@@ -12,13 +12,12 @@ import {
   DEFAULT_THEME,
   installCommand,
   lowContrast,
-  parseHex,
   PRESETS,
   type Density,
 } from "./theme";
 import styles from "./customize.module.css";
 
-// A hex field with a native color picker beside it. The text applies once it is a valid hex.
+// A labelled Ladom UI ColorInput: a swatch that opens the picker and the hex code beside it.
 function ColorField({
   label,
   value,
@@ -28,29 +27,9 @@ function ColorField({
   value: string;
   onChange: (hex: string) => void;
 }) {
-  const [text, setText] = useState(value);
-  useEffect(() => setText(value), [value]);
   return (
     <FormField label={label}>
-      <span className={styles.colorField}>
-        <input
-          className={styles.picker}
-          type="color"
-          value={value}
-          aria-label={label}
-          onChange={(e) => onChange(e.target.value)}
-        />
-        <Input
-          size="small"
-          value={text}
-          spellCheck={false}
-          onChange={(e) => {
-            setText(e.target.value);
-            const hex = parseHex(e.target.value);
-            if (hex) onChange(hex);
-          }}
-        />
-      </span>
+      <ColorInput size="small" value={value} onValueChange={onChange} pickerLabel={label} />
     </FormField>
   );
 }

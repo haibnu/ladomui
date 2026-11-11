@@ -177,23 +177,6 @@
   outline-offset: 2px;
 }
 
-.colorField {
-  display: flex;
-  align-items: center;
-  gap: var(--space-tiny);
-}
-
-.picker {
-  flex: none;
-  inline-size: var(--space-xxlarge);
-  block-size: var(--space-xxlarge);
-  padding: 0;
-  border: var(--border);
-  border-radius: var(--radius-form-element-small);
-  background: none;
-  cursor: pointer;
-}
-
 .override {
   display: flex;
   flex-direction: column;
