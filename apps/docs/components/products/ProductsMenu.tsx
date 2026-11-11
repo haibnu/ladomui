@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
-import { IconApps, IconArrowBottom } from '@ladom/icons';
+import { IconApps, IconArrowBottom, IconExternalLink } from '@ladom/icons';
 import { Badge, Cell, Dropdown } from '@ladom/ui';
 import { href } from '@/i18n';
 import { useLocale } from '../useLocale';
@@ -47,7 +47,8 @@ export function ProductsMenu() {
             const cell = (
               <Cell
                 iconLeft={<Icon size={20} />}
-                subtitle={p.description[lang]}
+                iconRight={p.path ? <IconExternalLink size={16} /> : undefined}
+                subtitle={p.path ? p.description[lang] : <span className={styles.soon}>{p.description[lang]}</span>}
                 badgeRight={p.path ? undefined : <Badge size="tiny">{t.products.soon}</Badge>}
                 aria-disabled={p.path ? undefined : true}
                 className={p.path ? undefined : styles.soon}
@@ -56,7 +57,7 @@ export function ProductsMenu() {
               </Cell>
             );
             return p.path ? (
-              <Link key={p.key} href={href(lang, p.path)} className={styles.menuLink} onClick={() => setOpen(false)}>
+              <Link key={p.key} href={href(lang, p.path)} target="_blank" rel="noopener" className={styles.menuLink} onClick={() => setOpen(false)}>
                 {cell}
               </Link>
             ) : (
