@@ -31,8 +31,12 @@ export function Logo({ title = 'Ladom UI' }: { title?: string }) {
       <g className={styles.key} transform={`translate(177.59 -65.3) scale(${88 / (88 + DEPTH)})`}>
         <g className={styles.keyPop}>
           {/* The side: the key's outline swept down DEPTH units; each step hides the one above. */}
+          {/* Pressed, every step moves down by its share of the press, so the side gets shallower while
+              its bottom stays on the line. */}
           {Array.from({ length: DEPTH }, (_, i) => (
-            <path key={i} className={styles.keySide} d={KEY} transform={`translate(0 ${i + 1})`} vectorEffect="non-scaling-stroke" />
+            <g key={i} className={styles.keyStep} style={{ '--step': 1 - (i + 1) / DEPTH } as React.CSSProperties}>
+              <path className={styles.keySide} d={KEY} transform={`translate(0 ${i + 1})`} vectorEffect="non-scaling-stroke" />
+            </g>
           ))}
           {/* The face: a button that is pressed into the side on hover, with a shine passing over it. */}
           <g className={styles.keyFace}>

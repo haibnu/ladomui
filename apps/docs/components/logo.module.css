@@ -47,17 +47,31 @@
 
 /* Hover: the UI key is a button. It is pressed down into its side, the face darkens a little and a
    shine passes over it once. */
-.keyFace {
+.logo {
+  --logo-press: 0px;
+}
+
+.logo:hover,
+:global(a:hover) > .logo {
+  --logo-press: 7px;
+}
+
+.keyFace,
+.keyStep {
   transition: translate 140ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+/* The face slides down by the press; each side step by its share, so the side gets shallower. */
+.keyFace {
+  translate: 0 var(--logo-press);
+}
+
+.keyStep {
+  translate: 0 calc(var(--logo-press) * var(--step));
 }
 
 .keyTop {
   transition: fill 140ms ease;
-}
-
-.logo:hover .keyFace,
-:global(a:hover) > .logo .keyFace {
-  translate: 0 9px;
 }
 
 .logo:hover .keyTop,
@@ -98,6 +112,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .keyFace,
+  .keyStep,
   .keyTop {
     transition: none;
   }
