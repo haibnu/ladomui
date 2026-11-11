@@ -1,9 +1,15 @@
-/* ColorInput: the Input box with a color swatch and "#" as Leading Text. The swatch is as tall as
-   the text line (24px medium, 16px small); with presets it opens a Popover of swatches. The
+/* ColorInput: the Input box with a round color swatch and "#" as Leading Text. The swatch is as
+   tall as the text line (24px medium, 16px small) and sits as far from the box's start edge as
+   from its top and bottom; with presets it opens a Popover of round swatches. The
    browser's color input sits invisibly over a swatch so a press opens its picker. */
 
 .box {
   position: relative;
+}
+
+/* The swatch is a circle, so the box starts closer to it than to text (both sizes keep 8px). */
+.box[data-size] {
+  padding-inline-start: var(--layout-tiny);
 }
 
 /* While open, the Popover sits above the boxes that follow (there is no z-index token yet). */
@@ -33,10 +39,12 @@
   justify-content: center;
   padding: 0;
   border: none;
-  border-radius: var(--radius-checkbox);
+  border-radius: var(--radius-full);
   background: var(--_color);
-  box-shadow: inset 0 0 0 var(--border-width) var(--color-surface-level-4);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line);
   cursor: pointer;
+  /* The line is the color a few shades darker: a translucent black over it. */
+  --_line: var(--color-static-black-alpha-24);
   transition: box-shadow var(--motion-fade-default);
 }
 
@@ -60,7 +68,7 @@
 .swatch:has(.native:focus-visible),
 .preset:has(.native:focus-visible) {
   outline: none;
-  box-shadow: inset 0 0 0 var(--border-width) var(--color-surface-level-4), var(--shadow-focus-primary);
+  box-shadow: inset 0 0 0 var(--border-width) var(--_line), var(--shadow-focus-primary);
 }
 
 .native {
@@ -94,12 +102,13 @@
 .preset[aria-pressed='true'],
 .preset[data-selected] {
   box-shadow:
-    inset 0 0 0 var(--border-width) var(--color-surface-level-4),
+    inset 0 0 0 var(--border-width) var(--_line),
     0 0 0 calc(var(--border-width) * 2) var(--color-surface-level-1),
     0 0 0 calc(var(--border-width) * 4) var(--color-primary-line);
 }
 
 .preset[data-custom] {
+  --_line: var(--color-surface-level-4);
   color: var(--color-foreground-medium-emphasis);
   background: var(--color-surface-level-2);
 }
