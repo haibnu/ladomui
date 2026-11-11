@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { IconArrowRight, IconContacts, IconCurrencyTl, IconDateRange, IconTime } from '@ladom/icons';
 import { Avatar, Badge, Button, Cell } from '@ladom/ui';
-import { BarList, Card, Meter, PageHeader, StatCard } from '@ladom/ui/pro';
+import { BarList, Card, Meter, PageHeader, StatCard, type StatCardProps } from '@ladom/ui/pro';
 import { href } from '@/i18n';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
@@ -29,30 +29,50 @@ export function Dashboard() {
   const working = EMPLOYEES.filter((e) => checkIn(e) !== null).length;
   const expected = EMPLOYEES.filter((e) => e.status !== 'onLeave').length;
 
-  const stats = [
+  // Sample history for the charts: the last 12 months, or this week, ending at today's figures.
+  const fmtMoney = (n: number) => money(lang, n, 0);
+  const fmtNumber = (n: number) => new Intl.NumberFormat(lang === 'tr' ? 'tr-TR' : 'en-US').format(Math.round(n));
+  const stats: (StatCardProps & { key: string })[] = [
     {
-      icon: IconContacts,
+      key: 'headcount',
+      icon: <IconContacts />,
       label: d.headcount,
-      value: String(EMPLOYEES.length),
-      note: d.headcountNote(probation.length),
+      value: EMPLOYEES.length,
+      delta: { value: '+2', direction: 'up', label: d.vsLastMonth },
+      data: [11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 14, EMPLOYEES.length],
+      chart: 'line',
+      labels: [...d.months],
     },
     {
-      icon: IconTime,
+      key: 'onLeave',
+      icon: <IconTime />,
       label: d.onLeave,
-      value: String(onLeave.length),
+      value: onLeave.length,
       note: d.onLeaveNote,
+      data: [1, 3, onLeave.length, 4, 2, 0, 0],
+      chart: 'bars',
+      tone: 'warning',
+      labels: [...d.days],
     },
     {
-      icon: IconDateRange,
+      key: 'pending',
+      icon: <IconDateRange />,
       label: d.pending,
-      value: String(pending.length),
-      note: d.pendingNote,
+      value: pending.length,
+      delta: { value: '+1', direction: 'up', tone: 'neutral', label: d.vsLastWeek },
+      data: [2, 3, 1, 3, 2, 3, pending.length],
+      chart: 'step',
+      labels: [...d.days],
     },
     {
-      icon: IconCurrencyTl,
+      key: 'payroll',
+      icon: <IconCurrencyTl />,
       label: d.payroll,
-      value: money(lang, cost, 0),
-      note: d.payrollNote,
+      value: cost,
+      format: fmtMoney,
+      delta: { value: '+4.1%', direction: 'up', tone: 'neutral', label: d.vsLastMonth },
+      data: [1.71, 1.74, 1.78, 1.79, 1.83, 1.84, 1.86, 1.88, 1.9, 1.93, 1.96, cost / 1e6].map((m) => Math.round(m * 1e6)),
+      labels: [...d.months],
     },
   ];
 
@@ -67,8 +87,8 @@ export function Dashboard() {
       <PageHeader className={styles.pageHeader} title={d.title} subtitle={d.subtitle} />
       <div className={styles.stats}>
         {stats.map((s) => {
-          const Icon = s.icon;
-          return <StatCard key={s.label} icon={<Icon />} label={s.label} value={s.value} note={s.note} />;
+          const { key, ...props } = s;
+          return <StatCard key={key} format={props.format ?? fmtNumber} hover {...props} />;
         })}
       </div>
       <div className={styles.columns}>
