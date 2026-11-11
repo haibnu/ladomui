@@ -57,7 +57,14 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   cell: [ROLES, first()],
   checkbox: [ROLES, first()],
   chips: [ROLES, first()],
-  'color-input': [first('2026-11-11')],
+  'color-input': [
+    {
+      date: '2026-11-11',
+      en: 'The swatches are round and lined in a darker shade of their color, the box starts closer to the swatch, and the code shows in capitals.',
+      tr: 'Renk kutucukları yuvarlak ve kendi renklerinin koyu bir tonuyla çiziliyor; kutu kutucuğa daha yakın başlıyor, kod büyük harfle yazılıyor.',
+    },
+    first('2026-11-11'),
+  ],
   'currency-input': [
     {
       date: '2026-11-10',

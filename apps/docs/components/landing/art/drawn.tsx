@@ -305,7 +305,7 @@ const ColorInput = () => (
       </g>
     </Box>
     <g className="a-tap">
-      <Box x={-94} y={-15} w={30} d={30} h={8} z={14} r={6} top={DARK} />
+      <Box x={-96} y={-15} w={30} d={30} h={8} z={14} r={15} top={DARK} />
     </g>
   </Art>
 );

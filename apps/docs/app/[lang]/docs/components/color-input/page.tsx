@@ -12,9 +12,9 @@ const COPY = {
   en: {
     description: 'A color field: a swatch that opens a color picker, next to the hex code.',
     look: 'Look',
-    lookText: 'The Input box in Medium and Small. A swatch as tall as the text line (24px in Medium, 16px in Small) and a “#” as Leading Text come before the hex code. Without presets the swatch opens the browser’s color picker; with presets it opens a Popover of swatches, the chosen one ringed in primary, and a last “+” swatch that opens the picker. Default, focus, error and disabled follow Input. There is no Figma drawing yet.',
+    lookText: 'The Input box in Medium and Small. A round swatch, lined in a darker shade of its own color, as tall as the text line (24px in Medium, 16px in Small) and a “#” as Leading Text come before the hex code; the box starts 8px from the swatch, as far as above and below it. Without presets the swatch opens the browser’s color picker; with presets it opens a Popover of swatches, the chosen one ringed in primary, and a last “+” swatch that opens the picker. Default, focus, error and disabled follow Input. There is no Figma drawing yet.',
     usage: 'Usage',
-    usageText: 'value is a color as “#rrggbb”. The field takes the code with or without “#”, in upper or lower case. Six digits apply as they are typed; three digits (f60) apply on blur or Enter and become #ff6600. onValueChange is called only with a valid, lower-case “#rrggbb”; a code that is not valid goes back to the last color on blur.',
+    usageText: 'value is a color as “#rrggbb”. The field takes the code with or without “#”, in upper or lower case, and shows it in capitals (4F46E5). Six digits apply as they are typed; three digits (f60) apply on blur or Enter and become #ff6600. onValueChange is called only with a valid, lower-case “#rrggbb”; a code that is not valid goes back to the last color on blur.',
     presets: 'Presets',
     presetsText: 'presets lists the colors offered under the swatch. Picking one closes the Popover; the “+” swatch opens the browser’s picker for any other color.',
     normalize: 'normalizeHex',
@@ -44,9 +44,9 @@ const COPY = {
   tr: {
     description: 'Bir renk alanı: renk seçiciyi açan bir renk kutucuğu ve yanında hex kodu.',
     look: 'Görünüm',
-    lookText: 'Medium ve Small Input kutusu. Hex kodunun önünde metin satırı yüksekliğinde bir renk kutucuğu (Medium’da 24px, Small’da 16px) ve Leading Text olarak bir “#” durur. Hazır renk yoksa kutucuk tarayıcının renk seçicisini açar; hazır renk varsa bir Popover açar: seçili olan primary bir halkayla çevrili renk kutucukları ve en sonda seçiciyi açan bir “+” kutucuğu. Default, focus, hata ve devre dışı Input’u izler. Henüz Figma çizimi yok.',
+    lookText: 'Medium ve Small Input kutusu. Hex kodunun önünde metin satırı yüksekliğinde, kendi renginin koyu bir tonuyla çizilmiş yuvarlak bir renk kutucuğu (Medium’da 24px, Small’da 16px) ve Leading Text olarak bir “#” durur; kutu, kutucuğun alt ve üstündeki gibi soldan da 8px boşluk bırakır. Hazır renk yoksa kutucuk tarayıcının renk seçicisini açar; hazır renk varsa bir Popover açar: seçili olan primary bir halkayla çevrili renk kutucukları ve en sonda seçiciyi açan bir “+” kutucuğu. Default, focus, hata ve devre dışı Input’u izler. Henüz Figma çizimi yok.',
     usage: 'Kullanım',
-    usageText: 'value “#rrggbb” biçiminde bir renktir. Alan kodu “#” ile ya da onsuz, büyük ya da küçük harfle alır. Altı basamak yazılırken uygulanır; üç basamak (f60) alandan çıkınca ya da Enter’la uygulanır ve #ff6600 olur. onValueChange yalnızca geçerli, küçük harfli bir “#rrggbb” ile çağrılır; geçersiz bir kod alandan çıkınca son renge döner.',
+    usageText: 'value “#rrggbb” biçiminde bir renktir. Alan kodu “#” ile ya da onsuz, büyük ya da küçük harfle alır ve büyük harfle gösterir (4F46E5). Altı basamak yazılırken uygulanır; üç basamak (f60) alandan çıkınca ya da Enter’la uygulanır ve #ff6600 olur. onValueChange yalnızca geçerli, küçük harfli bir “#rrggbb” ile çağrılır; geçersiz bir kod alandan çıkınca son renge döner.',
     presets: 'Hazır renkler',
     presetsText: 'presets, kutucuğun altında sunulan renkleri verir. Birini seçmek Popover’ı kapatır; “+” kutucuğu başka bir renk için tarayıcının seçicisini açar.',
     normalize: 'normalizeHex',
