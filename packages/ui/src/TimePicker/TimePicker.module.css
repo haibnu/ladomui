@@ -1,5 +1,5 @@
-/* Time Picker, from Figma Components / Time Picker (6:1395): scrolling columns of 24px items,
-   seven tall, split by surface/level-3 lines, in a panel with the form level 1 shadow. */
+/* Time Picker, from Figma Components / Time Picker (6:1395): columns of 24px items, seven
+   tall, scrolling in a ScrollArea, split by surface/level-3 lines, in a panel with the form level 1 shadow. */
 
 .picker {
   display: inline-flex;
@@ -10,16 +10,16 @@
 }
 
 .column {
-  position: relative;
+  max-block-size: calc(7 * var(--line-height-base) + 2 * var(--space-tiny));
+}
+
+/* The ScrollArea viewport: the listbox itself. */
+.list {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  max-block-size: calc(7 * var(--line-height-base) + 2 * var(--space-tiny));
   padding: var(--space-tiny) var(--space-small);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-surface-level-4) var(--color-surface-level-3);
   outline: none;
 }
 
@@ -27,7 +27,7 @@
   border-inline-start: var(--border-width) solid var(--color-surface-level-3);
 }
 
-.column:focus-visible {
+.list:focus-visible {
   border-radius: var(--radius-form-element-small);
   box-shadow: inset var(--shadow-focus-primary);
 }

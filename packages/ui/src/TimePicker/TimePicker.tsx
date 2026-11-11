@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useId, useRef, useState, type HTMLAttributes, type KeyboardEvent } from 'react';
+import { ScrollArea } from '../ScrollArea/ScrollArea';
 import styles from './TimePicker.module.css';
 
 // Figma: Components / Time Picker (node 6:1395) with .timepicker item (6:1421): hour, minute and
@@ -49,14 +50,17 @@ function Column({ prefix, unit, values, selected, label, disabled, onPick }: { p
   };
 
   return (
-    <div
-      ref={list}
-      role="listbox"
-      tabIndex={0}
-      aria-label={label}
-      aria-activedescendant={selected != null ? id(selected) : undefined}
+    <ScrollArea
       className={styles.column}
-      onKeyDown={onKeyDown}
+      viewportRef={list}
+      viewportProps={{
+        role: 'listbox',
+        tabIndex: 0,
+        'aria-label': label,
+        'aria-activedescendant': selected != null ? id(selected) : undefined,
+        className: styles.list,
+        onKeyDown,
+      }}
     >
       {values.map((v) => (
         <div
@@ -72,7 +76,7 @@ function Column({ prefix, unit, values, selected, label, disabled, onPick }: { p
           {pad(v)}
         </div>
       ))}
-    </div>
+    </ScrollArea>
   );
 }
 

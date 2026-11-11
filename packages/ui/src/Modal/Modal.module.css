@@ -140,16 +140,19 @@
   color: var(--color-foreground-medium-emphasis);
 }
 
+/* The body is a ScrollArea; its viewport (.bodyContent) holds the padding. */
 .body {
   flex: 1;
-  overflow: auto;
-  padding: var(--_bleed) var(--space-modal);
   font: var(--text-content-paragraphy-regular);
   color: var(--color-foreground-medium-emphasis);
 }
 
+.bodyContent {
+  padding: var(--_bleed) var(--space-modal);
+}
+
 /* Without a footer the body keeps the bottom padding the footer would add. */
-.body:last-child {
+.body:last-child > .bodyContent {
   padding-block-end: var(--space-modal);
 }
 
