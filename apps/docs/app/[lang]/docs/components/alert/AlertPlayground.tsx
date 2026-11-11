@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const TONES: AlertTone[] = ['default', 'info', 'success', 'error', 'warning'];
 const FIGMA_STYLE: Record<AlertTone, string> = { default: 'Default', info: 'Information', success: 'Success', error: 'Error', warning: 'Warning' };
@@ -78,6 +79,7 @@ export function AlertPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />
         <ControlSelect label={c.direction} value={direction} options={['vertical', 'horizontal'] as const} onChange={setDirection} />
         <ControlCheck label={c.description} checked={description} onChange={setDescription} />

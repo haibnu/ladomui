@@ -13,14 +13,14 @@ export type NavSection = { title: string; items: NavItem[] };
 const PLANNED_COMPONENTS = [
   'Avatar', 'Badge', 'Brand', 'Button', 'Checkbox', 'Chips', 'Hint', 'Input', 'Label', 'Loader', 'Radio', 'Switch',
   'Alert', 'Breadcrumb', 'Cell', 'Color Input', 'Currency Input', 'Date Picker', 'Drawer', 'Dropdown', 'Empty State', 'GSM Input', 'Item Selector', 'Modal', 'Nav Menu', 'Number Input',
-  'Pagination', 'Popover', 'Segment', 'Selectbox', 'Stepper', 'Tab', 'Table', 'Textarea', 'Time Picker', 'Toast', 'Tooltip', 'Uploader',
+  'Pagination', 'Popover', 'Scroll Area', 'Segment', 'Selectbox', 'Stepper', 'Tab', 'Table', 'Textarea', 'Time Picker', 'Toast', 'Tooltip', 'Uploader',
 ];
 // Separate components that the nav lists under a parent component.
 const SUBCOMPONENTS: Record<string, string[]> = { Input: ['Number Input', 'Currency Input', 'GSM Input', 'Color Input'] };
 const IS_SUBCOMPONENT = new Set(Object.values(SUBCOMPONENTS).flat());
 const PLANNED_MOLECULES = ['Accordion', 'App Sidebar', 'File Share', 'Navigation'];
 // Components that have a page, by their path segment.
-const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Color Input': 'color-input', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
+const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Color Input': 'color-input', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', 'Scroll Area': 'scroll-area', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
 const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', 'App Sidebar': 'app-sidebar', 'File Share': 'file-share', Navigation: 'navigation' };
 

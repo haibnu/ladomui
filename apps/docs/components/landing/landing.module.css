@@ -529,116 +529,6 @@ a.heroButton:focus-visible,
   max-inline-size: 760px;
 }
 
-.ctaGlow {
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-  inline-size: 268px;
-  aspect-ratio: 1;
-  translate: -50% -50%;
-  border-radius: 50%;
-  display: none;
-}
-
-/* The coins sit behind the frosted glass button; grab one and throw it (ThrowCoin). */
-.coin {
-  position: absolute;
-  z-index: 0;
-  inline-size: clamp(56px, 10vw, 104px);
-  /* Outline coins (art/coinOutline.ts); inverted in the dark theme like the other drawings. */
-  filter: var(--lp-art-filter);
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.coin:active {
-  cursor: grabbing;
-}
-
-.coinSpin {
-  display: block;
-  pointer-events: none;
-  animation: coinSpin 10.16s infinite;
-}
-
-.coin:nth-of-type(2) .coinSpin {
-  animation-delay: 1.1s;
-}
-
-.coinSpin svg {
-  display: block;
-  inline-size: 100%;
-}
-
-/* full turn + slight shrink, pause, turn back + grow, pause (spring with a small overshoot) */
-@keyframes coinSpin {
-  0% {
-    rotate: 0deg;
-    scale: 1.1;
-    animation-timing-function: linear(0, 0.21 6.8%, 0.46 13.6%, 0.68 20.8%, 0.84 27.8%, 0.94 34.8%, 1 41.6%, 1.023 48.4%, 1.028 55.4%, 1.018 69.3%, 1.008 80%, 1.002 90%, 1);
-  }
-  43.3% {
-    rotate: -360deg;
-    scale: 1;
-  }
-  50% {
-    rotate: -360deg;
-    scale: 1;
-    animation-timing-function: linear(0, 0.21 6.8%, 0.46 13.6%, 0.68 20.8%, 0.84 27.8%, 0.94 34.8%, 1 41.6%, 1.023 48.4%, 1.028 55.4%, 1.018 69.3%, 1.008 80%, 1.002 90%, 1);
-  }
-  93.3% {
-    rotate: 0deg;
-    scale: 1.1;
-  }
-  100% {
-    rotate: 0deg;
-    scale: 1.1;
-  }
-}
-
-.throwHint {
-  position: absolute;
-  inset-block-start: 100%;
-  inset-inline-start: 60%;
-  white-space: nowrap;
-  font: 400 16px/24px var(--lp-text);
-  letter-spacing: -0.01em;
-  color: var(--lp-ink-2);
-  pointer-events: none;
-  opacity: 0;
-  animation: hintIn 400ms 2.4s forwards;
-  transition: opacity 300ms;
-}
-
-.throwHint[data-gone] {
-  animation: none;
-  opacity: 0 !important;
-}
-
-@keyframes hintIn {
-  to {
-    opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .coinSpin {
-    animation: none;
-  }
-}
-
-.coinTop {
-  inset-block-start: -18%;
-  inset-inline-end: 6%;
-}
-
-.coinBottom {
-  inset-block-end: -22%;
-  inset-inline-start: 4%;
-}
-
 /* The call-to-action key: a flat top and a solid side, like the isometric illustrations. */
 .glass {
   position: relative;
@@ -875,14 +765,6 @@ a.heroButton:focus-visible,
     padding-inline: 0;
   }
 
-  .coinTop {
-    inset-block-start: -40%;
-  }
-
-  .coinBottom {
-    inset-block-end: -45%;
-  }
-
   .prompts {
     grid-template-columns: 1fr;
   }
@@ -964,6 +846,8 @@ a.heroButton:focus-visible,
 .art :global(.a-line3) { animation-delay: 0.8s; }
 .art :global(.a-hour) { transform-origin: center bottom; animation-name: spin; animation-duration: 12s; animation-timing-function: linear; }
 .art :global(.a-minute) { transform-origin: center bottom; animation-name: spin; animation-duration: 3s; animation-timing-function: linear; }
+.art :global(.a-scrollrows) { animation-name: scrollRows; animation-duration: 4.8s; animation-timing-function: ease-in-out; }
+.art :global(.a-scrollthumb) { animation-name: scrollThumb; animation-duration: 4.8s; animation-timing-function: ease-in-out; }
 .art :global(.a-toast) { animation-name: toast; animation-duration: 4s; }
 .art :global(.a-file) { animation-name: file; animation-duration: 4s; animation-timing-function: cubic-bezier(0.3, 1.3, 0.5, 1); }
 .art :global(.a-progress) { transform-origin: left center; animation-name: progress; animation-duration: 4s; }
@@ -1024,6 +908,8 @@ a.heroButton:focus-visible,
 @keyframes drop { 0%, 8% { transform: translateY(-36px); opacity: 0; } 22%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translateY(-36px); opacity: 0; } }
 @keyframes pop { 0%, 15% { transform: scale(0); } 30%, 85% { transform: none; } 95%, 100% { transform: scale(0); } }
 @keyframes remove { 0%, 25%, 80%, 100% { transform: none; opacity: 1; } 38%, 65% { transform: scale(0.2); opacity: 0; } }
+@keyframes scrollRows { 0%, 15% { transform: none; } 45%, 65% { transform: translateY(-76px); } 95%, 100% { transform: none; } }
+@keyframes scrollThumb { 0%, 15% { transform: none; } 45%, 65% { transform: translateY(92px); } 95%, 100% { transform: none; } }
 @keyframes hop { 0%, 18% { transform: none; } 25%, 43% { transform: translate(41.6px, -24px); } 50%, 68% { transform: translate(62.4px, -12px); } 75%, 93% { transform: translate(20.8px, 12px); } 100% { transform: none; } }
 @keyframes unfold { 0%, 15% { transform: translate(-14px, -8px); opacity: 0; } 30%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translate(-14px, -8px); opacity: 0; } }
 @keyframes float { 0%, 100% { transform: none; } 50% { transform: translateY(-12px); } }

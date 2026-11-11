@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Type = 'basic' | 'inner' | 'multiselect' | 'chip';
 type State = 'default' | 'hover' | 'focus' | 'active';
@@ -104,6 +105,7 @@ export function SelectboxPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect
           label={c.type}
           value={type}

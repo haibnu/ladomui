@@ -3,6 +3,7 @@
 import { useMemo, useState, type ReactNode, type TableHTMLAttributes } from 'react';
 import { IconArrowBottom, IconArrowTop } from '@ladom/icons';
 import { Checkbox } from '../Checkbox/Checkbox';
+import { ScrollArea } from '../ScrollArea/ScrollArea';
 import styles from './Table.module.css';
 
 // Figma: Components / Table (4214:61) with .Table Header Cell (4214:21: 🎛 Type, ↕ Sort),
@@ -90,7 +91,7 @@ export function Table<T>({
   const some = !all && keys.some((k) => selected.includes(k));
 
   return (
-    <div className={styles.frame}>
+    <ScrollArea orientation="horizontal" className={styles.frame}>
       <table className={[styles.table, className].filter(Boolean).join(' ')} {...rest}>
         {caption != null && <caption className={styles.caption}>{caption}</caption>}
         <colgroup>
@@ -162,6 +163,6 @@ export function Table<T>({
           })}
         </tbody>
       </table>
-    </div>
+    </ScrollArea>
   );
 }

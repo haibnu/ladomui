@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { size: 'Size', locale: 'Locale', select: 'Currency picker', symbol: 'Symbol', error: 'Error', disabled: 'Disabled', figma: 'Variant', code: 'Code', label: 'Amount', errorText: 'Enter an amount above zero.', value: 'Value', currency: 'Currency' },
@@ -50,6 +51,7 @@ export function CurrencyInputPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
         <ControlSelect label={c.locale} value={locale} options={LOCALES} onChange={setLocale} />
         <ControlCheck label={c.select} checked={select} onChange={setSelect} />

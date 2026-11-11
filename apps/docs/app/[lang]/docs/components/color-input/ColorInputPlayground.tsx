@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { size: 'Size', presets: 'Presets', error: 'Error', disabled: 'Disabled', figma: 'Variant', code: 'Code', label: 'Brand color', errorText: 'Pick a darker color.', value: 'Value', picker: 'Pick a color', custom: 'Custom color', colors: 'Colors' },
@@ -45,6 +46,7 @@ export function ColorInputPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
         <ControlCheck label={c.presets} checked={presets} onChange={setPresets} />
         <ControlCheck label={c.error} checked={error} onChange={setError} />

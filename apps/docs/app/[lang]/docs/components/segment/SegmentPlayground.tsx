@@ -8,6 +8,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type ItemType = 'default' | 'left-icon' | 'right-icon' | 'badge' | 'info';
 const FIGMA_ITEM: Record<ItemType, string> = { default: 'Default', 'left-icon': 'Left Icon', 'right-icon': 'Right Icon', badge: 'Badge', info: 'Info' };
@@ -50,6 +51,7 @@ export function SegmentPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
         <ControlSelect label={c.count} value={String(count)} options={['2', '3']} onChange={(v) => setCount(Number(v))} />
         <ControlSelect label={c.item} value={item} options={Object.keys(FIGMA_ITEM) as ItemType[]} onChange={setItem} />

@@ -7,6 +7,7 @@ import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const FOLDERS = ['/Reports/2026', '/Reports/2026/Q3', '/Invoices', '/Shared/Design'];
 const COPY = {
@@ -70,6 +71,7 @@ export function ItemSelectorPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlCheck label={c.selected} checked={Boolean(value)} onChange={(v) => setValue(v ? FOLDERS[0]! : '')} />
         {(['hover', 'disabled', 'error', 'label', 'hint', 'spacing'] as const).map((k) => (
           <ControlCheck key={k} label={c[k]} checked={flags[k]} onChange={(v) => set(k, v)} />

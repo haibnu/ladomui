@@ -3,7 +3,7 @@
    between them. Hover is surface/level-2, selected primary-soft. */
 
 .frame {
-  overflow-x: auto;
+  /* A horizontal ScrollArea: wide tables scroll inside the card. */
   border-radius: var(--radius-card);
   background: var(--color-surface-level-1);
   /* The card's line is an outline, painted over the cells: an inset shadow would sit under the

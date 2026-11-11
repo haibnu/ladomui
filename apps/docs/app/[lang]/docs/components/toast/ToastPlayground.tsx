@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const TONES: ToastTone[] = ['default', 'info', 'success', 'error', 'warning'];
 const FIGMA_STYLE: Record<ToastTone, string> = { default: 'Default', info: 'Information', success: 'Success', error: 'Error', warning: 'Warning' };
@@ -56,6 +57,7 @@ export function ToastPlayground() {
           <ShowButton options={options} label={c.show} />
         </div>
         <div className={styles.controls}>
+          <ThemeRow />
           <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />
           <ControlSelect label={c.device} value={device} options={['desktop', 'mobile'] as const} onChange={setDevice} />
           <ControlCheck label={c.description} checked={description} onChange={setDescription} />

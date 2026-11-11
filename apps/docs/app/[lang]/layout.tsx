@@ -5,6 +5,7 @@ import { Hanken_Grotesk } from 'next/font/google';
 import '@ladom/tokens/index.css';
 import '../globals.css';
 import { themeInitScript } from '@/components/ThemeToggle';
+import { customizeInitScript } from '@/components/customize/theme';
 import { getDictionary, isLocale, locales } from '@/i18n';
 
 // The tokens read the loaded family from --font-hanken-grotesk, so the class must sit on <html>.
@@ -38,6 +39,7 @@ export default async function RootLayout({ children, params }: { children: React
     <html lang={lang} className={hankenGrotesk.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: customizeInitScript }} />
       </head>
       <body>{children}</body>
     </html>

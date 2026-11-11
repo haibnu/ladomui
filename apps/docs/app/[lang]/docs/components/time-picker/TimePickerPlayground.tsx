@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { seconds: 'Seconds', step: 'Step', office: 'Office hours only (09–18)', figma: 'Figma variant', code: 'Code', chosen: 'Chosen', none: 'nothing yet', labels: { hours: 'Hours', minutes: 'Minutes', seconds: 'Seconds' } },
@@ -43,6 +44,7 @@ export function TimePickerPlayground() {
         </p>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.step} value={String(step)} options={['1', '5', '15']} onChange={(v) => setStep(Number(v))} />
         <ControlCheck label={c.seconds} checked={seconds} onChange={setSeconds} />
         <ControlCheck label={c.office} checked={office} onChange={setOffice} />

@@ -7,6 +7,7 @@ import { ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { count: 'Steps', figma: 'Figma variant', code: 'Code', back: 'Back', next: 'Next', steps: ['Account', 'Profile', 'Team', 'Billing', 'Review', 'Done'] },
@@ -39,6 +40,7 @@ export function StepperPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.count} value={String(count)} options={[2, 3, 4, 5, 6].map(String)} onChange={(v) => setCount(Number(v))} />
       </div>
       <div className={styles.output}>

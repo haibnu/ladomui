@@ -61,3 +61,4 @@ Each component is checked against a Figma screenshot before commit. Small commit
 - ColorInput (Input + Popover) has no Figma drawing yet; draw it, compare, then remove `color-input` from `FIGMA_NOT_READY` in `apps/docs/components/readiness.ts`.
 - Brand logos (Brands / *) and flags on the Icons page are not Tabler icons; where they live (icons package or assets) is undecided.
 - DNS for ui.ladom.co: a CNAME on Cloudflare to Vercel (see Decisions).
+- Form Spacing for every form control: Checkbox and Radio have `spacing` (Figma "Form Spacing"), Switch and the other form controls do not, so stacked Switches touch unless the page adds a gap. Draw a Form Spacing variant for Switch (and any other form control without one) in Figma first, then add `spacing` in code to match Checkbox. Until then, stack them in a wrapper with `--space-small` gap.
