@@ -84,7 +84,8 @@ const en = {
   },
   landing: {
     eyebrow: 'AI-native UI library',
-    title: ['Ladom', 'Design System', 'for AI-built products'],
+    // Three lines at most: "Ladom UI" and the name on one line, then the script lines.
+    title: { lead: 'Ladom', name: 'Design System', script: ['for AI-built products'] },
     lead: 'React components, tokens and icons that Claude knows by heart. Describe the screen, get consistent, production-ready UI.',
     figma: 'Preview in Figma',
     free: 'Free',
@@ -115,8 +116,16 @@ const en = {
     ctaButton: 'Start building',
     docsLinks: ['Introduction', 'Installation', 'Components', 'License'],
     products: ['Ladom UI Figma', 'Ladom UI React', 'Ladom UI Mobile'],
-    rights: 'Ladom design system',
-    founded: 'Founded in 2024',
+    installTitle: 'Install',
+    installCommand: 'One command in your React project',
+    installAi: 'Or tell your AI tool',
+    installTools: [
+      { tool: 'Claude Code', prompt: 'Set up Ladom UI in this project: run npx ladom-ui init --yes and npx ladom-ui skill. Then build my screens with Ladom UI components.' },
+      { tool: 'ChatGPT / Codex', prompt: 'Install Ladom UI in this React project with npx ladom-ui init --yes. Read ui.ladom.co/en/docs and build every screen with its components and tokens.' },
+      { tool: 'Cursor and others', prompt: 'Run npx ladom-ui init --yes, add the components you need with npx ladom-ui add, and follow ui.ladom.co/en/docs. Use Ladom UI tokens; do not invent styles.' },
+    ],
+    copy: 'Copy',
+    copied: 'Copied',
     throwIt: 'Throw it',
   },
 };
@@ -199,7 +208,7 @@ const tr: Dictionary = {
   },
   landing: {
     eyebrow: 'Yapay zekâ için UI kütüphanesi',
-    title: ['Ladom', 'Tasarım Sistemi', 'yapay zekâyla kurulan ürünler için'],
+    title: { lead: 'Ladom', name: 'Tasarım Sistemi', script: ['yapay zekâyla kurulan', 'ürünler için'] },
     lead: 'Claude’un ezbere bildiği React bileşenleri, tokenlar ve ikonlar. Ekranı tarif edin, tutarlı ve yayına hazır arayüz alın.',
     figma: 'Figma’da incele',
     free: 'Ücretsiz',
@@ -230,8 +239,16 @@ const tr: Dictionary = {
     ctaButton: 'Kurmaya başla',
     docsLinks: ['Giriş', 'Kurulum', 'Bileşenler', 'Lisans'],
     products: ['Ladom UI Figma', 'Ladom UI React', 'Ladom UI Mobil'],
-    rights: 'Ladom tasarım sistemi',
-    founded: '2024’te kuruldu',
+    installTitle: 'Kurulum',
+    installCommand: 'React projenizde tek komut',
+    installAi: 'Ya da yapay zekâ aracınıza söyleyin',
+    installTools: [
+      { tool: 'Claude Code', prompt: 'Bu projeye Ladom UI kur: npx ladom-ui init --yes ve npx ladom-ui skill komutlarını çalıştır. Sonra ekranlarımı Ladom UI bileşenleriyle yap.' },
+      { tool: 'ChatGPT / Codex', prompt: 'Bu React projesine npx ladom-ui init --yes ile Ladom UI kur. ui.ladom.co/tr/docs sayfalarını oku ve her ekranı onun bileşenleri ve tokenlarıyla yap.' },
+      { tool: 'Cursor ve diğerleri', prompt: 'npx ladom-ui init --yes çalıştır, gereken bileşenleri npx ladom-ui add ile ekle ve ui.ladom.co/tr/docs sayfalarına uy. Ladom UI tokenlarını kullan, stil uydurma.' },
+    ],
+    copy: 'Kopyala',
+    copied: 'Kopyalandı',
     throwIt: 'Fırlat',
   },
 };

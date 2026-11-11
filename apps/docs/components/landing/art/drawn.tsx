@@ -248,7 +248,12 @@ const GsmInput = () => (
       </g>
     </Box>
     <g className="a-tap">
-      <Box x={-112} y={-14} w={36} d={28} h={6} z={14} r={3} top="#E92434" />
+      {/* The Turkish flag in the illustrations' black and white. */}
+      <Box x={-112} y={-14} w={36} d={28} h={6} z={14} r={3} top={INK} side={DARK}>
+        <circle cx={14} cy={14} r={7} fill="#fff" />
+        <circle cx={15.8} cy={14} r={5.6} fill={INK} />
+        <path d="M23.5 11.2l.66 2.04h2.14l-1.73 1.26.66 2.04-1.73-1.26-1.73 1.26.66-2.04-1.73-1.26h2.14z" fill="#fff" />
+      </Box>
     </g>
   </Art>
 );
