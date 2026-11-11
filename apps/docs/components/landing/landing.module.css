@@ -10,6 +10,7 @@
   --lp-line: #f3f5f4;
   --lp-tile: #efeeec;
   --lp-accent: linear-gradient(90deg, #d9480f, rgb(28 26 9 / 0.56));
+  --lp-highlight: #d9480f;
   --lp-cta: rgb(28 26 9 / 0.88);
   --lp-badge: #3c3c3c;
   --lp-art-filter: none;
@@ -39,6 +40,7 @@
   --lp-line: rgb(250 246 236 / 0.1);
   --lp-tile: #2a2923;
   --lp-accent: linear-gradient(90deg, #ff8a4c, rgb(250 246 236 / 0.6));
+  --lp-highlight: #ff8a4c;
   --lp-cta: rgb(250 246 236 / 0.92);
   --lp-badge: #f3efe6;
   --lp-art-filter: invert(0.86) hue-rotate(180deg);
@@ -74,15 +76,18 @@
 
 /* The title is at most three lines (each line whole) and the L is exactly as tall as the title. Both
    follow the width of the text column, --tw, which is solved here so that the title column and the L
-   always share the row: title line sizes are 0.076 and 0.08 of --tw, the title is 1.2 line-heights
-   per line, and the L is 416/356 as wide as it is tall. --hero-lines is the number of script lines. */
+   always share the row. The longest display line is about 10.7em and the longest script line about
+   11.9em, so display lines are 0.09 and script lines 0.083 of --tw; every line is 1.2 line-heights and the L is 416/356 as wide
+   as it is tall. page.tsx sets the number of display and script lines. */
 .heroInner {
   --hero-gap: 48px;
-  --hero-ratio: calc(1.2 * (0.076 + 0.08 * var(--hero-lines, 2)) * 416 / 356);
+  --hero-d: var(--hero-display-lines, 1);
+  --hero-s: var(--hero-script-lines, 1);
+  --hero-ratio: calc(1.2 * (0.09 * var(--hero-d) + 0.083 * var(--hero-s)) * 416 / 356);
   --tw: calc((min(100cqi, 1142px) - 2 * var(--lp-gutter) - var(--hero-gap)) / (1 + var(--hero-ratio)));
-  --hero-display: min(72px, var(--tw) * 0.076);
-  --hero-script: min(68px, var(--tw) * 0.08);
-  --hero-title-h: calc(1.2 * (var(--hero-display) + var(--hero-lines, 2) * var(--hero-script)));
+  --hero-display: min(72px, var(--tw) * 0.09);
+  --hero-script: min(68px, var(--tw) * 0.083);
+  --hero-title-h: calc(1.2 * (var(--hero-d) * var(--hero-display) + var(--hero-s) * var(--hero-script)));
   display: grid;
   grid-template-columns: var(--tw) minmax(0, 1fr);
   gap: var(--hero-gap);
@@ -497,15 +502,16 @@ a.heroButton:focus-visible,
   max-inline-size: 1138px;
   margin: 0 auto;
   font: 800 clamp(40px, 6.4vw, 96px) / 1.2 var(--lp-display);
-  background: var(--lp-cta);
-  background-clip: text;
-  color: transparent;
+  color: var(--lp-cta);
 }
-
 .ctaTitle span {
   display: block;
-  background: var(--lp-accent);
-  background-clip: text;
+  /* Room below the line: without it the descenders of g and y were cut off at the line box. */
+  padding-block-end: 0.2em;
+  margin-block-end: -0.2em;
+  /* The orange of the "Free" labels. Plain color, not background-clip text, which cut off the
+     descenders of y and g at the heading's box. */
+  color: var(--lp-highlight);
 }
 
 .ctaStage {
@@ -532,7 +538,8 @@ a.heroButton:focus-visible,
   position: absolute;
   z-index: 0;
   inline-size: clamp(56px, 10vw, 104px);
-  filter: grayscale(1);
+  /* Outline coins (art/coinOutline.ts); inverted in the dark theme like the other drawings. */
+  filter: var(--lp-art-filter);
   cursor: grab;
   touch-action: none;
   user-select: none;

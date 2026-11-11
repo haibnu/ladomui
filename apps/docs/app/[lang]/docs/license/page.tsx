@@ -22,11 +22,11 @@ const list = (tier: string) =>
 
 const COPY = {
   en: {
-    description: 'Every Ladom UI component is free under the MIT License; the molecules are Pro, under the Ladom UI Pro License.',
+    description: 'The free components are under the MIT License; the Ladom UI Pro components are under the Ladom UI Pro License.',
     free: 'Free',
     freeText: 'The design tokens, the icons, the ladom-ui CLI and every component are MIT: use, change and share them freely, keeping the license line.',
     pro: 'Pro',
-    proText: 'The molecules need a license key and are under the Ladom UI Pro License:',
+    proText: 'The Ladom UI Pro components need a license key and are under the Ladom UI Pro License:',
     allowed: 'With a Pro key you may',
     allowedItems: [
       'install the Pro components into your projects with the CLI;',
@@ -51,11 +51,11 @@ const COPY = {
     summary: 'This page is a summary; the license texts decide.',
   },
   tr: {
-    description: 'Ladom UI’ın tüm bileşenleri MIT Lisansı altında ücretsizdir; moleküller Ladom UI Pro Lisansı altında Pro’dur.',
+    description: 'Ücretsiz bileşenler MIT Lisansı altındadır; Ladom UI Pro bileşenler Ladom UI Pro Lisansı altındadır.',
     free: 'Ücretsiz',
     freeText: 'Tasarım tokenları, ikonlar, ladom-ui CLI ve tüm bileşenler MIT’dir: lisans satırını koruyarak özgürce kullanın, değiştirin ve paylaşın.',
     pro: 'Pro',
-    proText: 'Moleküller bir lisans anahtarı ister ve Ladom UI Pro Lisansı altındadır:',
+    proText: 'Ladom UI Pro bileşenler bir lisans anahtarı ister ve Ladom UI Pro Lisansı altındadır:',
     allowed: 'Pro anahtarıyla',
     allowedItems: [
       'Pro bileşenleri CLI ile projelerinize kurabilirsiniz;',
