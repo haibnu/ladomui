@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { Avatar } from '@ladom/ui';
 import { BarList, Card, Meter } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck, ControlNumber, ControlSelect } from '@/components/docs/Controls';
@@ -39,6 +40,7 @@ const COPY = {
 
 const COUNTS = [6, 4, 3, 2, 1];
 const NEW = [2, 1, 0, 1, 0];
+const CODES = ['EN', 'SA', 'OP', 'PE', 'FI'];
 const TOTAL = COUNTS.reduce((a, b) => a + b, 0);
 
 export function BarListPlayground() {
@@ -52,7 +54,7 @@ export function BarListPlayground() {
   const meterLabel = useId();
 
   const pct = new Intl.NumberFormat(lang, { style: 'percent' });
-  const items = c.departments.map((label, i) => ({ key: label, label, value: COUNTS[i] ?? 0, display: percent ? pct.format((COUNTS[i] ?? 0) / TOTAL) : undefined, values: variant === 'row' ? [NEW[i]] : undefined }));
+  const items = c.departments.map((label, i) => ({ key: label, label, value: COUNTS[i] ?? 0, display: percent ? pct.format((COUNTS[i] ?? 0) / TOTAL) : undefined, values: variant === 'row' ? [NEW[i]] : undefined, leading: variant === 'row' ? <Avatar size="micro" name={CODES[i]} /> : undefined }));
 
   const row = variant === 'row';
   const code = `import { BarList${meter ? ', Meter' : ''}${row ? ', Card' : ''} } from '@ladom/ui/pro';\n\n${row ? `<Card title="${c.title}">\n` : ''}<BarList${row ? `\n  variant="row"\n  columns={['${c.columns.join("', '")}']}` : ''}\n  items={[\n    { label: '${c.departments[0]}', value: 6${percent ? ", display: '38%'" : ''}${row ? ', values: [2]' : ''} },\n    { label: '${c.departments[1]}', value: 4${percent ? ", display: '25%'" : ''}${row ? ', values: [1]' : ''} },\n    // …\n  ]}${fixedMax ? `\n  max={${TOTAL}}` : ''}\n/>${row ? '\n</Card>' : ''}${meter ? `\n\n<Meter value={${checkedIn}} max={${TOTAL}} aria-label="Checked in today" />` : ''}`;
