@@ -14,6 +14,7 @@ import {
   IconSetting,
   IconTime,
   IconLead,
+  IconReportChart,
   IconTransactions,
 } from '@ladom/icons';
 import { Avatar, Badge, Button, Input, ToastProvider } from '@ladom/ui';
@@ -31,6 +32,7 @@ const PAGES = [
   { key: 'leave', path: '/leave', icon: IconDateRange },
   { key: 'timesheet', path: '/timesheet', icon: IconTime },
   { key: 'payroll', path: '/payroll', icon: IconCurrencyTl },
+  { key: 'reports', path: '/reports', icon: IconReportChart },
 ] as const;
 
 const SOON = [IconAnalytics, IconLead, IconTransactions];
