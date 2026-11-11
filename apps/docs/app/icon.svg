@@ -1,23 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112">
-  <!-- Favicon: the keycap from components/Logo.tsx, flattened onto a dark surface
-       (a favicon cannot be translucent glass or read CSS variables). -->
-  <defs>
-    <linearGradient id="texture" x1="0" y1="0" x2="1" y2="0.35">
-      <stop offset="0" stop-color="rgb(240 218 191)" stop-opacity="0.41" />
-      <stop offset="0.12" stop-color="rgb(197 178 151)" stop-opacity="0.33" />
-      <stop offset="0.3" stop-color="rgb(87 77 53)" stop-opacity="0.21" />
-      <stop offset="0.4" stop-color="rgb(29 29 12)" stop-opacity="0.17" />
-    </linearGradient>
-    <linearGradient id="glow" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#fff" stop-opacity="0.4" />
-      <stop offset="0.45" stop-color="#fff" stop-opacity="0" />
-    </linearGradient>
-  </defs>
-  <g transform="translate(0 12)">
-    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" fill="#1a1711" />
-    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" fill="url(#texture)" />
-    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" fill="url(#glow)" />
-    <g transform="translate(24 16.57) scale(4.5714)" fill="#fff" fill-opacity="0.88">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 120 120">
+  <!-- Favicon: the UI key from components/Logo.tsx in the isometric line style of the site: a white
+       face over a solid grey side, outlined in ink (a favicon cannot read CSS variables). The side is
+       the key's outline swept down; each step hides the one above. -->
+  <g transform="translate(0 6)" stroke="#4d4d4d" stroke-width="5" stroke-linejoin="round">
+    <g fill="#ccc">
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 1)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 2)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 3)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 4)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 5)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 6)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 7)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 8)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 9)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 10)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 11)" />
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" transform="translate(0 12)" />
+    </g>
+    <path d="M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V4A4 4 0 0 1 4 0Z" fill="#fff" />
+    <g transform="translate(24 16.57) scale(4.5714)" fill="#1c1a09" stroke="none">
       <path d="M13.98 11.494c-1.348 0-2.441-1.07-2.441-2.391V0c1.348 0 2.441 1.071 2.441 2.391Z" />
       <path d="M4.804 11.679c-.924 0-1.748-.19-2.473-.57-.724-.381-1.297-.9-1.717-1.559C.205 8.882 0 8.126 0 7.282V0c1.348 0 2.441 1.071 2.441 2.391v4.737c0 .453.1.864.299 1.234.211.36.494.643.851.849.357.206.761.308 1.213.308.462 0 .866-.102 1.212-.308.358-.206.636-.489.835-.849.21-.37.315-.781.315-1.234V0c1.349 0 2.442 1.071 2.442 2.391v4.891c0 .844-.211 1.6-.63 2.268-.41.659-.977 1.178-1.701 1.559-.725.38-1.549.57-2.473.57Z" />
     </g>

@@ -14,7 +14,7 @@ export function HeroL({ svg }: { svg: string }) {
       data-round={round % 2 ? 'b' : 'a'}
       aria-hidden
       onClick={() => setRound((r) => r + 1)}
-      dangerouslySetInnerHTML={{ __html: svg }}
+      dangerouslySetInnerHTML={{ __html: svg.replace('<svg ', '<svg preserveAspectRatio="xMinYMid meet" ') }}
     />
   );
 }

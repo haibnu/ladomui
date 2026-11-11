@@ -242,19 +242,26 @@ a.heroButton:focus-visible,
   color: var(--lp-ink-2);
 }
 
-/* As tall as the title and level with it (HeroFit measures the title). */
+/* As tall as the whole text column (eyebrow to buttons) without changing it: the drawing is laid
+   over its grid cell, which stretches to the row, so it never sets the row's height. It may run past
+   the content box to the page gutter; HeroL sets preserveAspectRatio so it keeps to the left and
+   shrinks to fit that width when the screen is too narrow for the full height. */
 .heroArt {
+  position: relative;
   display: block;
-  /* Level with the title: below the eyebrow (14px at 1.4) and its 16px margin. */
-  margin-block-start: calc(14px * 1.4 + 16px);
+  align-self: stretch;
   filter: var(--lp-art-filter);
 }
 
 .heroArt svg {
-  /* The column width is fixed so the title does not reflow with the drawing. */
-  inline-size: auto;
-  block-size: var(--hero-title-h);
-  aspect-ratio: 416 / 356;
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  block-size: 100%;
+  /* From the cell's left edge to the page gutter on the right. */
+  inline-size: calc(
+    (100cqi + min(100cqi, 1142px)) / 2 - 2 * var(--lp-gutter) - var(--tw) - var(--hero-gap)
+  );
   /* The blocks fall in from above the drawing; let them show on the way. */
   overflow: visible;
 }
@@ -849,7 +856,10 @@ a.heroButton:focus-visible,
   }
 
   .heroArt svg {
+    position: static;
+    inline-size: auto;
     block-size: calc(var(--hero-title-h) * 0.8);
+    aspect-ratio: 416 / 356;
   }
 
   .strip {
