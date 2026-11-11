@@ -699,6 +699,40 @@ const PersonCell = () => (
   </Art>
 );
 
+// Delta: two raised pills, a rise and a fall, each an arrow and a value; the values swap now and then.
+const Delta = () => (
+  <Art>
+    <Shadow x={-130} y={-60} w={260} d={120} r={16} />
+    <Box x={-130} y={-60} w={260} d={120} h={10} r={16}>
+      <Box x={22} y={22} w={110} d={34} h={6} r={10} top={SIDE} side={DARK}>
+        <Label x={20} y={22} size={16}>
+          ↗
+        </Label>
+        <g className="a-num1">
+          <Label x={70} y={22} size={14}>
+            94.3%
+          </Label>
+        </g>
+        <g className="a-num2">
+          <Label x={70} y={22} size={14}>
+            96.1%
+          </Label>
+        </g>
+      </Box>
+      <Box x={22} y={68} w={110} d={34} h={4} r={10}>
+        <Label x={20} y={22} size={16}>
+          ↘
+        </Label>
+        <Label x={70} y={22} size={14}>
+          31.7%
+        </Label>
+      </Box>
+      <Bar x={150} y={36} w={84} h={8} />
+      <Bar x={150} y={82} w={60} h={8} />
+    </Box>
+  </Art>
+);
+
 const BarList = () => {
   const rows = [176, 128, 92, 56];
   return (
@@ -843,6 +877,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   card: CardArt,
   'stat-card': StatCard,
   'person-cell': PersonCell,
+  delta: Delta,
   'bar-list': BarList,
   'data-toolbar': DataToolbar,
   'wizard-modal': WizardModal,

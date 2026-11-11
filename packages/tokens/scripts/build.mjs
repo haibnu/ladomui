@@ -13,6 +13,7 @@ const pages = await readJson('figma/pages.json');
 const legacyStyles = await readJson('config/legacy-styles.json');
 const breakpoints = await readJson('config/breakpoints.json');
 const colorRoles = await readJson('config/color-roles.json');
+const chartColors = await readJson('config/chart-colors.json');
 const selectors = modeSelectors(breakpoints);
 
 // Figma variables that are not design tokens.
@@ -96,6 +97,12 @@ for (const [name, role] of Object.entries(colorRoles)) {
   extras('color').push({ name: `--color-${name}`, value: themeVar(role.value), source: `${role.usedFor} (min contrast ${role.minContrast}:1)` });
 }
 
+// Chart series colors: derived from the brand in CSS, with a Dark value; see config/chart-colors.json.
+for (const [name, c] of Object.entries(chartColors.series)) {
+  if (!c.light?.includes('var(--color-primary)') || !c.dark) errors.push(`config/chart-colors.json: ${name} needs a light and a dark value derived from --color-primary`);
+  extras('color').push({ name: `--color-${name}`, value: c.light, dark: c.dark, source: c.usedFor });
+}
+
 // Border: the Figma Border page uses the legacy "Helper Color / Border" style; see config/legacy-styles.json.
 {
   const b = pages.border;
@@ -155,6 +162,9 @@ for (const g of GROUPS) {
   let css = header;
   if (g.keys.length) css += emitVariables(vars, g.keys, selectors);
   if (g.extras.length) css += `${g.keys.length ? '\n' : ''}${block(':root', g.extras.map((e) => `  ${e.name}: ${e.value};`))}`;
+  // Extras with a Dark value (chart colors) get the same opt-in selector as the Figma Dark mode.
+  const dark = g.extras.filter((e) => e.dark);
+  if (dark.length) css += `\n${block(':root[data-theme="dark"]', dark.map((e) => `  ${e.name}: ${e.dark};`))}`;
   await writeFile(new URL(`css/${g.id}.css`, root), css);
 }
 await writeFile(new URL('css/index.css', root), header + GROUPS.map((g) => `@import "./${g.id}.css";`).join('\n') + '\n');

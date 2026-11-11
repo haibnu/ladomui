@@ -199,6 +199,11 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'bar-list': [
     {
       date: '2026-11-11',
+      en: 'Rows of the row variant can end with a change (delta), drawn as a small Delta pill.',
+      tr: 'Row görünümünün satırları bir değişimle (delta) bitebiliyor; küçük bir Delta hapı olarak çiziliyor.',
+    },
+    {
+      date: '2026-11-11',
       en: 'A row variant: a small table with column headings and a see-through brand bar behind each row, as in “visits per page”. Bars grow in when they first show.',
       tr: 'Row görünümü: sütun başlıkları ve her satırın arkasında şeffaf bir marka rengi çubuğu olan küçük bir tablo, “sayfa başına ziyaret” listelerindeki gibi. Çubuklar ilk göründüklerinde büyüyerek gelir.',
     },{ date: '2026-11-11', en: 'First release: labelled bars for amounts, and Meter for a single bar.', tr: 'İlk sürüm: miktarlar için etiketli çubuklar ve tek çubuklu Meter.' }],
@@ -206,6 +211,11 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'data-toolbar': [{ date: '2026-11-11', en: 'First release: search, filters and actions above a Table, with bulk actions while rows are selected.', tr: 'İlk sürüm: Table üstünde arama, filtreler ve aksiyonlar; satır seçilince toplu aksiyonlar.' }],
   'person-cell': [{ date: '2026-11-11', en: 'First release: Avatar, name and a line under it, in a table or list; a button with onClick.', tr: 'İlk sürüm: tabloda ya da listede Avatar, isim ve alt satır; onClick ile buton.' }],
   'stat-card': [
+    {
+      date: '2026-11-11',
+      en: 'The change under the number is a Delta now; its success green reaches 4.5:1 in both themes.',
+      tr: 'Rakamın altındaki değişim artık bir Delta; success yeşili iki temada da 4.5:1’e ulaşıyor.',
+    },
     {
       date: '2026-11-11',
       en: 'A bigger number that counts up, an optional unit, a change with a trend arrow, and a chart that draws in: area, line with points, steps or bars, beside the number or under it, with a hover tooltip.',
@@ -217,6 +227,13 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       pr: 27,
       en: 'First release: a Modal that walks through steps, with the Stepper in the header between the title and the close button, and Back / Next.',
       tr: 'İlk sürüm: adım adım ilerleyen bir Modal; Stepper başlık ile kapatma butonu arasında, altta Geri / İleri.',
+    },
+  ],
+  delta: [
+    {
+      date: '2026-11-11',
+      en: 'First release: a change with a leaning trend arrow, as text or a pill, colored by whether it is good news.',
+      tr: 'İlk sürüm: eğik bir trend oklu değişim; metin ya da hap olarak, iyi haber olup olmamasına göre renkli.',
     },
   ],
 };

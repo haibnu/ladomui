@@ -1,0 +1,35 @@
+{
+  "$description": "Code-side series colors for charts, not in Figma. Each is derived from the brand color (--color-primary) in CSS with relative color syntax, so it follows Customize, the ladom-ui CLI theme.css and any app that sets the brand: chart-1 is the brand itself (darkened in Light, lightened in Dark when it would be too faint), chart-3 a soft tint of it for a secondary series, and the others turn its hue on the oklch wheel with a minimum chroma, so a gray brand still gives distinct colors. Lightness differs from series to series and per theme, so neighbours stay apart and every series but the soft one reaches 3:1 against the surfaces.",
+  "series": {
+    "chart-1": {
+      "light": "oklch(from var(--color-primary) min(l, 0.55) c h)",
+      "dark": "oklch(from var(--color-primary) max(l, 0.72) c h)",
+      "usedFor": "First series: the brand color"
+    },
+    "chart-2": {
+      "light": "oklch(from var(--color-primary) 0.64 max(c, 0.14) calc(h + 150))",
+      "dark": "oklch(from var(--color-primary) 0.74 max(c, 0.14) calc(h + 150))",
+      "usedFor": "Second series: across the wheel from the brand"
+    },
+    "chart-3": {
+      "light": "oklch(from var(--color-primary) 0.84 calc(c * 0.5) h)",
+      "dark": "oklch(from var(--color-primary) 0.42 calc(c * 0.6) h)",
+      "usedFor": "Soft series: a tint of the brand for a previous period or a remainder; below 3:1, pair it with a label"
+    },
+    "chart-4": {
+      "light": "oklch(from var(--color-primary) 0.58 max(c, 0.13) calc(h + 60))",
+      "dark": "oklch(from var(--color-primary) 0.82 max(c, 0.13) calc(h + 60))",
+      "usedFor": "Fourth series"
+    },
+    "chart-5": {
+      "light": "oklch(from var(--color-primary) 0.44 max(c, 0.13) calc(h + 240))",
+      "dark": "oklch(from var(--color-primary) 0.66 max(c, 0.13) calc(h + 240))",
+      "usedFor": "Fifth series"
+    },
+    "chart-6": {
+      "light": "oklch(from var(--color-primary) 0.52 max(c, 0.12) calc(h + 300))",
+      "dark": "oklch(from var(--color-primary) 0.78 max(c, 0.12) calc(h + 300))",
+      "usedFor": "Sixth series"
+    }
+  }
+}
