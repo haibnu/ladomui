@@ -11,7 +11,9 @@
     "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {
+    "country-flag-icons": "1.6.20",
     "esbuild": "0.28.2",
+    "libphonenumber-js": "1.13.16",
     "typescript": "7.0.2"
   }
 }

@@ -3,16 +3,19 @@
 import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Input, type InputProps } from '../Input/Input';
 import { InlinePicker } from '../Picker/InlinePicker';
-import { FlagTR, FlagUS } from './flags';
+import { COUNTRY_DATA, FLAG_SVG } from './countries';
+import { CountryFlag } from './flags';
 import { cleanPaste, digitCount, formatNational, maskNational, type Country } from './phoneFormat';
 import styles from './GsmInput.module.css';
 
 // Figma: Components / Input, 🎛 Type=GSM (1591:5, Typed 1593:54). The flag and its chevron open
 // the country list (the Selectbox one: a Dropdown of Cells); the calling code and the national
 // number follow, masked as they are typed. A pasted number loses its "+90", "0090" or trunk "0"
-// before it is written. countrySelect={false} shows the flag without the list.
+// before it is written. Every country is listed by default (Turkey first, the rest by name);
+// flags are Figma's for TR and US and country-flag-icons for the others. countrySelect={false}
+// fixes the country and shows only its calling code.
 export type GsmCountry = Country & {
-  /** A 24px flag; Figma draws TR and US. Countries without one show their code. */
+  /** A 24px flag; by default the built-in one for the code, or the code where there is none. */
   flag?: ReactNode;
 };
 
@@ -41,20 +44,19 @@ export type GsmInputProps = Omit<
   countryLabel?: string;
 };
 
-export const DEFAULT_COUNTRIES: GsmCountry[] = [
-  { code: 'TR', dial: '90', format: '(###) ### ## ##', placeholder: '(5XX) XXX XX XX', flag: <FlagTR /> },
-  { code: 'US', dial: '1', format: '(###) ###-####', flag: <FlagUS /> },
-];
+/** Every country, Turkey first; the list sorts the rest by name in its locale. */
+export const DEFAULT_COUNTRIES: GsmCountry[] = COUNTRY_DATA;
 
 const placeholderOf = (c: Country) => c.placeholder ?? c.format.replace(/#/g, 'X');
 
-const regionName = (locale: string, code: string) => {
+function regionNames(locale: string): (code: string) => string {
   try {
-    return new Intl.DisplayNames([locale], { type: 'region' }).of(code) ?? code;
+    const names = new Intl.DisplayNames([locale], { type: 'region' });
+    return (code) => names.of(code) ?? code;
   } catch {
-    return code;
+    return (code) => code;
   }
-};
+}
 
 /** Splits an E.164 number into a listed country and its national digits. */
 function parse(value: string | null | undefined, current: GsmCountry, countries: GsmCountry[]) {
@@ -71,7 +73,7 @@ export const GsmInput = forwardRef<HTMLInputElement, GsmInputProps>(function Gsm
     country: countryProp,
     defaultCountry,
     onCountryChange,
-    countries = DEFAULT_COUNTRIES,
+    countries: countriesProp,
     countrySelect = true,
     locale = 'en-US',
     name,
@@ -87,6 +89,14 @@ export const GsmInput = forwardRef<HTMLInputElement, GsmInputProps>(function Gsm
   },
   ref,
 ) {
+  const nameOf = useMemo(() => regionNames(locale), [locale]);
+  // A list that is passed keeps its order; the default one is sorted by name, Turkey first.
+  const countries = useMemo(
+    () =>
+      countriesProp ??
+      [...DEFAULT_COUNTRIES].sort((a, b) => (a.code === 'TR' ? -1 : b.code === 'TR' ? 1 : nameOf(a.code).localeCompare(nameOf(b.code), locale))),
+    [countriesProp, nameOf, locale],
+  );
   const first = countries.find((c) => c.code === defaultCountry) ?? countries[0]!;
   const initial = useMemo(() => parse(value !== undefined ? value : defaultValue, first, countries), []);
   const [innerCountry, setInnerCountry] = useState(initial.country.code);
@@ -118,7 +128,7 @@ export const GsmInput = forwardRef<HTMLInputElement, GsmInputProps>(function Gsm
     const next = e164(c, d);
     if (next === emitted.current) return;
     emitted.current = next;
-    onValueChange?.(next, { country: c.code, national: d, complete: d.length === digitCount(c.format) });
+    onValueChange?.(next, { country: c.code, national: d, complete: d.length >= (c.minDigits ?? digitCount(c.format)) });
   };
   function setCountry(c: GsmCountry, notify = true) {
     if (countryProp === undefined) setInnerCountry(c.code);
@@ -130,13 +140,18 @@ export const GsmInput = forwardRef<HTMLInputElement, GsmInputProps>(function Gsm
     emit(c, d);
   };
 
-  const flag = (c: GsmCountry) => c.flag ?? <span className={styles.code}>{c.code}</span>;
+  const flag = (c: GsmCountry) =>
+    c.flag ?? (FLAG_SVG[c.code] || c.code === 'TR' || c.code === 'US' ? <CountryFlag code={c.code} /> : <span className={styles.code}>{c.code}</span>);
+  const options = useMemo(
+    () => countries.map((c) => ({ value: c.code, trigger: flag(c), iconLeft: flag(c), title: nameOf(c.code), bodycopy: `+${c.dial}`, search: nameOf(c.code) })),
+    [countries, nameOf],
+  );
   const lead = (
     <span className={styles.lead}>
       {countrySelect ? (
         <InlinePicker
           value={country.code}
-          options={countries.map((c) => ({ value: c.code, trigger: flag(c), iconLeft: c.flag, title: regionName(locale, c.code), bodycopy: `+${c.dial}`, search: regionName(locale, c.code) }))}
+          options={options}
           size={size}
           disabled={disabled}
           label={countryLabel}
@@ -148,9 +163,7 @@ export const GsmInput = forwardRef<HTMLInputElement, GsmInputProps>(function Gsm
           }}
           onDone={() => field.current?.focus()}
         />
-      ) : (
-        <span className={styles.flag}>{flag(country)}</span>
-      )}
+      ) : null}
       <span className={styles.dial}>{country.dial}</span>
     </span>
   );

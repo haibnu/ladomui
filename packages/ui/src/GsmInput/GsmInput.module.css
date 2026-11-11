@@ -21,10 +21,6 @@
   margin-inline-end: calc(var(--layout-micro) - var(--layout-tiny));
 }
 
-.flag {
-  display: inline-flex;
-}
-
 .code {
   font: var(--text-ui-text-small-bold);
   color: var(--color-foreground-medium-emphasis);

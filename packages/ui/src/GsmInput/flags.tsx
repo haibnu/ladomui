@@ -1,6 +1,7 @@
-import { useId, type SVGProps } from 'react';
+import { useId, type JSX, type SVGProps } from 'react';
+import { FLAG_SVG } from './countries';
 
-// Flags from the Figma Icons page: Flags / TR (2001:1354) and Flags / EN (2001:1362, the US flag),
+// Flags. From the Figma Icons page: Flags / TR (2001:1354) and Flags / EN (2001:1362, the US flag),
 // exported as SVG. Their colors are the flags' own, not tokens. Ids are per instance so that
 // several flags on a page do not share a mask.
 type FlagProps = SVGProps<SVGSVGElement>;
@@ -72,6 +73,31 @@ export function FlagUS(props: FlagProps) {
           <stop offset="1" stopColor="#F0F0F0" />
         </linearGradient>
       </defs>
+    </svg>
+  );
+}
+
+const FIGMA_FLAGS: Record<string, (props: FlagProps) => JSX.Element> = { TR: FlagTR, US: FlagUS };
+
+/**
+ * The flag of a country, drawn in Figma's flag frame (24px, a 24 x 17 rectangle with 2px
+ * corners): Figma's own for TR and US, country-flag-icons (MIT) for the others. Null when there
+ * is none.
+ */
+export function CountryFlag({ code, ...props }: FlagProps & { code: string }) {
+  const id = useId();
+  const Figma = FIGMA_FLAGS[code];
+  if (Figma) return <Figma {...props} />;
+  const flag = FLAG_SVG[code];
+  if (!flag) return null;
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <clipPath id={`${id}c`}>
+        <rect y="3" width="24" height="17.1429" rx="1.71429" />
+      </clipPath>
+      <g clipPath={`url(#${id}c)`}>
+        <svg y="3" width="24" height="17.1429" viewBox={flag[0]} preserveAspectRatio="xMidYMid slice" dangerouslySetInnerHTML={{ __html: flag[1] }} />
+      </g>
     </svg>
   );
 }

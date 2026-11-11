@@ -44,7 +44,7 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 | Need | Component |
 |---|---|
 | Actions | `Button` (variant solid/ghost, tone, size, icon, iconLeft/Right, loading) |
-| Form fields | `FormField` (label, hint, error) + `Input`, `Textarea` (showCount, maxLength), `NumberInput` (value, min, max, step), `CurrencyInput` (value, currency, currencies, locale, currencySelect), `GsmInput` (E.164 value, country, countries, countrySelect; pasted +90/0 are dropped), `Selectbox`, `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
+| Form fields | `FormField` (label, hint, error) + `Input`, `Textarea` (showCount, maxLength), `NumberInput` (value, min, max, step), `CurrencyInput` (value, currency, currencies, locale, currencySelect), `GsmInput` (E.164 value, country, countries (every country by default), countrySelect; pasted +90/0 are dropped), `Selectbox`, `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
 | Labels and status | `Label`, `Hint`, `Badge`, `Chip`, `Avatar`/`AvatarGroup`, `Loader`, `Stepper` |
 | Lists and menus | `Dropdown` with `Cell`, `CellHelper`, `CellSearch`, `CellActions` |
 | Navigation | `SidebarNav` (`SidebarNavSection`, `SidebarNavItem`) and `TopNav` (`TopNavItem`): simple free menus of links (`href`, `as`, `icon`, `badge`, `current`); `AppHeader` with `PageHeader`, `PublicHeader` (Pro), `Tabs`, `Breadcrumb` |
