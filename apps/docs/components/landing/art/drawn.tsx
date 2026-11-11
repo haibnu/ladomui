@@ -548,6 +548,27 @@ const Navigation = () => (
   </Art>
 );
 
+const AppSidebar = () => (
+  <Art>
+    <Shadow x={-110} y={-110} w={60} d={220} r={10} />
+    <Box x={-110} y={-110} w={60} d={220} h={10} r={10}>
+      {[0, 1, 2, 3].map((i) => (
+        <Bar key={i} x={22} y={40 + i * 44} w={16} />
+      ))}
+    </Box>
+    <g className="a-tap">
+      <Shadow x={-30} y={-110} w={140} d={220} r={10} />
+      <Box x={-30} y={-110} w={140} d={220} h={10} r={10}>
+        <Bar x={20} y={40} w={90} />
+        <Bar x={36} y={76} w={70} fill={DARK} />
+        <Bar x={36} y={104} w={60} />
+        <Bar x={20} y={140} w={80} />
+        <Bar x={20} y={176} w={96} />
+      </Box>
+    </g>
+  </Art>
+);
+
 const NavMenu = () => (
   <Art>
     <Shadow x={-90} y={-110} w={180} d={220} r={10} />
@@ -597,6 +618,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   tooltip: Tooltip,
   uploader: Uploader,
   accordion: Accordion,
+  'app-sidebar': AppSidebar,
   'file-share': FileShare,
   navigation: Navigation,
 };

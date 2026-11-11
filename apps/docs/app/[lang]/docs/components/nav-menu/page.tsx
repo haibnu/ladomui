@@ -11,12 +11,9 @@ type Props = { params: Promise<{ lang: string }> };
 const COPY = {
   en: {
     description: 'Two simple menus of links for web apps: SidebarNav for the side, TopNav for the top. Use whichever your layout needs.',
-    look: 'Look',
-    lookText:
-      'There is no Figma drawing yet; both are built from existing parts. A SidebarNav item is a Medium Cell as a link: a 20px icon, the label and an optional Tiny Badge, which never changes the row height; hover is surface/level-2 and the current page primary soft with primary text. Sections can carry a caption. TopNav is a bar of the App Header’s height (56px) on surface/level-1 with a line under it, its links the pills of the secondary Tabs. Disabled links are low emphasis.',
     pro: 'Free and Pro',
     proText:
-      'These are the simple versions, free under MIT: plain links, one level, no state of their own. The advanced versions (a collapsible sidebar, nested groups, a mobile menu and the App Header) are in the Pro Navigation.',
+      'These are the simple versions, free under MIT: plain links, one level, no state of their own. The advanced side menu, with a collapsible rail and nested groups, is the Pro App Sidebar.',
     usage: 'Usage',
     usageText:
       'Name each menu with aria-label and mark the page you are on with current. Items are <a> elements; pass your router’s link with as. SidebarNav fills its parent, so put it in a column of 240–280px; its footer takes a SidebarNavSection of its own.',
@@ -45,12 +42,9 @@ const COPY = {
   },
   tr: {
     description: 'Web uygulamaları için iki basit bağlantı menüsü: kenar için SidebarNav, üst için TopNav. Düzeniniz hangisini istiyorsa onu kullanın.',
-    look: 'Görünüm',
-    lookText:
-      'Henüz Figma çizimi yok; ikisi de mevcut parçalardan kuruldu. SidebarNav öğesi bağlantı olarak bir Medium Cell’dir: 20px ikon, etiket ve isteğe bağlı bir Tiny Badge (satır yüksekliğini değiştirmez); hover surface/level-2, bulunulan sayfa primary soft zemin ve primary metindir. Bölümler bir başlık taşıyabilir. TopNav, App Header yüksekliğinde (56px), surface/level-1 üstünde, altı çizgili bir çubuktur; bağlantıları secondary Tabs’ın hap biçimidir. Devre dışı bağlantılar düşük vurguludur.',
     pro: 'Ücretsiz ve Pro',
     proText:
-      'Bunlar basit sürümlerdir ve MIT ile ücretsizdir: düz bağlantılar, tek seviye, kendi durumu yok. Gelişmiş sürümler (daraltılabilir kenar menüsü, iç içe gruplar, mobil menü ve App Header) Pro Navigation’dadır.',
+      'Bunlar basit sürümlerdir ve MIT ile ücretsizdir: düz bağlantılar, tek seviye, kendi durumu yok. Daraltılabilir şeridi ve iç içe gruplarıyla gelişmiş kenar menüsü Pro App Sidebar’dır.',
     usage: 'Kullanım',
     usageText:
       'Her menüye aria-label ile ad verin ve bulunduğunuz sayfayı current ile işaretleyin. Öğeler <a> öğesidir; router’ınızın bağlantısını as ile verin. SidebarNav ebeveynini doldurur, onu 240–280px’lik bir sütuna koyun; footer kendi SidebarNavSection’ını alır.',
@@ -94,10 +88,6 @@ export default async function NavMenuPage({ params }: Props) {
         <NavMenuPlayground />
         <h2 id="free-and-pro">{c.pro}</h2>
         <p>{c.proText}</p>
-        <ForView view="designer">
-          <h2 id="look">{c.look}</h2>
-          <p>{c.lookText}</p>
-        </ForView>
         <ForView view="developer">
           <h2 id="usage">{c.usage}</h2>
           <p>{c.usageText}</p>

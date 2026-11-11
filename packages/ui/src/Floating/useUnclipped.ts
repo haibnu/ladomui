@@ -6,14 +6,16 @@ import floating from './floating.module.css';
 const pinned = floating.pinned ?? '';
 
 // Inside a <dialog> (Modal, Drawer) the body scrolls, so a panel placed with position: absolute
-// next to its anchor would be cut off at the body's edge. There the panel is measured where its CSS
+// next to its anchor would be cut off at the body's edge. The same holds inside any element marked
+// data-unclip (a scrolling side menu, for example). There the panel is measured where its CSS
 // puts it and pinned to that spot with position: fixed, which no scroll container clips. It is
 // measured again on every scroll and resize, so it stays next to its anchor. Elsewhere nothing
-// changes. Dialogs sit in the top layer without a transform, so fixed means the viewport.
+// changes. Dialogs sit in the top layer without a transform, so fixed means the viewport; a
+// data-unclip element must not sit inside a transform either.
 export function useUnclipped(ref: RefObject<HTMLElement | null>, open: boolean) {
   useLayoutEffect(() => {
     const el = ref.current;
-    if (!open || !el?.parentElement?.closest('dialog')) return;
+    if (!open || !el?.parentElement?.closest('dialog, [data-unclip]')) return;
     const place = () => {
       el.classList.remove(pinned);
       const r = el.getBoundingClientRect();

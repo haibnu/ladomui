@@ -18,11 +18,11 @@ const PLANNED_COMPONENTS = [
 // Separate components that the nav lists under a parent component.
 const SUBCOMPONENTS: Record<string, string[]> = { Input: ['Number Input', 'Currency Input', 'GSM Input'] };
 const IS_SUBCOMPONENT = new Set(Object.values(SUBCOMPONENTS).flat());
-const PLANNED_MOLECULES = ['Accordion', 'File Share', 'Navigation'];
+const PLANNED_MOLECULES = ['Accordion', 'App Sidebar', 'File Share', 'Navigation'];
 // Components that have a page, by their path segment.
 const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
-const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', 'File Share': 'file-share', Navigation: 'navigation' };
+const BUILT_MOLECULES: Record<string, string> = { Accordion: 'accordion', 'App Sidebar': 'app-sidebar', 'File Share': 'file-share', Navigation: 'navigation' };
 
 function component(lang: Locale, title: string): NavItem {
   const slug = BUILT[title];
