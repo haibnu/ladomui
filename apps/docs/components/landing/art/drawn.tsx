@@ -641,6 +641,197 @@ const NavMenu = () => (
   </Art>
 );
 
+const CardArt = () => (
+  <Art>
+    <Shadow x={-110} y={-80} w={220} d={160} r={12} />
+    <Box x={-110} y={-80} w={220} d={160} h={10} r={12}>
+      <Bar x={18} y={20} w={90} h={10} />
+      <Bar x={18} y={38} w={120} h={6} />
+      <line x1={12} x2={208} y1={62} y2={62} stroke={FILL} strokeWidth={2} />
+      <Bar className="a-line1" x={18} y={80} w={170} />
+      <Bar className="a-line2" x={18} y={98} w={140} />
+      <Bar className="a-line3" x={18} y={116} w={100} />
+    </Box>
+    <g className="a-tap">
+      <Box x={44} y={-66} w={52} d={24} h={6} z={10} r={7} top={DARK}>
+        <Bar x={12} y={9} w={28} h={6} fill="#fff" />
+      </Box>
+    </g>
+  </Art>
+);
+
+const StatCard = () => (
+  <Art>
+    <Shadow x={-95} y={-65} w={190} d={130} r={12} />
+    <Box x={-95} y={-65} w={190} d={130} h={14} r={12}>
+      <Bar x={18} y={20} w={70} />
+      <circle cx={164} cy={24} r={10} fill={FILL} stroke={SIDE} />
+      <g className="a-num1">
+        <Label x={18} y={64} size={30} anchor="start">
+          1,284
+        </Label>
+      </g>
+      <g className="a-num2">
+        <Label x={18} y={64} size={30} anchor="start">
+          1,312
+        </Label>
+      </g>
+      <Bar x={18} y={100} w={90} h={6} />
+      <rect x={120} y={95} width={46} height={16} rx={8} fill={FILL} stroke={SIDE} />
+    </Box>
+  </Art>
+);
+
+const PersonCell = () => (
+  <Art>
+    <Shadow x={-120} y={-38} w={240} d={76} r={14} />
+    <Box x={-120} y={-38} w={240} d={76} h={12} r={14}>
+      <Bar x={78} y={26} w={110} h={10} />
+      <Bar x={78} y={44} w={76} h={6} />
+    </Box>
+    <g className="a-float">
+      <Disc cx={-82} cy={0} r={24} z={12} h={8} top={SIDE} side={DARK}>
+        <Label x={24} y={24} size={16}>
+          AY
+        </Label>
+      </Disc>
+    </g>
+  </Art>
+);
+
+const BarList = () => {
+  const rows = [176, 128, 92, 56];
+  return (
+    <Art>
+      <Shadow x={-110} y={-85} w={220} d={170} r={12} />
+      <Box x={-110} y={-85} w={220} d={170} h={8} r={12}>
+        {rows.map((w, i) => (
+          <g key={i}>
+            <Bar x={18} y={20 + i * 38} w={i % 2 ? 40 : 56} h={6} />
+            <Bar x={18} y={32 + i * 38} w={184} h={12} fill={FILL} />
+            {/* a-line1..3 grow the bars one after another; the fourth reuses a-line3, later. */}
+            <g style={i === 3 ? { animationDelay: '1.2s' } : undefined} className={i === 3 ? 'a-line3' : undefined}>
+              <Bar className={i < 3 ? `a-line${i + 1}` : undefined} x={18} y={32 + i * 38} w={w} h={12} fill={i ? DARK : INK} />
+            </g>
+          </g>
+        ))}
+      </Box>
+    </Art>
+  );
+};
+
+const SummaryList = () => (
+  <Art>
+    <Shadow x={-100} y={-80} w={200} d={160} r={12} />
+    <Box x={-100} y={-80} w={200} d={160} h={10} r={12}>
+      {[70, 56, 84].map((w, i) => (
+        <g key={i}>
+          <Bar x={18} y={22 + i * 28} w={w} />
+          <Bar x={142} y={22 + i * 28} w={40} fill={DARK} />
+        </g>
+      ))}
+      <line x1={18} x2={182} y1={110} y2={110} stroke={INK} />
+      <Bar x={18} y={128} w={50} h={10} fill={DARK} />
+      <g className="a-num1">
+        <Label x={182} y={133} size={16} anchor="end">
+          $1,250
+        </Label>
+      </g>
+      <g className="a-num2">
+        <Label x={182} y={133} size={16} anchor="end">
+          $1,480
+        </Label>
+      </g>
+    </Box>
+  </Art>
+);
+
+const DataToolbar = () => (
+  <Art>
+    <Shadow x={-150} y={-32} w={300} d={64} r={12} />
+    <Box x={-150} y={-32} w={300} d={64} h={4} r={12} top={FILL} />
+    <Box x={-140} y={-20} w={96} d={40} h={8} z={4} r={8}>
+      <Icon x={10} y={12}>
+        <IconSearch size={16} />
+      </Icon>
+      <Bar x={32} y={16} w={48} />
+    </Box>
+    {[-36, 28].map((x) => (
+      <Box key={x} x={x} y={-20} w={56} d={40} h={8} z={4} r={8}>
+        <Bar x={10} y={16} w={22} />
+        <Icon x={36} y={13}>
+          <IconArrowBottom size={14} />
+        </Icon>
+      </Box>
+    ))}
+    <g className="a-tap">
+      <Box x={92} y={-20} w={48} d={40} h={8} z={4} r={8} top={DARK}>
+        <Icon x={14} y={10}>
+          <g style={{ color: '#fff' }}>
+            <IconAdd size={20} />
+          </g>
+        </Icon>
+      </Box>
+    </g>
+  </Art>
+);
+
+const WizardModal = () => (
+  <Art>
+    <Box x={-112} y={-92} w={224} d={184} h={4} r={14} top={FILL} />
+    <g className="a-modal">
+      <Shadow x={-95} y={-75} w={190} d={150} r={12} />
+      <Box x={-95} y={-75} w={190} d={150} h={10} z={4} r={12}>
+        <line x1={39} x2={151} y1={20} y2={20} stroke={SIDE} strokeWidth={2} />
+        {[39, 95, 151].map((cx) => (
+          <circle key={cx} cx={cx} cy={20} r={6} fill="#fff" stroke={SIDE} strokeWidth={2} />
+        ))}
+        <circle className="a-navline" cx={39} cy={20} r={7} fill={INK} />
+        <Bar x={18} y={42} w={100} h={10} />
+        <Bar x={18} y={64} w={150} />
+        <Bar x={18} y={80} w={120} />
+        <rect x={18} y={110} width={64} height={24} rx={8} fill="#fff" stroke={SIDE} />
+        <Bar x={34} y={118} w={32} />
+        <rect x={108} y={110} width={64} height={24} rx={8} fill={INK} />
+        <Bar x={124} y={118} w={32} fill="#fff" />
+      </Box>
+    </g>
+  </Art>
+);
+
+const AppShell = () => (
+  <Art>
+    <Shadow x={-52} y={-100} w={152} d={36} r={10} />
+    <Box x={-52} y={-100} w={152} d={36} h={10} r={10}>
+      <Bar x={16} y={14} w={60} />
+      <circle cx={134} cy={18} r={9} fill={SIDE} />
+    </Box>
+    {[
+      { x: 28, y: -56, w: 72, d: 64, c: 'a-row2' },
+      { x: -52, y: -56, w: 72, d: 64, c: 'a-row1' },
+      { x: -52, y: 16, w: 152, d: 84, c: 'a-row3' },
+    ].map((b) => (
+      <g key={b.c}>
+        <Shadow x={b.x} y={b.y} w={b.w} d={b.d} r={10} />
+        <g className={b.c}>
+          <Box x={b.x} y={b.y} w={b.w} d={b.d} h={8} r={10}>
+            <Bar x={12} y={14} w={b.w > 100 ? 70 : 36} h={6} />
+            <Bar x={12} y={30} w={b.w > 100 ? 120 : 48} fill={DARK} />
+            {b.w > 100 && <Bar x={12} y={48} w={96} />}
+          </Box>
+        </g>
+      </g>
+    ))}
+    <Shadow x={-110} y={-100} w={50} d={200} r={10} />
+    <Box x={-110} y={-100} w={50} d={200} h={10} r={10}>
+      <circle cx={25} cy={24} r={9} fill="#1C1A09" />
+      {[0, 1, 2, 3].map((i) => (
+        <Bar key={i} x={17} y={60 + i * 34} w={16} fill={i === 1 ? DARK : SIDE} />
+      ))}
+    </Box>
+  </Art>
+);
+
 export const DRAWN: Record<string, () => ReactNode> = {
   switch: Switch,
   alert: Alert,
@@ -675,4 +866,12 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'app-sidebar': AppSidebar,
   'file-share': FileShare,
   navigation: Navigation,
+  card: CardArt,
+  'stat-card': StatCard,
+  'person-cell': PersonCell,
+  'bar-list': BarList,
+  'summary-list': SummaryList,
+  'data-toolbar': DataToolbar,
+  'wizard-modal': WizardModal,
+  'app-shell': AppShell,
 };

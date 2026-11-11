@@ -44,6 +44,14 @@
     "accordion": { "folder": "Accordion", "tier": "pro", "description": "A card whose content opens and closes under its title." },
     "navigation": { "folder": "Navigation", "tier": "pro", "description": "PageHeader, AppHeader and PublicHeader." },
     "app-sidebar": { "folder": "AppSidebar", "tier": "pro", "description": "A side menu that collapses to a rail of icons, with nested groups." },
-    "file-share": { "folder": "FileShare", "tier": "pro", "description": "A \"Share this file\" panel: link with Copy Link and the people with access." }
+    "file-share": { "folder": "FileShare", "tier": "pro", "description": "A \"Share this file\" panel: link with Copy Link and the people with access." },
+    "app-shell": { "folder": "AppShell", "tier": "pro", "description": "The frame of an admin app: side menu, sticky header and page, with the menu in a Drawer on phones." },
+    "bar-list": { "folder": "BarList", "tier": "pro", "description": "Labelled bars for amounts, and Meter, a single bar for a share or progress." },
+    "card": { "folder": "Card", "tier": "pro", "description": "A dashboard section: a titled surface with actions, content and a footer." },
+    "data-toolbar": { "folder": "DataToolbar", "tier": "pro", "description": "Search, filters and actions above a Table, with bulk actions while rows are selected." },
+    "person-cell": { "folder": "PersonCell", "tier": "pro", "description": "A person in a table or list: Avatar, name and a line under it." },
+    "stat-card": { "folder": "StatCard", "tier": "pro", "description": "A dashboard figure: label, value and a note or trend." },
+    "summary-list": { "folder": "SummaryList", "tier": "pro", "description": "Label and value pairs: receipt rows with a total, or a grid of facts." },
+    "wizard-modal": { "folder": "WizardModal", "tier": "pro", "description": "A Modal that walks through steps with a Stepper and Back / Next." }
   }
 }

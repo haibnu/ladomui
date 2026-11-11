@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { COMPONENTS } from './components.mjs';
 
 // Parts shown on their parent's card.
-export const PARTS = { AvatarGroup: 'Avatar', Calendar: 'DatePicker', CellActions: 'Cell', CellHelper: 'Cell', CellSearch: 'Cell', ToastProvider: 'Toast', SidebarNavSection: 'SidebarNav', SidebarNavItem: 'SidebarNav', TopNavItem: 'TopNav', AppSidebarSection: 'AppSidebar', AppSidebarItem: 'AppSidebar' };
+export const PARTS = { AvatarGroup: 'Avatar', Calendar: 'DatePicker', CellActions: 'Cell', CellHelper: 'Cell', CellSearch: 'Cell', ToastProvider: 'Toast', SidebarNavSection: 'SidebarNav', SidebarNavItem: 'SidebarNav', TopNavItem: 'TopNav', AppSidebarSection: 'AppSidebar', AppSidebarItem: 'AppSidebar', Meter: 'BarList' };
 
 export function missingCards(repo) {
   const exported = ['packages/ui/src/index.ts', 'packages/ui/src/pro/index.ts']
