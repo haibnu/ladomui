@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { IconArrowRight } from '@ladom/icons';
+import { IconExternalLink } from '@ladom/icons';
 import { Badge } from '@ladom/ui';
 import { PRODUCTS } from '@/components/products/products';
 import { TopBar } from '@/components/TopBar';
@@ -38,13 +38,13 @@ export default async function ProductsPage({ params }: Props) {
               <p className={styles.cardText}>{p.description[lang]}</p>
               {p.path && (
                 <span className={styles.cardAction}>
-                  {t.products.open} <IconArrowRight size={16} />
+                  {t.products.open} <IconExternalLink size={16} />
                 </span>
               )}
             </>
           );
           return p.path ? (
-            <Link key={p.key} href={href(lang, p.path)} className={styles.card}>
+            <Link key={p.key} href={href(lang, p.path)} target="_blank" rel="noopener" className={styles.card}>
               {body}
             </Link>
           ) : (
