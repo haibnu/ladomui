@@ -7,6 +7,7 @@ import { ControlCheck, ControlNumber } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { count: 'Count', max: 'Max length', hint: 'Hint', error: 'Error', disabled: 'Disabled', figma: 'Figma variant', code: 'Code', label: 'Note', hintText: 'Shown on the receipt.', errorText: 'Write a shorter note.', placeholder: 'Add a note for the order' },
@@ -42,6 +43,7 @@ export function TextareaPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlNumber label={c.max} value={max} min={0} step={10} onChange={setMax} />
         <ControlCheck label={c.count} checked={count} onChange={setCount} />
         <ControlCheck label={c.hint} checked={hint} onChange={setHint} />

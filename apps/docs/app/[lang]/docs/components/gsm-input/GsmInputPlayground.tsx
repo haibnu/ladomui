@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { size: 'Size', select: 'Country picker', error: 'Error', disabled: 'Disabled', figma: 'Variant', code: 'Code', label: 'Phone', errorText: 'Enter a complete phone number.', value: 'Value', country: 'Country', hint: 'Try pasting “+90 0532 123 45 67”.' },
@@ -46,6 +47,7 @@ export function GsmInputPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
         <ControlCheck label={c.select} checked={select} onChange={setSelect} />
         <ControlCheck label={c.error} checked={error} onChange={setError} />

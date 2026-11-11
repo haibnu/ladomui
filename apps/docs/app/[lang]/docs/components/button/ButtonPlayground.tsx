@@ -9,6 +9,7 @@ import { useView } from '@/components/docs/ViewSwitch';
 import { useLocale } from '@/components/useLocale';
 import { buttonCopy } from './content';
 import styles from './page.module.css';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const ICONS: Record<string, ComponentType<IconProps>> = {
   add: IconAdd,
@@ -135,6 +136,7 @@ export function ButtonPlayground() {
     <div className={styles.playground}>
       <div className={styles.stage}>{preview}</div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.variant} value={variant} options={['solid', 'ghost'] as const} onChange={setVariant} />
         <ControlSelect label={c.tone} value={safeTone} options={tones} onChange={setTone} />
         <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />

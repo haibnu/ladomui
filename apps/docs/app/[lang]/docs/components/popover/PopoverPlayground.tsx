@@ -8,6 +8,7 @@ import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
 import { FIGMA_POSITION } from '../tooltip/positions';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const PLACEMENTS: Placement[] = ['bottom', 'bottom-start', 'bottom-end', 'top', 'top-start', 'top-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'];
 const COPY = {
@@ -54,6 +55,7 @@ export function PopoverPlayground() {
         </Popover>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.type} value={type} options={['default', 'html'] as const} onChange={setType} />
         <ControlSelect label={c.placement} value={placement} options={PLACEMENTS} onChange={setPlacement} />
       </div>

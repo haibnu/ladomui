@@ -7,6 +7,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type State = 'default' | 'hover' | 'pressed' | 'drag';
 const COPY = {
@@ -92,6 +93,7 @@ export function UploaderPlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.direction} value={direction} options={['horizontal', 'vertical'] as const} onChange={setDirection} />
         <ControlSelect label={c.state} value={state} options={['default', 'hover', 'pressed', 'drag'] as const} onChange={setState} />
         {(

@@ -4,6 +4,7 @@ import { getDictionary, href, type Locale } from '@/i18n';
 import { LanguageLink } from './LanguageLink';
 import { Logo } from './Logo';
 import { MobileNav } from './MobileNav';
+import { CustomizeButton } from './customize/CustomizeButton';
 import { Search } from './Search';
 import { ThemeToggle } from './ThemeToggle';
 import { GITHUB_URL } from './nav';
@@ -18,6 +19,7 @@ export function TopBar({ lang, withMenu = false }: { lang: Locale; withMenu?: bo
         <Link href={href(lang, '/')} className={styles.brand}>
           <Logo />
         </Link>
+        <CustomizeButton />
       </div>
       <div className={styles.topBarEnd}>
         <Search />

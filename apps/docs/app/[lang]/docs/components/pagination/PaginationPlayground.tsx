@@ -7,6 +7,7 @@ import { ControlNumber, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { pages: 'Pages', siblings: 'Siblings', figma: 'Figma variant', code: 'Code', label: 'Pagination', previous: 'Previous page', next: 'Next page', page: (p: number) => `Page ${p}` },
@@ -37,6 +38,7 @@ export function PaginationPlayground() {
         />
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlNumber
           label={c.pages}
           value={pageCount}

@@ -9,6 +9,7 @@ import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Kind = 'app' | 'public';
 const COPY = {
@@ -102,6 +103,7 @@ export function NavigationPlayground() {
         <div style={{ inlineSize: '100%', minInlineSize: 900 }}>{bar}</div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect
           label={c.kind}
           value={kind}

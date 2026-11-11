@@ -8,6 +8,7 @@ import { ControlCheck, ControlSelect, ControlText } from '@/components/docs/Cont
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const TONES: BadgeTone[] = ['default', 'primary', 'secondary', 'tertiary', 'error', 'success', 'warning'];
 const SIZES: BadgeSize[] = ['medium', 'small', 'tiny', 'micro'];
@@ -54,6 +55,7 @@ export function BadgePlayground() {
         </Badge>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.tone} value={tone} options={TONES} onChange={setTone} />
         <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
         <ControlText label={c.text} value={text} onChange={setText} />

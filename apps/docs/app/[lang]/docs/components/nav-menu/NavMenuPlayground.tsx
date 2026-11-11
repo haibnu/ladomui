@@ -7,6 +7,7 @@ import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 const COPY = {
   en: { kind: 'Menu', icons: 'Icons', badges: 'Badge', header: 'Header / brand', footer: 'Footer / actions', sections: 'Section titles', code: 'Code', main: 'Main', pages: ['Home', 'Reports', 'Files', 'Members', 'Audit log'], workspace: 'Workspace', settings: 'Settings' },
@@ -89,6 +90,7 @@ export function NavMenuPlayground() {
         )}
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         <ControlSelect label={c.kind} value={kind} options={['sidebar', 'top'] as const} onChange={setKind} />
         <ControlCheck label={c.icons} checked={icons} onChange={setIcons} />
         <ControlCheck label={c.badges} checked={badges} onChange={setBadges} />

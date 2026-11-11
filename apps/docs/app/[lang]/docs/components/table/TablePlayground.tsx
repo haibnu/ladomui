@@ -7,6 +7,7 @@ import { ControlCheck } from '@/components/docs/Controls';
 import { useView } from '@/components/docs/ViewSwitch';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
+import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Person = { id: string; name: string; team: string; status: 'active' | 'away'; projects: number };
 const PEOPLE: Person[] = [
@@ -82,6 +83,7 @@ export function TablePlayground() {
         </div>
       </div>
       <div className={styles.controls}>
+        <ThemeRow />
         {(
           [
             [c.sortable, sortable, setSortable],
