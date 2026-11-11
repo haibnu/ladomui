@@ -147,4 +147,19 @@
 :root {
   --color-primary-foreground: var(--color-primary);
   --color-primary-line: var(--color-primary);
+  --color-chart-1: oklch(from var(--color-primary) min(l, 0.55) c h);
+  --color-chart-2: oklch(from var(--color-primary) 0.64 max(c, 0.14) calc(h + 150));
+  --color-chart-3: oklch(from var(--color-primary) 0.84 calc(c * 0.5) h);
+  --color-chart-4: oklch(from var(--color-primary) 0.58 max(c, 0.13) calc(h + 60));
+  --color-chart-5: oklch(from var(--color-primary) 0.44 max(c, 0.13) calc(h + 240));
+  --color-chart-6: oklch(from var(--color-primary) 0.52 max(c, 0.12) calc(h + 300));
+}
+
+:root[data-theme="dark"] {
+  --color-chart-1: oklch(from var(--color-primary) max(l, 0.72) c h);
+  --color-chart-2: oklch(from var(--color-primary) 0.74 max(c, 0.14) calc(h + 150));
+  --color-chart-3: oklch(from var(--color-primary) 0.42 calc(c * 0.6) h);
+  --color-chart-4: oklch(from var(--color-primary) 0.82 max(c, 0.13) calc(h + 60));
+  --color-chart-5: oklch(from var(--color-primary) 0.66 max(c, 0.13) calc(h + 240));
+  --color-chart-6: oklch(from var(--color-primary) 0.78 max(c, 0.12) calc(h + 300));
 }
