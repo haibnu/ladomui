@@ -1,0 +1,114 @@
+/* ScrollArea: not in Figma yet. Native scrolling with the native scrollbar hidden and a thin,
+   rounded overlay thumb drawn over the content's edge: opacity/24 at rest, opacity/32 on hover
+   and while dragged. The scrollbars fade in on hover, while scrolling and while dragged. */
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-block-size: 0;
+  min-inline-size: 0;
+}
+
+.viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-block-size: 0;
+  min-inline-size: 0;
+  border-radius: inherit;
+  scrollbar-width: none;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.root[data-orientation='vertical'] > .viewport {
+  overflow: hidden auto;
+}
+
+.root[data-orientation='horizontal'] > .viewport {
+  overflow: auto hidden;
+}
+
+.root[data-orientation='both'] > .viewport {
+  overflow: auto;
+}
+
+.scrollbar {
+  position: absolute;
+  display: none;
+  box-sizing: border-box;
+  padding: var(--space-atom);
+  opacity: 0;
+  transition: opacity var(--motion-fade-default);
+  touch-action: none;
+  user-select: none;
+}
+
+.scrollbar[data-axis='y'] {
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: var(--space-tiny);
+}
+
+.scrollbar[data-axis='x'] {
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: var(--space-tiny);
+}
+
+/* With both bars, each stops short of the corner the other one uses. */
+.root[data-orientation='both'][data-overflow-x] > .scrollbar[data-axis='y'] {
+  inset-block-end: var(--space-tiny);
+}
+
+.root[data-orientation='both'][data-overflow-y] > .scrollbar[data-axis='x'] {
+  inset-inline-end: var(--space-tiny);
+}
+
+.root[data-overflow-y] > .scrollbar[data-axis='y'],
+.root[data-overflow-x] > .scrollbar[data-axis='x'] {
+  display: block;
+}
+
+.root:hover > .scrollbar,
+.root[data-scrolling] > .scrollbar,
+.root[data-dragging] > .scrollbar,
+.root[data-scrollbars='always'] > .scrollbar {
+  opacity: 1;
+}
+
+.thumb {
+  border-radius: var(--radius-full);
+  background: var(--color-opacity-24);
+  transition: background-color var(--motion-fade-default);
+}
+
+.scrollbar[data-axis='y'] > .thumb {
+  inline-size: 100%;
+  min-block-size: var(--space-large);
+}
+
+.scrollbar[data-axis='x'] > .thumb {
+  block-size: 100%;
+  min-inline-size: var(--space-large);
+}
+
+.scrollbar:hover > .thumb,
+.root[data-dragging] > .scrollbar > .thumb {
+  background: var(--color-opacity-32);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollbar,
+  .thumb {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .thumb {
+    background: CanvasText;
+  }
+}
