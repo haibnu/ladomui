@@ -17,6 +17,8 @@ const COPY = {
     actions: 'Actions',
     footer: 'Footer',
     heading: 'Heading level',
+    titleStyle: 'Title style',
+    titleStyles: { default: 'Default', caption: 'Caption' },
     code: 'Code',
     cardTitle: 'Headcount by department',
     cardDescription: '16 employees in 4 departments',
@@ -30,6 +32,8 @@ const COPY = {
     actions: 'Aksiyonlar',
     footer: 'Alt kısım',
     heading: 'Başlık seviyesi',
+    titleStyle: 'Başlık stili',
+    titleStyles: { default: 'Varsayılan', caption: 'Caption' },
     code: 'Kod',
     cardTitle: 'Departmanlara göre çalışanlar',
     cardDescription: '4 departmanda 16 çalışan',
@@ -49,6 +53,7 @@ export function CardPlayground() {
   const [actions, setActions] = useState(true);
   const [footer, setFooter] = useState(true);
   const [level, setLevel] = useState<'2' | '3' | '4'>('2');
+  const [titleStyle, setTitleStyle] = useState<'default' | 'caption'>('default');
 
   const attrs = [
     title && '  title="Headcount by department"',
@@ -56,6 +61,7 @@ export function CardPlayground() {
     actions && '  actions={<Button variant="ghost" size="small" iconRight={IconArrowRight}>View all</Button>}',
     footer && '  footer={<Button variant="ghost" size="small" iconLeft={IconAdd}>Add employee</Button>}',
     level !== '2' && `  headingLevel={${level}}`,
+    titleStyle !== 'default' && '  titleStyle="caption"',
   ].filter(Boolean);
   const code = `import { BarList, Card } from '@ladom/ui/pro';\n\n<Card${attrs.length ? `\n${attrs.join('\n')}\n` : ''}>\n  <BarList items={departments} />\n</Card>`;
 
@@ -67,6 +73,7 @@ export function CardPlayground() {
           title={title ? c.cardTitle : undefined}
           description={title && description ? c.cardDescription : undefined}
           headingLevel={Number(level) as 2 | 3 | 4}
+          titleStyle={titleStyle}
           actions={
             actions ? (
               <Button variant="ghost" size="small" iconRight={IconArrowRight}>
@@ -92,6 +99,15 @@ export function CardPlayground() {
         <ControlCheck label={c.actions} checked={actions} onChange={setActions} />
         <ControlCheck label={c.footer} checked={footer} onChange={setFooter} />
         <ControlSelect label={c.heading} value={level} options={['2', '3', '4'] as const} onChange={setLevel} />
+        <ControlSelect
+          label={c.titleStyle}
+          value={titleStyle}
+          onChange={setTitleStyle}
+          options={[
+            { value: 'default', label: c.titleStyles.default },
+            { value: 'caption', label: c.titleStyles.caption },
+          ]}
+        />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{c.code}</p>

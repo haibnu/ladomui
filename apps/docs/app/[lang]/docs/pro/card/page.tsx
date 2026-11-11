@@ -14,7 +14,8 @@ const COPY = {
     behavior: 'Behavior',
     behaviorItems: [
       'The card is a level-1 surface with the card radius, padding and the card style 1 shadow.',
-      'The title row holds the title, a description under it and the actions at the end; it shows when the card has a title or actions.',
+      'The title row holds the title and the actions at the end, centred on one line, with the description just under it; it shows when the card has a title or actions. Page styles for headings (margins) do not reach it.',
+      'titleStyle sets the look: default is the card title, caption small capitals in the low-emphasis color for a section label. headingLevel only sets the HTML tag.',
       'The footer sits at the bottom, so cards of different heights in a row keep their footers aligned.',
       'Without a title the card is a plain surface for any content.',
     ],
@@ -31,6 +32,7 @@ const COPY = {
     props: {
       title: 'The heading of the section; names the card.',
       description: 'A line under the title.',
+      titleStyle: 'default: the card title; caption: a small-capitals section label.',
       actions: 'At the end of the title row, e.g. a ghost Button or a Badge.',
       footer: 'Under the content, e.g. a Button.',
       headingLevel: 'The title’s heading level.',
@@ -42,7 +44,8 @@ const COPY = {
     behavior: 'Davranış',
     behaviorItems: [
       'Kart, kart köşe yarıçapı, iç boşluğu ve card style 1 gölgesiyle level-1 bir yüzeydir.',
-      'Başlık satırında başlık, altında açıklama ve sonda aksiyonlar bulunur; kartın başlığı ya da aksiyonu varsa görünür.',
+      'Başlık satırında başlık ve sonda aksiyonlar tek satırda ortalı durur, açıklama hemen altındadır; kartın başlığı ya da aksiyonu varsa görünür. Sayfanın başlık stilleri (boşluklar) ona ulaşmaz.',
+      'titleStyle görünümü belirler: default kart başlığıdır, caption bölüm etiketi için düşük vurgu renginde küçük büyük harflerdir. headingLevel yalnızca HTML etiketini belirler.',
       'Alt kısım en altta durur; böylece aynı satırdaki farklı yükseklikte kartların alt kısımları hizalı kalır.',
       'Başlık verilmezse kart, her türlü içerik için düz bir yüzeydir.',
     ],
@@ -59,6 +62,7 @@ const COPY = {
     props: {
       title: 'Bölümün başlığı; karta adını verir.',
       description: 'Başlığın altındaki satır.',
+      titleStyle: 'default: kart başlığı; caption: küçük büyük harfli bölüm etiketi.',
       actions: 'Başlık satırının sonu, örneğin ghost Button ya da Badge.',
       footer: 'İçeriğin altı, örneğin bir Button.',
       headingLevel: 'Başlığın seviyesi.',
@@ -100,6 +104,7 @@ export default async function CardPage({ params }: Props) {
               ['actions', 'ReactNode', '—'],
               ['footer', 'ReactNode', '—'],
               ['headingLevel', '2 | 3 | 4', '2'],
+              ['titleStyle', "'default' | 'caption'", "'default'"],
               ['children', 'ReactNode', '—'],
             ]}
             descriptions={c.props}

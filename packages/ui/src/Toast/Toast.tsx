@@ -56,6 +56,11 @@ type ToastApi = { toast: (options: ToastOptions) => number; dismiss: (id: number
 
 const ToastContext = createContext<ToastApi | null>(null);
 
+/** The ToastProvider's API, or null when there is none above (for components that bring their own). */
+export function useOptionalToast() {
+  return useContext(ToastContext);
+}
+
 /** Returns toast(options) and dismiss(id). Needs a ToastProvider above. */
 export function useToast() {
   const api = useContext(ToastContext);
