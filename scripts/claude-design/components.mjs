@@ -433,6 +433,26 @@ return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Open drawer')
     code: `return h(BarChart, { title: 'Hires and exits', categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], series: [{ name: 'Hires', data: [8, 12, 6, 14, 9, 11] }, { name: 'Exits', data: [3, 5, 4, 2, 6, 3] }] });`,
   },
   {
+    name: 'DonutChart', group: 'Data', height: 220,
+    summary: 'Pro. Parts of a whole as a ring in the chart colors (from the brand), starting at the top, with a total in the middle on medium and large and a caption under small ones for small multiples; hover fades the other parts and shows a tooltip.',
+    use: ['Give it a `title`; keep to six parts and pair it with a ChartLegend in the same order.', 'For a series over time line up `size="small"` donuts with a `caption` each.'],
+    provides: '`title`, `data` (`{ name, value, color? }`), `size` (small, medium, large), `label`, `sublabel`, `caption`, `format`, `tooltip`, `animate`, `locale`.',
+    code: `const data = [{ name: 'Engineering', value: 1798 }, { name: 'Sales', value: 1732 }, { name: 'Operations', value: 1250 }];
+return h('div', { style: { display: 'flex', alignItems: 'center', gap: 24 } },
+  h(DonutChart, { title: 'Payroll by team', size: 'large', data, label: '₺4.78M', sublabel: 'Total' }),
+  h(ChartLegend, { items: data.map((d) => ({ name: d.name, values: ['₺' + d.value + 'K'] })) }));`,
+  },
+  {
+    name: 'ChartLegend', group: 'Data', height: 160,
+    summary: 'Pro. The key of a chart as a small table: series dots in the chart colors, names, right-aligned value columns and an optional Delta per row.',
+    use: ['List series in the chart’s order so the dots match; pass values formatted and `columns` when there is more than one value.'],
+    provides: '`items` (`{ name, color?, values?, delta?, key? }`), `columns`.',
+    code: `return h(ChartLegend, { columns: ['Team', 'Nov', 'Oct', 'Change'], items: [
+  { name: 'Engineering', values: ['₺1.80M', '₺1.64M'], delta: { value: '+9.9%', direction: 'up' } },
+  { name: 'Sales', values: ['₺1.73M', '₺1.22M'], delta: { value: '+42%', direction: 'up' } },
+  { name: 'Operations', values: ['₺1.25M', '₺1.35M'], delta: { value: '−7.4%', direction: 'down' } }] });`,
+  },
+  {
     name: 'Delta', group: 'Data', height: 120,
     summary: 'Pro. A change with a trend arrow that leans up, down or lies flat, as text or a pill; colored by whether the change is good (success) or bad (error), not by its direction.',
     use: ['Pass the change formatted with its sign; set `tone` when down is good news (a lower churn).', 'Use the pill in tables and lists, plain text under a big number; `label` adds the comparison.'],
