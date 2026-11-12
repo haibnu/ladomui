@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useState, type HTMLAttributes, type ReactNode } from 'react';
+import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type HTMLAttributes, type ReactNode } from 'react';
 import { IconInfo } from '@ladom/icons';
 import { Badge } from '../Badge/Badge';
 import styles from './Segment.module.css';
@@ -9,6 +9,8 @@ import styles from './Segment.module.css';
 // fluid = Fluid, disabled = Disable, spacing = Form Spacing; Count is the number of options.
 // Item Type follows the option: icon (Left Icon / Right Icon), badge (Badge), info (Info).
 // Native radios keep the arrow keys, the form value and the screen reader roles.
+// The chosen item's raised pill is one indicator that slides to the chosen item (motion tokens);
+// until it is measured, and without JavaScript, the chosen item draws the pill itself.
 export type SegmentSize = 'medium' | 'small';
 
 export type SegmentOption = {
@@ -56,9 +58,28 @@ export function Segment({
   const group = name ?? `segment-${generated}`;
   const [inner, setInner] = useState(defaultValue ?? options[0]?.value);
   const current = value ?? inner;
+  const root = useRef<HTMLDivElement>(null);
+  const [pill, setPill] = useState<{ x: number; w: number } | null>(null);
+  const index = options.findIndex((o) => o.value === current);
+
+  // Measures the chosen item; again whenever the segment or its items change size.
+  useLayoutEffect(() => {
+    const el = root.current;
+    if (!el) return;
+    const measure = () => {
+      const item = el.querySelectorAll<HTMLElement>(':scope > label')[index];
+      setPill(item ? { x: item.offsetLeft, w: item.offsetWidth } : null);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    el.querySelectorAll(':scope > label').forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [index, options.length]);
 
   return (
     <div
+      ref={root}
       role="radiogroup"
       aria-disabled={disabled || undefined}
       className={[styles.segment, className].filter(Boolean).join(' ')}
@@ -66,8 +87,10 @@ export function Segment({
       data-fluid={fluid || undefined}
       data-disabled={disabled || undefined}
       data-spacing={spacing || undefined}
+      data-pill={pill ? '' : undefined}
       {...rest}
     >
+      {pill && <span className={styles.pill} aria-hidden="true" style={{ '--_pill-x': `${pill.x}px`, '--_pill-w': `${pill.w}px` } as CSSProperties} />}
       {options.map((o) => {
         const off = disabled || o.disabled;
         return (

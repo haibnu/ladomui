@@ -5,6 +5,7 @@ import meta from '@ladom/tokens/tokens.json';
 import { DocPage } from '@/components/DocPage';
 import { getDictionary, type Dictionary, type Locale } from '@/i18n';
 import { ModeSwitcher } from './ModeSwitcher';
+import { TextMotionPointer, TextMotionSection } from './TextMotionSection';
 import styles from './page.module.css';
 
 type Group = (typeof meta.groups)[number];
@@ -108,6 +109,7 @@ export default async function FoundationPage({ params }: Props) {
   return (
     <DocPage eyebrow={t.nav.foundations} title={t.groups[group.id]?.title ?? group.title} description={t.groups[group.id]?.description}>
       <ModeSwitcher />
+      {group.id === 'typography' && <TextMotionPointer />}
       {[...sections].sort(([a], [b]) => sectionRank(group, a) - sectionRank(group, b)).map(([section, list]) => (
         <section key={section}>
           <h2 id={slug(section)} className={styles.sectionTitle}>
@@ -144,6 +146,7 @@ export default async function FoundationPage({ params }: Props) {
           </table>
         </section>
       ))}
+      {group.id === 'motion' && <TextMotionSection />}
     </DocPage>
   );
 }

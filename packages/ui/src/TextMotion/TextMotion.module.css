@@ -1,0 +1,144 @@
+/* TextMotion: not in Figma yet. An opt-in text animation; no component uses it by default.
+   Every character is drawn twice: a front and a back copy stacked in one grid cell. --_on is 1
+   while the trigger is hovered or focused (0 otherwise, and always 0 with reduced motion), and
+   --_dir is 1 for up, -1 for down; each effect moves the two copies from those.
+   - roll: the front slides out by one line and the back slides in from the other side.
+   - blur: the front drifts out and blurs away while the back drifts in and sharpens.
+   - flip: the front folds away around the horizontal axis and the back folds in.
+   - wave: each character hops once, a quarter of a hop after the one before it, so the hop
+     runs along the word letter by letter; there is no back copy.
+   Characters start one after another; timing comes from the motion tokens. */
+
+.root {
+  --_on: 0;
+  --_dir: 1;
+  --_staggered: 0;
+  /* The gap between two characters starting: a twelfth of the motion duration. */
+  --_stagger: calc(var(--duration-speed-xs) / 12);
+  position: relative;
+  display: inline-flex;
+  vertical-align: top;
+}
+
+.root[data-direction='down'] {
+  --_dir: -1;
+}
+
+.root[data-stagger] {
+  --_staggered: 1;
+}
+
+/* The text for assistive tech, hidden from the eye. */
+.label {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.chars {
+  display: inline-flex;
+  white-space: pre;
+  user-select: none;
+}
+
+/* One line tall: copies outside it are clipped (sideways nothing is). */
+.root:is([data-effect='roll'], [data-effect='blur']) .chars {
+  clip-path: inset(0 -1em);
+}
+
+.char {
+  display: inline-grid;
+  perspective: 2em;
+}
+
+.front,
+.back {
+  grid-area: 1 / 1;
+  transition:
+    transform var(--motion-swipe-y),
+    opacity var(--motion-swipe-y),
+    filter var(--motion-swipe-y);
+}
+
+.root[data-stagger] :is(.front, .back) {
+  transition-delay: calc(var(--_i) * var(--_stagger));
+}
+
+/* roll */
+.root[data-effect='roll'] .front {
+  transform: translateY(calc(var(--_on) * var(--_dir) * -100%));
+}
+
+.root[data-effect='roll'] .back {
+  transform: translateY(calc((1 - var(--_on)) * var(--_dir) * 100%));
+}
+
+/* blur */
+.root[data-effect='blur'] .front {
+  transform: translateY(calc(var(--_on) * var(--_dir) * -50%));
+  opacity: calc(1 - var(--_on));
+  filter: blur(calc(var(--_on) * 0.15em));
+}
+
+.root[data-effect='blur'] .back {
+  transform: translateY(calc((1 - var(--_on)) * var(--_dir) * 50%));
+  opacity: var(--_on);
+  filter: blur(calc((1 - var(--_on)) * 0.15em));
+}
+
+/* flip */
+.root[data-effect='flip'] .front {
+  transform: rotateX(calc(var(--_on) * var(--_dir) * 90deg));
+  opacity: calc(1 - var(--_on));
+  backface-visibility: hidden;
+}
+
+.root[data-effect='flip'] .back {
+  transform: rotateX(calc((1 - var(--_on)) * var(--_dir) * -90deg));
+  opacity: var(--_on);
+  backface-visibility: hidden;
+}
+
+/* wave */
+.root[data-effect='wave'] .back {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(:is(a, button, summary, label, [role='button'], [role='link'], [role='tab'], [role='menuitem'], [role='menuitemradio'], [role='menuitemcheckbox'], [role='option'], [data-text-motion-trigger]):is(:hover, :focus-visible))
+    .root[data-trigger='parent'],
+  .root[data-trigger='self']:hover {
+    --_on: 1;
+  }
+
+  :global(:is(a, button, summary, label, [role='button'], [role='link'], [role='tab'], [role='menuitem'], [role='menuitemradio'], [role='menuitemcheckbox'], [role='option'], [data-text-motion-trigger]):is(:hover, :focus-visible))
+    .root[data-trigger='parent'][data-effect='wave']
+    .front,
+  .root[data-trigger='self'][data-effect='wave']:hover .front {
+    /* The delay is in the shorthand: a separate animation-delay rule would lose to it. */
+    animation: wave var(--duration-speed-m) ease-in-out calc(var(--_staggered) * var(--_i) * var(--duration-speed-m) / 4) both;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: none;
+  }
+  40% {
+    transform: translateY(calc(var(--_dir) * -35%));
+  }
+}
+
+@media (forced-colors: active) {
+  .root {
+    --_on: 0 !important;
+  }
+
+  .front {
+    animation: none !important;
+  }
+}

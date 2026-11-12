@@ -2,6 +2,7 @@
    chosen item is a raised surface/level-1 pill with primary text. */
 
 .segment {
+  position: relative;
   display: inline-flex;
   inline-size: fit-content;
   gap: var(--space-micro);
@@ -94,6 +95,43 @@
   color: var(--color-primary-foreground);
   background: var(--color-surface-level-1);
   box-shadow: var(--shadow-card-style-1);
+}
+
+/* Hover on an item that is not chosen: one surface level deeper than the track. */
+.segment:not([data-disabled]) .item:not([data-disabled]):not(:has(.input:checked)):hover {
+  background: var(--color-surface-level-4);
+}
+
+/* The sliding pill: once it is measured it draws the chosen item's surface and shadow, and moves
+   from item to item; the items sit above it. */
+.pill {
+  position: absolute;
+  inset-block: var(--space-micro);
+  /* offsetLeft is physical, so the pill is placed from the left in both directions. */
+  left: 0;
+  inline-size: var(--_pill-w);
+  border-radius: var(--radius-form-element-small);
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-card-style-1);
+  transform: translateX(var(--_pill-x));
+  transition:
+    transform var(--duration-speed-m) ease-in-out,
+    inline-size var(--duration-speed-m) ease-in-out;
+}
+
+.segment[data-pill] .item:has(.input:checked) {
+  background: transparent;
+  box-shadow: none;
+}
+
+.segment[data-pill] .item:has(.input:checked:focus-visible) {
+  box-shadow: var(--shadow-focus-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill {
+    transition: none;
+  }
 }
 
 .item:has(.input:focus-visible) {
