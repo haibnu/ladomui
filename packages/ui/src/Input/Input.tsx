@@ -12,6 +12,11 @@ import styles from './Input.module.css';
 // 🎛 Type follows the input type: type="search" is the Search look, type="password" adds the
 // show/hide toggle, type="number" centers the value (NumberInput). 🕹 State is :hover,
 // :focus-within and a filled value (Typed).
+const TEXT_LIKE: Record<string, { inputMode: 'email' | 'url'; autoComplete: string; pattern?: string } | undefined> = {
+  email: { inputMode: 'email', autoComplete: 'email', pattern: '[^@\\s]+@[^@\\s]+\\.[^@\\s]+' },
+  url: { inputMode: 'url', autoComplete: 'url' },
+};
+
 export type InputSize = 'medium' | 'small';
 
 export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> & {
@@ -79,6 +84,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     el.focus();
   };
   const leading = iconLeft ?? (type === 'search' ? <IconSearch /> : null);
+  // Browsers turn off macOS text replacement (and autocorrect) in type="email" and type="url"
+  // fields, so shortcuts like "!g" for an address do nothing there. These render as text fields
+  // with the matching keyboard and autofill instead; email keeps form validation with a pattern.
+  const asText = TEXT_LIKE[type];
 
   return (
     <div
@@ -104,7 +113,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           onChange?.(e);
         }}
         id={id ?? field?.id}
-        type={isPassword && revealed ? 'text' : type}
+        type={asText || (isPassword && revealed) ? 'text' : type}
+        inputMode={asText?.inputMode}
+        autoComplete={asText?.autoComplete}
+        autoCapitalize={asText ? 'none' : undefined}
+        pattern={asText?.pattern}
         disabled={disabled}
         // A placeholder is needed for :placeholder-shown, which drives the filled (Typed) style.
         placeholder={placeholder ?? ' '}
