@@ -86,7 +86,8 @@ const lengths = (group) => group.variables.map((v) => ({ name: v.name.slice(2), 
 
 const shadowTokens = G.shadow.tokens.map((t) => ({
   name: t.name.slice(2),
-  value: { light: literal(t.value, 'Light'), dark: literal(t.value, 'Dark') },
+  // Shadows with code-side Dark values (config/dark-shadows.json) carry them in `dark`.
+  value: { light: literal(t.value, 'Light'), dark: literal(t.dark ?? t.value, 'Dark') },
   usage: t.name.includes('focus') ? 'Focus ring of controls.' : t.name.includes('line') ? 'One-pixel line drawn as a shadow.' : `Elevation: ${t.name.slice(9).replace(/-/g, ' ')}.`,
 }));
 
