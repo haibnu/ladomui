@@ -436,6 +436,27 @@ return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Open drawer')
     h(PageHeader, { title: 'Overview' }), h(StatCard, { label: 'Employees', value: '16', note: '2 on probation' })));`,
   },
   {
+    name: 'Agenda', group: 'Layout', height: 520,
+    summary: 'Pro. A full-page calendar that fills its container: a toolbar (Today, previous / next, the period, a Segment of views) over a month grid, a week or day time grid with an all-day row and the current-time line, or a list. Events take a chart color, overlapping ones sit side by side, bars cross days and a full day shows “+N more”. Clicking an event opens a details panel; with the callbacks a mouse drags to create, move and resize, and Alt + arrows move from the keyboard.',
+    use: ['Give it a parent with a height (a page section, `100dvh`). Keep `events` in state and update them in `onEventCreate`, `onEventMove`, `onEventResize` and `onEventDelete`; Agenda never changes them itself.', 'Use `color` 1–6 for the chart colors, by calendar or kind (leave, meetings…), not one per event. Mark tentative events `status: "unconfirmed"` and keep declined ones with `status: "declined"`.', 'Set `locale` (week start, names, clock follow it) and translate the toolbar with `labels`; `timeZone` shows times in another zone.'],
+    provides: '`events` (`{ id, title, start, end, allDay?, color?, status?, readOnly?, location?, description? }`), `view` / `defaultView` (month, week, day, list), `views`, `date` / `defaultDate`, `locale`, `timeZone`, `hourCycle`, `weekStartsOn`, `startHour`, `endHour`, `scrollToHour`, `snapMinutes`, `maxEvents`, `onEventClick`, `onDayClick`, `onSlotClick`, `onEventCreate`, `onEventMove`, `onEventResize`, `onEventDelete`, `selectedEventId`, `eventDetails`, `renderEventDetails`, `actions`, `toolbar`, `labels`.',
+    code: `const now = new Date();
+const monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - ((now.getDay() + 6) % 7));
+const at = (d, hh, mm = 0) => new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + d, hh, mm);
+const [events, setEvents] = React.useState([
+  { id: 'a', title: 'Standup', start: at(0, 9, 30), end: at(0, 9, 45), color: 1 },
+  { id: 'b', title: 'Design review', start: at(0, 11), end: at(0, 12, 30), color: 2, location: 'Room 3' },
+  { id: 'c', title: '1:1 with Elif', start: at(0, 11, 30), end: at(0, 12), color: 3 },
+  { id: 'd', title: 'Interview', start: at(1, 14), end: at(1, 15, 30), color: 4, status: 'unconfirmed' },
+  { id: 'e', title: 'Team offsite', start: at(3, 0), end: at(4, 0), allDay: true, color: 2 },
+  { id: 'f', title: 'Ece on leave', start: at(4, 0), end: at(4, 0), allDay: true, color: 3 },
+  { id: 'g', title: 'Vendor call', start: at(3, 10), end: at(3, 11), color: 6, status: 'declined' }]);
+const update = (e, r) => setEvents((l) => l.map((x) => (x.id === e.id ? { ...x, ...r } : x)));
+return h('div', { style: { height: 480 } }, h(Agenda, { events, defaultView: 'week', locale: 'en-GB',
+  onEventCreate: (r) => setEvents((l) => [...l, { id: String(Math.random()), title: 'New event', color: 1, ...r }]),
+  onEventMove: update, onEventResize: update, onEventDelete: (e) => setEvents((l) => l.filter((x) => x.id !== e.id)) }));`,
+  },
+  {
     name: 'Card', group: 'Layout', height: 220,
     summary: 'Pro. A section of a dashboard: a surface/level-1 card with a title, actions at the end of the title row, the content and an optional footer.',
     use: ['Give it a `title` so the section is named; put a ghost Button or a Badge in `actions`.', 'Without a title it is a plain surface.'],

@@ -116,6 +116,20 @@
   gap: var(--space-micro);
 }
 
+/* A playground for a wide component (Agenda): the stage takes the full width and the controls
+   wrap in rows under it. */
+.playgroundWide {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.playgroundWide .controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-column-2), 1fr));
+  align-items: end;
+  border-inline-start: none;
+  border-block-start: var(--border);
+}
+
 .output {
   grid-column: 1 / -1;
   padding: var(--space-medium);

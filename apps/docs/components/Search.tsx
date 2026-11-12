@@ -11,12 +11,12 @@ import { useLocale } from './useLocale';
 import styles from './shell.module.css';
 
 type Kind = 'Page' | 'Token' | 'Icon';
-type Result = { kind: Kind; title: string; detail?: string; href: string };
+type Result = { kind: Kind; title: string; detail?: string; href: string; keywords?: string[] };
 
 function buildIndex(lang: Locale): Result[] {
   const t = getDictionary(lang);
   return [
-    ...getNav(lang).flatMap((s) => s.items.flatMap((i) => [i, ...(i.children ?? [])]).filter((i) => i.href).map((i) => ({ kind: 'Page' as const, title: i.title, detail: s.title, href: i.href! }))),
+    ...getNav(lang).flatMap((s) => s.items.flatMap((i) => [i, ...(i.children ?? [])]).filter((i) => i.href).map((i) => ({ kind: 'Page' as const, title: i.title, detail: s.title, href: i.href!, keywords: i.keywords }))),
     ...meta.groups.flatMap((g) =>
       [...g.variables.map((v) => v.name), ...g.tokens.map((tk) => tk.name)].map((name) => ({
         kind: 'Token' as const,
@@ -40,7 +40,7 @@ export function Search() {
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return index.filter((r) => r.kind === 'Page');
-    return index.filter((r) => r.title.toLowerCase().includes(q)).slice(0, 50);
+    return index.filter((r) => r.title.toLowerCase().includes(q) || r.keywords?.some((k) => k.includes(q))).slice(0, 50);
   }, [query, index]);
 
   const open = () => {

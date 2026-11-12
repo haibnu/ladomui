@@ -44,6 +44,7 @@
     "alert": { "folder": "Alert", "tier": "free", "description": "An inline message about the page." },
     "toast": { "folder": "Toast", "tier": "free", "description": "A short message after an action, with ToastProvider and useToast." },
     "accordion": { "folder": "Accordion", "tier": "pro", "description": "A card whose content opens and closes under its title." },
+    "agenda": { "folder": "Agenda", "tier": "pro", "description": "A full-page calendar: month, week, day and list views, with drag to create, move and resize events." },
     "navigation": { "folder": "Navigation", "tier": "pro", "description": "PageHeader, AppHeader and PublicHeader." },
     "app-sidebar": { "folder": "AppSidebar", "tier": "pro", "description": "A side menu that collapses to a rail of icons, with nested groups." },
     "file-share": { "folder": "FileShare", "tier": "pro", "description": "A \"Share this file\" panel: link with Copy Link and the people with access." },
