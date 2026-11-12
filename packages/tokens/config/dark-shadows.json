@@ -1,0 +1,9 @@
+{
+  "$description": "Code-side Dark values for the Depth (shadow) tokens; the Figma Dark mode is not final. In Figma the shadows use --color-opacity-* and --color-invert-opacity-*, which turn white (or navy) in Dark, so every shadow became a light glow. In Dark each of those colors is replaced, inside the shadow tokens only, by a stronger black: a shadow has to be darker than a dark surface to read as depth. Focus rings and other shadows without these colors are unchanged.",
+  "colors": {
+    "--color-opacity-8": "#00000066",
+    "--color-opacity-12": "#00000080",
+    "--color-opacity-24": "#000000b3",
+    "--color-invert-opacity-8": "#00000052"
+  }
+}
