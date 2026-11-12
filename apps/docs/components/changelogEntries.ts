@@ -101,6 +101,12 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   hint: [first()],
   input: [
+    {
+      date: '2026-11-12',
+      pr: 41,
+      en: 'Email and URL inputs render as text fields with the email or URL keyboard and autofill, so macOS text replacements (like "!g" for an address) work in them.',
+      tr: 'E-posta ve URL alanları, e-posta ya da URL klavyesi ve otomatik doldurmayla metin alanı olarak çiziliyor; macOS metin değiştirmeleri (adres için "!g" gibi) artık bu alanlarda da çalışıyor.',
+    },
     ROLES,
     {
       date: '2026-11-02',
