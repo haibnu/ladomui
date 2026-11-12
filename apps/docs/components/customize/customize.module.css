@@ -183,10 +183,6 @@
   gap: var(--space-tiny);
 }
 
-.prompt pre {
-  white-space: pre-wrap;
-}
-
 /* Playground theme row */
 .row {
   display: flex;
