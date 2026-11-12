@@ -14,6 +14,7 @@ const legacyStyles = await readJson('config/legacy-styles.json');
 const breakpoints = await readJson('config/breakpoints.json');
 const colorRoles = await readJson('config/color-roles.json');
 const chartColors = await readJson('config/chart-colors.json');
+const darkShadows = await readJson('config/dark-shadows.json');
 const selectors = modeSelectors(breakpoints);
 
 // Figma variables that are not design tokens.
@@ -87,7 +88,11 @@ for (const style of styles.effect) {
       return `${e.type === 'INNER_SHADOW' ? 'inset ' : ''}${e.offset.x}px ${e.offset.y}px ${e.radius}px ${e.spread}px ${color}`;
     });
   const last = style.name.split('/').at(-1);
-  extras('shadow').push({ name: `--shadow-${slug(last)}`, value: shadows.join(', ') || 'none', source: style.name });
+  const value = shadows.join(', ') || 'none';
+  // Dark: the opacity colors turn light there, so shadows take the blacks in config/dark-shadows.json.
+  let dark = value;
+  for (const [color, black] of Object.entries(darkShadows.colors)) dark = dark.replaceAll(`var(${color})`, black);
+  extras('shadow').push({ name: `--shadow-${slug(last)}`, value, ...(dark !== value && { dark }), source: style.name });
 }
 
 // Color roles: code-side tokens that default to a theme color; see config/color-roles.json.
