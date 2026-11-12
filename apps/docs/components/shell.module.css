@@ -54,7 +54,8 @@
   box-shadow: var(--shadow-focus-primary);
 }
 
-.menuButton {
+/* Doubled class: in production the Button's own display rule can load after this file. */
+.menuButton.menuButton {
   display: none;
 }
 
@@ -170,14 +171,13 @@
   color: var(--color-foreground-low-emphasis);
 }
 
-/* Docs layout */
+/* Docs layout: on wide screens the sidebar sits against the left edge on a light grey surface;
+   the page and its table of contents fill the rest, the page centred at its reading width. */
 .layout {
   display: grid;
-  grid-template-columns: var(--grid-column-2) minmax(0, 1fr) var(--grid-column-2);
-  gap: var(--space-xxlarge);
-  max-inline-size: calc(var(--grid-column-12) + 2 * var(--space-container));
-  margin-inline: auto;
-  padding-inline: var(--space-container);
+  grid-template-columns: calc(var(--grid-column-2) + 2 * var(--space-xlarge)) minmax(0, 1fr) var(--grid-column-2);
+  column-gap: var(--space-xxlarge);
+  padding-inline-end: var(--space-container);
 }
 
 .sidebar,
@@ -190,7 +190,18 @@
   padding-block: var(--space-xlarge);
 }
 
+.sidebar {
+  box-sizing: border-box;
+  block-size: 100vh;
+  padding-inline: var(--space-xlarge);
+  background: var(--color-surface-level-2);
+  border-inline-end: var(--border);
+}
+
 .main {
+  justify-self: center;
+  inline-size: 100%;
+  max-inline-size: var(--grid-column-8);
   min-inline-size: 0;
   padding-block: var(--space-xlarge) var(--space-landing-section-v-gutter);
 }
@@ -377,7 +388,7 @@ a.navLink:hover {
 
 @media (width < 1280px) {
   .layout {
-    grid-template-columns: var(--grid-column-2) minmax(0, 1fr);
+    grid-template-columns: calc(var(--grid-column-2) + 2 * var(--space-xlarge)) minmax(0, 1fr);
   }
 
   .tocColumn {
@@ -388,6 +399,7 @@ a.navLink:hover {
 @media (width < 768px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
+    padding-inline: var(--space-container);
   }
 
   /* Room for the Products button next to Customize. */
@@ -411,7 +423,7 @@ a.navLink:hover {
     display: none;
   }
 
-  .menuButton {
+  .menuButton.menuButton {
     display: inline-flex;
   }
 }
