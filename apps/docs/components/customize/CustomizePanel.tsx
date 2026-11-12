@@ -154,10 +154,7 @@ export function CustomizePanel() {
           <p className={styles.label}>{c.command}</p>
           <CodeBlock code={installCommand(theme)} />
           <p className={styles.label}>{c.prompt}</p>
-          <CodeBlock
-            className={styles.prompt}
-            code={agentPrompt(theme, lang)}
-          />
+          <CodeBlock language="text" title="prompt" wrap code={agentPrompt(theme, lang)} />
         </section>
       </div>
     </Drawer>

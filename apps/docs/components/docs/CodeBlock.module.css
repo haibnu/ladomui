@@ -1,0 +1,157 @@
+/* Docs code block: a light grey shell (tabs, label, copy) around a raised card with the code.
+   Syntax colors use the chart colors, so they follow the brand color like the rest of the site.
+   The monospace stack is docs chrome only; Ladom UI has no code font token. */
+
+.block {
+  --code-font: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding: var(--space-micro) var(--space-tiny) var(--space-tiny);
+  background: var(--color-surface-level-3);
+  border-radius: var(--radius-card);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-medium);
+  margin-inline: calc(-1 * var(--space-tiny));
+  padding-inline: var(--space-medium);
+  border-block-end: var(--border);
+}
+
+.tab {
+  margin-block-end: calc(-1 * var(--border-width));
+  padding: var(--space-small) 0;
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-low-emphasis);
+  background: none;
+  border: none;
+  border-block-end: 2px solid transparent;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.tab[aria-selected='true'] {
+  color: var(--color-foreground-high-emphasis);
+  border-block-end-color: var(--color-primary-line);
+}
+
+.tab:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-small);
+  padding-block: var(--space-micro);
+  padding-inline: var(--space-small) 0;
+}
+
+.label {
+  font: var(--text-ui-text-small-regular);
+  font-family: var(--code-font);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.card {
+  min-inline-size: 0;
+  background: var(--color-surface-level-1);
+  border-radius: var(--radius-card-inner);
+  box-shadow: var(--shadow-depth-sm);
+}
+
+.scroll {
+  border-radius: inherit;
+}
+
+.pre {
+  margin: 0;
+  padding: var(--space-medium);
+  font: var(--text-ui-text-small-regular);
+  font-family: var(--code-font);
+  line-height: 1.7;
+  color: var(--color-foreground-high-emphasis);
+  tab-size: 2;
+}
+
+.pre code {
+  display: grid;
+  min-inline-size: max-content;
+  font: inherit;
+}
+
+.pre[data-wrap] code {
+  min-inline-size: 0;
+}
+
+.line {
+  display: flex;
+  gap: var(--space-medium);
+}
+
+.number {
+  flex: none;
+  min-inline-size: 2ch;
+  text-align: end;
+  color: var(--color-foreground-low-emphasis);
+  user-select: none;
+}
+
+.text {
+  white-space: pre;
+}
+
+.pre[data-wrap] .text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.pre [data-tok='comment'] {
+  font-style: italic;
+  color: var(--color-foreground-low-emphasis);
+}
+
+.pre [data-tok='string'] {
+  color: var(--color-chart-2);
+}
+
+.pre [data-tok='keyword'] {
+  color: var(--color-chart-5);
+}
+
+.pre [data-tok='tag'],
+.pre [data-tok='prop'] {
+  color: var(--color-chart-4);
+}
+
+.pre [data-tok='fn'],
+.pre [data-tok='command'] {
+  color: var(--color-chart-6);
+}
+
+.pre [data-tok='attr'],
+.pre [data-tok='flag'],
+.pre [data-tok='number'] {
+  color: var(--color-chart-1);
+}
+
+.pre [data-tok='punct'] {
+  color: var(--color-foreground-medium-emphasis);
+}
+
+/* Shell arguments read as one color, like the reference. */
+.block[data-lang='bash'] .pre [data-tok='plain'] {
+  color: var(--color-chart-5);
+}
+
+.pre [data-tok='output'] {
+  color: var(--color-foreground-medium-emphasis);
+}

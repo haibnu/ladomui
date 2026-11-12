@@ -386,17 +386,6 @@ a.navLink:hover {
   border-radius: var(--radius-form-element-small);
 }
 
-.prose pre {
-  margin: var(--space-small) 0;
-  padding: var(--space-medium);
-  overflow-x: auto;
-  font: var(--text-ui-text-small-regular);
-  color: var(--color-foreground-high-emphasis);
-  background: var(--color-surface-level-2);
-  border: var(--border);
-  border-radius: var(--radius-card-inner);
-}
-
 @media (width < 1280px) {
   .layout {
     grid-template-columns: calc(var(--grid-column-2) + 2 * var(--space-xlarge)) minmax(0, 1fr);

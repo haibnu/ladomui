@@ -1,28 +1,5 @@
 /* Building blocks for component pages. */
 
-/* Code */
-.code {
-  position: relative;
-}
-
-.code pre {
-  margin: 0;
-  padding: var(--space-medium);
-  padding-inline-end: var(--space-xxlarge);
-  overflow-x: auto;
-  font: var(--text-ui-text-small-regular);
-  color: var(--color-foreground-high-emphasis);
-  background: var(--color-surface-level-2);
-  border: var(--border);
-  border-radius: var(--radius-card-inner);
-}
-
-.copy {
-  position: absolute;
-  inset-block-start: var(--space-tiny);
-  inset-inline-end: var(--space-tiny);
-}
-
 /* Example: preview + code */
 .example {
   margin-block: var(--space-small) var(--space-xlarge);
@@ -46,8 +23,7 @@
   align-items: stretch;
 }
 
-.exampleCode pre {
-  border: none;
+.exampleCode {
   border-block-start: var(--border);
   border-radius: 0;
 }
