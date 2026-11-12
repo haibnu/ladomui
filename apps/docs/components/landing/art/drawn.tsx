@@ -790,6 +790,39 @@ const Delta = () => (
   </Art>
 );
 
+// Agenda: a month plate with a header and a grid of days; event bars stand on it, one crossing
+// three days, and drop in one after another.
+const Agenda = () => {
+  const cell = 33;
+  const x0 = -130 + 16;
+  const y0 = -95 + 44;
+  const events: [col: number, row: number, span: number, top: string, side: string][] = [
+    [1, 0, 3, DARK, INK],
+    [4, 1, 1, SIDE, DARK],
+    [0, 2, 2, SIDE, DARK],
+    [3, 2, 1, DARK, INK],
+    [5, 3, 2, DARK, INK],
+  ];
+  return (
+    <Art>
+      <Shadow x={-130} y={-95} w={260} d={190} r={14} />
+      <Box x={-130} y={-95} w={260} d={190} h={8} r={14}>
+        <Bar x={16} y={16} w={22} h={14} fill={FILL} />
+        <Bar x={44} y={18} w={70} h={10} />
+        <Bar x={196} y={16} w={48} h={14} fill={FILL} />
+        {Array.from({ length: 28 }, (_, i) => (
+          <Bar key={i} x={16 + (i % 7) * cell} y={44 + Math.floor(i / 7) * 34} w={30} h={30} fill={i === 9 ? SIDE : FILL} />
+        ))}
+      </Box>
+      {events.map(([col, row, span, top, side], i) => (
+        <g key={i} className={i === 0 ? 'a-drop' : `a-row${(i % 3) + 1}`}>
+          <Box x={x0 + col * cell} y={y0 + row * 34 + 14} w={span * cell - 3} d={12} h={6} z={8} r={3} top={top} side={side} />
+        </g>
+      ))}
+    </Art>
+  );
+};
+
 // BarChart: pairs of columns standing on a plate, a dark and a light one per month, rising as
 // they go; the plate's grid lines run under them.
 const BarChart = () => {
@@ -1008,6 +1041,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   tooltip: Tooltip,
   uploader: Uploader,
   accordion: Accordion,
+  agenda: Agenda,
   'app-sidebar': AppSidebar,
   'file-share': FileShare,
   navigation: Navigation,

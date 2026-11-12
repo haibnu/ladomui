@@ -2,7 +2,7 @@ import meta from '@ladom/tokens/tokens.json';
 import tiers from '@/registry/tiers.json';
 import { getDictionary, href, type Locale } from '@/i18n';
 
-export type NavItem = { title: string; href?: string; soon?: boolean; pro?: boolean; children?: NavItem[] };
+export type NavItem = { title: string; href?: string; soon?: boolean; pro?: boolean; children?: NavItem[]; /** Other names search finds the page by. */ keywords?: string[] };
 
 // Docs path segment -> registry name, where they differ.
 const REGISTRY_NAME: Record<string, string> = { chips: 'chip', tab: 'tabs', drawer: 'modal' };
@@ -18,12 +18,13 @@ const PLANNED_COMPONENTS = [
 // Separate components that the nav lists under a parent component.
 const SUBCOMPONENTS: Record<string, string[]> = { Input: ['Number Input', 'Currency Input', 'GSM Input', 'Color Input', 'OTP Input'] };
 const IS_SUBCOMPONENT = new Set(Object.values(SUBCOMPONENTS).flat());
-const PLANNED_MOLECULES = ['Accordion', 'App Shell', 'App Sidebar', 'Bar Chart', 'Bar List', 'Card', 'Chart Legend', 'Data Toolbar', 'Delta', 'Donut Chart', 'File Share', 'Funnel Chart', 'Navigation', 'Person Cell', 'Stat Card', 'Wizard Modal'];
+const PLANNED_MOLECULES = ['Accordion', 'Agenda', 'App Shell', 'App Sidebar', 'Bar Chart', 'Bar List', 'Card', 'Chart Legend', 'Data Toolbar', 'Delta', 'Donut Chart', 'File Share', 'Funnel Chart', 'Navigation', 'Person Cell', 'Stat Card', 'Wizard Modal'];
 // Components that have a page, by their path segment.
 const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Color Input': 'color-input', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', 'OTP Input': 'otp-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', 'Scroll Area': 'scroll-area', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', 'Text Motion': 'text-motion', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
 const BUILT_MOLECULES: Record<string, string> = {
   Accordion: 'accordion',
+  Agenda: 'agenda',
   'App Shell': 'app-shell',
   'App Sidebar': 'app-sidebar',
   'Bar Chart': 'bar-chart',
@@ -40,6 +41,9 @@ const BUILT_MOLECULES: Record<string, string> = {
   'Stat Card': 'stat-card',
   'Wizard Modal': 'wizard-modal',
 };
+
+// Other names the search finds a page by, in both languages.
+const KEYWORDS: Record<string, string[]> = { Agenda: ['calendar', 'scheduler', 'event calendar', 'takvim', 'ajanda', 'etkinlik takvimi'] };
 
 function component(lang: Locale, title: string): NavItem {
   const slug = BUILT[title];
@@ -75,7 +79,9 @@ export function getNav(lang: Locale): NavSection[] {
     {
       title: t.nav.molecules,
       items: PLANNED_MOLECULES.map((title) =>
-        BUILT_MOLECULES[title] ? { title, href: href(lang, `/docs/pro/${BUILT_MOLECULES[title]}`), pro: isPro(BUILT_MOLECULES[title]!) } : { title, soon: true },
+        BUILT_MOLECULES[title]
+          ? { title, href: href(lang, `/docs/pro/${BUILT_MOLECULES[title]}`), pro: isPro(BUILT_MOLECULES[title]!), keywords: KEYWORDS[title] }
+          : { title, soon: true },
       ),
     },
   ];

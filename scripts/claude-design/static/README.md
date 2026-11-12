@@ -65,16 +65,16 @@ Build screens from the components, not from raw elements:
 - Overlays: `Tooltip` for short labels, `Popover` for content people use, `Modal` for a decision or a short form over the page, `Drawer` for details and longer forms beside it.
 - Data: `Table` (sortable columns, row selection) with `Pagination` under it; `FileShare` (Pro) for sharing a link with people.
 - Feedback: `Alert` inline, `Toast` after an action (`ToastProvider` + `useToast`), `EmptyState` where there is no content yet or a load failed.
-- Layout: `Accordion` (Pro); for admin apps the Pro `AppShell` (side menu, sticky header, a Drawer on phones) and `Card` for dashboard sections.
+- Layout: `Accordion` (Pro); for admin apps the Pro `AppShell` (side menu, sticky header, a Drawer on phones) and `Card` for dashboard sections; `Agenda` (Pro) for a full-page calendar (month, week, day and list views; events in the chart colors; drag to create, move and resize). For picking a date in a form use `DatePicker`, not Agenda.
 - Admin data (Pro): `StatCard` for dashboard figures, `Delta` for a change with a trend arrow, `BarChart` for values over categories (one series, grouped or stacked; colors `--color-chart-1…6` come from the brand), `DonutChart` for parts of a whole with `ChartLegend` as its key, `FunnelChart` for stages that narrow (hiring, sales), `BarList` / `Meter` for amounts and shares, `PersonCell` for people in tables, `DataToolbar` above a Table, `WizardModal` for a task in steps.
 
 ## Free and Pro
 
-Ladom UI comes in two tiers. The free components are MIT licensed. The Pro components need a Ladom UI Pro license to ship in an app: Accordion, AppHeader, AppShell, AppSidebar, BarChart, BarList and Meter, Card, ChartLegend, DataToolbar, Delta, DonutChart, FileShare, FunnelChart, PageHeader, PersonCell, PublicHeader, StatCard and WizardModal. Their previews carry a PRO badge, their cards start with "Ladom UI Pro", and their types say `@pro`.
+Ladom UI comes in two tiers. The free components are MIT licensed. The Pro components need a Ladom UI Pro license to ship in an app: Accordion, Agenda, AppHeader, AppShell, AppSidebar, BarChart, BarList and Meter, Card, ChartLegend, DataToolbar, Delta, DonutChart, FileShare, FunnelChart, PageHeader, PersonCell, PublicHeader, StatCard and WizardModal. Their previews carry a PRO badge, their cards start with "Ladom UI Pro", and their types say `@pro`.
 
 - Designs may use Pro components freely; the license is needed when the design is built: `LADOM_UI_KEY=<key> npx ladom-ui add <name>` copies them into an app, and the CLI refuses Pro components without a key. Licenses: https://ui.ladom.co/license.
 - When a design uses any Pro component, end the hand-off with a line that names them, for example: "Uses Ladom UI Pro: AppShell, StatCard, WizardModal. Building it needs a Ladom UI Pro license (https://ui.ladom.co/license)." Do this every time, also for one Pro component.
-- When the person cannot use Pro, build the same screen from free components: `SidebarNav` for `AppSidebar`, a `Table` and `Input` for `DataToolbar`, `Modal` with a `Stepper` for `WizardModal`, plain surfaces for `Card` and `StatCard`.
+- When the person cannot use Pro, build the same screen from free components: `SidebarNav` for `AppSidebar`, a `Table` and `Input` for `DataToolbar`, `Modal` with a `Stepper` for `WizardModal`, plain surfaces for `Card` and `StatCard`, a `Table` of dates or a `Calendar` with `events` for `Agenda`.
 
 ## Not synced
 

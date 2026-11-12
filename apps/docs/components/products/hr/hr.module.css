@@ -13,6 +13,34 @@
 }
 
 /* Screens */
+
+/* Calendar: the Agenda fills the screen under the header, with a key of its colors above. */
+.calendar {
+  block-size: max(calc(100dvh - 8 * var(--space-xxlarge)), calc(16 * var(--space-xxlarge)));
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-tiny) var(--space-medium);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-micro);
+}
+
+.legendDot {
+  inline-size: var(--space-tiny);
+  block-size: var(--space-tiny);
+  border-radius: var(--radius-full);
+}
 .pageHeader {
   margin-inline: calc(-1 * var(--space-container));
 }

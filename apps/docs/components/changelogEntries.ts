@@ -292,6 +292,13 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       tr: 'İlk sürüm: seri noktaları, değer sütunları ve bir Delta ile küçük bir tablo olarak grafik anahtarı.',
     },
   ],
+  agenda: [
+    {
+      date: '2026-11-12',
+      en: 'First release: a full-page calendar with month, week, day and list views, chart-colored events, “+N more”, the current-time line, a details panel, drag to create, move and resize, keyboard moves, locale-aware week start and clock, and time zones.',
+      tr: 'İlk sürüm: ay, hafta, gün ve liste görünümleriyle tam sayfa bir takvim; grafik renkli etkinlikler, “+N daha”, şu anki saat çizgisi, detay paneli, sürükleyerek oluşturma, taşıma ve boyutlandırma, klavyeyle taşıma, yerel ayara göre hafta başlangıcı ve saat, saat dilimleri.',
+    },
+  ],
   'funnel-chart': [
     {
       date: '2026-11-11',
