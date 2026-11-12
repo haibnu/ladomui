@@ -185,17 +185,28 @@
   position: sticky;
   inset-block-start: 0;
   align-self: start;
+  display: flex;
+  flex-direction: column;
   max-block-size: 100vh;
-  overflow-y: auto;
+}
+
+/* Both columns scroll in a ScrollArea; the padding sits inside it so the scrollbar runs edge to edge. */
+.scroll {
+  flex: 1 1 auto;
+}
+
+.scrollViewport {
   padding-block: var(--space-xlarge);
 }
 
 .sidebar {
-  box-sizing: border-box;
   block-size: 100vh;
-  padding-inline: var(--space-xlarge);
   background: var(--color-surface-level-2);
   border-inline-end: var(--border);
+}
+
+.sidebar .scrollViewport {
+  padding-inline: var(--space-xlarge);
 }
 
 .main {

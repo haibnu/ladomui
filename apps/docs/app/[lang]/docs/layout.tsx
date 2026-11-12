@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { ScrollArea } from '@ladom/ui';
 import { Sidebar } from '@/components/Sidebar';
 import { Toc } from '@/components/Toc';
 import { TopBar } from '@/components/TopBar';
@@ -12,11 +13,15 @@ export default async function DocsLayout({ children, params }: { children: React
       <TopBar lang={lang} withMenu />
       <div className={styles.layout}>
         <aside className={styles.sidebar}>
-          <Sidebar />
+          <ScrollArea className={styles.scroll} viewportProps={{ className: styles.scrollViewport }}>
+            <Sidebar />
+          </ScrollArea>
         </aside>
         <main className={styles.main}>{children}</main>
         <aside className={styles.tocColumn}>
-          <Toc />
+          <ScrollArea className={styles.scroll} viewportProps={{ className: styles.scrollViewport }}>
+            <Toc />
+          </ScrollArea>
         </aside>
       </div>
     </>
