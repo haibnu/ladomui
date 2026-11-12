@@ -517,6 +517,37 @@ const ScrollArea = () => (
   </Art>
 );
 
+const TextMotion = () => {
+  // A pill button whose label rolls: each letter slides up and its copy follows from below.
+  const widths = [14, 12, 12, 14, 10, 12, 14];
+  let x = 46;
+  const letters = widths.map((w) => {
+    const at = x;
+    x += w + 4;
+    return { x: at, w };
+  });
+  return (
+    <Art>
+      <Shadow x={-100} y={-34} w={200} d={68} r={34} />
+      <Box x={-100} y={-34} w={200} d={68} h={14} r={34} top={DARK}>
+        <defs>
+          <clipPath id="art-roll-clip">
+            <rect x={30} y={20} width={140} height={28} />
+          </clipPath>
+        </defs>
+        <g clipPath="url(#art-roll-clip)">
+          {letters.map((l, i) => (
+            <g key={i} className="a-roll" style={{ animationDelay: `${i * 0.06}s` }}>
+              <rect x={l.x} y={24} width={l.w} height={20} rx={3} fill="#fff" />
+              <rect x={l.x} y={52} width={l.w} height={20} rx={3} fill="#fff" />
+            </g>
+          ))}
+        </g>
+      </Box>
+    </Art>
+  );
+};
+
 const Toast = () => (
   <Art>
     <g className="a-toast">
@@ -971,6 +1002,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   stepper: Stepper,
   table: Table,
   textarea: Textarea,
+  'text-motion': TextMotion,
   'time-picker': TimePicker,
   toast: Toast,
   tooltip: Tooltip,

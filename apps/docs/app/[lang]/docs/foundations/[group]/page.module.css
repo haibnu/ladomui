@@ -133,3 +133,25 @@
     padding-block: var(--space-micro);
   }
 }
+
+.motionDemo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: var(--space-large);
+  padding: var(--space-xlarge);
+  margin-block: var(--space-medium);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-level-2);
+}
+
+.motionItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-tiny);
+}
+
+.motionName {
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-medium-emphasis);
+}

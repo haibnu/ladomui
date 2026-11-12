@@ -31,6 +31,7 @@ export { Alert, type AlertProps, type AlertTone } from './Alert/Alert';
 export { Toast, ToastProvider, useOptionalToast, useToast, type ToastOptions, type ToastProps, type ToastTone } from './Toast/Toast';
 export { Drawer, Modal, type DrawerProps, type ModalProps, type ModalSize } from './Modal/Modal';
 export { ScrollArea, type ScrollAreaOrientation, type ScrollAreaProps } from './ScrollArea/ScrollArea';
+export { TextMotion, type TextMotionDirection, type TextMotionEffect, type TextMotionProps, type TextMotionTrigger } from './TextMotion/TextMotion';
 export { Table, type TableColumn, type TableProps, type TableSort, type TableSortDirection } from './Table/Table';
 export { Pagination, paginationRange, type PaginationProps } from './Pagination/Pagination';
 export { Textarea, type TextareaProps } from './Textarea/Textarea';

@@ -127,8 +127,9 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   pagination: [first()],
   popover: [UNCLIPPED({ en: 'panel', tr: 'panel' }), first()],
   radio: [first()],
+  'text-motion': [{ ...first('2026-11-12'), en: 'First release: opt-in text animations (roll, blur, flip, wave) for button and link labels.', tr: 'İlk sürüm: buton ve link etiketleri için isteğe bağlı metin animasyonları (roll, blur, flip, wave).' }],
   'scroll-area': [{ ...first('2026-11-11'), en: 'First release: thin, rounded overlay scrollbars over native scrolling.', tr: 'İlk sürüm: yerel kaydırmanın üstünde ince, yuvarlak kaydırma çubukları.' }],
-  segment: [ROLES, first()],
+  segment: [{ date: '2026-11-12', en: 'The chosen item’s raised pill slides to the newly chosen item, timed by the motion tokens (still with reduced motion). Items that are not chosen get a slightly darker background on hover.', tr: 'Seçili öğenin kabarık zemini yeni seçilen öğeye kayarak geçiyor; süre animasyon tokenlarından geliyor (hareket azaltma açıkken kaymıyor). Seçili olmayan öğelerin zemini üzerine gelince hafifçe koyulaşıyor.' }, ROLES, first()],
   selectbox: [
     SCROLL({ en: 'list', tr: 'Liste' }),
     UNCLIPPED({ en: 'list', tr: 'liste' }),

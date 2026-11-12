@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import { Button, type ButtonSize, type ButtonTone } from '@ladom/ui';
+import Link from 'next/link';
+import { Button, TextMotion, type ButtonSize, type ButtonTone } from '@ladom/ui';
 import { IconAdd, IconDownload, IconExternalLink, IconForward, IconSetting } from '@ladom/icons';
 import { DocPage } from '@/components/DocPage';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { Example } from '@/components/docs/Example';
 import { ForView, ViewProvider, ViewSwitch } from '@/components/docs/ViewSwitch';
 import docs from '@/components/docs/docs.module.css';
-import { getDictionary, type Locale } from '@/i18n';
+import { getDictionary, href, type Locale } from '@/i18n';
 import { ButtonPlayground } from './ButtonPlayground';
 import { buttonCopy } from './content';
 import styles from './page.module.css';
@@ -338,6 +339,19 @@ export default async function ButtonPage({ params }: Props) {
           <Example code={`<Button tone="tertiary" subtitle="(3)" dropdown>Filters</Button>`}>
             <Button tone="tertiary" subtitle="(3)" dropdown>
               Filters
+            </Button>
+          </Example>
+
+          <h3 id="text-motion">{lang === 'tr' ? 'İsteğe bağlı: metin animasyonu' : 'Optional: text animation'}</h3>
+          <p>
+            {lang === 'tr'
+              ? 'Butonlar metinlerini varsayılan olarak hareket ettirmez. Ana çağrı butonu gibi yerlerde etiketi TextMotion ile sarabilirsiniz; üzerine gelince ve odaklanınca harfler kayar.'
+              : 'Buttons do not animate their text by default. Where it helps, such as the main call to action, wrap the label in TextMotion; the characters roll on hover and focus.'}{' '}
+            <Link href={href(lang, '/docs/components/text-motion')}>Text Motion</Link>
+          </p>
+          <Example code={`<Button>\n  <TextMotion>Get started</TextMotion>\n</Button>`}>
+            <Button>
+              <TextMotion>Get started</TextMotion>
             </Button>
           </Example>
 

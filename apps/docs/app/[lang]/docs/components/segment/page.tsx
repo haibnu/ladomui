@@ -168,6 +168,8 @@ export default async function SegmentPage({ params }: Props) {
             rows={[
               ['Track', '--color-surface-level-3'],
               ['Chosen item', '--color-surface-level-1, --shadow-card-style-1'],
+              ['Chosen item slide', '--duration-speed-m, ease-in-out'],
+              ['Item hover (not chosen)', '--color-surface-level-4'],
               ['Chosen text', '--color-primary'],
               ['Text', '--color-foreground-high-emphasis'],
               ['Disabled track', '--color-surface-level-2, --color-surface-level-4 line'],
