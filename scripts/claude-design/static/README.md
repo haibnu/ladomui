@@ -58,9 +58,9 @@ Ladom UI is the design system of Ladom products: quiet neutral surfaces, one bra
 
 Build screens from the components, not from raw elements:
 - Actions: `Button` (solid or ghost, seven tones, four sizes).
-- Forms: wrap every field in `FormField` (label, hint, error). Fields are `Input`, `Textarea`, `NumberInput`, `CurrencyInput`, `GsmInput` (phone numbers), `ColorInput` (hex colors), `OtpInput` (one-time codes), `Selectbox`, `Checkbox` and `Radio` inside `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`, `TimePicker`.
-- Display: `Badge`, `Chip`, `Avatar`, `Loader`, `Stepper`.
-- Lists: `Dropdown` holding `Cell`s.
+- Forms: wrap every field in `FormField` (label, hint, error); outside a FormField, `Label` and `Hint` are the same parts on their own. Fields are `Input`, `Textarea`, `NumberInput`, `CurrencyInput`, `GsmInput` (phone numbers), `ColorInput` (hex colors), `OtpInput` (one-time codes), `Selectbox`, `Checkbox` and `Radio` inside `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`, `TimePicker`.
+- Display: `Badge`, `Chip`, `Avatar`, `Loader`, `Stepper`; `TextMotion` animates a button or link label on hover (sparingly, on a main call to action).
+- Lists: `Dropdown` holding `Cell`s; `ScrollArea` for a scrolling box with thin overlay scrollbars.
 - Navigation: `SidebarNav` or `TopNav` for the app's menu of pages (mark the page you are on with `current`); `AppSidebar` (Pro) when the side menu should collapse to a rail of icons or hold nested groups; `AppHeader` with a `PageHeader` (Pro); `PublicHeader` (Pro); `Tabs`; `Breadcrumb`.
 - Overlays: `Tooltip` for short labels, `Popover` for content people use, `Modal` for a decision or a short form over the page, `Drawer` for details and longer forms beside it.
 - Data: `Table` (sortable columns, row selection) with `Pagination` under it; `FileShare` (Pro) for sharing a link with people.
