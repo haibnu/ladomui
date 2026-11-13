@@ -70,6 +70,54 @@ const colorTokens = G.color.variables.map((v) => ({
   usage: colorUsage(v.name),
 }));
 
+// Code-side colors (config/color-roles.json, config/chart-colors.json) sit in G.color.tokens. The
+// roles alias a theme color; the chart colors are relative oklch() of --color-primary, which
+// tokens.json cannot hold (no var()), so they are worked out here for the Ladom brand per theme.
+const toOklch = (hex) => {
+  const n = hex.replace('#', '');
+  const rgb = [0, 2, 4].map((i) => parseInt(n.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  const [r, g, b] = rgb;
+  const [l_, m_, s_] = [0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b, 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b, 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b].map(Math.cbrt);
+  const L = 0.2104542553 * l_ + 0.793617785 * m_ - 0.0040720468 * s_;
+  const A = 1.9779984951 * l_ - 2.428592205 * m_ + 0.4505937099 * s_;
+  const B = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.808675766 * s_;
+  const C = Math.hypot(A, B);
+  // A gray has no hue (CSS treats it as 0); browsers keep a rounding remainder there, so the exact
+  // colors come from the formulas in bundle.css and these values are for the Colors view.
+  return { l: L, c: C, h: C < 1e-3 ? 0 : ((Math.atan2(B, A) * 180) / Math.PI + 360) % 360 };
+};
+const splitTop = (str) => {
+  const out = [];
+  let depth = 0, cur = '';
+  for (const ch of str) {
+    if (ch === '(') depth++;
+    if (ch === ')') depth--;
+    if (ch === ' ' && depth === 0) {
+      if (cur) out.push(cur);
+      cur = '';
+    } else cur += ch;
+  }
+  if (cur) out.push(cur);
+  return out;
+};
+const relativeOklch = (expr, theme) => {
+  const m = /^oklch\(from var\((--[a-z0-9-]+)\) (.+)\)$/.exec(expr);
+  if (!m) throw new Error(`cannot resolve ${expr}`);
+  const base = toOklch(literal(`var(${m[1]})`, theme));
+  const [l, c, h] = splitTop(m[2]).map((e) => Function('l', 'c', 'h', `return ${e.replace(/\bmin\(/g, 'Math.min(').replace(/\bmax\(/g, 'Math.max(').replace(/\bcalc\(/g, '(')};`)(base.l, base.c, base.h));
+  return `oklch(${l.toFixed(3)} ${c.toFixed(3)} ${(((h % 360) + 360) % 360).toFixed(1)})`;
+};
+const extraColor = (raw, theme) => (raw.startsWith('oklch(from') ? relativeOklch(raw, theme) : colorValue(raw, theme));
+for (const t of G.color.tokens ?? []) {
+  colorTokens.push({
+    name: t.name.slice(2),
+    value: { light: extraColor(t.value, 'Light'), dark: extraColor(t.dark ?? t.value, 'Dark') },
+    usage: t.value.startsWith('oklch(from') ? `${t.source}. Worked out for the Ladom brand; bundle.css derives it from color-primary as in code.` : t.source,
+  });
+}
+// The chart colors as code writes them (relative to --color-primary), for bundle.css.
+const relativeColors = (G.color.tokens ?? []).filter((t) => t.value.startsWith('oklch(from'));
+
 const lengthUsage = (n) => {
   const s = n.slice(2);
   if (s.startsWith('layout-')) return `Layout gap and padding step (${s.slice(7)}); narrower in the Narrow density.`;
@@ -125,13 +173,16 @@ const tokens = {
 w('tokens.json', JSON.stringify(tokens, null, 2) + '\n');
 
 // bundle.css: the Google font, the token CSS tokens.json cannot hold (text styles, line heights,
-// font sizes, motion, border, grid), then the components.
+// font sizes, motion, border, grid, the chart color formulas), then the components.
 const css = (f) => readFileSync(join(repo, 'packages/tokens/css', f), 'utf8').replace(/^\/\*.*\*\/\n/, '');
 w(
   'components/bundle.css',
   `@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap");\n` +
     `/* Ladom UI tokens that tokens.json does not hold: text styles, motion, border, grid. */\n` +
     ['typography.css', 'motion.css', 'border.css', 'grid.css'].map(css).join('\n') +
+    `\n/* Chart colors derived from the brand color, as in code (tokens.json holds their values for the Ladom brand). */\n` +
+    `:root, [data-theme="light"] {\n${relativeColors.map((t) => `  ${t.name}: ${t.value};`).join('\n')}\n}\n` +
+    `[data-theme="dark"] {\n${relativeColors.map((t) => `  ${t.name}: ${t.dark ?? t.value};`).join('\n')}\n}\n` +
     `\n/* Components */\n` +
     readFileSync(join(outRoot, 'components/_components.css'), 'utf8'),
 );
