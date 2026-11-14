@@ -72,6 +72,15 @@ const en = {
     categories: { common: 'Common', direction: 'Direction', electric: 'Electric' } as Record<string, string>,
   },
   changelog: { title: 'Changelog', pr: 'PR' },
+  notFound: {
+    title: 'Page not found',
+    heading: 'This page does not exist',
+    body: 'The link may be old, or the page may have moved. Start from the home page or the docs, or use the search above.',
+    home: 'Home page',
+    docs: 'Go to docs',
+    popular: 'Popular pages',
+    links: { introduction: 'Introduction', installation: 'Installation', colors: 'Colors', icons: 'Icons' },
+  },
   readiness: { label: 'Status', figma: 'Figma', code: 'Code', ready: 'Ready', notReady: 'Not ready' },
   customize: {
     button: 'Customize',
@@ -232,6 +241,15 @@ const tr: Dictionary = {
     categories: { common: 'Genel', direction: 'Yön', electric: 'Elektrik' },
   },
   changelog: { title: 'Değişiklik geçmişi', pr: 'PR' },
+  notFound: {
+    title: 'Sayfa bulunamadı',
+    heading: 'Bu sayfa yok',
+    body: 'Bağlantı eski olabilir ya da sayfa taşınmış olabilir. Ana sayfadan ya da dokümantasyondan devam edin; üstteki aramayı da kullanabilirsiniz.',
+    home: 'Ana sayfa',
+    docs: 'Dokümantasyona git',
+    popular: 'Sık ziyaret edilenler',
+    links: { introduction: 'Giriş', installation: 'Kurulum', colors: 'Renkler', icons: 'İkonlar' },
+  },
   readiness: { label: 'Durum', figma: 'Figma', code: 'Kod', ready: 'Hazır', notReady: 'Hazır değil' },
   customize: {
     button: 'Özelleştir',
