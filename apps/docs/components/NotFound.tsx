@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { IconArrowRight, IconTourEducation, IconHome } from '@ladom/icons';
-import { Button } from '@ladom/ui';
+import { IconArrowRight, IconHome, IconSearch, IconTourEducation } from '@ladom/icons';
+import { Button, EmptyState } from '@ladom/ui';
 import { getDictionary, href, isLocale, type Locale } from '@/i18n';
 import { TopBar } from './TopBar';
 import styles from './NotFound.module.css';
@@ -27,19 +27,23 @@ export function NotFound({ fallback }: { fallback: Locale }) {
     <div className={styles.page} lang={lang}>
       <TopBar lang={lang} />
       <main className={styles.main}>
-        <p className={styles.code} aria-hidden>
-          404
-        </p>
-        <h1 className={styles.heading}>{t.heading}</h1>
-        <p className={styles.body}>{t.body}</p>
-        <div className={styles.actions}>
-          <Button size="large" iconLeft={IconHome} onClick={() => router.push(href(lang, '/'))}>
-            {t.home}
-          </Button>
-          <Button size="large" tone="secondary" iconLeft={IconTourEducation} onClick={() => router.push(href(lang, '/docs/introduction'))}>
-            {t.docs}
-          </Button>
-        </div>
+        <h1 className={styles.srOnly}>404</h1>
+        <EmptyState
+          size="large"
+          icon={<IconSearch />}
+          title={t.heading}
+          description={t.body}
+          action={
+            <div className={styles.actions}>
+              <Button iconLeft={IconHome} onClick={() => router.push(href(lang, '/'))}>
+                {t.home}
+              </Button>
+              <Button tone="secondary" iconLeft={IconTourEducation} onClick={() => router.push(href(lang, '/docs/introduction'))}>
+                {t.docs}
+              </Button>
+            </div>
+          }
+        />
         <nav className={styles.popular} aria-label={t.popular}>
           <p className={styles.popularTitle}>{t.popular}</p>
           <ul>
