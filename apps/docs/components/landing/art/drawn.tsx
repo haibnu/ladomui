@@ -678,6 +678,28 @@ const AppSidebar = () => (
   </Art>
 );
 
+const BottomNav = () => (
+  <Art>
+    <Shadow x={-125} y={-32} w={250} d={64} r={12} />
+    <Box x={-125} y={-32} w={250} d={64} h={10} r={12}>
+      {[0, 1, 2, 3].map((i) => (
+        <g key={i}>
+          <Bar x={24 + i * 62} y={20} w={16} h={10} />
+          <Bar x={18 + i * 62} y={40} w={28} h={5} />
+        </g>
+      ))}
+    </Box>
+    <g className="a-bnav">
+      <Box x={-119} y={-26} w={52} d={30} h={5} z={10} r={15} top={FILL}>
+        <Bar x={18} y={14} w={16} h={10} fill={DARK} />
+      </Box>
+    </g>
+    <g className="a-pop">
+      <Disc cx={40} cy={-14} r={8} z={10} h={5} top={DARK} />
+    </g>
+  </Art>
+);
+
 const NavMenu = () => (
   <Art>
     <Shadow x={-90} y={-110} w={180} d={220} r={10} />
@@ -1027,6 +1049,7 @@ export const DRAWN: Record<string, () => ReactNode> = {
   'color-input': ColorInput,
   'otp-input': OtpInput,
   'gsm-input': GsmInput,
+  'bottom-nav': BottomNav,
   'nav-menu': NavMenu,
   pagination: Pagination,
   popover: Popover,
