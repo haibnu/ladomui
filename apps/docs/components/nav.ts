@@ -12,7 +12,7 @@ export type NavSection = { title: string; items: NavItem[] };
 // Components from PLAN.md phases 3-5; each gets a page as it is built. Names stay as in Figma.
 const PLANNED_COMPONENTS = [
   'Avatar', 'Badge', 'Brand', 'Button', 'Checkbox', 'Chips', 'Hint', 'Input', 'Label', 'Loader', 'Radio', 'Switch',
-  'Alert', 'Breadcrumb', 'Cell', 'Color Input', 'Currency Input', 'Date Picker', 'Drawer', 'Dropdown', 'Empty State', 'GSM Input', 'Item Selector', 'Modal', 'Nav Menu', 'Number Input', 'OTP Input',
+  'Alert', 'Bottom Nav', 'Breadcrumb', 'Cell', 'Color Input', 'Currency Input', 'Date Picker', 'Drawer', 'Dropdown', 'Empty State', 'GSM Input', 'Item Selector', 'Modal', 'Nav Menu', 'Number Input', 'OTP Input',
   'Pagination', 'Popover', 'Scroll Area', 'Segment', 'Selectbox', 'Stepper', 'Tab', 'Table', 'Text Motion', 'Textarea', 'Time Picker', 'Toast', 'Tooltip', 'Uploader',
 ];
 // Separate components that the nav lists under a parent component.
@@ -20,7 +20,7 @@ const SUBCOMPONENTS: Record<string, string[]> = { Input: ['Number Input', 'Curre
 const IS_SUBCOMPONENT = new Set(Object.values(SUBCOMPONENTS).flat());
 const PLANNED_MOLECULES = ['Accordion', 'Agenda', 'App Shell', 'App Sidebar', 'Bar Chart', 'Bar List', 'Card', 'Chart Legend', 'Data Toolbar', 'Delta', 'Donut Chart', 'File Share', 'Funnel Chart', 'Navigation', 'Person Cell', 'Stat Card', 'Wizard Modal'];
 // Components that have a page, by their path segment.
-const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Color Input': 'color-input', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', 'OTP Input': 'otp-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', 'Scroll Area': 'scroll-area', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', 'Text Motion': 'text-motion', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
+const BUILT: Record<string, string> = { Alert: 'alert', Avatar: 'avatar', Badge: 'badge', 'Bottom Nav': 'bottom-nav', Breadcrumb: 'breadcrumb', Button: 'button', Cell: 'cell', Checkbox: 'checkbox', Chips: 'chips', 'Color Input': 'color-input', 'Currency Input': 'currency-input', 'Date Picker': 'date-picker', Drawer: 'drawer', Dropdown: 'dropdown', 'Empty State': 'empty-state', 'GSM Input': 'gsm-input', Hint: 'hint', Input: 'input', 'Item Selector': 'item-selector', Label: 'label', Loader: 'loader', Modal: 'modal', 'Nav Menu': 'nav-menu', 'Number Input': 'number-input', 'OTP Input': 'otp-input', Pagination: 'pagination', Popover: 'popover', Radio: 'radio', 'Scroll Area': 'scroll-area', Segment: 'segment', Selectbox: 'selectbox', Stepper: 'stepper', Switch: 'switch', Tab: 'tab', Table: 'table', 'Text Motion': 'text-motion', Textarea: 'textarea', 'Time Picker': 'time-picker', Toast: 'toast', Tooltip: 'tooltip', Uploader: 'uploader' };
 
 const BUILT_MOLECULES: Record<string, string> = {
   Accordion: 'accordion',
@@ -43,11 +43,11 @@ const BUILT_MOLECULES: Record<string, string> = {
 };
 
 // Other names the search finds a page by, in both languages.
-const KEYWORDS: Record<string, string[]> = { Agenda: ['calendar', 'scheduler', 'event calendar', 'takvim', 'ajanda', 'etkinlik takvimi'] };
+const KEYWORDS: Record<string, string[]> = { 'Bottom Nav': ['tab bar', 'bottom navigation', 'mobile navigation', 'alt sekme', 'alt menü', 'mobil menü'], Agenda: ['calendar', 'scheduler', 'event calendar', 'takvim', 'ajanda', 'etkinlik takvimi'] };
 
 function component(lang: Locale, title: string): NavItem {
   const slug = BUILT[title];
-  return slug ? { title, href: href(lang, `/docs/components/${slug}`), pro: isPro(slug) } : { title, soon: true };
+  return slug ? { title, href: href(lang, `/docs/components/${slug}`), pro: isPro(slug), keywords: KEYWORDS[title] } : { title, soon: true };
 }
 
 export function getNav(lang: Locale): NavSection[] {

@@ -119,6 +119,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   label: [first()],
   loader: [ROLES, first()],
   modal: DIALOG,
+  'bottom-nav': [{ ...first('2026-11-14'), en: 'First release: a bar of links at the bottom of the screen for mobile web apps. Toasts open above it.', tr: 'İlk sürüm: mobil web uygulamaları için ekranın altında bir bağlantı barı. Toast’lar onun üstünde açılır.' }],
   'nav-menu': [
     SCROLL({ en: 'SidebarNav body', tr: 'SidebarNav gövdesi' }),
     {
@@ -172,6 +173,11 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   textarea: [first('2026-11-02')],
   'time-picker': [SCROLL({ en: 'hour, minute and second columns', tr: 'Saat, dakika ve saniye sütunları' }), first()],
   toast: [
+    {
+      date: '2026-11-14',
+      en: 'The stack opens above a fixed BottomNav instead of covering it.',
+      tr: 'Yığın, sabit bir BottomNav’ın üstüne binmek yerine onun üstünde açılıyor.',
+    },
     {
       date: '2026-11-11',
       en: 'useOptionalToast returns the ToastProvider’s API or null, for components that bring their own provider when the page has none.',
