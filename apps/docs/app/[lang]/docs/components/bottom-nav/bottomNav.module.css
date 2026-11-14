@@ -1,0 +1,36 @@
+/* Docs only: a phone-sized frame for the BottomNav playground. */
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  inline-size: min(100%, calc(12 * var(--space-xxlarge)));
+  block-size: calc(13 * var(--space-xxlarge));
+  overflow: hidden;
+  background: var(--color-surface-background);
+  border: var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-depth-sm);
+}
+
+.screen {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-small);
+  padding: var(--space-medium);
+  overflow: auto;
+}
+
+.block {
+  flex: none;
+  block-size: calc(2 * var(--space-xxlarge));
+  background: var(--color-surface-level-1);
+  border-radius: var(--radius-card-inner);
+}
+
+.note {
+  margin: auto 0;
+  font: var(--text-ui-text-regular);
+  text-align: center;
+  color: var(--color-foreground-medium-emphasis);
+}

@@ -835,6 +835,7 @@ a.heroButton:focus-visible,
 .art :global(.a-otpdot) { animation-name: otpDot; animation-duration: 5s; }
 .art :global(.a-page) { animation-name: page; animation-duration: 5s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.2); }
 .art :global(.a-popover) { transform-origin: bottom center; animation-name: popover; }
+.art :global(.a-bnav) { animation-name: bnav; animation-duration: 4.5s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.2); }
 .art :global(.a-seg) { animation-name: seg; animation-duration: 4.5s; animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1.2); }
 .art :global(.a-grow) { transform-origin: left center; animation-name: grow; animation-duration: 3.6s; }
 .art :global(.a-done) { animation-name: done; animation-duration: 3.6s; }
@@ -938,6 +939,7 @@ a.heroButton:focus-visible,
   100% { transform: none; }
 }
 @keyframes popover { 0%, 15% { transform: translateY(14px) scale(0.92); opacity: 0; } 28%, 80% { transform: none; opacity: 1; } 92%, 100% { transform: translateY(14px) scale(0.92); opacity: 0; } }
+@keyframes bnav { 0%, 22% { transform: none; } 33%, 55% { transform: translate(53.7px, -31px); } 66%, 88% { transform: translate(107.4px, -62px); } 100% { transform: none; } }
 @keyframes seg { 0%, 22% { transform: none; } 33%, 55% { transform: translate(69.3px, -40px); } 66%, 88% { transform: translate(138.6px, -80px); } 100% { transform: none; } }
 @keyframes grow { 0%, 10% { transform: scaleX(0); } 70%, 90% { transform: none; } 100% { transform: scaleX(0); } }
 @keyframes done { 0%, 20% { opacity: 0; } 30%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }

@@ -86,11 +86,14 @@
   --_fg: var(--color-tertiary);
 }
 
-/* The stack of ToastProvider: bottom center, newest last. */
+/* The stack of ToastProvider: bottom center, newest last. It sits above a fixed BottomNav, which
+   writes its height to --ladom-bottom-nav-height while it is on screen. */
 .stack {
   position: fixed;
   inset-inline: 0;
-  inset-block-end: var(--space-xlarge);
+  inset-block-end: calc(var(--ladom-bottom-nav-height, 0px) + var(--space-xlarge));
+  z-index: 1;
+  transition: inset-block-end var(--motion-fade-default);
   display: flex;
   flex-direction: column;
   align-items: center;

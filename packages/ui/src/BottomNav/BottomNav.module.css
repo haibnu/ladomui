@@ -1,0 +1,128 @@
+/* BottomNav, built from existing parts (no Figma drawing yet): a surface/level-1 bar with the
+   top border, items share the width equally; an icon over a footnote label. The current page is
+   primary with a primary soft pill behind its icon, as the current SidebarNav item. The bar
+   keeps clear of the home indicator with the safe-area inset (needs viewport-fit=cover). */
+
+.nav {
+  box-sizing: border-box;
+  inline-size: 100%;
+  padding-block-end: env(safe-area-inset-bottom, 0px);
+  background: var(--color-surface-level-1);
+  border-block-start: var(--border);
+}
+
+/* Above the page content; there is no z-index token yet. */
+.nav[data-position='fixed'] {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 1;
+}
+
+@media (width >= 768px) {
+  .nav[data-mobile-only] {
+    display: none;
+  }
+}
+
+.list {
+  display: flex;
+  margin: 0;
+  padding: var(--layout-micro) var(--layout-tiny);
+  list-style: none;
+}
+
+.cell {
+  display: flex;
+  flex: 1 1 0;
+  min-inline-size: 0;
+}
+
+.item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layout-micro);
+  min-inline-size: 0;
+  padding: var(--layout-micro) var(--layout-micro) var(--layout-tiny);
+  color: var(--_fg);
+  text-decoration: none;
+  border-radius: var(--radius-form-element);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  --_fg: var(--color-foreground-medium-emphasis);
+  --_pill: transparent;
+}
+
+.item:hover {
+  --_fg: var(--color-foreground-high-emphasis);
+  --_pill: var(--color-surface-level-2);
+}
+
+.item[aria-current='page'] {
+  --_fg: var(--color-primary-foreground);
+  --_pill: var(--color-primary-soft);
+}
+
+.item:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.item[aria-disabled='true'] {
+  cursor: not-allowed;
+  --_fg: var(--color-foreground-low-emphasis);
+  --_pill: transparent;
+}
+
+.iconWrap {
+  position: relative;
+  display: inline-flex;
+  padding: var(--layout-micro) var(--layout-small);
+  background: var(--_pill);
+  border-radius: var(--radius-full);
+  transition: background var(--motion-fade-default);
+}
+
+.icon {
+  display: inline-flex;
+}
+
+.icon > svg {
+  inline-size: var(--space-xlarge);
+  block-size: var(--space-xlarge);
+}
+
+/* The count sits on the icon's top end corner. */
+.badge {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: calc(50% + var(--space-tiny));
+  display: inline-flex;
+}
+
+.dot {
+  position: absolute;
+  inset-block-start: var(--layout-micro);
+  inset-inline-start: calc(50% + var(--space-tiny));
+  inline-size: var(--space-tiny);
+  block-size: var(--space-tiny);
+  background: var(--color-error);
+  border: var(--border-width) solid var(--color-surface-level-1);
+  border-radius: var(--radius-full);
+}
+
+.label {
+  max-inline-size: 100%;
+  overflow: hidden;
+  font: var(--text-ui-footnote-bold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconWrap {
+    transition: none;
+  }
+}
