@@ -10,6 +10,7 @@ React design system built from the Figma file "Ladom UI Design System v1.0" (fil
 - Mobile components are out of scope for now.
 - Before committing a component, compare it with the Figma screenshot of its page (node ids are listed in PLAN.md).
 - Keep commits small; one component or token group per commit.
+- Build screens from existing components. Before any screen or page (docs pages, 404, demos, product screens), list `packages/ui/src` (and the Pro components) and read `skills/ladom-ui/SKILL.md`; match every part of the screen (empty or error state, header, list, card, stat…) to a component, and write custom markup and CSS only for what no component covers. Name the components used when showing the result.
 
 ## Tokens
 - `packages/tokens/figma/variables.json` and `styles.json` are a raw export of the Figma variables and styles. Do not edit by hand; re-export instead. `figma/pages.json` holds values transcribed from Figma pages that are not variables (animation, border), with their node ids.
