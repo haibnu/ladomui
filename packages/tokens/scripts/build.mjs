@@ -167,9 +167,13 @@ for (const g of GROUPS) {
   let css = header;
   if (g.keys.length) css += emitVariables(vars, g.keys, selectors);
   if (g.extras.length) css += `${g.keys.length ? '\n' : ''}${block(':root', g.extras.map((e) => `  ${e.name}: ${e.value};`))}`;
-  // Extras with a Dark value (chart colors) get the same opt-in selector as the Figma Dark mode.
-  const dark = g.extras.filter((e) => e.dark);
-  if (dark.length) css += `\n${block(':root[data-theme="dark"]', dark.map((e) => `  ${e.name}: ${e.dark};`))}`;
+  // Extras with a Dark value (chart colors, shadows) get the same selectors as the Figma Dark mode:
+  // the device setting when data-theme is not set, and data-theme="dark".
+  const dark = g.extras.filter((e) => e.dark).map((e) => `  ${e.name}: ${e.dark};`);
+  if (dark.length) {
+    css += `\n@media (prefers-color-scheme: dark) {\n${block(':root:not([data-theme])', dark).replace(/^(?=.)/gm, '  ')}}\n`;
+    css += `\n${block(':root[data-theme="dark"]', dark)}`;
+  }
   await writeFile(new URL(`css/${g.id}.css`, root), css);
 }
 await writeFile(new URL('css/index.css', root), header + GROUPS.map((g) => `@import "./${g.id}.css";`).join('\n') + '\n');

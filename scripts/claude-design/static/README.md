@@ -19,7 +19,7 @@ Ladom UI is the design system of Ladom products: quiet neutral surfaces, one bra
 - The brand color as text or an icon on a surface is `color-primary-foreground`, as a line (field focus border, tab indicator, checkbox border) `color-primary-line`. They equal `color-primary` for Ladom; when an app sets a light brand color, they become a darker step of it so they stay readable (4.5:1 for text, 3:1 for lines).
 - Status colors are `success`, `error`, `warning`, `info`, each with `-soft` (background), `-tint`, `-natural`, `-shade` steps and an `on-` color. Use them for status only: a filled badge, an alert, a hint, a destructive action (`error`). Always pair the color with words.
 - Contrast: white `on-` text on the solid `success`, `warning` and `info` fills stays under 4.5:1. Use those fills for icons, badges and short labels, not for paragraphs; on soft backgrounds, write the text in `color-foreground-high-emphasis`.
-- Dark theme is opt-in (`data-theme="dark"`) and not final in Figma: primary stays the light brand gray, and some secondary steps carry green leftovers.
+- Dark theme follows the device setting (`prefers-color-scheme`); `data-theme="dark"` or `"light"` fixes it. It is not final in Figma: primary stays the light brand gray, and some secondary steps carry green leftovers.
 
 ### Type
 - One family, Hanken Grotesk (`font-family`), loaded from Google Fonts; weights 400, 500 and 700.

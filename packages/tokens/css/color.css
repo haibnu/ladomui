@@ -97,6 +97,55 @@
   --color-warning-tint: #ffd8a8;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-foreground-ghost-emphasis: var(--color-static-white-alpha-24);
+    --color-foreground-high-emphasis: var(--color-static-white-alpha-96);
+    --color-foreground-level-1: var(--color-static-white);
+    --color-foreground-level-2: var(--color-static-black);
+    --color-foreground-low-emphasis: var(--color-static-white-alpha-40);
+    --color-foreground-medium-emphasis: var(--color-static-white-alpha-72);
+    --color-invert-opacity-0: #00022800;
+    --color-invert-opacity-8: #00022814;
+    --color-invert-opacity-12: #0002281f;
+    --color-invert-opacity-24: #0002283d;
+    --color-on-secondary: #ffffff;
+    --color-on-secondary-tint: #2f4e3c;
+    --color-opacity-0: #ffffff00;
+    --color-opacity-8: #ffffff14;
+    --color-opacity-12: #ffffff1f;
+    --color-opacity-24: #ffffff3d;
+    --color-opacity-32: #ffffff52;
+    --color-primary-natural: #40c79a;
+    --color-primary-shade: #108b69;
+    --color-primary-soft: #d4f7e6;
+    --color-primary-tint: #77deb8;
+    --color-secondary: #1b3325;
+    --color-secondary-natural: #2d4839;
+    --color-secondary-shade: #102017;
+    --color-secondary-soft: #647b6e;
+    --color-secondary-tint: #325842;
+    --color-static-black-alpha-64: #1a1711b8;
+    --color-static-black-alpha-72: #1a1711f5;
+    --color-static-black-alpha-96: #1a1711b8;
+    --color-static-white-alpha-64: #ffffffb8;
+    --color-static-white-alpha-72: #fffffff5;
+    --color-static-white-alpha-96: #ffffffb8;
+    --color-success: #00bb82;
+    --color-success-natural: #00ce8f;
+    --color-success-shade: #008158;
+    --color-success-soft: #e6fcf5;
+    --color-success-tint: #00c78a;
+    --color-surface-background: #030805;
+    --color-surface-background-invert: #fafafa;
+    --color-surface-level-1: #1a1a1a;
+    --color-surface-level-2: #232323;
+    --color-surface-level-3: #2b2b2b;
+    --color-surface-level-4: #343434;
+    --color-tertiary-natural: var(--color-surface-level-3);
+  }
+}
+
 :root[data-theme="dark"] {
   --color-foreground-ghost-emphasis: var(--color-static-white-alpha-24);
   --color-foreground-high-emphasis: var(--color-static-white-alpha-96);
@@ -153,6 +202,17 @@
   --color-chart-4: oklch(from var(--color-primary) 0.58 max(c, 0.13) calc(h + 60));
   --color-chart-5: oklch(from var(--color-primary) 0.44 max(c, 0.13) calc(h + 240));
   --color-chart-6: oklch(from var(--color-primary) 0.52 max(c, 0.12) calc(h + 300));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-chart-1: oklch(from var(--color-primary) max(l, 0.72) c h);
+    --color-chart-2: oklch(from var(--color-primary) 0.74 max(c, 0.14) calc(h + 150));
+    --color-chart-3: oklch(from var(--color-primary) 0.42 calc(c * 0.6) h);
+    --color-chart-4: oklch(from var(--color-primary) 0.82 max(c, 0.13) calc(h + 60));
+    --color-chart-5: oklch(from var(--color-primary) 0.66 max(c, 0.13) calc(h + 240));
+    --color-chart-6: oklch(from var(--color-primary) 0.78 max(c, 0.12) calc(h + 300));
+  }
 }
 
 :root[data-theme="dark"] {
