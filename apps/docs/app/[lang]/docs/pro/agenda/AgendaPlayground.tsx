@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { IconAdd, IconDelete } from '@ladom/icons';
 import { Button } from '@ladom/ui';
-import { Agenda, type AgendaEvent, type AgendaLabels, type AgendaRange } from '@ladom/ui/pro';
+import { Agenda, type AgendaEvent, type AgendaLabels, type AgendaRange, type AgendaResource } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck, ControlSelect } from '@/components/docs/Controls';
 import styles from '@/components/docs/docs.module.css';
@@ -40,6 +40,12 @@ const COPY = {
     maxes: { auto: 'Fit the cell', '2': '2', '3': '3' },
     editing: 'Drag to create, move and resize',
     details: 'Details panel',
+    split: 'Split by person (resources)',
+    staff: [
+      ['Elif Kaya', 'Designer'],
+      ['Can Demir', 'Engineer'],
+      ['Deniz Aydın', 'Recruiter'],
+    ],
     newEvent: 'New event',
     untitled: 'New event',
     delete: 'Delete',
@@ -79,6 +85,12 @@ const COPY = {
     maxes: { auto: 'Hücreye sığdır', '2': '2', '3': '3' },
     editing: 'Sürükleyerek oluştur, taşı, boyutlandır',
     details: 'Detay paneli',
+    split: 'Kişiye göre böl (resources)',
+    staff: [
+      ['Elif Kaya', 'Tasarımcı'],
+      ['Can Demir', 'Mühendis'],
+      ['Deniz Aydın', 'İşe alım'],
+    ],
     newEvent: 'Yeni etkinlik',
     untitled: 'Yeni etkinlik',
     delete: 'Sil',
@@ -111,6 +123,15 @@ const COPY = {
 
 type Names = (typeof COPY)['en']['events'];
 
+/** Today's index in the week from Monday, Friday on weekends (the sample people work Mon–Fri). */
+const workday = () => Math.min(4, (new Date().getDay() + 6) % 7);
+
+/** The day the split view opens on: today, or Friday on weekends. */
+const splitDay = () => {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate() - ((now.getDay() + 6) % 7) + workday());
+};
+
 /** Sample events around the current week, so the playground always has something to show. */
 function sampleEvents(n: Names): AgendaEvent[] {
   const now = new Date();
@@ -118,26 +139,44 @@ function sampleEvents(n: Names): AgendaEvent[] {
   const at = (day: number, h: number, m = 0) => new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + day, h, m);
   const day = (d: number) => at(d, 0);
   return [
-    { id: 'standup-0', title: n.standup, start: at(0, 9, 30), end: at(0, 9, 45), color: 1 },
-    { id: 'review', title: n.review, start: at(0, 11), end: at(0, 12, 30), color: 2, location: n.room, description: n.reviewNote },
-    { id: 'one-on-one', title: n.oneOnOne, start: at(0, 11, 30), end: at(0, 12), color: 3, location: n.online },
-    { id: 'interview', title: n.interview, start: at(1, 14), end: at(1, 15, 30), color: 4, status: 'unconfirmed', location: n.online },
-    { id: 'standup-2', title: n.standup, start: at(2, 9, 30), end: at(2, 9, 45), color: 1 },
-    { id: 'lunch', title: n.lunch, start: at(2, 12, 30), end: at(2, 13, 30), color: 5, location: n.room },
-    { id: 'vendor', title: n.vendor, start: at(3, 10), end: at(3, 11), color: 6, status: 'declined' },
-    { id: 'offsite', title: n.offsite, start: day(3), end: day(4), allDay: true, color: 2 },
-    { id: 'leave', title: n.leave, start: day(4), end: day(4), allDay: true, color: 3 },
-    { id: 'standup-4', title: n.standup, start: at(4, 9, 30), end: at(4, 9, 45), color: 1 },
-    { id: 'sync', title: n.sync, start: at((now.getDay() + 6) % 7, 15), end: at((now.getDay() + 6) % 7, 16), color: 4, location: n.room },
-    { id: 'payroll', title: n.payroll, start: at(-3, 10), end: at(-3, 11), color: 6, readOnly: true },
-    { id: 'retro', title: n.retro, start: at(-3, 16), end: at(-3, 17), color: 5 },
-    { id: 'planning', title: n.planning, start: at(7, 10), end: at(7, 12), color: 1 },
+    { id: 'standup-0', resourceId: 'elif', title: n.standup, start: at(0, 9, 30), end: at(0, 9, 45), color: 1 },
+    { id: 'review', resourceId: 'elif', title: n.review, start: at(0, 11), end: at(0, 12, 30), color: 2, location: n.room, description: n.reviewNote },
+    { id: 'one-on-one', resourceId: 'can', title: n.oneOnOne, start: at(0, 11, 30), end: at(0, 12), color: 3, location: n.online },
+    { id: 'interview', resourceId: 'deniz', title: n.interview, start: at(1, 14), end: at(1, 15, 30), color: 4, status: 'unconfirmed', location: n.online },
+    { id: 'standup-2', resourceId: 'elif', title: n.standup, start: at(2, 9, 30), end: at(2, 9, 45), color: 1 },
+    { id: 'lunch', resourceId: 'can', title: n.lunch, start: at(2, 12, 30), end: at(2, 13, 30), color: 5, location: n.room },
+    { id: 'vendor', resourceId: 'can', title: n.vendor, start: at(3, 10), end: at(3, 11), color: 6, status: 'declined' },
+    { id: 'offsite', resourceId: 'elif', title: n.offsite, start: day(3), end: day(4), allDay: true, color: 2 },
+    { id: 'leave', resourceId: 'deniz', title: n.leave, start: day(4), end: day(4), allDay: true, color: 3 },
+    { id: 'standup-4', resourceId: 'elif', title: n.standup, start: at(4, 9, 30), end: at(4, 9, 45), color: 1 },
+    { id: 'sync', resourceId: 'elif', title: n.sync, start: at(workday(), 15), end: at(workday(), 16), color: 4, location: n.room },
+    { id: 'payroll', resourceId: 'elif', title: n.payroll, start: at(-3, 10), end: at(-3, 11), color: 6, readOnly: true },
+    { id: 'retro', resourceId: 'can', title: n.retro, start: at(-3, 16), end: at(-3, 17), color: 5 },
+    { id: 'planning', resourceId: 'elif', title: n.planning, start: at(7, 10), end: at(7, 12), color: 1 },
     { id: 'conference', title: n.conference, start: day(8), end: day(10), allDay: true, color: 5 },
-    { id: 'release', title: n.release, start: at(9, 17), end: at(9, 18), color: 4 },
-    { id: 'demo', title: n.demo, start: at(9, 13), end: at(9, 14), color: 2 },
-    { id: 'budget', title: n.budget, start: at(9, 9), end: at(9, 10), color: 6 },
-    { id: 'onboarding', title: n.onboarding, start: at(9, 11), end: at(9, 12), color: 3 },
+    { id: 'release', resourceId: 'can', title: n.release, start: at(9, 17), end: at(9, 18), color: 4 },
+    { id: 'demo', resourceId: 'deniz', title: n.demo, start: at(9, 13), end: at(9, 14), color: 2 },
+    { id: 'budget', resourceId: 'elif', title: n.budget, start: at(9, 9), end: at(9, 10), color: 6 },
+    { id: 'onboarding', resourceId: 'deniz', title: n.onboarding, start: at(9, 11), end: at(9, 12), color: 3 },
     { id: 'holiday', title: n.holiday, start: day(-6), end: day(-6), allDay: true, color: 6 },
+  ];
+}
+
+/** Sample people for the split views: working hours by weekday and a few closed times. */
+function sampleStaff(names: string[][]): AgendaResource[] {
+  const now = new Date();
+  const at = (d: number, h: number, m = 0) => new Date(now.getFullYear(), now.getMonth(), now.getDate() + d, h, m);
+  const weekdays = (ranges: [string, string][]) => ({ 1: ranges, 2: ranges, 3: ranges, 4: ranges, 5: ranges });
+  return [
+    { id: 'elif', name: names[0]![0]!, description: names[0]![1], color: 2, workingHours: weekdays([['09:00', '18:00']]), unavailable: [{ start: at(1, 14), end: at(1, 16) }] },
+    { id: 'can', name: names[1]![0]!, description: names[1]![1], color: 3, workingHours: weekdays([['10:00', '19:00']]), unavailable: [{ start: at(0, 12, 30), end: at(0, 13, 30) }] },
+    {
+      id: 'deniz',
+      name: names[2]![0]!,
+      description: names[2]![1],
+      color: 4,
+      workingHours: { 1: [['08:00', '12:00'], ['13:00', '17:00']], 2: [['08:00', '12:00'], ['13:00', '17:00']], 3: [['08:00', '12:00'], ['13:00', '17:00']], 4: [['08:00', '12:00'], ['13:00', '17:00']] },
+    },
   ];
 }
 
@@ -152,11 +191,13 @@ export function AgendaPlayground() {
   const [zone, setZone] = useState<keyof typeof c.zones>('local');
   const [max, setMax] = useState<Max>('auto');
   const [editing, setEditing] = useState(true);
+  const [split, setSplit] = useState(false);
+  const staff = sampleStaff(c.staff);
   const [details, setDetails] = useState(true);
 
-  const update = (id: string, r: AgendaRange) => setEvents((list) => list.map((e) => (e.id === id ? { ...e, start: r.start, end: r.end, allDay: r.allDay } : e)));
+  const update = (id: string, r: AgendaRange) => setEvents((list) => list.map((e) => (e.id === id ? { ...e, start: r.start, end: r.end, allDay: r.allDay, resourceId: r.resourceId ?? e.resourceId } : e)));
   const remove = (id: string) => setEvents((list) => list.filter((e) => e.id !== id));
-  const add = (r: AgendaRange) => setEvents((list) => [...list, { id: `new-${++created}`, title: c.untitled, start: r.start, end: r.end, allDay: r.allDay, color: 1 }]);
+  const add = (r: AgendaRange) => setEvents((list) => [...list, { id: `new-${++created}`, title: c.untitled, start: r.start, end: r.end, allDay: r.allDay, resourceId: r.resourceId, ...(r.resourceId ? {} : { color: 1 as const }) }]);
   const addNow = () => {
     const s = new Date();
     s.setMinutes(0, 0, 0);
@@ -171,6 +212,7 @@ export function AgendaPlayground() {
     ...(clock !== 'auto' ? [`hourCycle={${clock}}`] : []),
     ...(zone !== 'local' ? [`timeZone="${zone}"`] : []),
     ...(max !== 'auto' ? [`maxEvents={${max}}`] : []),
+    ...(split ? ['resources={staff}', 'defaultView="day"'] : []),
     ...(editing
       ? [
           'onEventCreate={(range) => addEvent(range)}',
@@ -189,6 +231,10 @@ export function AgendaPlayground() {
         <div style={{ blockSize: 'calc(7 * var(--grid-column-1))', minBlockSize: 0 }}>
           <Agenda
             events={events}
+            key={split ? 'split' : 'plain'}
+            defaultView={split ? 'day' : 'month'}
+            defaultDate={split ? splitDay() : undefined}
+            resources={split ? staff : undefined}
             locale={locale}
             labels={lang === 'tr' ? TR_LABELS : undefined}
             weekStartsOn={weekStart === 'auto' ? undefined : (Number(weekStart) as 0 | 1)}
@@ -232,6 +278,7 @@ export function AgendaPlayground() {
         <ControlSelect label={c.max} value={max} onChange={setMax} options={(Object.keys(c.maxes) as Max[]).map((k) => ({ value: k, label: c.maxes[k] }))} />
         <ControlCheck label={c.editing} checked={editing} onChange={setEditing} />
         <ControlCheck label={c.details} checked={details} onChange={setDetails} />
+        <ControlCheck label={c.split} checked={split} onChange={setSplit} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{c.code}</p>

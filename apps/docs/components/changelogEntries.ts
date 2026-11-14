@@ -294,6 +294,11 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   agenda: [
     {
+      date: '2026-11-14',
+      en: 'Split view: resources give the week and day views a column per person or room, with working hours, hatched closed time that takes no events, moves between columns and the current-time line across them.',
+      tr: 'Bölünmüş görünüm: resources ile hafta ve gün görünümleri her kişi ya da oda için bir sütun alır; çalışma saatleri, etkinlik almayan taralı kapalı saatler, sütunlar arası taşıma ve hepsini kesen şu anki saat çizgisiyle.',
+    },
+    {
       date: '2026-11-12',
       en: 'First release: a full-page calendar with month, week, day and list views, chart-colored events, “+N more”, the current-time line, a details panel, drag to create, move and resize, keyboard moves, locale-aware week start and clock, and time zones.',
       tr: 'İlk sürüm: ay, hafta, gün ve liste görünümleriyle tam sayfa bir takvim; grafik renkli etkinlikler, “+N daha”, şu anki saat çizgisi, detay paneli, sürükleyerek oluşturma, taşıma ve boyutlandırma, klavyeyle taşıma, yerel ayara göre hafta başlangıcı ve saat, saat dilimleri.',
