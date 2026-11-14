@@ -26,54 +26,19 @@
 /* ───────────── Hero ───────────── */
 
 .hero {
-  position: relative;
   display: grid;
-  justify-items: center;
-  gap: calc(var(--space-xxlarge) * 1.5);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: var(--space-xxlarge);
+  max-width: var(--_max);
+  margin: 0 auto;
   padding: calc(var(--space-xxlarge) * 2) var(--_gutter) var(--_section);
-  isolation: isolate;
 }
 
-/* The token field: a tilted plane of tiles behind the headline (three.js in the built version). */
-.field {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  perspective: 1200px;
-  overflow: hidden;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 70%, #000 30%, transparent 75%);
-}
-
-.fieldPlane {
-  position: absolute;
-  left: 50%;
-  bottom: -10%;
+.heroText {
   display: grid;
-  grid-template-columns: repeat(12, 72px);
-  gap: var(--space-small);
-  transform: translateX(-50%) rotateX(62deg) rotateZ(-18deg);
-  transform-style: preserve-3d;
-}
-
-.tile {
-  aspect-ratio: 1;
-  border-radius: var(--radius-form-element);
-  background: var(--_c);
-  opacity: 0.22;
-  transform: translateZ(var(--_z));
-  box-shadow: var(--shadow-depth-md);
-}
-
-.tile:nth-child(5n) {
-  opacity: 0.9;
-}
-
-.heroInner {
-  display: grid;
-  justify-items: center;
+  justify-items: start;
   gap: var(--space-xlarge);
-  max-width: 980px;
-  text-align: center;
 }
 
 .eyebrow {
@@ -84,8 +49,8 @@
   margin: 0;
   display: grid;
   font: var(--text-content-hero-xl-bold);
-  font-size: clamp(var(--font-size-hero), 9vw, calc(var(--font-size-hero-xl) * 1.75));
-  line-height: 0.98;
+  font-size: clamp(var(--font-size-hero), 6.4vw, calc(var(--font-size-hero-xl) * 1.5));
+  line-height: 1;
   letter-spacing: -0.045em;
 }
 
@@ -93,29 +58,31 @@
   display: block;
 }
 
-.struck {
-  position: relative;
-  display: inline-block;
-  color: var(--color-foreground-low-emphasis);
+/* The second line: in the brand's text color, with a typing caret after it. */
+.heroAccent {
+  color: var(--color-primary-foreground);
 }
 
-/* The "handoff" strike: a brand-colored bar across the word. */
-.struck::after {
-  content: '';
-  position: absolute;
-  left: -4%;
-  right: -4%;
-  top: 52%;
-  height: 0.12em;
+.caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.82em;
+  margin-left: 0.06em;
+  vertical-align: -0.04em;
   border-radius: var(--radius-full);
   background: var(--color-primary);
-  transform: rotate(-4deg);
-  transform-origin: left center;
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .heroLead {
   margin: 0;
-  max-width: 640px;
+  max-width: 520px;
   font: var(--text-ui-text-lead-regular);
   color: var(--color-foreground-medium-emphasis);
 }
@@ -123,9 +90,28 @@
 .heroActions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
   gap: var(--space-medium);
+}
+
+.heroArt {
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+}
+
+.heroCanvas {
+  aspect-ratio: 1 / 0.95;
+}
+
+.heroHint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-low-emphasis);
 }
 
 .command {
@@ -151,90 +137,6 @@
 
 .prompt {
   color: var(--color-primary-foreground);
-}
-
-/* Prompt → card → shipped */
-.heroFlow {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-large);
-  width: 100%;
-  max-width: var(--_max);
-}
-
-.floating {
-  box-shadow: var(--shadow-depth-xl);
-}
-
-.flowPrompt {
-  width: 320px;
-  border-radius: var(--radius-form-element);
-  background: var(--color-surface-level-1);
-}
-
-.flowCard {
-  width: 340px;
-  flex: none;
-}
-
-.flowShipped {
-  flex: none;
-}
-
-.flowArrow {
-  flex: 1 1 32px;
-  max-width: 72px;
-  height: 2px;
-  background: repeating-linear-gradient(90deg, var(--color-primary-line) 0 6px, transparent 6px 12px);
-  position: relative;
-}
-
-.flowArrow::after {
-  content: '';
-  position: absolute;
-  right: -2px;
-  top: -4px;
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid var(--color-primary-line);
-  border-right: 2px solid var(--color-primary-line);
-  transform: rotate(45deg);
-}
-
-.cardButtons {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--space-small);
-  margin-top: var(--space-medium);
-}
-
-.tokenTag {
-  position: absolute;
-  padding: var(--space-micro) var(--space-small);
-  border-radius: var(--radius-full);
-  background: var(--color-surface-background-invert);
-  color: var(--color-surface-level-1);
-  font: var(--text-ui-footnote-bold);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  box-shadow: var(--shadow-depth-md);
-  white-space: nowrap;
-}
-
-.tagA {
-  left: calc(50% - 150px);
-  top: -18px;
-}
-
-.tagB {
-  left: calc(50% + 150px);
-  top: 36px;
-}
-
-.tagC {
-  left: calc(50% + 40px);
-  bottom: -16px;
 }
 
 /* ───────────── Sections ───────────── */
@@ -499,79 +401,55 @@
   border-radius: var(--radius-form-element-small) var(--radius-form-element-small) 0 0;
 }
 
-/* Bento */
-.bento {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-areas:
-    'share share otp otp'
-    'share share motion stat'
-    'color color toast toast'
-    'chips chips chips chips';
-  grid-auto-rows: minmax(150px, auto);
-  gap: var(--space-medium);
+/* Components, drawn in three.js */
+.sectionHeadRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-large);
 }
 
-.tileBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.comps {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: var(--space-medium);
-  padding: var(--space-large);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.comp {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
   border-radius: calc(var(--radius-card) * 1.5);
   background: var(--color-surface-background);
-  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow var(--duration-speed-m) ease, background var(--duration-speed-m) ease;
 }
 
-.tileLabel {
-  font: var(--text-ui-caption);
-  text-transform: var(--text-ui-caption-text-transform);
-  color: var(--color-foreground-low-emphasis);
+.comp:hover {
+  background: var(--color-surface-level-1);
+  box-shadow: var(--shadow-card-hover);
 }
 
-.bShare { grid-area: share; }
-.bOtp { grid-area: otp; }
-.bMotion { grid-area: motion; }
-.bStat { grid-area: stat; }
-.bColor { grid-area: color; }
-.bToast { grid-area: toast; }
-.bChips { grid-area: chips; }
+.compArt {
+  aspect-ratio: 3 / 4;
+  padding: var(--space-medium);
+}
 
-.bMotion {
+.compFoot {
+  display: flex;
   align-items: center;
-  background: var(--color-surface-background-invert);
-  color: var(--color-surface-level-1);
-}
-
-.motionWord {
-  font: var(--text-content-h3-bold);
-}
-
-.bStat .bigNum {
-  font: var(--text-content-hero-bold);
-  letter-spacing: -0.03em;
-}
-
-.bStat {
-  align-items: flex-start;
-}
-
-.bChips {
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  min-height: 0;
+  justify-content: space-between;
   gap: var(--space-small);
+  padding: var(--space-medium) var(--space-large) var(--space-large);
 }
 
-.bToast {
-  align-items: center;
-  background: var(--color-primary-soft);
-}
-
-:global([data-theme='dark']) .bToast {
-  background: var(--color-surface-background);
+.compTitle {
+  font: var(--text-ui-card-title);
 }
 
 /* Numbers */
@@ -695,13 +573,18 @@
 /* ───────────── Tablet and phone ───────────── */
 
 @media (max-width: 1279px) {
-  .heroFlow {
-    flex-wrap: wrap;
+  .hero {
+    grid-template-columns: 1fr;
   }
 
-  .flowArrow,
-  .tokenTag {
-    display: none;
+  .heroArt {
+    max-width: 640px;
+    width: 100%;
+    justify-self: center;
+  }
+
+  .comps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .build {
@@ -712,16 +595,6 @@
     position: static;
   }
 
-  .bento {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      'share share'
-      'otp otp'
-      'motion stat'
-      'color color'
-      'toast toast'
-      'chips chips';
-  }
 }
 
 @media (max-width: 767px) {
@@ -737,20 +610,18 @@
     font-size: calc(var(--font-size-hero) * 1.05);
   }
 
-  .flowPrompt,
-  .flowCard {
-    width: 100%;
+  .heroHint {
+    display: none;
   }
 
   .dashStats,
   .dashCharts,
-  .brands,
-  .bento {
+  .brands {
     grid-template-columns: 1fr;
   }
 
-  .bento {
-    grid-template-areas: 'share' 'otp' 'motion' 'stat' 'color' 'toast' 'chips';
+  .comps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .build {
@@ -769,4 +640,19 @@
   .footer {
     flex-direction: column;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}
+
+/* In dark, the brand's text color is lifted so a dark brand (the default gray) stays readable. */
+:global([data-theme='dark']) :is(.heroAccent, .ctaAccent, .number:first-child .numberValue) {
+  color: oklch(from var(--color-primary-foreground) max(l, 0.78) c h);
+}
+
+:global([data-theme='dark']) .caret {
+  background: oklch(from var(--color-primary) max(l, 0.78) c h);
 }

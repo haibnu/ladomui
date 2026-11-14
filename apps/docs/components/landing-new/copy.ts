@@ -3,22 +3,12 @@ import type { Locale } from '@/i18n';
 // Page copy of the "Ship your design, no handoff" landing, one block per language.
 const en = {
   eyebrow: 'Ladom UI · the design system for AI',
-  title: ['Ship your design.', 'No', 'handoff.'],
+  title: ['Ship your design.', 'No handoff.'],
   lead: 'Your design system is code from its first token. Describe a screen to your AI and it builds it with the same components, colors and spacing your designers chose. Nothing to hand over, nothing lost in between.',
   start: 'Get started',
   docs: 'Read the docs',
   copy: 'Copy',
   copied: 'Copied',
-  heroPrompt: 'Add a leave request card for Ayşe',
-  heroCard: {
-    title: 'Leave request',
-    name: 'Ayşe Yılmaz',
-    detail: 'Annual leave · 18–22 Nov',
-    days: '5 days',
-    approve: 'Approve',
-    decline: 'Decline',
-  },
-  heroShipped: 'Shipped to production',
 
   oldTitle: 'Every handoff loses something.',
   oldLead: 'Designers draw it, developers draw it again, QA compares the two. Ladom UI deletes the middle: the Figma file and the React code share one set of tokens, so what you design is what ships.',
@@ -52,18 +42,14 @@ const en = {
   brandLead: 'Pick your color once. Buttons, charts, focus rings and the darker steps for text are worked out for you, in light and dark.',
   brandCard: { title: 'Notifications', email: 'Email digest', push: 'Push alerts', save: 'Save', week: 'Week', month: 'Month', growth: 'Growth' },
 
-  partsTitle: 'Real components. Not screenshots.',
-  partsLead: 'Everything on this page is Ladom UI, running live. Hover it, type in it, copy it into your app.',
-  parts: {
-    otp: 'Verification code',
-    share: 'Share “Q4 launch”',
-    hover: 'Hover me',
-    filters: ['Design', 'Code', 'AI', 'Tokens'],
-    color: 'Brand color',
-    toast: 'Deployed to production',
-    toastNote: 'ui.ladom.co · 12 s ago',
-    revenue: 'Revenue',
-  },
+
+  iso: { statLabel: 'Headcount', search: 'Search people…', toggle: 'Email digest', button: 'Ship it', toast: 'Deployed', build: 'Build passed', buildNote: '44 components', sync: 'Tokens synced' },
+  heroHint: 'Hover to pull it apart, click to build it again',
+  compsTitle: 'Every part, ready to ship.',
+  compsLead: 'Designed in Figma, built in React, drawn from the same tokens. Here are six of them; the rest wait in the docs.',
+  compsAll: 'See all components',
+  free: 'Free',
+  pro: 'Pro',
 
   stats: { handoffs: 'handoff meetings', components: 'components', tokens: 'tokens', icons: 'icons' },
 
@@ -77,22 +63,12 @@ export type NewLandingCopy = typeof en;
 
 const tr: NewLandingCopy = {
   eyebrow: 'Ladom UI · yapay zekâ için tasarım sistemi',
-  title: ['Tasarımın yayında.', 'Teslim', 'yok.'],
+  title: ['Tasarla, yayına al.', 'Arada teslim yok.'],
   lead: 'Tasarım sisteminiz ilk tokenından itibaren kod. Yapay zekânıza ekranı anlatın; tasarımcınızın seçtiği bileşenler, renkler ve boşluklarla kursun. Ortada devredilecek dosya da arada kaybolan detay da kalmaz.',
   start: 'Başlayın',
   docs: 'Dokümanları okuyun',
   copy: 'Kopyala',
   copied: 'Kopyalandı',
-  heroPrompt: 'Ayşe için bir izin talebi kartı ekle',
-  heroCard: {
-    title: 'İzin talebi',
-    name: 'Ayşe Yılmaz',
-    detail: 'Yıllık izin · 18–22 Kasım',
-    days: '5 gün',
-    approve: 'Onayla',
-    decline: 'Reddet',
-  },
-  heroShipped: 'Yayına alındı',
 
   oldTitle: 'Her teslimde bir şey kaybolur.',
   oldLead: 'Tasarımcı çizer, geliştirici yeniden çizer, test ekibi ikisini karşılaştırır. Ladom UI aradaki adımları siler: Figma dosyası ile React kodu aynı tokenları kullanır, ne tasarlarsanız o yayına çıkar.',
@@ -126,18 +102,14 @@ const tr: NewLandingCopy = {
   brandLead: 'Renginizi bir kez seçin. Butonlar, grafikler, odak halkaları ve metin için koyu tonlar açık ve koyu temada sizin için hesaplanır.',
   brandCard: { title: 'Bildirimler', email: 'E-posta özeti', push: 'Anlık bildirim', save: 'Kaydet', week: 'Hafta', month: 'Ay', growth: 'Büyüme' },
 
-  partsTitle: 'Gerçek bileşenler. Ekran görüntüsü değil.',
-  partsLead: 'Bu sayfadaki her şey canlı çalışan Ladom UI. Üzerine gelin, yazın, uygulamanıza kopyalayın.',
-  parts: {
-    otp: 'Doğrulama kodu',
-    share: '“Q4 lansmanı”nı paylaş',
-    hover: 'Üzerime gel',
-    filters: ['Tasarım', 'Kod', 'Yapay zekâ', 'Token'],
-    color: 'Marka rengi',
-    toast: 'Yayına alındı',
-    toastNote: 'ui.ladom.co · 12 sn önce',
-    revenue: 'Gelir',
-  },
+
+  iso: { statLabel: 'Çalışan', search: 'Kişi ara…', toggle: 'E-posta özeti', button: 'Yayınla', toast: 'Yayına alındı', build: 'Derleme geçti', buildNote: '44 bileşen', sync: 'Tokenlar eşlendi' },
+  heroHint: 'Üzerine gelin, parçalarına ayrılsın; tıklayın, yeniden kurulsun',
+  compsTitle: 'Her parça yayına hazır.',
+  compsLead: 'Figma’da tasarlandı, React’te yazıldı, aynı tokenlardan çizildi. İşte altısı; gerisi dokümanlarda.',
+  compsAll: 'Tüm bileşenleri görün',
+  free: 'Ücretsiz',
+  pro: 'Pro',
 
   stats: { handoffs: 'teslim toplantısı', components: 'bileşen', tokens: 'token', icons: 'ikon' },
 

@@ -11,30 +11,24 @@ import {
   IconCopy,
   IconCurrencyTl,
   IconDesignEditor,
-  IconSuccess,
   IconTime,
 } from '@ladom/icons';
 import {
   Avatar,
-  AvatarGroup,
   Badge,
   Button,
-  Cell,
-  Chip,
-  ColorInput,
-  Input,
-  OtpInput,
   Segment,
   Switch,
   TextMotion,
-  Toast,
 } from '@ladom/ui';
-import { BarChart, Card, Delta, DonutChart, FileShare, StatCard } from '@ladom/ui/pro';
+import { BarChart, Card, Delta, DonutChart, StatCard } from '@ladom/ui/pro';
 import { DEFAULT_BRAND, primaryScale } from '@/components/customize/theme';
 import { Logo } from '@/components/Logo';
 import { GITHUB_URL } from '@/components/nav';
 import { href, type Locale } from '@/i18n';
 import { NEW_LANDING_COPY } from './copy';
+import { IsoCanvas } from './IsoCanvas';
+import type { SceneName } from './iso3d/scenes';
 import styles from './new.module.css';
 
 const INSTALL = 'npx ladom-ui init';
@@ -61,9 +55,15 @@ function brandScope(brand: string): CSSProperties | undefined {
   } as CSSProperties;
 }
 
-// The tiles of the hero field: one cell per token, colored by the brand-derived chart tokens.
-const FIELD = Array.from({ length: 12 * 7 }, (_, i) => i);
-const TILE_COLOR = ['--color-primary', '--color-chart-2', '--color-chart-3', '--color-chart-4', '--color-surface-level-3', '--color-surface-level-2'];
+// The first six components drawn in three.js (a preview; the rest keep their SVG drawings for now).
+const COMPONENTS: { scene: SceneName; title: string; href: string; pro?: boolean }[] = [
+  { scene: 'button', title: 'Button', href: '/docs/components/button' },
+  { scene: 'toggle', title: 'Switch', href: '/docs/components/switch' },
+  { scene: 'otp', title: 'OTP Input', href: '/docs/components/otp-input' },
+  { scene: 'toast', title: 'Toast', href: '/docs/components/toast' },
+  { scene: 'bars', title: 'Bar Chart', href: '/docs/pro/bar-chart', pro: true },
+  { scene: 'donut', title: 'Donut Chart', href: '/docs/pro/donut-chart', pro: true },
+];
 
 export function NewLanding({ lang }: { lang: Locale }) {
   const c = NEW_LANDING_COPY[lang];
@@ -75,30 +75,15 @@ export function NewLanding({ lang }: { lang: Locale }) {
     <main className={styles.page}>
       {/* ───────────── Hero ───────────── */}
       <section className={styles.hero}>
-        <div className={styles.field} aria-hidden>
-          <div className={styles.fieldPlane}>
-            {FIELD.map((i) => (
-              <span
-                key={i}
-                className={styles.tile}
-                style={{
-                  '--_c': `var(${TILE_COLOR[(i * 7 + Math.floor(i / 12)) % TILE_COLOR.length]})`,
-                  '--_z': `${Math.round(Math.sin(i * 0.9) * Math.cos(i * 0.37) * 28)}px`,
-                } as CSSProperties}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.heroInner}>
+        <div className={styles.heroText}>
           <Badge size="small" tone="secondary" iconLeft={<IconAi size={14} />} className={styles.eyebrow}>
             {c.eyebrow}
           </Badge>
           <h1 className={styles.heroTitle}>
             <span className={styles.heroLine}>{c.title[0]}</span>
-            <span className={styles.heroLine}>
-              <span className={styles.muted}>{c.title[1]} </span>
-              <span className={styles.struck}>{c.title[2]}</span>
+            <span className={`${styles.heroLine} ${styles.heroAccent}`}>
+              {c.title[1]}
+              <span className={styles.caret} aria-hidden />
             </span>
           </h1>
           <p className={styles.heroLead}>{c.lead}</p>
@@ -115,30 +100,10 @@ export function NewLanding({ lang }: { lang: Locale }) {
             </span>
           </div>
         </div>
-
-        {/* Prompt → component → shipped: the whole page in one line. */}
-        <div className={styles.heroFlow}>
-          <div className={`${styles.floating} ${styles.flowPrompt}`}>
-            <Input size="medium" readOnly value={c.heroPrompt} iconLeft={<IconAi size={20} />} iconRight={<IconArrowRight size={20} />} />
-          </div>
-          <span className={styles.flowArrow} aria-hidden />
-          <Card className={`${styles.floating} ${styles.flowCard}`} title={c.heroCard.title} actions={<Badge size="tiny" tone="warning">{c.heroCard.days}</Badge>}>
-            <Cell avatar={<Avatar size="small" name={c.heroCard.name} />} subtitle={c.heroCard.detail}>
-              {c.heroCard.name}
-            </Cell>
-            <div className={styles.cardButtons}>
-              <Button variant="ghost" tone="secondary" size="small">{c.heroCard.decline}</Button>
-              <Button size="small" iconLeft={IconCheck}>{c.heroCard.approve}</Button>
-            </div>
-          </Card>
-          <span className={styles.flowArrow} aria-hidden />
-          <Badge size="medium" tone="success" iconLeft={<IconSuccess size={16} />} className={`${styles.floating} ${styles.flowShipped}`}>
-            {c.heroShipped}
-          </Badge>
-          <span className={`${styles.tokenTag} ${styles.tagA}`}>--radius-card</span>
-          <span className={`${styles.tokenTag} ${styles.tagB}`}>--space-card</span>
-          <span className={`${styles.tokenTag} ${styles.tagC}`}>--color-primary</span>
-        </div>
+        <figure className={styles.heroArt}>
+          <IsoCanvas scene="hero" labels={c.iso} interactive className={styles.heroCanvas} />
+          <figcaption className={styles.heroHint}>{c.heroHint}</figcaption>
+        </figure>
       </section>
 
       {/* ───────────── Handoff, deleted ───────────── */}
@@ -284,66 +249,6 @@ export function NewLanding({ lang }: { lang: Locale }) {
         </div>
       </section>
 
-      {/* ───────────── Real components ───────────── */}
-      <section className={styles.section}>
-        <header className={styles.sectionHead}>
-          <h2 className={styles.h2}>{c.partsTitle}</h2>
-          <p className={styles.lead}>{c.partsLead}</p>
-        </header>
-        <div className={styles.bento}>
-          <div className={`${styles.tileBox} ${styles.bShare}`}>
-            <FileShare
-              title={c.parts.share}
-              link="https://ui.ladom.co/s/q4-launch"
-              people={[
-                { id: '1', name: 'Ayşe Yılmaz', email: 'ayse@ladom.co', online: true, role: 'edit' },
-                { id: '2', name: 'Mert Kaya', email: 'mert@ladom.co', role: 'view' },
-              ]}
-              roles={[
-                { value: 'edit', label: lang === 'tr' ? 'Düzenleyebilir' : 'Can edit' },
-                { value: 'view', label: lang === 'tr' ? 'Görüntüleyebilir' : 'Can view' },
-              ]}
-            />
-          </div>
-          <div className={`${styles.tileBox} ${styles.bOtp}`}>
-            <span className={styles.tileLabel}>{c.parts.otp}</span>
-            <OtpInput length={6} groups={[3, 3]} defaultValue="202611" aria-label={c.parts.otp} />
-          </div>
-          <div className={`${styles.tileBox} ${styles.bMotion}`}>
-            <Button size="large" tone="secondary">
-              <TextMotion effect="flip">{c.parts.hover}</TextMotion>
-            </Button>
-            <span className={styles.motionWord}>
-              <TextMotion effect="wave" trigger="self">TextMotion</TextMotion>
-            </span>
-          </div>
-          <div className={`${styles.tileBox} ${styles.bStat}`}>
-            <span className={styles.tileLabel}>{c.parts.revenue}</span>
-            <span className={styles.bigNum}>₺4,8M</span>
-            <Delta value="+18.2%" direction="up" />
-          </div>
-          <div className={`${styles.tileBox} ${styles.bChips}`}>
-            {c.parts.filters.map((f, i) => (
-              <Chip key={f} selected={i < 2}>
-                {f}
-              </Chip>
-            ))}
-            <AvatarGroup>
-              {['Ayşe', 'Mert', 'Deniz', 'Ece'].map((n) => (
-                <Avatar key={n} size="small" name={n} />
-              ))}
-            </AvatarGroup>
-          </div>
-          <div className={`${styles.tileBox} ${styles.bColor}`}>
-            <span className={styles.tileLabel}>{c.parts.color}</span>
-            <ColorInput defaultValue="#3c3c3c" presets={['#3c3c3c', '#2563eb', '#0f766e', '#d9480f', '#7c3aed']} aria-label={c.parts.color} />
-          </div>
-          <div className={`${styles.tileBox} ${styles.bToast}`}>
-            <Toast tone="success" title={c.parts.toast} description={c.parts.toastNote} />
-          </div>
-        </div>
-      </section>
-
       {/* ───────────── Numbers ───────────── */}
       <section className={styles.numbers}>
         {[
@@ -357,6 +262,36 @@ export function NewLanding({ lang }: { lang: Locale }) {
             <span className={styles.numberLabel}>{l}</span>
           </div>
         ))}
+      </section>
+
+      {/* ───────────── Components, in 3D ───────────── */}
+      <section className={styles.section}>
+        <header className={styles.sectionHeadRow}>
+          <div className={styles.sectionHead}>
+            <h2 className={styles.h2}>{c.compsTitle}</h2>
+            <p className={styles.lead}>{c.compsLead}</p>
+          </div>
+          <Link href={href(lang, '/docs/components/button')} className={styles.buttonLink}>
+            <Button variant="ghost" tone="secondary" iconRight={IconArrowRight}>
+              <TextMotion effect="roll">{c.compsAll}</TextMotion>
+            </Button>
+          </Link>
+        </header>
+        <ul className={styles.comps}>
+          {COMPONENTS.map((item) => (
+            <li key={item.scene}>
+              <Link href={href(lang, item.href)} className={styles.comp}>
+                <IsoCanvas scene={item.scene} labels={c.iso} className={styles.compArt} />
+                <span className={styles.compFoot}>
+                  <span className={styles.compTitle}>{item.title}</span>
+                  <Badge size="tiny" tone={item.pro ? 'primary' : 'secondary'}>
+                    {item.pro ? c.pro : c.free}
+                  </Badge>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* ───────────── CTA ───────────── */}
