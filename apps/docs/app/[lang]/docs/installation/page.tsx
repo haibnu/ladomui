@@ -96,7 +96,8 @@ import { ToastProvider } from '@/components/ladom';
 export function Providers({ children }: { children: React.ReactNode }) {
   return <ToastProvider closeLabel="Close">{children}</ToastProvider>;
 }`,
-  modes: `<html data-theme="dark">          {/* Dark theme (opt-in) */}
+  modes: `<html data-theme="dark">          {/* force Dark; otherwise it follows the device setting */}
+<html data-theme="light">         {/* force Light */}
 <html data-density="narrow">      {/* Narrow density */}
 <html data-device="mobile">       {/* force a device mode; otherwise it follows the width */}`,
   styling: `.card {

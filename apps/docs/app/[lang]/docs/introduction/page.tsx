@@ -58,8 +58,9 @@ export default async function IntroductionPage({ params }: Props) {
         <h2 id="modes">Modlar</h2>
         <p>
           Modlar <code>{'<html>'}</code> üzerindeki özniteliklerle seçilir. Cihaz değerleri ekran genişliğini izler (768px
-          altı Mobil, 1280px altı Tablet) ve <code>data-device</code> ile zorlanabilir. Koyu tema{' '}
-          <code>data-theme=&quot;dark&quot;</code>, Narrow yoğunluk <code>data-density=&quot;narrow&quot;</code> ile açılır.
+          altı Mobil, 1280px altı Tablet) ve <code>data-device</code> ile zorlanabilir. Koyu tema cihaz ayarını izler;{' '}
+          <code>data-theme=&quot;dark&quot;</code> ya da <code>data-theme=&quot;light&quot;</code> ile sabitlenir. Narrow
+          yoğunluk <code>data-density=&quot;narrow&quot;</code> ile açılır.
         </p>
 
         <h2 id="next">Sonraki adımlar</h2>
@@ -113,8 +114,9 @@ export default async function IntroductionPage({ params }: Props) {
       <h2 id="modes">Modes</h2>
       <p>
         Modes are set with attributes on <code>{'<html>'}</code>. Device values follow the screen width (Mobile below
-        768px, Tablet below 1280px) and can be forced with <code>data-device</code>. The Dark theme is opt-in with{' '}
-        <code>data-theme=&quot;dark&quot;</code>, and Narrow density with <code>data-density=&quot;narrow&quot;</code>.
+        768px, Tablet below 1280px) and can be forced with <code>data-device</code>. The Dark theme follows the device
+        setting and can be fixed with <code>data-theme=&quot;dark&quot;</code> or <code>data-theme=&quot;light&quot;</code>.
+        Narrow density is set with <code>data-density=&quot;narrow&quot;</code>.
       </p>
 
       <h2 id="next">Next steps</h2>

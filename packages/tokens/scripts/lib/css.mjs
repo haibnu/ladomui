@@ -12,8 +12,8 @@ export function modeSelectors(breakpoints) {
       Tablet: { attr: 'data-device', value: 'tablet', media: `(width < ${breakpoints.desktop}px)` },
       Mobile: { attr: 'data-device', value: 'mobile', media: `(width < ${breakpoints.tablet}px)` },
     },
-    // Dark is opt-in: the Figma Dark mode is not final, so it does not follow prefers-color-scheme.
-    '02 Theme': { Dark: { attr: 'data-theme', value: 'dark' } },
+    // Dark follows the device (prefers-color-scheme) unless data-theme is set; data-theme="light" keeps Light.
+    '02 Theme': { Dark: { attr: 'data-theme', value: 'dark', media: '(prefers-color-scheme: dark)' } },
     '04 Layout': { Narrow: { attr: 'data-density', value: 'narrow' } },
   };
 }

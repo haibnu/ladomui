@@ -415,18 +415,21 @@ function themeCss({ brand, font }, surfaces) {
       '}',
     );
     const roles = contrastRoles(brand, surfaces);
-    for (const [theme, selector] of [['light', ':root'], ['dark', ':root[data-theme="dark"]']]) {
+    for (const theme of ['light', 'dark']) {
       const set = Object.values(roles[theme]);
       if (!set.length) continue;
+      const body = [
+        ...set.map((r) => `  --color-${r.name}: ${r.color};`),
+        ...(roles[theme]['primary-foreground'] ? ['  --color-link-color: var(--color-primary-foreground);'] : []),
+      ];
       lines.push(
         '',
         `/* ${brand} is ${set[0].was.toFixed(1)}:1 on the ${theme} surfaces, too low for ${set.map((r) => `${r.what} (${r.min}:1)`).join(' and ')}.`,
         `   They use a ${theme === 'light' ? 'darker' : 'lighter'} step of it; fills (buttons, checkboxes, switches) keep the brand color. */`,
-        `${selector} {`,
-        ...set.map((r) => `  --color-${r.name}: ${r.color};`),
-        ...(roles[theme]['primary-foreground'] ? ['  --color-link-color: var(--color-primary-foreground);'] : []),
-        '}',
       );
+      // Dark applies by the device setting unless data-theme is set, and with data-theme="dark".
+      if (theme === 'light') lines.push(':root {', ...body, '}');
+      else lines.push('@media (prefers-color-scheme: dark) {', '  :root:not([data-theme]) {', ...body.map((l) => `  ${l}`), '  }', '}', ':root[data-theme="dark"] {', ...body, '}');
     }
   }
   if (font !== DEFAULT_FONT) {

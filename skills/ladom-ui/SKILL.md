@@ -38,7 +38,7 @@ const font = DM_Sans({ subsets: ['latin', 'latin-ext'], variable: '--font-brand'
 // <html className={font.variable}> … <body style={{ background: 'var(--color-surface-background)' }}>
 ```
 To change the brand later, run `init` again with new flags; never hard-code the brand color in components, use `--color-primary*`.
-Import components and icons from `@/components/ladom` (the folder in `ladom-ui.json`). Before using a component, check it is in that folder; add it with the CLI if not. Toasts need `<ToastProvider>` (a client component) around the app. Modes go on `<html>`: `data-theme="dark"`, `data-density="narrow"`, `data-device="mobile|tablet|desktop"`.
+Import components and icons from `@/components/ladom` (the folder in `ladom-ui.json`). Before using a component, check it is in that folder; add it with the CLI if not. Toasts need `<ToastProvider>` (a client component) around the app. Modes go on `<html>`: Dark follows the device setting; `data-theme="dark"` or `data-theme="light"` fixes the theme (for a theme switch), `data-density="narrow"`, `data-device="mobile|tablet|desktop"`.
 
 ## Components
 | Need | Component |
