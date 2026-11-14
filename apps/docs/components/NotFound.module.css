@@ -1,0 +1,94 @@
+/* The 404 page: the top bar, then a centered message with the way back. */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+  background: var(--color-surface-level-1);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-medium);
+  padding: var(--space-xxlarge) var(--space-container);
+  text-align: center;
+}
+
+.code {
+  margin: 0;
+  font: var(--text-content-hero-xl-bold);
+  letter-spacing: var(--text-content-hero-xl-bold-letter-spacing);
+  color: var(--color-primary-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+.heading {
+  margin: 0;
+  font: var(--text-ui-title);
+  color: var(--color-foreground-high-emphasis);
+}
+
+.body {
+  margin: 0;
+  max-inline-size: var(--grid-column-6);
+  font: var(--text-ui-text-lead-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-small);
+  margin-block-start: var(--space-small);
+}
+
+.popular {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-small);
+  margin-block-start: var(--space-xlarge);
+  padding-block-start: var(--space-large);
+  border-block-start: var(--border);
+}
+
+.popularTitle {
+  margin: 0;
+  font: var(--text-ui-caption);
+  text-transform: var(--text-ui-caption-text-transform);
+  color: var(--color-foreground-low-emphasis);
+}
+
+.popular ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-small) var(--space-large);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-micro);
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-medium-emphasis);
+  text-decoration: none;
+  border-radius: var(--radius-form-element-small);
+}
+
+.link:hover {
+  color: var(--color-primary-foreground);
+}
+
+.link:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}

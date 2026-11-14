@@ -8,6 +8,8 @@ const hasPro = existsSync(new URL('../../packages/ui/src/pro/index.ts', import.m
 const nextConfig: NextConfig = {
   // @ladom/ui and @ladom/icons ship TypeScript source (and CSS Modules); Next compiles them.
   transpilePackages: ['@ladom/ui', '@ladom/icons'],
+  // app/global-not-found.tsx: the root layout sits under [lang], so unmatched URLs need their own page.
+  experimental: { globalNotFound: true },
   ...(hasPro ? {} : { turbopack: { resolveAlias: { '@ladom/ui/pro': './components/ProMissing.tsx' } }, typescript: { ignoreBuildErrors: true } }),
   headers: async () => [
     // The ladom.co showcase (public/showcase/v1, built by scripts/build-showcase.mjs) is loaded cross-origin.
