@@ -85,7 +85,7 @@
 }
 
 /* An open menu may leave its card; the content is clipped again when it closes. */
-.ls-card:not(.c-nav):has([aria-expanded='true']) {
+.ls-card:not(.ls-c-nav):has([aria-expanded='true']) {
   z-index: 5;
   overflow: visible;
 }
@@ -140,51 +140,51 @@
    R2  date date nav nav system
    R3  icons buttons share share sizes
    R4  avatar status drop drop sizes */
-.c-date { grid-area: 1 / 1 / 3 / 3; }
-.c-nav { grid-area: 1 / 3 / 3 / 5; }
-.c-segment { grid-area: 1 / 5; }
-.c-system { grid-area: 2 / 5; }
-.c-icons { grid-area: 3 / 1; }
-.c-buttons { grid-area: 3 / 2; }
-.c-share { grid-area: 3 / 3 / 4 / 5; }
-.c-sizes { grid-area: 3 / 5 / 5 / 6; }
-.c-avatar { grid-area: 4 / 1; }
-.c-status { grid-area: 4 / 2; }
-.c-dropdown { grid-area: 4 / 3 / 5 / 5; }
+.ls-c-date { grid-area: 1 / 1 / 3 / 3; }
+.ls-c-nav { grid-area: 1 / 3 / 3 / 5; }
+.ls-c-segment { grid-area: 1 / 5; }
+.ls-c-system { grid-area: 2 / 5; }
+.ls-c-icons { grid-area: 3 / 1; }
+.ls-c-buttons { grid-area: 3 / 2; }
+.ls-c-share { grid-area: 3 / 3 / 4 / 5; }
+.ls-c-sizes { grid-area: 3 / 5 / 5 / 6; }
+.ls-c-avatar { grid-area: 4 / 1; }
+.ls-c-status { grid-area: 4 / 2; }
+.ls-c-dropdown { grid-area: 4 / 3 / 5 / 5; }
 
 /* ---- 3 columns (tablet) ----
    R1  date date segment      R5  share share buttons
    R2  date date system       R6  drop drop avatar
    R3  nav nav sizes          R7  icons icons status
    R4  nav nav sizes */
-.ladomui-showcase[data-layout='tablet'] .c-date { grid-area: 1 / 1 / 3 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-segment { grid-area: 1 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-system { grid-area: 2 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-nav { grid-area: 3 / 1 / 5 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-sizes { grid-area: 3 / 3 / 5 / 4; }
-.ladomui-showcase[data-layout='tablet'] .c-share { grid-area: 5 / 1 / 6 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-buttons { grid-area: 5 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-dropdown { grid-area: 6 / 1 / 7 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-avatar { grid-area: 6 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-icons { grid-area: 7 / 1 / 8 / 3; }
-.ladomui-showcase[data-layout='tablet'] .c-status { grid-area: 7 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-date { grid-area: 1 / 1 / 3 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-segment { grid-area: 1 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-system { grid-area: 2 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-nav { grid-area: 3 / 1 / 5 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-sizes { grid-area: 3 / 3 / 5 / 4; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-share { grid-area: 5 / 1 / 6 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-buttons { grid-area: 5 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-dropdown { grid-area: 6 / 1 / 7 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-avatar { grid-area: 6 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-icons { grid-area: 7 / 1 / 8 / 3; }
+.ladomui-showcase[data-layout='tablet'] .ls-c-status { grid-area: 7 / 3; }
 
 /* ---- 2 columns (mobile): a short selection ----
    R1  buttons avatar    R2  segment system    R3  share share */
-.ladomui-showcase[data-layout='mobile'] .c-date,
-.ladomui-showcase[data-layout='mobile'] .c-nav,
-.ladomui-showcase[data-layout='mobile'] .c-sizes,
-.ladomui-showcase[data-layout='mobile'] .c-icons,
-.ladomui-showcase[data-layout='mobile'] .c-dropdown,
-.ladomui-showcase[data-layout='mobile'] .c-status {
+.ladomui-showcase[data-layout='mobile'] .ls-c-date,
+.ladomui-showcase[data-layout='mobile'] .ls-c-nav,
+.ladomui-showcase[data-layout='mobile'] .ls-c-sizes,
+.ladomui-showcase[data-layout='mobile'] .ls-c-icons,
+.ladomui-showcase[data-layout='mobile'] .ls-c-dropdown,
+.ladomui-showcase[data-layout='mobile'] .ls-c-status {
   display: none;
 }
 
-.ladomui-showcase[data-layout='mobile'] .c-buttons { grid-area: 1 / 1; }
-.ladomui-showcase[data-layout='mobile'] .c-avatar { grid-area: 1 / 2; }
-.ladomui-showcase[data-layout='mobile'] .c-segment { grid-area: 2 / 1; }
-.ladomui-showcase[data-layout='mobile'] .c-system { grid-area: 2 / 2; }
-.ladomui-showcase[data-layout='mobile'] .c-share { grid-area: 3 / 1 / 4 / 3; }
+.ladomui-showcase[data-layout='mobile'] .ls-c-buttons { grid-area: 1 / 1; }
+.ladomui-showcase[data-layout='mobile'] .ls-c-avatar { grid-area: 1 / 2; }
+.ladomui-showcase[data-layout='mobile'] .ls-c-segment { grid-area: 2 / 1; }
+.ladomui-showcase[data-layout='mobile'] .ls-c-system { grid-area: 2 / 2; }
+.ladomui-showcase[data-layout='mobile'] .ls-c-share { grid-area: 3 / 1 / 4 / 3; }
 
 /* ---- card contents, sized to their cells ---- */
 .ls-date-input {
@@ -413,7 +413,7 @@
 }
 
 /* The share card is the FileShare panel itself, tightened to fit its cell. */
-.c-share {
+.ls-c-share {
   padding: 0;
 }
 
