@@ -2,8 +2,11 @@
 //   node scripts/build-showcase.mjs
 // The tokens are rewritten from :root to .ladomui-showcase so the bundle styles its own container
 // and never the host page; the device modes (media queries, data-device) are dropped, the desktop
-// values stay. Without the Pro submodule the Pro parts become stubs and the bundle still builds.
-import { build } from 'esbuild';
+// values stay. CSS Module class and keyframe names are renamed to `lds-<n>`, so the global
+// showcase.css never matches a host page's own classes (a bare `.js` once disabled ladom.co's
+// <html class="js">); the showcase's own global classes all start with `ls-` or `ladomui-`.
+// Without the Pro submodule the Pro parts become stubs and the bundle still builds.
+import { build, transform } from 'esbuild';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
@@ -59,7 +62,9 @@ const result = await build({
   entryPoints: { showcase: `${docs}showcase/entry.tsx` },
   outdir: out,
   bundle: true,
-  minify: true,
+  // Identifiers stay long here so CSS Module names come out as `File_local`; renamed and minified below.
+  minifyWhitespace: true,
+  minifySyntax: true,
   format: 'iife',
   target: 'es2020',
   jsx: 'automatic',
@@ -73,6 +78,27 @@ const result = await build({
   banner: { css: '/* Ladom UI showcase v1: https://ui.ladom.co */' },
   absWorkingDir: docs,
 });
+
+// esbuild names CSS Module classes and keyframes `<File>_<local>` (plus a number on clashes) and
+// has no option for a prefix, so they are renamed here, in the CSS and in the JS string literals.
+const cssPath = `${out}/showcase.css`;
+const jsPath = `${out}/showcase.js`;
+let css = readFileSync(cssPath, 'utf8');
+let js = readFileSync(jsPath, 'utf8');
+const LOCAL = /(?<=\.|@keyframes\s*)[A-Za-z][A-Za-z0-9]*_[A-Za-z0-9_-]+/g;
+const names = new Map();
+for (const name of css.match(LOCAL) ?? []) if (!names.has(name)) names.set(name, `lds-${names.size.toString(36)}`);
+const word = (name) => new RegExp(`(?<![\\w-])${name}(?![\\w-])`, 'g');
+for (const [name, short] of names) {
+  css = css.replace(word(name), short);
+  js = js.replaceAll(`"${name}"`, `"${short}"`);
+}
+const bare = [...new Set(css.match(/(?<![\w-])\.[A-Za-z_-][\w-]*/g))].filter(
+  (c) => !/^\.(lds-|ls-|ladomui-)/.test(c) && !/^\.(css|com|googleapis)$/.test(c),
+);
+if (bare.length) throw new Error(`showcase: unprefixed classes in showcase.css: ${bare.join(' ')}`);
+writeFileSync(cssPath, css);
+writeFileSync(jsPath, (await transform(js, { minify: true, target: 'es2020', legalComments: 'none' })).code);
 
 const size = (f) => {
   const b = readFileSync(`${out}/${f}`);

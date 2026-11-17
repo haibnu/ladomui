@@ -166,7 +166,7 @@ export function Showcase({ locale }: { locale: Locale }) {
   return (
     <div className="ls-stage">
       <div className="ls-canvas">
-        <Card title={c.datePicker} className="c-date">
+        <Card title={c.datePicker} className="ls-c-date">
           <div className="ls-stack">
             <Input className="ls-date-input" iconLeft={<IconProfile />} placeholder={c.datePlaceholder} aria-label={c.datePicker} />
             <div className="ls-cal">
@@ -175,7 +175,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card className="c-buttons">
+        <Card className="ls-c-buttons">
           <div className="ls-btn-groups">
             <div className="ls-btn-group">
               <p className="ls-caption">{c.button}</p>
@@ -192,7 +192,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card title={c.avatar} className="c-avatar">
+        <Card title={c.avatar} className="ls-c-avatar">
           <div className="ls-stack">
             <AvatarGroup>
               <Avatar size="small" src={face1} name="Olivia Martin" />
@@ -207,7 +207,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card title={c.breadcrumb} className="c-nav">
+        <Card title={c.breadcrumb} className="ls-c-nav">
           <div className="ls-app">
             <nav className="ls-rail" aria-hidden="true">
               <Button icon={IconCampaign} tabIndex={-1} className="ls-round ls-logo" aria-label="Logo" />
@@ -232,7 +232,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card title={c.avatar} className="c-sizes">
+        <Card title={c.avatar} className="ls-c-sizes">
           <div className="ls-sizes">
             <div>
               <p className="ls-subtitle">{c.size}</p>
@@ -258,7 +258,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card className="c-segment">
+        <Card className="ls-c-segment">
           <div className="ls-stack ls-segments">
             <Segment size="small" aria-label={c.segments.gender.join(' / ')} defaultValue="0" options={c.segments.gender.map((label, i) => ({ value: String(i), label }))} />
             <Segment
@@ -283,7 +283,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card className="c-system">
+        <Card className="ls-c-system">
           <div className="ls-system">
             <div className="ls-stack">
               <p className="ls-subtitle">{c.system}</p>
@@ -300,7 +300,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card title={c.icons} className="c-icons">
+        <Card title={c.icons} className="ls-c-icons">
           <div className="ls-icons">
             {ICONS.map((Icon, i) => (
               <span key={i} className="ls-icon">
@@ -311,7 +311,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card title={c.dropdown} className="c-dropdown">
+        <Card title={c.dropdown} className="ls-c-dropdown">
           <div className="ls-dropdown-card">
             <div className="ls-stack ls-actions">
               <Button dropdown>{c.actions}</Button>
@@ -335,7 +335,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           </div>
         </Card>
 
-        <Card className="c-share">
+        <Card className="ls-c-share">
           <FileShare
             className="ls-share"
             title={c.share.title}
@@ -350,7 +350,7 @@ export function Showcase({ locale }: { locale: Locale }) {
           />
         </Card>
 
-        <Card title={c.status} className="c-status">
+        <Card title={c.status} className="ls-c-status">
           <div className="ls-status">
             <div className="ls-plate">
               <span className="ls-plate-title">{c.version}</span>
