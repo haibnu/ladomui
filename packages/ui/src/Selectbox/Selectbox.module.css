@@ -224,6 +224,11 @@
   padding-block-start: var(--line-height-text-small);
 }
 
+/* The value line keeps its height while empty, so the box stays 48px. */
+.box[data-floating] .display {
+  min-block-size: var(--line-height-base);
+}
+
 .floatingLabel {
   position: absolute;
   inset-inline: 0;
