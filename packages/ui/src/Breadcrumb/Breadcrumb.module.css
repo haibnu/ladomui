@@ -66,6 +66,12 @@
   min-inline-size: calc(6 * var(--space-xxlarge) + var(--space-xlarge));
 }
 
+/* No room below in the viewport: above the toggle, the same gap away (useUnclipped flip). */
+.menu[data-flip] {
+  inset-block-start: auto;
+  inset-block-end: calc(100% + var(--space-micro));
+}
+
 .link {
   display: block;
   color: inherit;
