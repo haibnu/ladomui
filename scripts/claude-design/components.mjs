@@ -401,7 +401,7 @@ return h('div', { style: { display: 'grid', gap: 12 } },
   {
     name: 'Table', group: 'Data', height: 260,
     summary: 'Rows of data under a header: sortable columns, an optional checkbox column for selection and an empty state.',
-    use: ['Describe each column once (`key`, `header`, `cell`, `sortable`, `align: "end"` for numbers).', 'Add Pagination under it for long lists; give `empty` an EmptyState.'],
+    use: ['Describe each column once (`key`, `header`, `cell`, `sortable`, `align: "end"` for numbers).', 'Add Pagination under it for long lists; give `empty` an EmptyState.', 'It has the Card look (shadow, no border); put it in a Card and it drops the shadow.'],
     provides: '`columns`, `rows`, `rowKey`, optionally `selectable` + `selected` / `defaultSelected` + `onSelectedChange`, `sort` / `defaultSort` + `onSortChange`, `caption`, `selectAllLabel` and `selectRowLabel` for the checkboxes.',
     code: `const rows = [{ id: '1', name: 'Ada Lovelace', role: 'Owner', reports: 12 }, { id: '2', name: 'Deniz Kaya', role: 'Editor', reports: 7 }, { id: '3', name: 'Ece Demir', role: 'Viewer', reports: 3 }];
 return h(Table, { selectable: true, rowKey: (r) => r.id, rows, defaultSort: { key: 'reports', direction: 'descending' },

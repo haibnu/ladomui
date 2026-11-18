@@ -166,6 +166,11 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first(),
   ],
   table: [
+    {
+      date: '2026-11-18',
+      en: 'The frame looks like Card: the card shadow instead of the border line. Inside a Card the shadow drops.',
+      tr: 'Çerçeve Card gibi görünüyor: kenarlık çizgisi yerine kart gölgesi. Card içinde gölge kalkıyor.',
+    },
     SCROLL({ en: 'wide table', tr: 'Geniş tablo' }),
     {
       date: '2026-11-10',
