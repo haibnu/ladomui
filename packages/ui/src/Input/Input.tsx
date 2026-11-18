@@ -22,7 +22,7 @@ export type InputSize = 'medium' | 'small';
 
 /** The floating label needs the room of the large size, so only large inputs take it. */
 type Sizing =
-  | { size?: InputSize; floatingLabel?: never }
+  | { size?: InputSize | 'large'; floatingLabel?: never }
   | {
       size: 'large';
       /** A label inside the field: it sits where the placeholder would and moves up, smaller,
