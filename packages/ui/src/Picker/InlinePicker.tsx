@@ -46,7 +46,7 @@ export function InlinePicker({ value, options, size, disabled, label, align, arr
   const root = useRef<HTMLSpanElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
-  useUnclipped(panel, open);
+  useUnclipped(panel, open, { flip: true });
   const index = (v: string) => options.findIndex((o) => o.value === v);
   const selected = options[index(value)];
 

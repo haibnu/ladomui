@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useId, useRef, useState, type InputHTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useId, useRef, useState, type InputHTMLAttributes, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react';
 import { IconClear, IconError, IconHide, IconSearch, IconShow } from '@ladom/icons';
 import { useFieldContext } from '../FormField/FormField';
 import styles from './Input.module.css';
@@ -55,6 +55,27 @@ export type InputBaseProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' 
 };
 
 export type InputProps = Omit<InputBaseProps, 'size'> & Sizing;
+
+// A press anywhere on the box (padding, icon, affix, label) focuses the field, the way a press on
+// the text does. Controls inside the box (buttons, inline pickers and their lists) keep their own
+// presses. Shared with Textarea.
+const OWN_PRESS = 'input, textarea, select, button, a, label, [tabindex], [role="listbox"], [role="menu"]';
+export function focusFromBox(e: ReactMouseEvent<HTMLElement>, field: HTMLInputElement | HTMLTextAreaElement | null) {
+  if (e.button !== 0 || !field || field.disabled) return;
+  const target = e.target as Element;
+  if (target === field) return;
+  const own = target.closest(OWN_PRESS);
+  if (own && own !== e.currentTarget && e.currentTarget.contains(own) && !own.matches(`label[for="${field.id}"]`)) return;
+  e.preventDefault();
+  if (document.activeElement === field) return;
+  field.focus();
+  // The caret goes to the end of the text. Some types (number, email) have no selection API.
+  try {
+    field.setSelectionRange(field.value.length, field.value.length);
+  } catch {
+    /* no caret to place */
+  }
+}
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
@@ -147,6 +168,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       data-disabled={disabled || undefined}
       data-state={forcedState}
       data-floating={floating || undefined}
+      onMouseDown={(e) => focusFromBox(e, inner.current)}
     >
       {leading != null && <span className={styles.icon}>{leading}</span>}
       {prefix != null && <span className={styles.affix}>{prefix}</span>}

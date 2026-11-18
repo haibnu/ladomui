@@ -51,6 +51,12 @@
   white-space: nowrap;
 }
 
+/* No room below in the viewport: above the box, the same gap away (useUnclipped flip). */
+.dropdown[data-flip] {
+  inset-block-start: auto;
+  inset-block-end: calc(100% + var(--space-form-dropdown-top));
+}
+
 .dropdown[data-align='start'] {
   inset-inline-start: 0;
 }

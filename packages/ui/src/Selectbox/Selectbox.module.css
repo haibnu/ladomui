@@ -262,6 +262,12 @@
   max-block-size: calc(10 * (var(--line-height-base) + 2 * var(--space-tiny)) + 9 * var(--border-width) + 2 * var(--layout-tiny));
 }
 
+/* No room below in the viewport: above the box, the same gap away (useUnclipped flip). */
+.dropdown[data-flip] {
+  inset-block-start: auto;
+  inset-block-end: calc(100% + var(--space-form-dropdown-top));
+}
+
 .list {
   display: flex;
   flex-direction: column;

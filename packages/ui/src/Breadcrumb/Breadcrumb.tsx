@@ -34,7 +34,7 @@ export function Breadcrumb({ items, onBack, backLabel = 'Back', menuLabel = 'Pat
   const root = useRef<HTMLElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLDivElement>(null);
-  useUnclipped(menu, open);
+  useUnclipped(menu, open, { flip: true });
   const Arrow = open ? IconArrowTop : IconArrowBottom;
 
   const close = (refocus: boolean) => {

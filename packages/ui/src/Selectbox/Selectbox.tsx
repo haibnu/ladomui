@@ -117,7 +117,7 @@ export function Selectbox(props: SelectboxProps) {
   const trigger = useRef<HTMLButtonElement & HTMLInputElement>(null);
   const list = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
-  useUnclipped(panel, open);
+  useUnclipped(panel, open, { flip: true });
   const typed = useRef({ text: '', at: 0 });
 
   const visible = useMemo(
