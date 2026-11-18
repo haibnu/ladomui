@@ -88,7 +88,7 @@ return h('div', { style: { display: 'grid', gap: 16 } }, row('solid'), row('ghos
   {
     name: 'Selectbox', group: 'Forms', height: 360,
     summary: 'Picks one or more values from a list: a box that opens a Dropdown of Cells, with search, chips and an inner label.',
-    use: ['`multiple` picks several (a count badge), `display="chips"` shows each as a chip; `searchable` adds a filter field.', 'Label it with FormField, `aria-label` or `innerLabel`; pass `name` to submit the value with a form.'],
+    use: ['`multiple` picks several (a count badge), `display="chips"` shows each as a chip; `searchable` lets people type in the box to filter the list.', 'Label it with FormField, `aria-label`, `innerLabel` or, on `size="large"`, `floatingLabel` (as on Input); pass `name` to submit the value with a form.'],
     provides: '`options` (`{ value, label, disabled?, iconLeft?, subtitle? }`), `value` + `onChange` or `defaultValue`.',
     code: `const cities = ['Istanbul', 'Ankara', 'Izmir', 'Bursa', 'Antalya'].map((label) => ({ value: label.toLowerCase(), label }));
 return h('div', { style: { display: 'grid', gap: 12, maxWidth: 320 } },

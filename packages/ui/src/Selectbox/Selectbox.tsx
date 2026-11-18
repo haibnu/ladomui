@@ -3,13 +3,12 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { IconArrowBottom, IconArrowTop, IconError, IconSearch } from '@ladom/icons';
 import { Badge } from '../Badge/Badge';
-import { Cell, CellSearch } from '../Cell/Cell';
+import { Cell } from '../Cell/Cell';
 import { EmptyState } from '../EmptyState/EmptyState';
 import { Chip } from '../Chip/Chip';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { useUnclipped } from '../Floating/useUnclipped';
 import { useFieldContext } from '../FormField/FormField';
-import { Input } from '../Input/Input';
 import styles from './Selectbox.module.css';
 
 // Figma: Components / Selectbox (node 1163:3) with its Dropdown (1145:669) of Cells (87:46114).
@@ -31,9 +30,18 @@ export type SelectboxOption = {
   bodycopy?: ReactNode;
 };
 
+/** The floating label needs the room of the large size, like Input's. */
+type Sizing =
+  | { size?: SelectboxSize; floatingLabel?: never }
+  | {
+      size: 'large';
+      /** A label inside the box: it rests where the value would be and moves up, smaller, when
+       *  the box is focused, open or filled. Only on size="large" (as on Input). */
+      floatingLabel?: ReactNode;
+    };
+
 type Common = {
   options: SelectboxOption[];
-  size?: SelectboxSize;
   /** Full width (true) or as wide as its content (false). */
   fluid?: boolean;
   placeholder?: string;
@@ -41,7 +49,7 @@ type Common = {
   innerLabel?: ReactNode;
   error?: boolean;
   disabled?: boolean;
-  /** Adds a search field at the top of the list that filters the options. */
+  /** Makes the box a search field: typing in it filters the options. */
   searchable?: boolean;
   searchPlaceholder?: string;
   /** Shown in the list when the search matches nothing (a small EmptyState). */
@@ -57,6 +65,7 @@ type Common = {
 };
 
 export type SelectboxProps = Common &
+  Sizing &
   (
     | { multiple?: false; display?: never; value?: string | null; defaultValue?: string | null; onChange?: (value: string) => void }
     | {
@@ -76,6 +85,7 @@ export function Selectbox(props: SelectboxProps) {
     fluid = true,
     placeholder = 'Select',
     innerLabel,
+    floatingLabel,
     error,
     disabled = false,
     searchable = false,
@@ -103,7 +113,8 @@ export function Selectbox(props: SelectboxProps) {
   const [active, setActive] = useState(-1);
   const [query, setQuery] = useState('');
   const root = useRef<HTMLDivElement>(null);
-  const trigger = useRef<HTMLButtonElement>(null);
+  // The focusable control: the box button, or the search field when searchable.
+  const trigger = useRef<HTMLButtonElement & HTMLInputElement>(null);
   const list = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
   useUnclipped(panel, open);
@@ -154,7 +165,7 @@ export function Selectbox(props: SelectboxProps) {
     if (disabled) return;
     const key = e.key;
     if (!open) {
-      if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(key)) {
+      if (['ArrowDown', 'ArrowUp', 'Enter'].includes(key) || (key === ' ' && !searchable)) {
         e.preventDefault();
         show();
       } else if (key.length === 1 && !searchable) {
@@ -168,7 +179,7 @@ export function Selectbox(props: SelectboxProps) {
     } else if (key === 'Home' || key === 'End') {
       e.preventDefault();
       setActive(key === 'Home' ? move(-1, 1) : move(visible.length, -1));
-    } else if (key === 'Enter' || (key === ' ' && e.currentTarget === trigger.current)) {
+    } else if (key === 'Enter' || (key === ' ' && !searchable)) {
       e.preventDefault();
       pick(visible[active]);
     } else if (key === 'Escape') {
@@ -176,7 +187,7 @@ export function Selectbox(props: SelectboxProps) {
       hide();
     } else if (key === 'Tab') {
       hide(false);
-    } else if (key.length === 1 && e.currentTarget === trigger.current) {
+    } else if (key.length === 1 && !searchable) {
       typeAhead(key, false);
     }
   };
@@ -209,14 +220,22 @@ export function Selectbox(props: SelectboxProps) {
   }, [open, active]);
 
   const hasValue = chosen.length > 0;
-  const floated = innerLabel != null && (open || focused || hasValue || invalid || disabled || forcedState === 'focus' || forcedState === 'active' || forcedState === 'typed');
+  const floating = size === 'large' && floatingLabel != null;
+  const boxLabel = floating ? floatingLabel : innerLabel;
+  const floated = boxLabel != null && (open || focused || hasValue || invalid || disabled || forcedState === 'focus' || forcedState === 'active' || forcedState === 'typed');
   const isOpen = open || forcedState === 'active';
   const Arrow = isOpen ? IconArrowTop : IconArrowBottom;
   const cellSize = size === 'small' || size === 'tiny' ? 'small' : 'medium';
 
   let display: ReactNode;
   if (!hasValue) {
-    display = <span className={styles.placeholder}>{innerLabel != null && !floated ? innerLabel : placeholder}</span>;
+    // A resting floating label stands in for the placeholder; once it has floated the placeholder
+    // shows only while the list is open.
+    display = floating ? (
+      isOpen ? <span className={styles.placeholder}>{placeholder}</span> : null
+    ) : (
+      <span className={styles.placeholder}>{innerLabel != null && !floated ? innerLabel : placeholder}</span>
+    );
   } else if (multiple && props.display === 'chips') {
     display = (
       <span className={styles.chips}>
@@ -233,12 +252,35 @@ export function Selectbox(props: SelectboxProps) {
         <Badge size="micro" tone="primary" filled>
           {chosen.length}
         </Badge>
-        <span className={styles.value}>{chosen.map((o) => o.label).join(', ')}</span>
+        {/* A search field shows only the count, so the typed text has room. */}
+        {!searchable && <span className={styles.value}>{chosen.map((o) => o.label).join(', ')}</span>}
       </>
     );
   } else {
     display = <span className={styles.value}>{chosen[0]!.label}</span>;
   }
+
+  const boxAttrs = {
+    className: styles.box,
+    'data-size': size,
+    'data-inner': innerLabel != null && !floating ? (floated ? 'floated' : 'resting') : undefined,
+    'data-floating': floating ? (floated ? 'floated' : 'resting') : undefined,
+    'data-open': isOpen || undefined,
+    'data-typed': hasValue || undefined,
+    'data-compact': (multiple && hasValue) || undefined,
+    'data-error': invalid || undefined,
+    'data-state': forcedState,
+  };
+  const labelNode =
+    boxLabel == null ? null : floating ? (
+      <span id={`${uid}-label`} className={styles.floatingLabel}>
+        {boxLabel}
+      </span>
+    ) : (
+      <span id={`${uid}-label`} className={floated ? styles.innerLabel : styles.visuallyHidden}>
+        {boxLabel}
+      </span>
+    );
 
   return (
     <div
@@ -250,67 +292,100 @@ export function Selectbox(props: SelectboxProps) {
         if (!root.current?.contains(e.relatedTarget as Node)) setFocused(false);
       }}
     >
-      <button
-        ref={trigger}
-        type="button"
-        id={id ?? field?.id}
-        role="combobox"
-        className={styles.box}
-        data-size={size}
-        data-inner={innerLabel != null ? (floated ? 'floated' : 'resting') : undefined}
-        data-open={isOpen || undefined}
-        data-typed={hasValue || undefined}
-        data-compact={(multiple && hasValue) || undefined}
-        data-error={invalid || undefined}
-        data-state={forcedState}
-        disabled={disabled}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabel == null && innerLabel != null ? `${uid}-label${hasValue ? ` ${uid}-value` : ""}` : undefined}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        aria-controls={listId}
-        aria-activedescendant={open && !searchable && active >= 0 ? optionId(active) : undefined}
-        aria-invalid={invalid || undefined}
-        aria-describedby={[describedBy, field?.describedBy].filter(Boolean).join(' ') || undefined}
-        onClick={() => (open ? hide() : show())}
-        onKeyDown={onKeyDown}
-      >
-        <span className={styles.texts}>
-          {innerLabel != null && (
-            <span id={`${uid}-label`} className={floated ? styles.innerLabel : styles.visuallyHidden}>
-              {innerLabel}
-            </span>
-          )}
-          <span id={`${uid}-value`} className={styles.display}>
-            {display}
-          </span>
-        </span>
-        {invalid && <IconError className={styles.errorIcon} aria-hidden="true" />}
-        <Arrow className={styles.arrow} aria-hidden="true" />
-      </button>
-      {open && (
-        <Dropdown ref={panel} className={styles.dropdown}>
-          {searchable && (
-            <CellSearch>
-              <Input
-                type="search"
-                size="small"
-                autoFocus
-                placeholder={searchPlaceholder}
+      {searchable ? (
+        // Searchable: the box is a text field. Closed, its placeholder shows the choice; open, typing
+        // filters the list.
+        <div
+          {...boxAttrs}
+          data-search=""
+          data-disabled={disabled || undefined}
+          onMouseDown={(e) => {
+            if (e.target !== trigger.current) e.preventDefault();
+          }}
+          onClick={() => {
+            if (disabled) return;
+            trigger.current?.focus();
+            if (!open) show();
+          }}
+        >
+          <span className={styles.texts}>
+            {labelNode}
+            <span id={`${uid}-value`} className={styles.display}>
+              {multiple && hasValue ? display : null}
+              <input
+                ref={trigger}
+                id={id ?? field?.id}
+                type="text"
+                role="combobox"
+                className={styles.search}
                 value={query}
+                placeholder={
+                  open
+                    ? searchPlaceholder
+                    : hasValue
+                      ? multiple
+                        ? ''
+                        : chosen[0]!.label
+                      : floating && !floated
+                        ? ''
+                        : innerLabel != null && !floated
+                          ? String(innerLabel)
+                          : placeholder
+                }
+                autoComplete="off"
+                disabled={disabled}
                 onChange={(e) => {
                   setQuery(e.target.value);
                   setActive(0);
+                  if (!open) setOpen(true);
                 }}
                 onKeyDown={onKeyDown}
-                role="combobox"
-                aria-label={searchPlaceholder}
-                aria-expanded
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabel == null && boxLabel != null ? `${uid}-label` : undefined}
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
+                aria-expanded={open}
                 aria-controls={listId}
-                aria-activedescendant={active >= 0 ? optionId(active) : undefined}
+                aria-activedescendant={open && active >= 0 ? optionId(active) : undefined}
+                aria-invalid={invalid || undefined}
+                aria-describedby={[describedBy, field?.describedBy].filter(Boolean).join(' ') || undefined}
               />
-            </CellSearch>
-          )}
+            </span>
+          </span>
+          {invalid && <IconError className={styles.errorIcon} aria-hidden="true" />}
+          <Arrow className={styles.arrow} aria-hidden="true" />
+        </div>
+      ) : (
+        <button
+          ref={trigger}
+          type="button"
+          id={id ?? field?.id}
+          role="combobox"
+          {...boxAttrs}
+          disabled={disabled}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabel == null && boxLabel != null ? `${uid}-label${hasValue ? ` ${uid}-value` : ''}` : undefined}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-controls={listId}
+          aria-activedescendant={open && active >= 0 ? optionId(active) : undefined}
+          aria-invalid={invalid || undefined}
+          aria-describedby={[describedBy, field?.describedBy].filter(Boolean).join(' ') || undefined}
+          onClick={() => (open ? hide() : show())}
+          onKeyDown={onKeyDown}
+        >
+          <span className={styles.texts}>
+            {labelNode}
+            <span id={`${uid}-value`} className={styles.display}>
+              {display}
+            </span>
+          </span>
+          {invalid && <IconError className={styles.errorIcon} aria-hidden="true" />}
+          <Arrow className={styles.arrow} aria-hidden="true" />
+        </button>
+      )}
+      {open && (
+        <Dropdown ref={panel} className={styles.dropdown}>
           <div ref={list} id={listId} role="listbox" aria-multiselectable={multiple || undefined} className={styles.list}>
             {visible.map((o, i) => (
               <Cell

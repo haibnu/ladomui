@@ -9,10 +9,10 @@ import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
 import { ThemeRow } from '@/components/customize/ThemeRow';
 
-type Type = 'basic' | 'inner' | 'multiselect' | 'chip';
+type Type = 'basic' | 'inner' | 'floating' | 'multiselect' | 'chip';
 type State = 'default' | 'hover' | 'focus' | 'active';
 const SIZES: SelectboxSize[] = ['large', 'medium', 'small', 'tiny'];
-const FIGMA_TYPE: Record<Type, string> = { basic: 'Basic', inner: 'Inner Label', multiselect: 'Multiselect', chip: 'Chip' };
+const FIGMA_TYPE: Record<Type, string> = { basic: 'Basic', inner: 'Inner Label', floating: 'Basic (code: floatingLabel)', multiselect: 'Multiselect', chip: 'Chip' };
 const COPY = {
   en: {
     type: 'Type', size: 'Size', state: 'State', error: 'Error', disabled: 'Disabled', fluid: 'Fluid', searchable: 'Searchable', withField: 'With label and hint',
@@ -42,11 +42,12 @@ export function SelectboxPlayground() {
   const [one, setOne] = useState<string>('');
   const [many, setMany] = useState<string[]>([]);
 
+  // The floating label works on Large only.
+  const shownSize: SelectboxSize = type === 'floating' ? 'large' : size;
   const options = c.cities.map((label) => ({ value: label.toLocaleLowerCase('en'), label }));
   const multiple = type === 'multiselect' || type === 'chip';
   const common = {
     options,
-    size,
     fluid,
     error,
     disabled,
@@ -55,7 +56,8 @@ export function SelectboxPlayground() {
     placeholder: c.placeholder,
     innerLabel: type === 'inner' ? c.label : undefined,
     'data-state': state === 'default' ? undefined : state,
-    'aria-label': withField || type === 'inner' ? undefined : c.label,
+    'aria-label': withField || type === 'inner' || type === 'floating' ? undefined : c.label,
+    ...(type === 'floating' ? { size: 'large' as const, floatingLabel: c.label } : { size }),
   } as const;
   const box = multiple ? (
     <Selectbox {...common} multiple display={type === 'chip' ? 'chips' : 'count'} value={many} onChange={setMany} />
@@ -65,8 +67,9 @@ export function SelectboxPlayground() {
 
   const props = [
     `options={cities}`,
-    size !== 'medium' && `size="${size}"`,
+    shownSize !== 'medium' && `size="${shownSize}"`,
     type === 'inner' && `innerLabel="${c.label}"`,
+    type === 'floating' && `floatingLabel="${c.label}"`,
     multiple && 'multiple',
     type === 'chip' && 'display="chips"',
     !fluid && 'fluid={false}',
@@ -81,8 +84,8 @@ export function SelectboxPlayground() {
     ? `import { FormField, Selectbox } from '@ladom/ui';\n\n<FormField label="${c.label}" hint="${c.hint}">\n  ${tag.replace(/\n/g, '\n  ')}\n</FormField>`
     : `import { Selectbox } from '@ladom/ui';\n\n${tag}`;
   const figma = withField
-    ? `Form Selectbox\nShow Label=True\nShow Hint=True\nDropdown=False\n\n🎛 Type=${FIGMA_TYPE[type]}\n👕 Size=${cap(size)}\n🕹 State=${cap(state)}`
-    : `🎛 Type=${FIGMA_TYPE[type]}\n👕 Size=${cap(size)}\n🕹 State=${cap(state)}\nDisable=${disabled ? 'True' : 'False'}\nError=${error ? 'True' : 'False'}\nFluid=${fluid ? 'True' : 'False'}`;
+    ? `Form Selectbox\nShow Label=True\nShow Hint=True\nDropdown=False\n\n🎛 Type=${FIGMA_TYPE[type]}\n👕 Size=${cap(shownSize)}\n🕹 State=${cap(state)}`
+    : `🎛 Type=${FIGMA_TYPE[type]}\n👕 Size=${cap(shownSize)}\n🕹 State=${cap(state)}\nDisable=${disabled ? 'True' : 'False'}\nError=${error ? 'True' : 'False'}\nFluid=${fluid ? 'True' : 'False'}`;
   const toggles: [string, boolean, (v: boolean) => void][] = [
     [c.error, error, setError],
     [c.disabled, disabled, setDisabled],
@@ -112,12 +115,13 @@ export function SelectboxPlayground() {
           options={[
             { value: 'basic', label: 'basic' },
             { value: 'inner', label: 'inner label' },
+            { value: 'floating', label: 'floating label (large)' },
             { value: 'multiselect', label: 'multiselect' },
             { value: 'chip', label: 'chip' },
           ]}
           onChange={setType}
         />
-        <ControlSelect label={c.size} value={size} options={SIZES} onChange={setSize} />
+        <ControlSelect label={c.size} value={shownSize} options={type === 'floating' ? (['large'] as SelectboxSize[]) : SIZES} onChange={setSize} />
         <ControlSelect label={c.state} value={state} options={['default', 'hover', 'focus', 'active'] as const} onChange={setState} />
         {toggles.map(([label, value, set]) => (
           <ControlCheck key={label} label={label} checked={value} onChange={set} />
