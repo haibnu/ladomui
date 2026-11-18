@@ -3,6 +3,7 @@
 import { forwardRef, useEffect, useState, type TextareaHTMLAttributes } from 'react';
 import { IconError } from '@ladom/icons';
 import { useFieldContext } from '../FormField/FormField';
+import { focusFromBox } from '../Input/Input';
 import input from '../Input/Input.module.css';
 import styles from './Textarea.module.css';
 
@@ -48,6 +49,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
       data-error={invalid || undefined}
       data-disabled={disabled || undefined}
       data-state={forcedState}
+      onMouseDown={(e) => focusFromBox(e, e.currentTarget.querySelector('textarea'))}
     >
       <textarea
         ref={ref}

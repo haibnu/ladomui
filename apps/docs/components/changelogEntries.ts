@@ -31,6 +31,22 @@ const SCROLL = (what: { en: string; tr: string }): ChangelogEntry => ({
   tr: `${what.tr} artık üzerine gelince ve kaydırırken görünen ince ScrollArea çubuklarıyla kayıyor.`,
 });
 
+// 2026-11-18, PR #57: dropdowns open above their anchor when there is no room below.
+const FLIP = (what: { en: string; tr: string }): ChangelogEntry => ({
+  date: '2026-11-18',
+  pr: 57,
+  en: `When there is no room below in the window (or in a container that clips it), the ${what.en} opens above instead.`,
+  tr: `Pencerede (ya da onu kırpan bir kapsayıcıda) altta yer yoksa ${what.tr} yukarı açılıyor.`,
+});
+
+// 2026-11-18, PR #57: a press anywhere on a text field's box focuses the field.
+const BOX_FOCUS: ChangelogEntry = {
+  date: '2026-11-18',
+  pr: 57,
+  en: 'A press anywhere on the box (padding, icons, affixes, label) focuses the field, not only a press on the text. Buttons inside the box keep their own presses.',
+  tr: 'Kutunun herhangi bir yerine (boşluk, ikon, ön/son ek, label) basınca alan focus oluyor; yalnızca metne basınca değil. Kutudaki butonlar kendi tıklamalarını koruyor.',
+};
+
 const DIALOG: ChangelogEntry[] = [
   {
     date: '2026-11-11',
@@ -58,12 +74,13 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   alert: [ROLES, first()],
   avatar: [first()],
   badge: [ROLES, first()],
-  breadcrumb: [SCROLL({ en: 'path menu', tr: 'Yol menüsü' }), UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
+  breadcrumb: [FLIP({ en: 'path menu', tr: 'yol menüsü' }), SCROLL({ en: 'path menu', tr: 'Yol menüsü' }), UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
   button: [ROLES, first()],
   cell: [ROLES, first()],
   checkbox: [ROLES, first()],
   chips: [ROLES, first()],
   'color-input': [
+    BOX_FOCUS,
     {
       date: '2026-11-11',
       en: 'The swatches are round and lined in a darker shade of their color, the box starts closer to the swatch, and the code shows in capitals.',
@@ -72,6 +89,8 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first('2026-11-11'),
   ],
   'currency-input': [
+    FLIP({ en: 'currency picker list', tr: 'para birimi listesi' }),
+    BOX_FOCUS,
     {
       date: '2026-11-10',
       pr: 11,
@@ -91,6 +110,8 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     },
   ],
   'gsm-input': [
+    FLIP({ en: 'country picker list', tr: 'ülke seçici listesi' }),
+    BOX_FOCUS,
     {
       date: '2026-11-11',
       pr: 14,
@@ -101,6 +122,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   hint: [first()],
   input: [
+    BOX_FOCUS,
     {
       date: '2026-11-18',
       en: 'New large size (48px, Figma Mobile Large) and floatingLabel: on large inputs the label sits inside the field and moves up on focus, with a value or on autofill.',
@@ -134,7 +156,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       tr: 'İlk sürüm: SidebarNav ve TopNav; satır yüksekliğini değiştirmeyen Tiny badge’lerle.',
     },
   ],
-  'number-input': [first('2026-11-02')],
+  'number-input': [BOX_FOCUS, first('2026-11-02')],
   'otp-input': [first('2026-11-11')],
   pagination: [first()],
   popover: [UNCLIPPED({ en: 'panel', tr: 'panel' }), first()],
@@ -143,6 +165,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'scroll-area': [{ ...first('2026-11-11'), en: 'First release: thin, rounded overlay scrollbars over native scrolling.', tr: 'İlk sürüm: yerel kaydırmanın üstünde ince, yuvarlak kaydırma çubukları.' }],
   segment: [{ date: '2026-11-12', en: 'The chosen item’s raised pill slides to the newly chosen item, timed by the motion tokens (still with reduced motion). Items that are not chosen get a slightly darker background on hover.', tr: 'Seçili öğenin kabarık zemini yeni seçilen öğeye kayarak geçiyor; süre animasyon tokenlarından geliyor (hareket azaltma açıkken kaymıyor). Seçili olmayan öğelerin zemini üzerine gelince hafifçe koyulaşıyor.' }, ROLES, first()],
   selectbox: [
+    FLIP({ en: 'list', tr: 'liste' }),
     {
       date: '2026-11-18',
       en: 'Searchable selectboxes search in the box itself instead of a field at the top of the list. Large selectboxes take floatingLabel, as Input does.',
@@ -185,7 +208,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     },
     first(),
   ],
-  textarea: [first('2026-11-02')],
+  textarea: [BOX_FOCUS, first('2026-11-02')],
   'time-picker': [SCROLL({ en: 'hour, minute and second columns', tr: 'Saat, dakika ve saniye sütunları' }), first()],
   toast: [
     {
