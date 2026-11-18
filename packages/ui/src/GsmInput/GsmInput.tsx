@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Input, type InputProps } from '../Input/Input';
+import { Input, type InputBaseProps } from '../Input/Input';
 import { InlinePicker } from '../Picker/InlinePicker';
 import { COUNTRY_DATA, FLAG_SVG } from './countries';
 import { CountryFlag } from './flags';
@@ -20,7 +20,7 @@ export type GsmCountry = Country & {
 };
 
 export type GsmInputProps = Omit<
-  InputProps,
+  InputBaseProps,
   'type' | 'value' | 'defaultValue' | 'onChange' | 'prefix' | 'suffix' | 'inputMode' | 'name' | 'iconLeft'
 > & {
   /** The number in E.164, e.g. "+905321234567", or null when it is empty. */

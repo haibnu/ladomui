@@ -12,7 +12,7 @@ const COPY = {
   en: {
     description: 'Rows of data in columns, with optional sorting and row selection. Pair it with Pagination for long lists.',
     parts: 'Parts',
-    partsText: 'A header cell (text, with a sort arrow when sorted, or the select-all checkbox), a body cell (text that truncates, or a row checkbox) and a row with Default, Hover and Selected states, inside a card with a line around it.',
+    partsText: 'A header cell (text, with a sort arrow when sorted, or the select-all checkbox), a body cell (text that truncates, or a row checkbox) and a row with Default, Hover and Selected states, inside a frame that looks like Card: the card radius and shadow, no border. Inside a Card the shadow drops, since the card already gives the depth.',
     tokens: 'Tokens',
     usage: 'Usage',
     usageText: 'Describe the columns; each cell shows row[key] unless cell renders something else. Sortable columns sort by row[key] (numbers numerically, text by locale); pass onSortChange to sort yourself, e.g. on the server. Selection is controlled with selected and onSelectedChange, or left to the table with defaultSelected.',
@@ -31,7 +31,7 @@ const COPY = {
   tr: {
     description: 'Sütunlarda veri satırları; isteğe bağlı sıralama ve satır seçimi. Uzun listeler için Pagination ile kullanın.',
     parts: 'Parçalar',
-    partsText: 'Bir başlık hücresi (metin, sıralıysa ok; ya da tümünü seçen checkbox), bir gövde hücresi (kesilen metin ya da satır checkbox’ı) ve Default, Hover, Selected durumlu bir satır; hepsi çevresinde çizgi olan bir kartın içinde.',
+    partsText: 'Bir başlık hücresi (metin, sıralıysa ok; ya da tümünü seçen checkbox), bir gövde hücresi (kesilen metin ya da satır checkbox’ı) ve Default, Hover, Selected durumlu bir satır; hepsi Card gibi görünen bir çerçevenin içinde: kart köşe yarıçapı ve gölgesi, kenarlık yok. Card içinde gölge kalkar, çünkü derinliği kart zaten veriyor.',
     tokens: 'Tokenlar',
     usage: 'Kullanım',
     usageText: 'Sütunları tanımlayın; cell başka bir şey çizmedikçe her hücre row[key] gösterir. Sıralanabilir sütunlar row[key]’e göre sıralar (sayılar sayısal, metin dile göre); kendiniz sıralamak için, örneğin sunucuda, onSortChange verin. Seçim selected ve onSelectedChange ile kontrol edilir ya da defaultSelected ile tabloya bırakılır.',
@@ -72,7 +72,7 @@ export default async function TablePage({ params }: Props) {
           <SpecTable
             head={['Part', 'Token']}
             rows={[
-              ['Frame', '--color-surface-level-1, --border, --radius-card'],
+              ['Frame', '--color-surface-level-1, --shadow-card-style-1 (none inside a Card), --radius-card'],
               ['Header cell', '--color-surface-level-2, --text-ui-text-small-bold, --color-foreground-medium-emphasis'],
               ['Body cell', '--text-ui-text-regular, --color-foreground-high-emphasis'],
               ['Cell padding', '--layout-small --layout-default'],

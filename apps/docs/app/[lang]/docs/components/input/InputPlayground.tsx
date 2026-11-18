@@ -13,8 +13,8 @@ import { ThemeRow } from '@/components/customize/ThemeRow';
 type Kind = 'text' | 'search' | 'password';
 type State = 'default' | 'hover' | 'focus' | 'typed';
 const COPY = {
-  en: { type: 'Type', size: 'Size', state: 'State', placeholder: 'Placeholder', iconL: 'Left icon', iconR: 'Right icon', prefix: 'Prefix', suffix: 'Suffix', error: 'Error', disabled: 'Disabled', field: 'In FormField', label: 'Label', hint: 'Hint', figma: 'Figma variant', code: 'Code', ph: 'Your name', lb: 'Name', ht: 'As on your ID', err: 'Name is required' },
-  tr: { type: 'Tip', size: 'Boyut', state: 'Durum', placeholder: 'Placeholder', iconL: 'Sol ikon', iconR: 'Sağ ikon', prefix: 'Ön ek', suffix: 'Son ek', error: 'Hata', disabled: 'Pasif', field: 'FormField içinde', label: 'Label', hint: 'Hint', figma: 'Figma varyantı', code: 'Kod', ph: 'Adınız', lb: 'Ad', ht: 'Kimliğinizdeki gibi', err: 'Ad zorunlu' },
+  en: { type: 'Type', size: 'Size', state: 'State', placeholder: 'Placeholder', iconL: 'Left icon', iconR: 'Right icon', prefix: 'Prefix', suffix: 'Suffix', error: 'Error', disabled: 'Disabled', floating: 'Floating label (large)', field: 'In FormField', label: 'Label', hint: 'Hint', figma: 'Figma variant', code: 'Code', ph: 'Your name', lb: 'Name', ht: 'As on your ID', err: 'Name is required' },
+  tr: { type: 'Tip', size: 'Boyut', state: 'Durum', placeholder: 'Placeholder', iconL: 'Sol ikon', iconR: 'Sağ ikon', prefix: 'Ön ek', suffix: 'Son ek', error: 'Hata', disabled: 'Pasif', floating: 'Floating label (large)', field: 'FormField içinde', label: 'Label', hint: 'Hint', figma: 'Figma varyantı', code: 'Kod', ph: 'Adınız', lb: 'Ad', ht: 'Kimliğinizdeki gibi', err: 'Ad zorunlu' },
 };
 const FIGMA_TYPE: Record<Kind, string> = { text: 'Text', search: 'Search', password: 'Password' };
 
@@ -23,7 +23,8 @@ export function InputPlayground() {
   const { view } = useView();
   const c = COPY[lang];
   const [kind, setKind] = useState<Kind>('text');
-  const [size, setSize] = useState<InputSize>('medium');
+  const [size, setSize] = useState<InputSize | 'large'>('medium');
+  const [floating, setFloating] = useState(true);
   const [state, setState] = useState<State>('default');
   const [placeholder, setPlaceholder] = useState(c.ph);
   const [iconL, setIconL] = useState(false);
@@ -37,7 +38,7 @@ export function InputPlayground() {
   const input = (
     <Input
       type={kind}
-      size={size}
+      {...(size === 'large' ? { size: 'large' as const, floatingLabel: floating ? c.lb : undefined } : { size })}
       placeholder={placeholder}
       iconLeft={iconL ? <IconProfile /> : undefined}
       iconRight={iconR ? <IconEmoji /> : undefined}
@@ -52,6 +53,7 @@ export function InputPlayground() {
   const inputProps = [
     kind !== 'text' && `type="${kind}"`,
     size !== 'medium' && `size="${size}"`,
+    size === 'large' && floating && `floatingLabel="${c.lb}"`,
     `placeholder="${placeholder}"`,
     iconL && 'iconLeft={<IconProfile />}',
     iconR && 'iconRight={<IconEmoji />}',
@@ -71,14 +73,14 @@ export function InputPlayground() {
     .filter((l, i) => l || i === 2)
     .join('\n');
   const figma = [
-    `🎛 Type=${prefix || suffix ? 'Trailing Text' : FIGMA_TYPE[kind]}`,
-    `👕 Size=${size === 'medium' ? 'Medium' : 'Small'}`,
+    `🎛 Type=${size === 'large' && floating ? 'Floating Label' : prefix || suffix ? 'Trailing Text' : FIGMA_TYPE[kind]}`,
+    `👕 Size=${size === 'medium' ? 'Medium' : size === 'large' ? 'Large' : 'Small'}`,
     `🕹 State=${state === 'default' ? 'Default' : state === 'typed' ? 'Typed' : state === 'focus' ? 'Focus' : 'Hover'}`,
     `Icon (L)=${iconL ? 'True' : 'False'}`,
     `Icon (R)=${iconR ? 'True' : 'False'}`,
     `Error=${error ? 'True' : 'False'}`,
     `Disable=${disabled ? 'True' : 'False'}`,
-    'Device=Desktop',
+    `Device=${size === 'large' ? 'Mobile' : 'Desktop'}`,
     ...(inField ? ['', 'Form Input: Align=Vertical, Show Label=True, Show Hint=True'] : []),
   ].join('\n');
 
@@ -98,7 +100,8 @@ export function InputPlayground() {
       <div className={styles.controls}>
         <ThemeRow />
         <ControlSelect label={c.type} value={kind} options={['text', 'search', 'password'] as const} onChange={setKind} />
-        <ControlSelect label={c.size} value={size} options={['medium', 'small'] as const} onChange={setSize} />
+        <ControlSelect label={c.size} value={size} options={['large', 'medium', 'small'] as const} onChange={setSize} />
+        {size === 'large' && <ControlCheck label={c.floating} checked={floating} onChange={setFloating} />}
         <ControlSelect label={c.state} value={state} options={['default', 'hover', 'focus', 'typed'] as const} onChange={setState} />
         <ControlText label={c.placeholder} value={placeholder} onChange={setPlaceholder} />
         <ControlText label={c.prefix} value={prefix} onChange={setPrefix} placeholder="https://" />

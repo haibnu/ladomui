@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Input, type InputProps } from '../Input/Input';
+import { Input, type InputBaseProps } from '../Input/Input';
 import { InlinePicker } from '../Picker/InlinePicker';
 import { currencyName, currencySymbol, formatAmount, fractionDigits, mask, separators } from './currencyFormat';
 import styles from './CurrencyInput.module.css';
@@ -12,7 +12,7 @@ import styles from './CurrencyInput.module.css';
 // on blur. The currency picker sits at the end of the box; currencySelect={false} removes it and
 // showSymbol={false} hides the symbol.
 export type CurrencyInputProps = Omit<
-  InputProps,
+  InputBaseProps,
   'type' | 'value' | 'defaultValue' | 'onChange' | 'prefix' | 'suffix' | 'inputMode' | 'name'
 > & {
   /** The amount, or null when the field is empty. */

@@ -102,6 +102,11 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   hint: [first()],
   input: [
     {
+      date: '2026-11-18',
+      en: 'New large size (48px, Figma Mobile Large) and floatingLabel: on large inputs the label sits inside the field and moves up on focus, with a value or on autofill.',
+      tr: 'Yeni large boyut (48px, Figma Mobile Large) ve floatingLabel: large alanlarda label alanın içinde durur; odakta, değer girilince ya da otomatik doldurmada yukarı çıkar.',
+    },
+    {
       date: '2026-11-12',
       pr: 41,
       en: 'Email and URL inputs render as text fields with the email or URL keyboard and autofill, so macOS text replacements (like "!g" for an address) work in them.',
@@ -166,6 +171,11 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first(),
   ],
   table: [
+    {
+      date: '2026-11-18',
+      en: 'The frame looks like Card: the card shadow instead of the border line. Inside a Card the shadow drops.',
+      tr: 'Çerçeve Card gibi görünüyor: kenarlık çizgisi yerine kart gölgesi. Card içinde gölge kalkıyor.',
+    },
     SCROLL({ en: 'wide table', tr: 'Geniş tablo' }),
     {
       date: '2026-11-10',

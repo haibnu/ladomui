@@ -1,15 +1,19 @@
-/* Table, from Figma Components / Table (4214:61): a surface/level-1 card with a level-4 line;
+/* Table, from Figma Components / Table (4214:61): a surface/level-1 card (code: Card's shadow
+   instead of the Figma level-4 line, none inside a Card);
    header cells on surface/level-2 in text small bold, body rows 48px high with a level-4 line
    between them. Hover is surface/level-2, selected primary-soft. */
 
 .frame {
-  /* A horizontal ScrollArea: wide tables scroll inside the card. */
+  /* A horizontal ScrollArea: wide tables scroll inside the card. It looks like Card: the card
+     radius, surface/level-1 and card style 1 (the shadow, no border). */
   border-radius: var(--radius-card);
   background: var(--color-surface-level-1);
-  /* The card's line is an outline, painted over the cells: an inset shadow would sit under the
-     header's and the selected rows' backgrounds and vanish there. */
-  outline: var(--border);
-  outline-offset: calc(-1 * var(--border-width));
+  box-shadow: var(--shadow-card-style-1);
+}
+
+/* Inside a Card (or any element marked data-card) the card already gives the depth. */
+[data-card] .frame {
+  box-shadow: none;
 }
 
 .table {
