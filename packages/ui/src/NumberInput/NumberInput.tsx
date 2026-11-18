@@ -3,12 +3,12 @@
 import { forwardRef, useEffect, useState } from 'react';
 import { IconAdd, IconRemove } from '@ladom/icons';
 import { Button } from '../Button/Button';
-import { Input, type InputProps } from '../Input/Input';
+import { Input, type InputBaseProps } from '../Input/Input';
 
 // Figma: Components / Input / Number Input (4238:3913). size = 👕 Size, 🕹 State = :focus-within,
 // error and disabled. The Input box with tiny ghost buttons that step the value; min and max
 // disable them at the limits. Typing is free; the value is clamped and rounded to step on blur.
-export type NumberInputProps = Omit<InputProps, 'type' | 'value' | 'defaultValue' | 'onChange' | 'iconLeft' | 'iconRight' | 'prefix' | 'suffix' | 'min' | 'max' | 'step'> & {
+export type NumberInputProps = Omit<InputBaseProps, 'type' | 'value' | 'defaultValue' | 'onChange' | 'iconLeft' | 'iconRight' | 'prefix' | 'suffix' | 'min' | 'max' | 'step'> & {
   value?: number | null;
   defaultValue?: number | null;
   /** Called with the number, or null when the field is empty. */

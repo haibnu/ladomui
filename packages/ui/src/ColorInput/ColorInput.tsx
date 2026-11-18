@@ -2,7 +2,7 @@
 
 import { forwardRef, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { IconAdd } from '@ladom/icons';
-import { Input, type InputProps } from '../Input/Input';
+import { Input, type InputBaseProps } from '../Input/Input';
 import { Popover } from '../Popover/Popover';
 import styles from './ColorInput.module.css';
 
@@ -12,7 +12,7 @@ import styles from './ColorInput.module.css';
 // a "#" (Leading Text), in capitals: six digits apply as they are typed, three ("f60") on blur or Enter.
 // A value that is not a hex code is never reported; the field goes back to the last color on blur.
 export type ColorInputProps = Omit<
-  InputProps,
+  InputBaseProps,
   'type' | 'value' | 'defaultValue' | 'onChange' | 'prefix' | 'inputMode' | 'name' | 'iconLeft' | 'maxLength'
 > & {
   /** The color as "#rrggbb". Three-digit and upper-case codes are accepted and normalized. */

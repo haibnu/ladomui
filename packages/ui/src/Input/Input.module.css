@@ -20,6 +20,13 @@
   font: var(--text-ui-text-regular);
 }
 
+.box[data-size='large'] {
+  --_pad-x: var(--layout-large);
+  --_radius: var(--radius-form-element);
+  padding-block: var(--layout-small);
+  font: var(--text-ui-text-lead-regular);
+}
+
 .box[data-size='small'] {
   --_pad-x: var(--layout-small);
   --_radius: var(--radius-form-element-small);
@@ -143,4 +150,59 @@
 .box[data-look='number'] .input::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
+}
+
+/* Floating label (size="large" only; Figma draws Floating Label on Medium and Small, and Large
+   only for Mobile, at 48px with 12/20 padding). The label rests where the placeholder
+   would be, in the field's font; on focus, with a value or when autofilled it moves to the top in
+   the small text style and the value sits under it. The box keeps the 48px of Large: the
+   padding shrinks to make room for the label line. */
+.box[data-floating] {
+  padding-block: var(--layout-micro);
+}
+
+.field {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: stretch;
+  min-inline-size: 0;
+  padding-block-start: var(--line-height-text-small);
+}
+
+.floatingLabel {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  overflow: hidden;
+  font: var(--text-ui-text-lead-regular);
+  color: var(--color-foreground-low-emphasis);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition:
+    inset-block-start var(--motion-fade-default),
+    transform var(--motion-fade-default),
+    font-size var(--motion-fade-default),
+    color var(--motion-fade-default);
+}
+
+.box[data-floating] .input:not(:focus)::placeholder {
+  color: transparent;
+}
+
+.input:focus ~ .floatingLabel,
+.input:not(:placeholder-shown) ~ .floatingLabel,
+.input:autofill ~ .floatingLabel,
+.box:is([data-state='focus'], [data-state='typed']) .floatingLabel {
+  inset-block-start: 0;
+  font: var(--text-ui-text-small-regular);
+  transform: none;
+}
+
+.box[data-error] .floatingLabel {
+  color: var(--color-error);
 }

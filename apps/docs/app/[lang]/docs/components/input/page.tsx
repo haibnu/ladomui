@@ -16,6 +16,8 @@ const COPY = {
     types: 'Types',
     typesText: 'Text is the default. Search has a filled look with the search icon. Password hides the value and adds a show/hide toggle. Prefix and suffix text cover the Leading and Trailing Text types.',
     sizes: 'Sizes',
+    floating: 'Floating label',
+    floatingText: 'On size="large", floatingLabel puts the label inside the field. It rests where the placeholder would be and moves up, smaller, on focus, once there is a value, or when the browser autofills the field. Use it on sign-in and short forms where space is tight; elsewhere put the label above with FormField.',
     states: 'States',
     statesText: 'The border carries the state: neutral at rest, primary tint on hover, primary with the focus ring on focus, low emphasis once filled, error color with an icon on error.',
     formField: 'With label and hint',
@@ -23,10 +25,11 @@ const COPY = {
     tokens: 'Tokens',
     notes: 'Notes from Figma',
     notesItems: [
-      'Large exists only for the Mobile device in Figma; the desktop sizes are Medium and Small.',
+      'Large is drawn only for the Mobile device in Figma (48px); code offers it on every device, and it is the only size that takes the floating label.',
+      'Figma draws Floating Label on Medium and Small; code offers it on Large only, where the label and the value both fit.',
       'Both Leading Text and Trailing Text show their extra text after the value. Code offers prefix (before) and suffix (after).',
       'Figma has an Error + Focus variant; code shows the error border with the error focus ring.',
-      'Not built yet: Floating Label, File, Drag&Drop, Color Picker, Color Input, Chip and Code types, and Textarea.',
+      'Not built yet: File, Drag&Drop, Color Picker, Color Input, Chip and Code types, and Textarea.',
     ],
     usage: 'Usage',
     usageText: 'Put Input inside FormField: the label, hint and error are connected to the field automatically (id, aria-describedby, aria-invalid).',
@@ -50,6 +53,7 @@ const COPY = {
     sample: { name: 'Name', email: 'Email', ph: 'Your name', hint: 'As on your ID', err: 'Name is required', search: 'Search', pw: 'Password' },
     props: {
       size: 'Figma 👕 Size.',
+      floatingLabel: 'Figma 🎛 Type=Floating Label. Only with size="large".',
       error: 'Figma Error. Set by FormField when it has an error.',
       disabled: 'Figma Disable.',
       iconLeft: 'Figma Icon (L).',
@@ -72,6 +76,8 @@ const COPY = {
     types: 'Tipler',
     typesText: 'Text varsayılandır. Search, arama ikonlu dolgulu görünümdür. Password değeri gizler ve göster/gizle düğmesi ekler. Ön ve son ek metinleri Leading ve Trailing Text tiplerini karşılar.',
     sizes: 'Boyutlar',
+    floating: 'Floating label',
+    floatingText: 'size="large" ile floatingLabel, label’ı alanın içine koyar. Label boşken placeholder’ın yerinde durur; odaklanınca, değer girilince ya da tarayıcı alanı otomatik doldurunca küçülüp üste çıkar. Giriş ekranları ve kısa formlar gibi dar yerlerde kullanın; diğer yerlerde label’ı FormField ile üste koyun.',
     states: 'Durumlar',
     statesText: 'Durumu kenarlık taşır: dururken nötr, üzerine gelince primary tint, odakta primary ve odak halkası, dolunca low emphasis, hatada hata rengi ve ikon.',
     formField: 'Label ve hint ile',
@@ -79,10 +85,11 @@ const COPY = {
     tokens: 'Tokenlar',
     notes: 'Figma notları',
     notesItems: [
-      'Large Figma’da sadece Mobile cihaz için var; masaüstü boyutları Medium ve Small.',
+      'Large Figma’da sadece Mobile cihaz için çizili (48px); kodda her cihazda kullanılabilir ve floating label alan tek boyuttur.',
+      'Figma Floating Label’ı Medium ve Small’da çiziyor; kodda sadece Large’da var, çünkü label ve değer ancak orada rahat sığıyor.',
       'Leading Text ve Trailing Text tiplerinin ikisi de ek metni değerden sonra gösteriyor. Kodda prefix (önce) ve suffix (sonra) var.',
       'Figma’da Error + Focus varyantı var; kodda hata kenarlığı ve hata odak halkası birlikte gösteriliyor.',
-      'Henüz yapılmadı: Floating Label, File, Drag&Drop, Color Picker, Color Input, Chip ve Code tipleri ile Textarea.',
+      'Henüz yapılmadı: File, Drag&Drop, Color Picker, Color Input, Chip ve Code tipleri ile Textarea.',
     ],
     usage: 'Kullanım',
     usageText: 'Input’u FormField içine koyun: label, hint ve hata alana kendiliğinden bağlanır (id, aria-describedby, aria-invalid).',
@@ -106,6 +113,7 @@ const COPY = {
     sample: { name: 'Ad', email: 'E-posta', ph: 'Adınız', hint: 'Kimliğinizdeki gibi', err: 'Ad zorunlu', search: 'Ara', pw: 'Şifre' },
     props: {
       size: 'Figma 👕 Size.',
+      floatingLabel: 'Figma 🎛 Type=Floating Label. Sadece size="large" ile.',
       error: 'Figma Error. FormField’da hata varsa kendiliğinden gelir.',
       disabled: 'Figma Disable.',
       iconLeft: 'Figma Icon (L).',
@@ -166,6 +174,9 @@ export default async function InputPage({ params }: Props) {
           <h2 id="sizes">{c.sizes}</h2>
           <Example stack>
             <div style={width}>
+              <Input size="large" placeholder="Large" />
+            </div>
+            <div style={width}>
               <Input size="medium" placeholder="Medium" />
             </div>
             <div style={width}>
@@ -175,10 +186,22 @@ export default async function InputPage({ params }: Props) {
           <SpecTable
             head={['Size', 'Height', 'Padding (y / x)', 'Radius', 'Text', 'Icon']}
             rows={[
+              ['large', '48px', <code key="p">--layout-small / --layout-large</code>, <code key="r">--radius-form-element</code>, 'ui/text lead/regular', '16px'],
               ['medium', '40px', <code key="p">--layout-tiny / --layout-default</code>, <code key="r">--radius-form-element</code>, 'ui/text/regular', '16px'],
               ['small', '32px', <code key="p">--layout-tiny / --layout-small</code>, <code key="r">--radius-form-element-small</code>, 'ui/text small/regular', '16px'],
             ]}
           />
+
+          <h2 id="floating-label">{c.floating}</h2>
+          <p>{c.floatingText}</p>
+          <Example code={`<Input size="large" type="email" floatingLabel="${s.email}" />\n<Input size="large" floatingLabel="${s.name}" defaultValue="Ladom" />`} stack>
+            <div style={width}>
+              <Input size="large" type="email" floatingLabel={s.email} />
+            </div>
+            <div style={width}>
+              <Input size="large" floatingLabel={s.name} defaultValue="Ladom" />
+            </div>
+          </Example>
 
           <h2 id="states">{c.states}</h2>
           <p>{c.statesText}</p>
@@ -299,7 +322,8 @@ export default async function InputPage({ params }: Props) {
           <p>{c.apiText}</p>
           <PropsTable
             props={[
-              ['size', "'medium' | 'small'", "'medium'"],
+              ['size', "'large' | 'medium' | 'small'", "'medium'"],
+              ['floatingLabel', 'ReactNode', '—'],
               ['type', "'text' | 'search' | 'password' | …", "'text'"],
               ['error', 'boolean', 'false'],
               ['disabled', 'boolean', 'false'],
@@ -336,7 +360,8 @@ export default async function InputPage({ params }: Props) {
           rows={[
             ['🎛 Type = Text / Search / Password', "type='text' / 'search' / 'password'"],
             ['🎛 Type = Leading Text / Trailing Text', 'prefix="…" / suffix="…"'],
-            ['👕 Size = Medium / Small', "size='medium' / 'small'"],
+            ['👕 Size = Large (Mobile) / Medium / Small', "size='large' / 'medium' / 'small'"],
+            ['🎛 Type = Floating Label', "size='large' floatingLabel='…'"],
             ['🕹 State = Hover / Focus / Typed', ':hover / :focus-within / filled value'],
             ['Icon (L) / Icon (R)', 'iconLeft={…} / iconRight={…}'],
             ['Error = True', 'error (or FormField error)'],
