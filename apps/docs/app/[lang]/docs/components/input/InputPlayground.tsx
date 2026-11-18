@@ -24,7 +24,7 @@ export function InputPlayground() {
   const c = COPY[lang];
   const [kind, setKind] = useState<Kind>('text');
   const [size, setSize] = useState<InputSize | 'large'>('medium');
-  const [floating, setFloating] = useState(false);
+  const [floating, setFloating] = useState(true);
   const [state, setState] = useState<State>('default');
   const [placeholder, setPlaceholder] = useState(c.ph);
   const [iconL, setIconL] = useState(false);
