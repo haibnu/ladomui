@@ -145,7 +145,8 @@
   --_line: var(--color-primary-tint);
 }
 
-.box:is(:focus-visible, [data-open], [data-state='focus']) {
+.box:is(:focus-visible, [data-open], [data-state='focus']),
+.box[data-search]:focus-within {
   outline: none;
   --_line: var(--color-primary-line);
   --_ring: var(--shadow-focus-primary);
@@ -161,11 +162,12 @@
 }
 
 .box[data-error] .placeholder,
-.box[data-error] .innerLabel {
+.box[data-error] .innerLabel,
+.box[data-error] .floatingLabel {
   color: var(--color-error);
 }
 
-.box:disabled {
+.box:is(:disabled, [data-disabled]) {
   --_line: var(--color-surface-level-4);
   --_ring: 0 0 #0000;
   color: var(--color-foreground-low-emphasis);
@@ -173,8 +175,82 @@
   cursor: not-allowed;
 }
 
-.box:disabled :is(.innerLabel, .arrow) {
+.box:is(:disabled, [data-disabled]) :is(.innerLabel, .floatingLabel, .arrow, .search) {
   color: var(--color-foreground-low-emphasis);
+}
+
+/* Searchable: the box is a text field. Closed, the choice shows as its placeholder, in the
+   value color. */
+.box[data-search] {
+  cursor: text;
+}
+
+.search {
+  flex: 1;
+  min-inline-size: 4ch;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--color-foreground-high-emphasis);
+  background: transparent;
+  border: none;
+  outline: none;
+  text-overflow: ellipsis;
+}
+
+.search::placeholder {
+  color: var(--color-foreground-low-emphasis);
+  opacity: 1;
+}
+
+.box[data-typed]:not([data-open]) .search::placeholder {
+  color: var(--color-foreground-high-emphasis);
+}
+
+.box[data-search] .display {
+  flex: 1;
+}
+
+/* Floating label (size="large" only, as on Input): it rests where the value would be in the
+   box's font and moves to the top in the small text style; the box keeps 48px. */
+.box[data-floating] {
+  --_py: var(--layout-micro);
+}
+
+.box[data-floating] .texts {
+  position: relative;
+  align-self: stretch;
+  justify-content: flex-end;
+  padding-block-start: var(--line-height-text-small);
+}
+
+/* The value line keeps its height while empty, so the box stays 48px. */
+.box[data-floating] .display {
+  min-block-size: var(--line-height-base);
+}
+
+.floatingLabel {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  overflow: hidden;
+  font: var(--text-ui-text-lead-regular);
+  color: var(--color-foreground-low-emphasis);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition:
+    inset-block-start var(--motion-fade-default),
+    transform var(--motion-fade-default),
+    font-size var(--motion-fade-default),
+    color var(--motion-fade-default);
+}
+
+.box[data-floating='floated'] .floatingLabel {
+  inset-block-start: 0;
+  font: var(--text-ui-text-small-regular);
+  transform: none;
 }
 
 /* The list: the width of the box, up to ten Medium cells tall (the Figma Dropdown). */
