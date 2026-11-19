@@ -79,12 +79,6 @@
   display: none;
 }
 
-.headerTools {
-  display: flex;
-  align-items: center;
-  gap: var(--space-atom);
-}
-
 /* Search Modal: the field, then the pages and the people found. */
 .searchBody {
   display: flex;

@@ -272,7 +272,10 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     { date: '2026-11-19', pr: 60, en: 'Inside an AppShell a thin line takes the place of the shadow.', tr: 'AppShell içinde gölgenin yerini ince bir çizgi alıyor.' },
     first(),
   ],
-  navigation: [first()],
+  navigation: [
+    { date: '2026-11-19', pr: 61, en: 'Inside an AppShell the PageHeader subtitle sits under the title; a status Badge beside the title goes in info, size tiny.', tr: 'AppShell içinde PageHeader alt başlığı başlığın altında duruyor; başlığın yanındaki durum Badge’i info’ya, tiny boyutta konuyor.' },
+    first(),
+  ],
   'file-share': [
     {
       date: '2026-11-11',

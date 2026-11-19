@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState, type ComponentType, type KeyboardEvent } from 'react';
 import { IconSearch } from '@ladom/icons';
-import { Avatar, Button, Cell, EmptyState, Input, Modal } from '@ladom/ui';
+import { Avatar, Cell, EmptyState, Input, Modal } from '@ladom/ui';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { EMPLOYEES } from './data';
@@ -11,13 +11,12 @@ import styles from './hr.module.css';
 
 export type HrSearchPage = { key: string; label: string; to: string; icon: ComponentType };
 
-/** The search button of the header: a Modal that finds people and pages as you type. A person opens
- *  their profile on the Employees screen (?id=). */
-export function HrSearch({ pages, employeesHref }: { pages: HrSearchPage[]; employeesHref: string }) {
+/** The search Modal (opened from the side menu): it finds people and pages as you type. A person
+ *  opens their profile on the Employees screen (?id=). */
+export function HrSearch({ open, onClose, pages, employeesHref }: { open: boolean; onClose: () => void; pages: HrSearchPage[]; employeesHref: string }) {
   const { lang } = useLocale();
   const c = HR_COPY[lang];
   const router = useRouter();
-  const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const q = query.trim().toLocaleLowerCase(lang);
   const has = (text: string) => text.toLocaleLowerCase(lang).includes(q);
@@ -25,7 +24,7 @@ export function HrSearch({ pages, employeesHref }: { pages: HrSearchPage[]; empl
   const foundPeople = EMPLOYEES.filter((e) => !q || has(e.name) || has(e.title[lang])).slice(0, q ? 8 : 5);
 
   const close = () => {
-    setOpen(false);
+    onClose();
     setQuery('');
   };
   const go = (to: string) => {
@@ -47,7 +46,6 @@ export function HrSearch({ pages, employeesHref }: { pages: HrSearchPage[]; empl
 
   return (
     <>
-      <Button variant="ghost" tone="secondary" icon={IconSearch} aria-label={c.nav.search} onClick={() => setOpen(true)} />
       <Modal open={open} onClose={close} title={c.nav.search} closeLabel={c.employees.close}>
         <div className={styles.searchBody}>
           <Input type="search" autoFocus value={query} onChange={(e) => setQuery(e.target.value)} placeholder={c.nav.searchPlaceholder} aria-label={c.nav.searchPlaceholder} />
