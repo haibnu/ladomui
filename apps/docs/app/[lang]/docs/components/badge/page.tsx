@@ -18,7 +18,7 @@ const COPY = {
     variants: 'Variants',
     variantsText: 'Seven tones, each as an outline (the default) or filled. Disabled turns any badge grey.',
     sizes: 'Sizes',
-    sizesText: 'Medium and Small use the body text; Tiny and Micro the small text. Micro is a compact 20px pill.',
+    sizesText: 'Medium and Small use the body text; Tiny and Micro the small text. Micro is a compact 20px pill. In a Table, use Small; Medium or Tiny only when the table needs it (Tiny for a dense table), never Micro.',
     tokens: 'Tokens',
     notes: 'Notes from Figma',
     notesItems: [
@@ -52,7 +52,7 @@ const COPY = {
     variants: 'Tipler',
     variantsText: 'Yedi ton; her biri çerçeveli (varsayılan) ya da dolu. Disabled her badge’i griye çevirir.',
     sizes: 'Boyutlar',
-    sizesText: 'Medium ve Small gövde metnini, Tiny ve Micro küçük metni kullanır. Micro, 20px yüksekliğinde sıkı bir haptır.',
+    sizesText: 'Medium ve Small gövde metnini, Tiny ve Micro küçük metni kullanır. Micro, 20px yüksekliğinde sıkı bir haptır. Table içinde Small kullanın; Medium ya da Tiny’yi yalnızca tablo gerektirirse (sıkışık tablo için Tiny) seçin, Micro’yu kullanmayın.',
     tokens: 'Tokenlar',
     notes: 'Figma notları',
     notesItems: [

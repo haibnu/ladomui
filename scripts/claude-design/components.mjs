@@ -142,7 +142,7 @@ return h('div', { style: { display: 'grid', gap: 12, maxWidth: 320 } },
   {
     name: 'Badge', group: 'Display', height: 140,
     summary: 'A small non-interactive label for a status, a category or a count: seven tones, outline or filled, four sizes.',
-    use: ['Write the status in the text; color alone is not enough.', 'Micro is the compact 20px pill for counts.'],
+    use: ['Write the status in the text; color alone is not enough.', 'Micro is the compact 20px pill for counts.', 'In a Table cell use `size: "small"` (medium or tiny only when the table needs it, never micro).'],
     provides: '`children`, `tone`, `size`, `filled`, `disabled`, icons as elements (`iconLeft`, `iconRight`).',
     code: `const tones = ['default', 'primary', 'secondary', 'error', 'success', 'warning'];
 return h('div', { style: { display: 'grid', gap: 12 } },
@@ -152,7 +152,7 @@ return h('div', { style: { display: 'grid', gap: 12 } },
   {
     name: 'Chip', group: 'Display', height: 140,
     summary: 'A compact pill for filters, choices and entered values: five tones, four sizes, selected state, a key part and a remove button.',
-    use: ['With `onClick` it is a toggle button (`aria-pressed`); with `onRemove` it gets a remove button — name it with `removeLabel`.', '`keyLabel` shows filters like "Status: Active".'],
+    use: ['With `onClick` it is a toggle button (`aria-pressed`); with `onRemove` it gets a remove button — name it with `removeLabel`.', '`keyLabel` shows filters like "Status: Active".', 'In a Table cell use `size: "small"` (medium or tiny only when the table needs it, never micro).'],
     provides: '`children`, `tone`, `size`, `selected`, `onClick`, `onRemove`, icons as elements (`iconLeft`, `iconRight`).',
     code: `return h('div', { style: { display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' } },
   h(Chip, null, 'Default'), h(Chip, { selected: true }, 'Selected'), h(Chip, { tone: 'success' }, 'Success'),
@@ -401,7 +401,7 @@ return h('div', { style: { display: 'grid', gap: 12 } },
   {
     name: 'Table', group: 'Data', height: 260,
     summary: 'Rows of data under a header: sortable columns, an optional checkbox column for selection and an empty state.',
-    use: ['Describe each column once (`key`, `header`, `cell`, `sortable`, `align: "end"` for numbers).', 'Add Pagination under it for long lists; give `empty` an EmptyState.', 'It has the Card look (shadow, no border); put it in a Card and it drops the shadow.'],
+    use: ['Describe each column once (`key`, `header`, `cell`, `sortable`, `align: "end"` for numbers).', 'Add Pagination under it for long lists; give `empty` an EmptyState.', 'It has the Card look (shadow, no border); put it in a Card and it drops the shadow.', 'A Chip or Badge in a cell is `size: "small"`; medium or tiny only when the table needs it, never micro.'],
     provides: '`columns`, `rows`, `rowKey`, optionally `selectable` + `selected` / `defaultSelected` + `onSelectedChange`, `sort` / `defaultSort` + `onSortChange`, `caption`, `selectAllLabel` and `selectRowLabel` for the checkboxes.',
     code: `const rows = [{ id: '1', name: 'Ada Lovelace', role: 'Owner', reports: 12 }, { id: '2', name: 'Deniz Kaya', role: 'Editor', reports: 7 }, { id: '3', name: 'Ece Demir', role: 'Viewer', reports: 3 }];
 return h(Table, { selectable: true, rowKey: (r) => r.id, rows, defaultSort: { key: 'reports', direction: 'descending' },
