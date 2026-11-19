@@ -31,14 +31,16 @@ const SCROLL = (what: { en: string; tr: string }): ChangelogEntry => ({
   tr: `${what.tr} artık üzerine gelince ve kaydırırken görünen ince ScrollArea çubuklarıyla kayıyor.`,
 });
 
-// 2026-11-19: buttons and form fields got their own radius roles.
+// 2026-11-19, PR #62: buttons and form fields got their own radius roles.
 const BUTTON_RADIUS: ChangelogEntry = {
   date: '2026-11-19',
+  pr: 62,
   en: 'The corners use the --radius-button and --radius-button-small roles, so a theme can round buttons (for example into pills) without changing form fields. The default look is unchanged; Icon Button stays round.',
   tr: 'Köşeler --radius-button ve --radius-button-small rollerini kullanıyor; bir tema butonları form alanlarından bağımsız yuvarlatabilir (örneğin oval). Varsayılan görünüm aynı; Icon Button yuvarlak kalıyor.',
 };
 const FORM_RADIUS: ChangelogEntry = {
   date: '2026-11-19',
+  pr: 62,
   en: 'The corners use the --radius-form and --radius-form-small roles, so a theme can square (or round) form fields without changing buttons. The default look is unchanged.',
   tr: 'Köşeler --radius-form ve --radius-form-small rollerini kullanıyor; bir tema form alanlarını butonlardan bağımsız köşeli (ya da yuvarlak) yapabilir. Varsayılan görünüm aynı.',
 };
