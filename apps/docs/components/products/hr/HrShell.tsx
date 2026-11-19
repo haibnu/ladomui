@@ -11,13 +11,14 @@ import {
   IconDateRange,
   IconDateTime,
   IconNotification,
+  IconSearch,
   IconSetting,
   IconTime,
   IconLead,
   IconReportChart,
   IconTransactions,
 } from '@ladom/icons';
-import { Badge, Button, ToastProvider } from '@ladom/ui';
+import { Badge, ToastProvider } from '@ladom/ui';
 import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection } from '@ladom/ui/pro';
 import { href } from '@/i18n';
 import { useLocale } from '../../useLocale';
@@ -40,9 +41,9 @@ const PAGES = [
 
 const SOON = [IconAnalytics, IconLead, IconTransactions];
 
-/** The HR demo app: an AppShell with an AppSidebar (a Drawer on phones) around each screen. The
- *  signed-in person sits at the foot of the menu; the sticky header holds the screen's title (HrHeader)
- *  on the left, and its actions, the search button (a Modal) and the notifications on the right. */
+/** The HR demo app: an AppShell with an AppSidebar (a Drawer on phones) around each screen. The foot
+ *  of the menu holds search (a Modal), notifications and settings above the signed-in person; the sticky
+ *  header holds the screen's title (HrHeader) on the left and its actions on the right. */
 export function HrShell({ children }: { children: ReactNode }) {
   const { lang } = useLocale();
   const c = HR_COPY[lang];
@@ -53,6 +54,7 @@ export function HrShell({ children }: { children: ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
   const [titleSlot, setTitleSlot] = useState<HTMLElement | null>(null);
   const [actionsSlot, setActionsSlot] = useState<HTMLElement | null>(null);
+  const [searching, setSearching] = useState(false);
 
   const menu = (drawer: boolean) => {
     const rail = !drawer && collapsed;
@@ -75,6 +77,8 @@ export function HrShell({ children }: { children: ReactNode }) {
       footer={
         <>
           <AppSidebarSection>
+            <AppSidebarItem as="button" type="button" icon={<IconSearch />} label={c.nav.search} onClick={() => setSearching(true)} />
+            <AppSidebarItem as="button" type="button" icon={<IconNotification />} label={c.nav.notifications} />
             <AppSidebarItem icon={<IconSetting />} label={c.nav.settings} disabled />
           </AppSidebarSection>
           {!rail && (
@@ -111,18 +115,16 @@ export function HrShell({ children }: { children: ReactNode }) {
           closeLabel={c.employees.close}
           sidebar={({ drawer }) => menu(drawer)}
           headerStart={<div ref={setTitleSlot} className={styles.headerTitle} />}
-          headerEnd={
-            <>
-              <div ref={setActionsSlot} className={styles.headerActions} />
-              <span className={styles.headerTools}>
-                <HrSearch pages={PAGES.map((p) => ({ key: p.key, label: c.nav[p.key], to: base + p.path, icon: p.icon }))} employeesHref={`${base}/employees`} />
-                <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label={c.nav.notifications} />
-              </span>
-            </>
-          }
+          headerEnd={<div ref={setActionsSlot} className={styles.headerActions} />}
         >
           {children}
         </AppShell>
+        <HrSearch
+          open={searching}
+          onClose={() => setSearching(false)}
+          pages={PAGES.map((p) => ({ key: p.key, label: c.nav[p.key], to: base + p.path, icon: p.icon }))}
+          employeesHref={`${base}/employees`}
+        />
       </HrHeaderSlots.Provider>
     </ToastProvider>
   );

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { IconContacts, IconCurrencyTl, IconDashboard, IconDateRange, IconNotification, IconSearch, IconSetting, IconTime } from '@ladom/icons';
-import { Button, Cell, Input, Modal } from '@ladom/ui';
+import { Cell, Input, Modal } from '@ladom/ui';
 import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection, Card, PageHeader, StatCard } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck } from '@/components/docs/Controls';
@@ -120,6 +120,8 @@ export function AppShellPlayground() {
       account={actions ? { name: 'Nazlı Güneş', subtitle: c.role, status: true } : undefined}
       footer={
         <AppSidebarSection>
+          {search && <AppSidebarItem as="button" type="button" icon={<IconSearch />} label={c.searchTitle} onClick={() => setSearching(true)} />}
+          {actions && <AppSidebarItem as="button" type="button" icon={<IconNotification />} label={c.notifications} />}
           <AppSidebarItem icon={<IconSetting />} label={c.settings} disabled />
         </AppSidebarSection>
       }
@@ -147,11 +149,13 @@ export function AppShellPlayground() {
   );
 
   const sidebarProps = actions ? `\n      account={{ name: 'Nazlı Güneş', subtitle: 'HR Manager', status: true }}` : '';
-  const endParts = [
-    search ? '      <Button variant="ghost" tone="secondary" icon={IconSearch} aria-label="Search" onClick={openSearch} />' : '',
-    actions ? '      <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label="Notifications" />' : '',
-  ].filter(Boolean);
-  const code = `import { AppShell, AppSidebar, PageHeader } from '@ladom/ui/pro';\n\n<AppShell\n  menuLabel="Menu"\n  sidebar={({ drawer }) => (\n    <AppSidebar\n      aria-label="Main"\n      header={<Logo />}\n      collapsedHeader={<LogoSymbol />}${sidebarProps}\n      collapsible={!drawer}\n      collapsed={!drawer && collapsed}\n      onCollapsedChange={setCollapsed}\n    >\n      …\n    </AppSidebar>\n  )}\n  headerStart={<PageHeader title="${COPY.en.pages[current]}" />}${endParts.length ? `\n  headerEnd={\n    <>\n${endParts.join('\n')}\n    </>\n  }` : ''}\n>\n  <Dashboard />\n</AppShell>`;
+  const footParts = [
+    search ? '          <AppSidebarItem as="button" type="button" icon={<IconSearch />} label="Search" onClick={openSearch} />' : '',
+    actions ? '          <AppSidebarItem as="button" type="button" icon={<IconNotification />} label="Notifications" />' : '',
+    '          <AppSidebarItem href="/settings" icon={<IconSetting />} label="Settings" />',
+  ];
+  const footer = `\n      footer={\n        <AppSidebarSection>\n${footParts.filter(Boolean).join('\n')}\n        </AppSidebarSection>\n      }`;
+  const code = `import { AppShell, AppSidebar, PageHeader } from '@ladom/ui/pro';\n\n<AppShell\n  menuLabel="Menu"\n  sidebar={({ drawer }) => (\n    <AppSidebar\n      aria-label="Main"\n      header={<Logo />}\n      collapsedHeader={<LogoSymbol />}${sidebarProps}${footer}\n      collapsible={!drawer}\n      collapsed={!drawer && collapsed}\n      onCollapsedChange={setCollapsed}\n    >\n      …\n    </AppSidebar>\n  )}\n  headerStart={<PageHeader title="${COPY.en.pages[current]}" />}\n>\n  <Dashboard />\n</AppShell>`;
 
   return (
     <div className={styles.playground}>
@@ -162,14 +166,6 @@ export function AppShellPlayground() {
             closeLabel={c.close}
             sidebar={sidebar}
             headerStart={<PageHeader title={c.pages[current]} style={{ paddingInline: 0 }} />}
-            headerEnd={
-              search || actions ? (
-                <>
-                  {search && <Button variant="ghost" tone="secondary" icon={IconSearch} aria-label={c.searchTitle} onClick={() => setSearching(true)} />}
-                  {actions && <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label={c.notifications} />}
-                </>
-              ) : undefined
-            }
           >
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(var(--grid-column-2), 1fr))', gap: 'var(--space-medium)' }}>
               <StatCard label={c.headcount} value="48" note={c.headcountNote} />

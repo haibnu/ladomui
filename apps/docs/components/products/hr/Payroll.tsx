@@ -109,7 +109,7 @@ export function Payroll() {
         title={t.title}
         subtitle={t.subtitle}
         info={
-          <Badge size="small" tone={STATUS_TONE[month.status]}>
+          <Badge size="tiny" tone={STATUS_TONE[month.status]}>
             {t.monthStatus[month.status]}
           </Badge>
         }

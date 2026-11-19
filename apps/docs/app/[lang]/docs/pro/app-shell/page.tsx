@@ -14,7 +14,7 @@ const COPY = {
     behavior: 'Behavior',
     behaviorItems: [
       'On wider screens (inset, the default) the page sits in a rounded panel on the surface/level-2 ground and the side menu shares that ground; its current item is outlined. Cards, StatCards, Tables and Accordions inside take a thin line in place of the shadow. variant="flat" keeps the earlier look on one surface.',
-      'In the inset look the header sits in the panel, lined up with the page; its line shows once the page scrolls under it. Put the page title (a PageHeader) in headerStart, and the page actions, a search button that opens a Modal and the notifications in headerEnd; the account goes at the foot of the AppSidebar (account). With no header slots the header only shows on phones, for the menu button.',
+      'In the inset look the header sits in the panel, lined up with the page; its line shows once the page scrolls under it. Put the page title (a PageHeader) in headerStart and the page actions in headerEnd. Search (an item that opens a Modal), notifications and settings go in the AppSidebar footer, above the signed-in person (account). With no header slots the header only shows on phones, for the menu button.',
       'The side menu column and the header are sticky: the page scrolls under them. Scroll inside the box above to see it.',
       'On phones (< 768px) the side menu moves into a left Drawer, opened by a menu button at the start of the header; pressing a link inside the Drawer closes it.',
       'offsetTop keeps the sticky parts under a bar that sits above the shell, such as a site bar: they stick that far from the top, and the shell is that much shorter than the screen.',
@@ -49,7 +49,7 @@ const COPY = {
     behavior: 'Davranış',
     behaviorItems: [
       'Geniş ekranda (varsayılan inset) sayfa surface/level-2 zemindeki yuvarlak köşeli bir panelde durur, kenar menü o zemini paylaşır; seçili öğe çerçevelidir. İçerideki Card, StatCard, Table ve Accordion’lar gölge yerine ince bir çizgi alır. variant="flat" önceki tek yüzeyli görünümü korur.',
-      'Inset görünümde başlık panelin içinde sayfayla hizalı durur; çizgisi sayfa altına kayınca belirir. Sayfa başlığını (bir PageHeader) headerStart’a; sayfa eylemlerini, Modal açan bir arama butonunu ve bildirimleri headerEnd’e koyun; hesap AppSidebar’ın en altına gider (account). Başlık slotları boşsa başlık yalnızca telefonda, menü butonu için görünür.',
+      'Inset görünümde başlık panelin içinde sayfayla hizalı durur; çizgisi sayfa altına kayınca belirir. Sayfa başlığını (bir PageHeader) headerStart’a, sayfa eylemlerini headerEnd’e koyun. Arama (Modal açan bir öğe), bildirimler ve ayarlar AppSidebar’ın alt kısmına (footer), oturum açmış kişinin (account) üstüne gider. Başlık slotları boşsa başlık yalnızca telefonda, menü butonu için görünür.',
       'Kenar menü sütunu ve başlık yapışkandır: sayfa onların altından kayar. Görmek için yukarıdaki kutunun içinde kaydırın.',
       'Telefonda (< 768px) kenar menü sol bir Drawer’a taşınır ve başlığın başındaki menü butonuyla açılır; Drawer’daki bir bağlantıya basmak onu kapatır.',
       'offsetTop, yapışkan parçaları kabuğun üstünde duran bir çubuğun, örneğin site çubuğunun, altında tutar: üstten o kadar uzakta yapışırlar ve kabuk ekrandan o kadar kısa olur.',
