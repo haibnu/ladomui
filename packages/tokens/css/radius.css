@@ -36,3 +36,10 @@
   --radius-card-inner: 8px;
   --radius-form-element-large: 0px;
 }
+
+:root {
+  --radius-button: var(--radius-form-element);
+  --radius-button-small: var(--radius-form-element-small);
+  --radius-form: var(--radius-form-element);
+  --radius-form-small: var(--radius-form-element-small);
+}

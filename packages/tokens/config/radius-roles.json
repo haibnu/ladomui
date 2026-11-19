@@ -1,0 +1,7 @@
+{
+  "$description": "Code-side radius roles, not in Figma. Figma gives buttons and form fields the same form-element radius; these roles let a theme change one without the other (for example pill buttons and square fields). By default they point to the Figma radius, so the look is unchanged. Each role has a small step for the small (and tiny) sizes. The ladom-ui CLI sets them in theme.css with --button-radius and --form-radius.",
+  "button": { "value": "design-tokens/radius/r-form-element", "usedFor": "Button, large and medium (Icon Button stays round)" },
+  "button-small": { "value": "design-tokens/radius/r-form-element-small", "usedFor": "Button, small and tiny" },
+  "form": { "value": "design-tokens/radius/r-form-element", "usedFor": "Form fields, medium and large: Input and the fields built on it (Textarea, NumberInput, CurrencyInput, GsmInput, ColorInput), OtpInput, the Segment track" },
+  "form-small": { "value": "design-tokens/radius/r-form-element-small", "usedFor": "Form fields, small, plus Selectbox, ItemSelector, Uploader and the Segment items" }
+}
