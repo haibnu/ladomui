@@ -16,20 +16,20 @@
 
 .box[data-size='medium'] {
   --_pad-x: var(--layout-default);
-  --_radius: var(--radius-form-element);
+  --_radius: var(--radius-form);
   font: var(--text-ui-text-regular);
 }
 
 .box[data-size='large'] {
   --_pad-x: var(--layout-large);
-  --_radius: var(--radius-form-element);
+  --_radius: var(--radius-form);
   padding-block: var(--layout-small);
   font: var(--text-ui-text-lead-regular);
 }
 
 .box[data-size='small'] {
   --_pad-x: var(--layout-small);
-  --_radius: var(--radius-form-element-small);
+  --_radius: var(--radius-form-small);
   font: var(--text-ui-text-small-regular);
 }
 

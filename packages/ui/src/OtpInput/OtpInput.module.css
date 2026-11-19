@@ -12,14 +12,14 @@
 
 .root[data-size='medium'] {
   --_box: calc(var(--line-height-base) + 2 * var(--layout-tiny));
-  --_radius: var(--radius-form-element);
+  --_radius: var(--radius-form);
   --_dot: var(--layout-small);
   font: var(--text-ui-text-lead-regular);
 }
 
 .root[data-size='small'] {
   --_box: calc(var(--line-height-text-small) + 2 * var(--layout-tiny));
-  --_radius: var(--radius-form-element-small);
+  --_radius: var(--radius-form-small);
   --_dot: var(--layout-tiny);
   font: var(--text-ui-text-regular);
 }
