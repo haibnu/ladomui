@@ -273,7 +273,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first(),
   ],
   navigation: [
-    { date: '2026-11-19', en: 'Inside an AppShell the PageHeader subtitle sits under the title; a status Badge beside the title goes in info, size tiny.', tr: 'AppShell içinde PageHeader alt başlığı başlığın altında duruyor; başlığın yanındaki durum Badge’i info’ya, tiny boyutta konuyor.' },
+    { date: '2026-11-19', pr: 61, en: 'Inside an AppShell the PageHeader subtitle sits under the title; a status Badge beside the title goes in info, size tiny.', tr: 'AppShell içinde PageHeader alt başlığı başlığın altında duruyor; başlığın yanındaki durum Badge’i info’ya, tiny boyutta konuyor.' },
     first(),
   ],
   'file-share': [
