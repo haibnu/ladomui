@@ -279,6 +279,11 @@
 }
 
 @media (width < 768px) {
+  /* Money figures do not fit two to a row on phones: one StatCard per row. */
+  .stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .filter {
     inline-size: auto;
     flex: 1 1 var(--grid-column-2);
