@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import {
   IconAnalytics,
   IconContacts,
@@ -11,20 +11,20 @@ import {
   IconDateRange,
   IconDateTime,
   IconNotification,
-  IconSearch,
   IconSetting,
   IconTime,
   IconLead,
   IconReportChart,
   IconTransactions,
 } from '@ladom/icons';
-import { Avatar, Badge, Button, Input, ToastProvider } from '@ladom/ui';
+import { Badge, Button, Input, ToastProvider } from '@ladom/ui';
 import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection } from '@ladom/ui/pro';
 import { href } from '@/i18n';
 import { useLocale } from '../../useLocale';
-import { ProductLogo } from '../ProductLogo';
+import { Logo } from '../../Logo';
 import { HR_COPY } from './copy';
-import { COMPANY, LEAVES } from './data';
+import { HrHeaderSlots } from './HrHeader';
+import { LEAVES, employee } from './data';
 import styles from './hr.module.css';
 
 const PAGES = [
@@ -39,25 +39,50 @@ const PAGES = [
 
 const SOON = [IconAnalytics, IconLead, IconTransactions];
 
-/** The HR demo app: an AppShell with an AppSidebar (a Drawer on phones) around each screen. */
+/** The HR demo app: an AppShell with an AppSidebar (a Drawer on phones) around each screen. The
+ *  notifications sit beside the logo and the signed-in person at the foot of the menu; the sticky
+ *  header holds the screen's title (HrHeader) on the left and its actions and the search on the right. */
 export function HrShell({ children }: { children: ReactNode }) {
   const { lang } = useLocale();
   const c = HR_COPY[lang];
   const pathname = usePathname();
   const base = href(lang, '/products/hr');
   const pending = LEAVES.filter((l) => l.status === 'pending').length;
+  const me = employee('e14');
+  const [collapsed, setCollapsed] = useState(false);
+  const [titleSlot, setTitleSlot] = useState<HTMLElement | null>(null);
+  const [actionsSlot, setActionsSlot] = useState<HTMLElement | null>(null);
 
-  const menu = (collapsible: boolean) => (
+  const menu = (drawer: boolean) => {
+    const rail = !drawer && collapsed;
+    return (
     <AppSidebar
       aria-label={c.nav.label}
-      collapsible={collapsible}
+      collapsible={!drawer}
+      collapsed={rail}
+      onCollapsedChange={setCollapsed}
       collapseLabel={c.nav.collapse}
       expandLabel={c.nav.expand}
-      header={<ProductLogo product="hr" name={COMPANY} sub={c.app} />}
+      header={
+        <span className={styles.brand}>
+          <Logo className={styles.brandLogo} />
+          <span className={styles.brandProduct}>{c.app}</span>
+        </span>
+      }
+      collapsedHeader={<Logo className={styles.brandLogo} symbol />}
+      headerActions={<Button variant="ghost" tone="secondary" size="small" icon={IconNotification} aria-label={c.nav.notifications} />}
+      account={{ name: me.name, subtitle: me.title[lang], status: true }}
       footer={
-        <AppSidebarSection>
-          <AppSidebarItem icon={<IconSetting />} label={c.nav.settings} disabled />
-        </AppSidebarSection>
+        <>
+          <AppSidebarSection>
+            <AppSidebarItem icon={<IconSetting />} label={c.nav.settings} disabled />
+          </AppSidebarSection>
+          {!rail && (
+            <Badge className={styles.sample} tone="warning" size="small">
+              {c.sample}
+            </Badge>
+          )}
+        </>
       }
     >
       <AppSidebarSection>
@@ -74,27 +99,28 @@ export function HrShell({ children }: { children: ReactNode }) {
         })}
       </AppSidebarSection>
     </AppSidebar>
-  );
+    );
+  };
 
   return (
     <ToastProvider closeLabel={c.employees.close}>
-      <AppShell
-        menuLabel={c.nav.menu}
-        closeLabel={c.employees.close}
-        sidebar={({ drawer }) => menu(!drawer)}
-        headerStart={<Input className={styles.search} size="small" iconLeft={<IconSearch />} placeholder={c.nav.search} aria-label={c.nav.search} />}
-        headerEnd={
-          <span className={styles.headerEnd}>
-            <Badge className={styles.sample} tone="warning" size="small">
-              {c.sample}
-            </Badge>
-            <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label={c.nav.notifications} />
-            <Avatar size="small" name="Nazlı Güneş" status />
-          </span>
-        }
-      >
-        {children}
-      </AppShell>
+      <HrHeaderSlots.Provider value={{ title: titleSlot, actions: actionsSlot }}>
+        <AppShell
+          offsetTop="var(--customize-bar-height)"
+          menuLabel={c.nav.menu}
+          closeLabel={c.employees.close}
+          sidebar={({ drawer }) => menu(drawer)}
+          headerStart={<div ref={setTitleSlot} className={styles.headerTitle} />}
+          headerEnd={
+            <>
+              <div ref={setActionsSlot} className={styles.headerActions} />
+              <Input className={styles.search} type="search" size="small" placeholder={c.nav.search} aria-label={c.nav.search} />
+            </>
+          }
+        >
+          {children}
+        </AppShell>
+      </HrHeaderSlots.Provider>
     </ToastProvider>
   );
 }

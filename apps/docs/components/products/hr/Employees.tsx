@@ -21,11 +21,12 @@ import {
   type TableColumn,
   type TableSort,
 } from '@ladom/ui';
-import { DataToolbar, PageHeader, PersonCell } from '@ladom/ui/pro';
+import { DataToolbar, PersonCell } from '@ladom/ui/pro';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { EMPLOYEES, LEAVES, date, employee, money, payslip, type Department, type Employee, type EmployeeStatus } from './data';
 import { Rows } from './Rows';
+import { HrHeader } from './HrHeader';
 import styles from './hr.module.css';
 
 const STATUS_TONE: Record<EmployeeStatus, BadgeTone> = {
@@ -124,8 +125,7 @@ export function Employees() {
 
   return (
     <>
-      <PageHeader
-        className={styles.pageHeader}
+      <HrHeader
         title={t.title}
         subtitle={t.subtitle(people.length)}
         actions={

@@ -11,6 +11,11 @@
   box-shadow: var(--shadow-card-style-1);
 }
 
+/* Inside an inset AppShell (Pro) a line takes the place of the shadow, as on its Cards. */
+[data-app-shell='inset'] .frame {
+  box-shadow: inset 0 0 0 var(--border-width) var(--color-surface-level-3);
+}
+
 /* Inside a Card (or any element marked data-card) the card already gives the depth. */
 [data-card] .frame {
   box-shadow: none;
@@ -51,6 +56,11 @@
   background: var(--color-surface-level-2);
   border-block-end: var(--border);
   white-space: nowrap;
+}
+
+/* Inside an inset AppShell (Pro) the header row has no fill. */
+[data-app-shell='inset'] .table th {
+  background: transparent;
 }
 
 .table td {

@@ -126,6 +126,8 @@ const en = {
     copy: 'Copy code',
     copied: 'Copied',
     playground: 'Playground',
+    fullscreen: 'Full screen',
+    exitFullscreen: 'Exit full screen',
     figmaLink: 'Open in Figma',
   },
   landing: {
@@ -295,6 +297,8 @@ const tr: Dictionary = {
     copy: 'Kodu kopyala',
     copied: 'Kopyalandı',
     playground: 'Playground',
+    fullscreen: 'Tam ekran',
+    exitFullscreen: 'Tam ekrandan çık',
     figmaLink: 'Figma’da aç',
   },
   landing: {

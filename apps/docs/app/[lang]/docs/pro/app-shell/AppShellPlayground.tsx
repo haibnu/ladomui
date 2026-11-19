@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { IconContacts, IconCurrencyTl, IconDashboard, IconDateRange, IconNotification, IconSearch, IconSetting, IconTime } from '@ladom/icons';
-import { Avatar, Button, Cell, Input } from '@ladom/ui';
-import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection, Card, StatCard } from '@ladom/ui/pro';
+import { IconContacts, IconCurrencyTl, IconDashboard, IconDateRange, IconNotification, IconSetting, IconTime } from '@ladom/icons';
+import { Button, Cell, Input } from '@ladom/ui';
+import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection, Card, PageHeader, StatCard } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck } from '@/components/docs/Controls';
+import { FullscreenStage } from '@/components/docs/FullscreenStage';
+import { Logo } from '@/components/Logo';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
 import { ThemeRow } from '@/components/customize/ThemeRow';
@@ -23,7 +25,7 @@ type PageKey = (typeof PAGES)[number]['key'];
 const COPY = {
   en: {
     search: 'Search',
-    actions: 'Header actions',
+    actions: 'Notifications and account',
     collapsed: 'Collapsed menu',
     code: 'Code',
     main: 'Main',
@@ -35,6 +37,7 @@ const COPY = {
     settings: 'Settings',
     searchPlaceholder: 'Search people',
     notifications: 'Notifications',
+    role: 'HR Manager',
     headcount: 'Headcount',
     headcountNote: '+3 this month',
     onLeave: 'On leave today',
@@ -52,7 +55,7 @@ const COPY = {
   },
   tr: {
     search: 'Arama',
-    actions: 'Başlık eylemleri',
+    actions: 'Bildirimler ve hesap',
     collapsed: 'Daraltılmış menü',
     code: 'Kod',
     main: 'Ana menü',
@@ -64,6 +67,7 @@ const COPY = {
     settings: 'Ayarlar',
     searchPlaceholder: 'Kişi ara',
     notifications: 'Bildirimler',
+    role: 'İK Müdürü',
     headcount: 'Çalışan sayısı',
     headcountNote: 'Bu ay +3',
     onLeave: 'Bugün izinde',
@@ -92,12 +96,20 @@ export function AppShellPlayground() {
   const sidebar = ({ drawer }: { drawer: boolean }) => (
     <AppSidebar
       aria-label={c.main}
-      header={<strong>Acme HR</strong>}
+      header={
+        <span className={styles.sidebarBrand}>
+          <Logo className={styles.sidebarLogo} />
+          <strong className={styles.sidebarProduct}>HR</strong>
+        </span>
+      }
+      collapsedHeader={<Logo className={styles.sidebarLogo} symbol />}
       collapsible={!drawer}
       collapsed={drawer ? false : collapsed}
       onCollapsedChange={setCollapsed}
       expandLabel={c.expand}
       collapseLabel={c.collapse}
+      headerActions={actions ? <Button variant="ghost" tone="secondary" size="small" icon={IconNotification} aria-label={c.notifications} /> : undefined}
+      account={actions ? { name: 'Nazlı Güneş', subtitle: c.role, status: true } : undefined}
       footer={
         <AppSidebarSection>
           <AppSidebarItem icon={<IconSetting />} label={c.settings} disabled />
@@ -126,25 +138,21 @@ export function AppShellPlayground() {
     </AppSidebar>
   );
 
-  const code = `import { AppShell, AppSidebar } from '@ladom/ui/pro';\n\n<AppShell\n  offsetTop="64px"\n  menuLabel="Menu"\n  sidebar={({ drawer }) => (\n    <AppSidebar aria-label="Main" collapsible={!drawer} collapsed={!drawer && collapsed} onCollapsedChange={setCollapsed}>\n      …\n    </AppSidebar>\n  )}\n  headerStart={${search ? '<Input size="small" iconLeft={<IconSearch />} placeholder="Search people" aria-label="Search people" />' : `<strong>${COPY.en.pages[current]}</strong>`}}${actions ? `\n  headerEnd={\n    <>\n      <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label="Notifications" />\n      <Avatar size="small" name="Nazlı Güneş" />\n    </>\n  }` : ''}\n>\n  <Dashboard />\n</AppShell>`;
+  const sidebarProps = actions
+    ? `\n      headerActions={<Button variant="ghost" tone="secondary" size="small" icon={IconNotification} aria-label="Notifications" />}\n      account={{ name: 'Nazlı Güneş', subtitle: 'HR Manager', status: true }}`
+    : '';
+  const code = `import { AppShell, AppSidebar, PageHeader } from '@ladom/ui/pro';\n\n<AppShell\n  menuLabel="Menu"\n  sidebar={({ drawer }) => (\n    <AppSidebar\n      aria-label="Main"\n      header={<Logo />}\n      collapsedHeader={<LogoSymbol />}${sidebarProps}\n      collapsible={!drawer}\n      collapsed={!drawer && collapsed}\n      onCollapsedChange={setCollapsed}\n    >\n      …\n    </AppSidebar>\n  )}\n  headerStart={<PageHeader title="${COPY.en.pages[current]}" />}${search ? '\n  headerEnd={<Input type="search" size="small" placeholder="Search people" aria-label="Search people" />}' : ''}\n>\n  <Dashboard />\n</AppShell>`;
 
   return (
     <div className={styles.playground}>
       <div className={styles.stage} style={{ placeItems: 'stretch', padding: 'var(--space-medium)' }}>
-        <div style={{ blockSize: 'calc(5 * var(--grid-column-1))', overflow: 'auto', border: 'var(--border)', borderRadius: 'var(--radius-card)' }}>
+        <FullscreenStage style={{ blockSize: 'calc(5 * var(--grid-column-1))' }}>
           <AppShell
             menuLabel={c.menu}
             closeLabel={c.close}
             sidebar={sidebar}
-            headerStart={search ? <Input size="small" iconLeft={<IconSearch />} placeholder={c.searchPlaceholder} aria-label={c.searchPlaceholder} /> : <strong>{c.pages[current]}</strong>}
-            headerEnd={
-              actions ? (
-                <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-tiny)', paddingInlineEnd: 'var(--space-container)' }}>
-                  <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label={c.notifications} />
-                  <Avatar size="small" name="Nazlı Güneş" />
-                </span>
-              ) : undefined
-            }
+            headerStart={<PageHeader title={c.pages[current]} style={{ paddingInline: 0 }} />}
+            headerEnd={search ? <Input type="search" size="small" placeholder={c.searchPlaceholder} aria-label={c.searchPlaceholder} /> : undefined}
           >
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(var(--grid-column-2), 1fr))', gap: 'var(--space-medium)' }}>
               <StatCard label={c.headcount} value="48" note={c.headcountNote} />
@@ -164,7 +172,7 @@ export function AppShellPlayground() {
               ))}
             </Card>
           </AppShell>
-        </div>
+        </FullscreenStage>
       </div>
       <div className={styles.controls}>
         <ThemeRow />
