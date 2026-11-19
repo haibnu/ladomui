@@ -94,7 +94,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   button: [
     {
       date: '2026-11-19',
-      pr: 0,
+      pr: 63,
       en: 'Text buttons are at least twice as wide as they are tall (96, 80, 64 and 48px from Large to Tiny), so short labels such as OK or Delete do not look narrow. Icon-only buttons are unchanged.',
       tr: 'Metinli butonlar en az yüksekliklerinin iki katı genişlikte (Large’dan Tiny’ye 96, 80, 64 ve 48px); OK ya da Sil gibi kısa etiketler dar görünmüyor. Yalnız ikonlu butonlar değişmedi.',
     },
