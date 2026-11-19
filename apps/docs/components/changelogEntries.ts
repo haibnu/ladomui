@@ -160,6 +160,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   hint: [first()],
   input: [
     FORM_RADIUS,
+    { date: '2026-11-19', pr: 60, en: 'Inside an AppShell (Pro) a search field is white with a thin line.', tr: 'AppShell (Pro) içinde arama alanı beyaz ve ince çizgili.' },
     BOX_FOCUS,
     {
       date: '2026-11-18',
@@ -234,6 +235,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first(),
   ],
   table: [
+    { date: '2026-11-19', pr: 60, en: 'Inside an AppShell (Pro) the table has a thin line in place of the shadow and its header row has no fill.', tr: 'AppShell (Pro) içinde tablo gölge yerine ince bir çizgi alıyor, başlık satırı dolgusuz.' },
     TABLE_TAG,
     {
       date: '2026-11-18',
@@ -286,8 +288,14 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     ROLES,
     first(),
   ],
-  accordion: [first()],
-  navigation: [first()],
+  accordion: [
+    { date: '2026-11-19', pr: 60, en: 'Inside an AppShell a thin line takes the place of the shadow.', tr: 'AppShell içinde gölgenin yerini ince bir çizgi alıyor.' },
+    first(),
+  ],
+  navigation: [
+    { date: '2026-11-19', pr: 61, en: 'Inside an AppShell the PageHeader subtitle sits under the title; a status Badge beside the title goes in info, size tiny.', tr: 'AppShell içinde PageHeader alt başlığı başlığın altında duruyor; başlığın yanındaki durum Badge’i info’ya, tiny boyutta konuyor.' },
+    first(),
+  ],
   'file-share': [
     {
       date: '2026-11-11',
@@ -297,6 +305,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first('2026-11-03'),
   ],
   'app-sidebar': [
+    { date: '2026-11-19', pr: 60, en: 'Inside an AppShell the menu shares the gray ground, its current item is outlined on white, and nested items hang from a thin line. The footer stacks its parts with a small gap. New account (the signed-in person at the very foot, the Avatar alone in the rail), headerActions (e.g. notifications beside the logo) and collapsedHeader (e.g. the logo’s symbol in the rail).', tr: 'AppShell içinde menü gri zemini paylaşıyor, seçili öğe beyaz zeminde çerçeveli ve iç içe öğeler ince bir çizgiye bağlı. Alt kısım parçalarını küçük bir boşlukla alt alta diziyor. Yeni account (en altta oturum açmış kişi, şeritte yalnız Avatar), headerActions (örneğin logonun yanında bildirimler) ve collapsedHeader (örneğin şeritte logonun sembolü).' },
     {
       date: '2026-11-11',
       pr: 15,
@@ -304,7 +313,10 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       tr: 'İlk sürüm: Tooltip’li bir ikon şeridine daralıyor ve iç içe gruplar taşıyor.',
     },
   ],
-  'app-shell': [{ date: '2026-11-11', en: 'First release: side menu, sticky header and page; on phones the menu moves to a Drawer.', tr: 'İlk sürüm: kenar menüsü, yapışkan başlık ve sayfa; telefonda menü bir Drawer’a geçiyor.' }],
+  'app-shell': [
+    { date: '2026-11-19', pr: 60, en: 'New look, as the default (variant inset): on wider screens the page sits in a rounded panel on a gray ground and the side menu shares that ground. variant="flat" keeps the earlier look. With no header slots the header only shows on phones. The header sits in the panel lined up with the page, and its line shows once the page scrolls under it; the side menu’s Tooltips open over the page.', tr: 'Yeni görünüm, varsayılan olarak (variant inset): geniş ekranda sayfa gri bir zeminde yuvarlak köşeli bir panelde, kenar menü o zeminde. variant="flat" önceki görünümü korur. Başlık slotları boşsa başlık yalnızca telefonda görünür. Başlık panelin içinde sayfayla hizalı duruyor, çizgisi sayfa altına kayınca beliriyor; kenar menünün Tooltip’leri sayfanın üstünde açılıyor.' },
+    { date: '2026-11-11', en: 'First release: side menu, sticky header and page; on phones the menu moves to a Drawer.', tr: 'İlk sürüm: kenar menüsü, yapışkan başlık ve sayfa; telefonda menü bir Drawer’a geçiyor.' },
+  ],
   'bar-list': [
     {
       date: '2026-11-11',
@@ -322,6 +334,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       tr: 'Row görünümü: sütun başlıkları ve her satırın arkasında şeffaf bir marka rengi çubuğu olan küçük bir tablo, “sayfa başına ziyaret” listelerindeki gibi. Çubuklar ilk göründüklerinde büyüyerek gelir.',
     },{ date: '2026-11-11', en: 'First release: labelled bars for amounts, and Meter for a single bar.', tr: 'İlk sürüm: miktarlar için etiketli çubuklar ve tek çubuklu Meter.' }],
   'card': [
+    { date: '2026-11-19', pr: 60, en: 'Inside an AppShell a thin line takes the place of the shadow.', tr: 'AppShell içinde gölgenin yerini ince bir çizgi alıyor.' },
     {
       date: '2026-11-11',
       en: 'A tighter header: the title and the actions share one centred line, the description sits just under it, and page heading margins no longer reach it. New titleStyle (default, caption).',
@@ -332,6 +345,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'data-toolbar': [{ date: '2026-11-11', en: 'First release: search, filters and actions above a Table, with bulk actions while rows are selected.', tr: 'İlk sürüm: Table üstünde arama, filtreler ve aksiyonlar; satır seçilince toplu aksiyonlar.' }],
   'person-cell': [{ date: '2026-11-11', en: 'First release: Avatar, name and a line under it, in a table or list; a button with onClick.', tr: 'İlk sürüm: tabloda ya da listede Avatar, isim ve alt satır; onClick ile buton.' }],
   'stat-card': [
+    { date: '2026-11-19', pr: 60, en: 'Inside an AppShell a thin line takes the place of the shadow.', tr: 'AppShell içinde gölgenin yerini ince bir çizgi alıyor.' },
     {
       date: '2026-11-11',
       en: 'The change under the number is a Delta now; its success green reaches 4.5:1 in both themes.',

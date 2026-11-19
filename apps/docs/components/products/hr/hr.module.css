@@ -1,16 +1,30 @@
 /* HR demo: layout of the screens around the Ladom UI (Pro) components. Values are tokens. */
 
-/* Header and side menu */
-.search {
-  inline-size: var(--grid-column-3);
+/* Head of the side menu: the Ladom UI logo and the product's name; the symbol alone in the rail. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-small);
   min-inline-size: 0;
 }
 
-.headerEnd {
-  display: flex;
-  align-items: center;
-  gap: var(--space-small);
+.brandLogo {
+  block-size: var(--line-height-base);
 }
+
+.brandProduct {
+  padding-inline-start: var(--space-small);
+  font: var(--text-ui-text-bold);
+  color: var(--color-foreground-high-emphasis);
+  box-shadow: inset var(--border-width) 0 0 var(--color-surface-level-4);
+}
+
+/* Foot of the side menu: the sample note above the signed-in person. */
+.sample {
+  align-self: flex-start;
+  margin-inline-start: var(--space-medium);
+}
+
 
 /* Screens */
 
@@ -41,8 +55,42 @@
   block-size: var(--space-tiny);
   border-radius: var(--radius-full);
 }
+/* Sticky header: the screen's PageHeader on the left; its actions and the search on the right. */
+.headerTitle {
+  display: flex;
+  flex: 1;
+  min-inline-size: 0;
+}
+
 .pageHeader {
-  margin-inline: calc(-1 * var(--space-container));
+  flex: 1;
+  min-inline-size: 0;
+  padding-inline: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tiny);
+  white-space: nowrap;
+}
+
+.phoneActions {
+  display: none;
+}
+
+/* Search Modal: the field, then the pages and the people found. */
+.searchBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-medium);
+}
+
+.searchGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--border-width);
+  margin-inline: calc(-1 * var(--space-small));
 }
 
 .stats {
@@ -102,12 +150,11 @@
   inline-size: var(--grid-column-2);
 }
 
+/* The Table brings its own surface and line; the wrap only scrolls it sideways. */
 .tableWrap {
   min-inline-size: 0;
   overflow-x: auto;
-  background: var(--color-surface-level-1);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card-style-1);
 }
 
 .tableWrap table {
@@ -223,16 +270,12 @@
   .columns {
     grid-template-columns: minmax(0, 1fr);
   }
-
-  .sample {
-    display: none;
-  }
 }
 
 @media (width < 768px) {
-  .search {
-    inline-size: auto;
-    flex: 1;
+  /* Money figures do not fit two to a row on phones: one StatCard per row. */
+  .stats {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .filter {
@@ -244,17 +287,17 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* PageHeader keeps one line on desktop; on phones the title stays whole and the rest wraps under it. */
-  .pageHeader {
-    flex-wrap: wrap;
+  /* On phones the header keeps the menu button, the title, the search and the bell; the screen's
+     actions move to the top of the page and the subtitle leaves. */
+  .headerActions,
+  .pageHeader h1 ~ * {
+    display: none;
   }
 
-  .pageHeader > :first-child {
-    flex-basis: 100%;
-  }
-
-  .pageHeader > :first-child > * {
+  .phoneActions {
+    display: flex;
     flex-wrap: wrap;
+    gap: var(--space-tiny);
   }
 
   .pageHeader h1 {

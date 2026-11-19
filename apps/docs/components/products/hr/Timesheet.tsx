@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import { IconSends } from '@ladom/icons';
 import { Badge, Button, Segment, Table, useToast, type BadgeTone, type TableColumn } from '@ladom/ui';
-import { PageHeader, PersonCell } from '@ladom/ui/pro';
+import { PersonCell } from '@ladom/ui/pro';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { EMPLOYEES, SHIFT_HOURS, WEEK, checkIn, date, weekShifts, type Employee, type Shift } from './data';
+import { HrHeader } from './HrHeader';
 import styles from './hr.module.css';
 
 const SHIFT_TONE: Record<Shift, BadgeTone> = {
@@ -110,8 +111,7 @@ export function Timesheet() {
 
   return (
     <>
-      <PageHeader
-        className={styles.pageHeader}
+      <HrHeader
         title={t.title}
         subtitle={t.subtitle}
         actions={

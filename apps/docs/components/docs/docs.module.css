@@ -153,3 +153,59 @@
     border-block-start: var(--border);
   }
 }
+
+/* FullscreenStage: a framed playground that can open over the whole window. */
+.fullscreenStage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-tiny);
+}
+
+.fullscreenBar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fullscreenFrame {
+  overflow: auto;
+  border: var(--border);
+  border-radius: var(--radius-card);
+}
+
+/* Over the docs chrome (no z-index tokens yet). The button floats at the bottom right. */
+.fullscreenStage[data-full] {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--color-surface-background);
+}
+
+.fullscreenStage[data-full] .fullscreenBar {
+  position: fixed;
+  inset-block-end: var(--space-medium);
+  inset-inline-end: var(--space-medium);
+  z-index: 1;
+}
+
+.fullscreenStage[data-full] .fullscreenFrame {
+  flex: 1;
+  border: 0;
+  border-radius: 0;
+}
+
+/* The Ladom UI logo and a product name at the head of an AppSidebar in a playground. */
+.sidebarBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.sidebarLogo {
+  block-size: var(--line-height-base);
+}
+
+.sidebarProduct {
+  padding-inline-start: var(--space-small);
+  font: var(--text-ui-text-bold);
+  box-shadow: inset var(--border-width) 0 0 var(--color-surface-level-4);
+}

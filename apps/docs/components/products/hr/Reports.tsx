@@ -2,10 +2,11 @@
 
 import { IconContacts, IconDateTime, IconLogout, IconTime } from '@ladom/icons';
 import { Badge } from '@ladom/ui';
-import { BarChart, BarList, Card, ChartLegend, DonutChart, FunnelChart, PageHeader, StatCard, type StatCardProps } from '@ladom/ui/pro';
+import { BarChart, BarList, Card, ChartLegend, DonutChart, FunnelChart, StatCard, type StatCardProps } from '@ladom/ui/pro';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { EMPLOYEES, type Department, type LeaveType } from './data';
+import { HrHeader } from './HrHeader';
 import styles from './hr.module.css';
 
 // Sample history of the last 12 months (December to November), ending at today's employees.
@@ -106,7 +107,7 @@ export function Reports() {
 
   return (
     <>
-      <PageHeader className={styles.pageHeader} title={r.title} subtitle={r.subtitle} />
+      <HrHeader title={r.title} subtitle={r.subtitle} />
       <div className={styles.stats}>
         {stats.map(({ key, ...props }) => (
           <StatCard key={key} hover {...props} />

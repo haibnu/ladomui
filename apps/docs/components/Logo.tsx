@@ -12,10 +12,11 @@ const KEY = 'M4 0H88A24 24 0 0 1 112 24V84A4 4 0 0 1 108 88H24A24 24 0 0 1 0 64V
 // Depth of the key's side, in the same units, as in the isometric illustrations on the landing page.
 const DEPTH = 10;
 
-export function Logo({ title = 'Ladom UI' }: { title?: string }) {
+/** The full logo, or with symbol the keycap alone (e.g. a collapsed side menu). */
+export function Logo({ title = 'Ladom UI', symbol = false, className }: { title?: string; symbol?: boolean; className?: string }) {
   const id = useId().replace(/:/g, '');
   return (
-    <svg className={styles.logo} viewBox="0 -65.3 289.6 88" role="img" aria-label={title}>
+    <svg className={[styles.logo, className].filter(Boolean).join(' ')} viewBox={symbol ? '177.59 -65.3 112 88' : '0 -65.3 289.6 88'} role="img" aria-label={title}>
       <defs>
         <clipPath id={`key-${id}`}>
           <path d={KEY} />
@@ -26,7 +27,7 @@ export function Logo({ title = 'Ladom UI' }: { title?: string }) {
           <stop offset="1" className={styles.shineEdge} />
         </linearGradient>
       </defs>
-      <path className={styles.word} d={WORDMARK} />
+      {!symbol && <path className={styles.word} d={WORDMARK} />}
       {/* The keycap as an isometric key: a solid side under a flat top, outlined, no shadows. */}
       <g className={styles.key} transform={`translate(177.59 -65.3) scale(${88 / (88 + DEPTH)})`}>
         <g className={styles.keyPop}>

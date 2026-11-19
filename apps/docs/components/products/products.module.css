@@ -165,8 +165,18 @@ a.card:hover {
   }
 }
 
-/* The black bar on top of a product demo, which opens Customize. Black in both themes. */
+/* The black bar on top of a product demo, which opens Customize. Black in both themes. It sticks to
+   the top; the demo's AppShell keeps clear of it (offsetTop). */
+:root {
+  --customize-bar-height: calc(2 * var(--space-small) + var(--line-height-text-small));
+}
+
 .customizeBar {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  block-size: var(--customize-bar-height);
   display: flex;
   align-items: center;
   justify-content: center;

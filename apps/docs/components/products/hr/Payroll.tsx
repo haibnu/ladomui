@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { IconDownload, IconPlay, IconSuccess } from '@ladom/icons';
 import { Alert, Badge, Button, Checkbox, Drawer, Loader, Selectbox, Table, useToast, type BadgeTone, type TableColumn } from '@ladom/ui';
-import { PageHeader, PersonCell, StatCard, WizardModal } from '@ladom/ui/pro';
+import { PersonCell, StatCard, WizardModal } from '@ladom/ui/pro';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { LEAVES, PAYROLL_MONTHS, money, monthName, payrollEmployees, payslip, type Employee, type Payslip, type PayrollMonth } from './data';
 import { Rows } from './Rows';
+import { HrHeader } from './HrHeader';
 import styles from './hr.module.css';
 
 const STATUS_TONE: Record<PayrollMonth['status'], BadgeTone> = {
@@ -104,12 +105,11 @@ export function Payroll() {
 
   return (
     <>
-      <PageHeader
-        className={styles.pageHeader}
+      <HrHeader
         title={t.title}
         subtitle={t.subtitle}
-        badge={
-          <Badge size="small" tone={STATUS_TONE[month.status]}>
+        info={
+          <Badge size="tiny" tone={STATUS_TONE[month.status]}>
             {t.monthStatus[month.status]}
           </Badge>
         }

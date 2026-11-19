@@ -31,7 +31,10 @@ const COPY = {
     ],
     props: {
       header: 'AppSidebar: above the links, e.g. the logo; hidden in the rail.',
+      collapsedHeader: 'AppSidebar: shown in the rail in place of the header, e.g. the logo’s symbol.',
+      headerActions: 'AppSidebar: small buttons beside the header, e.g. notifications; hidden in the rail.',
       footer: 'AppSidebar: pinned to the bottom; an AppSidebarSection.',
+      account: 'AppSidebar: the signed-in person { name, subtitle, src, status, actions } at the very foot under a line; the Avatar alone in the rail.',
       collapsed: 'AppSidebar: shows the rail of icons.',
       defaultCollapsed: 'AppSidebar: the first state (uncontrolled).',
       onCollapsedChange: 'AppSidebar: called when the button toggles the rail.',
@@ -68,7 +71,10 @@ const COPY = {
     ],
     props: {
       header: 'AppSidebar: bağlantıların üstü, örneğin logo; şeritte gizlenir.',
+      collapsedHeader: 'AppSidebar: şeritte başlığın yerine görünür, örneğin logonun sembolü.',
+      headerActions: 'AppSidebar: başlığın yanındaki küçük butonlar, örneğin bildirimler; şeritte gizlenir.',
       footer: 'AppSidebar: alta sabit; bir AppSidebarSection.',
+      account: 'AppSidebar: oturum açmış kişi { name, subtitle, src, status, actions }, en altta bir çizginin altında; şeritte yalnız Avatar.',
       collapsed: 'AppSidebar: ikon şeridini gösterir.',
       defaultCollapsed: 'AppSidebar: ilk durum (kontrolsüz).',
       onCollapsedChange: 'AppSidebar: buton şeridi açıp kapattığında çağrılır.',
@@ -114,7 +120,10 @@ export default async function AppSidebarPage({ params }: Props) {
           <PropsTable
             props={[
               ['header', 'ReactNode', '—'],
+              ['collapsedHeader', 'ReactNode', '—'],
+              ['headerActions', 'ReactNode', '—'],
               ['footer', 'ReactNode', '—'],
+              ['account', '{ name: string; subtitle?: ReactNode; src?: string; status?: boolean; actions?: ReactNode }', '—'],
               ['collapsed', 'boolean', '—'],
               ['defaultCollapsed', 'boolean', 'false'],
               ['onCollapsedChange', '(collapsed: boolean) => void', '—'],
