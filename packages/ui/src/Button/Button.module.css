@@ -14,6 +14,8 @@
   color: var(--_fg);
   background: var(--_bg);
   box-shadow: var(--_shadow);
+  /* At least twice as wide as it is tall, so short labels (OK, Sil) do not look narrow. */
+  min-inline-size: calc(2 * (2 * var(--_pad-y) + var(--_lh)));
   white-space: nowrap;
   cursor: pointer;
   transition:
@@ -56,6 +58,7 @@
   --_radius: var(--radius-form-element);
   --_font: var(--text-ui-text-lead-bold);
   --_font-sub: var(--text-ui-text-lead-regular);
+  --_lh: var(--line-height-base);
 }
 
 .button[data-size='medium'] {
@@ -64,6 +67,7 @@
   --_radius: var(--radius-form-element);
   --_font: var(--text-ui-text-bold);
   --_font-sub: var(--text-ui-text-regular);
+  --_lh: var(--line-height-base);
 }
 
 .button[data-size='small'] {
@@ -72,6 +76,7 @@
   --_radius: var(--radius-form-element-small);
   --_font: var(--text-ui-text-small-bold);
   --_font-sub: var(--text-ui-text-small-regular);
+  --_lh: var(--line-height-text-small);
 }
 
 .button[data-size='tiny'] {
@@ -80,11 +85,13 @@
   --_radius: var(--radius-form-element-small);
   --_font: var(--text-ui-text-small-bold);
   --_font-sub: var(--text-ui-text-small-regular);
+  --_lh: var(--line-height-text-small);
 }
 
 /* Icon Button: round, square padding. Large and medium center a 20px icon in a 24px box. */
 .button[data-icon-only] {
   --_radius: var(--radius-full);
+  min-inline-size: 0;
 }
 
 .button[data-icon-only][data-size='large'] {
