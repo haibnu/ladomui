@@ -175,3 +175,45 @@
   inline-size: calc(var(--_box) / 2);
   block-size: calc(var(--_box) / 2);
 }
+
+/* Motion: the box color already fades (above). When a choice turns on, the check draws in from
+   the start side, the indeterminate dash grows from the middle and the radio dot grows from the
+   center, timed by the motion tokens. Not in Figma, which has no prototype for these; the fade
+   token is the system's motion. Off is immediate (the mark is display: none). */
+.choice:not([data-indeterminate]) .input:checked + .box .check {
+  animation: choice-draw var(--motion-fade-default);
+}
+
+.choice[data-indeterminate] .box .dash {
+  animation: choice-grow-x var(--motion-fade-default);
+}
+
+.choice[data-kind='radio'] .input:checked + .box .dot {
+  animation: choice-grow var(--motion-fade-default);
+}
+
+@keyframes choice-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes choice-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes choice-grow {
+  from {
+    transform: scale(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice .box .check,
+  .choice .box .dash,
+  .choice .box .dot {
+    animation: none !important;
+  }
+}
