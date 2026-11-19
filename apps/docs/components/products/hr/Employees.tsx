@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { IconAdd, IconDownload, IconSearch } from '@ladom/icons';
 import {
   Avatar,
@@ -36,6 +37,18 @@ const STATUS_TONE: Record<EmployeeStatus, BadgeTone> = {
 };
 const PAGE_SIZE = 8;
 
+/** Opens the profile named by ?id= (the header search links people here). */
+function OpenFromQuery({ people, onOpen }: { people: Employee[]; onOpen: (e: Employee) => void }) {
+  const id = useSearchParams().get('id');
+  useEffect(() => {
+    const e = id ? people.find((p) => p.id === id) : undefined;
+    if (e) onOpen(e);
+    // Only when the id changes, not on every edit of the list.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+  return null;
+}
+
 export function Employees() {
   const { lang } = useLocale();
   const c = HR_COPY[lang];
@@ -51,6 +64,11 @@ export function Employees() {
   const [tab, setTab] = useState('overview');
   const [adding, setAdding] = useState(false);
   const [sort, setSort] = useState<TableSort | null>(null);
+
+  const openProfile = (e: Employee) => {
+    setTab('overview');
+    setOpen(e);
+  };
 
   const rows = useMemo(() => {
     const q = query.trim().toLocaleLowerCase(lang);
@@ -125,6 +143,9 @@ export function Employees() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <OpenFromQuery people={people} onOpen={openProfile} />
+      </Suspense>
       <HrHeader
         title={t.title}
         subtitle={t.subtitle(people.length)}

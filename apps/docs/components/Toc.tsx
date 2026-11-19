@@ -25,7 +25,8 @@ export function Toc() {
     );
     const scan = () => {
       observer.disconnect();
-      const els = [...document.querySelectorAll<HTMLElement>('[data-doc-content] :is(h2, h3)[id]')];
+      // Titles of Modals and Drawers in the examples are not page sections.
+      const els = [...document.querySelectorAll<HTMLElement>('[data-doc-content] :is(h2, h3)[id]')].filter((el) => !el.closest('dialog'));
       setHeadings(els.map((el) => ({ id: el.id, text: el.textContent ?? '', level: el.tagName === 'H2' ? 2 : 3 })));
       els.forEach((el) => observer.observe(el));
     };

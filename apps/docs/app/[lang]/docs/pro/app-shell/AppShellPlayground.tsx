@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { IconContacts, IconCurrencyTl, IconDashboard, IconDateRange, IconNotification, IconSetting, IconTime } from '@ladom/icons';
-import { Button, Cell, Input } from '@ladom/ui';
+import { IconContacts, IconCurrencyTl, IconDashboard, IconDateRange, IconNotification, IconSearch, IconSetting, IconTime } from '@ladom/icons';
+import { Button, Cell, Input, Modal } from '@ladom/ui';
 import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection, Card, PageHeader, StatCard } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck } from '@/components/docs/Controls';
@@ -35,7 +35,8 @@ const COPY = {
     collapse: 'Collapse menu',
     pages: { dashboard: 'Dashboard', employees: 'Employees', leave: 'Leave', timesheet: 'Timesheet', payroll: 'Payroll' } as Record<PageKey, string>,
     settings: 'Settings',
-    searchPlaceholder: 'Search people',
+    searchPlaceholder: 'Search pages',
+    searchTitle: 'Search',
     notifications: 'Notifications',
     role: 'HR Manager',
     headcount: 'Headcount',
@@ -65,7 +66,8 @@ const COPY = {
     collapse: 'Menüyü daralt',
     pages: { dashboard: 'Genel bakış', employees: 'Çalışanlar', leave: 'İzinler', timesheet: 'Puantaj', payroll: 'Bordro' } as Record<PageKey, string>,
     settings: 'Ayarlar',
-    searchPlaceholder: 'Kişi ara',
+    searchPlaceholder: 'Sayfa ara',
+    searchTitle: 'Ara',
     notifications: 'Bildirimler',
     role: 'İK Müdürü',
     headcount: 'Çalışan sayısı',
@@ -92,6 +94,13 @@ export function AppShellPlayground() {
   const [actions, setActions] = useState(true);
   const [collapsed, setCollapsed] = useState(true);
   const [current, setCurrent] = useState<PageKey>('dashboard');
+  const [searching, setSearching] = useState(false);
+  const [query, setQuery] = useState('');
+  const found = PAGES.filter((p) => c.pages[p.key].toLocaleLowerCase(lang).includes(query.trim().toLocaleLowerCase(lang)));
+  const closeSearch = () => {
+    setSearching(false);
+    setQuery('');
+  };
 
   const sidebar = ({ drawer }: { drawer: boolean }) => (
     <AppSidebar
@@ -108,7 +117,6 @@ export function AppShellPlayground() {
       onCollapsedChange={setCollapsed}
       expandLabel={c.expand}
       collapseLabel={c.collapse}
-      headerActions={actions ? <Button variant="ghost" tone="secondary" size="small" icon={IconNotification} aria-label={c.notifications} /> : undefined}
       account={actions ? { name: 'Nazlı Güneş', subtitle: c.role, status: true } : undefined}
       footer={
         <AppSidebarSection>
@@ -138,10 +146,12 @@ export function AppShellPlayground() {
     </AppSidebar>
   );
 
-  const sidebarProps = actions
-    ? `\n      headerActions={<Button variant="ghost" tone="secondary" size="small" icon={IconNotification} aria-label="Notifications" />}\n      account={{ name: 'Nazlı Güneş', subtitle: 'HR Manager', status: true }}`
-    : '';
-  const code = `import { AppShell, AppSidebar, PageHeader } from '@ladom/ui/pro';\n\n<AppShell\n  menuLabel="Menu"\n  sidebar={({ drawer }) => (\n    <AppSidebar\n      aria-label="Main"\n      header={<Logo />}\n      collapsedHeader={<LogoSymbol />}${sidebarProps}\n      collapsible={!drawer}\n      collapsed={!drawer && collapsed}\n      onCollapsedChange={setCollapsed}\n    >\n      …\n    </AppSidebar>\n  )}\n  headerStart={<PageHeader title="${COPY.en.pages[current]}" />}${search ? '\n  headerEnd={<Input type="search" size="small" placeholder="Search people" aria-label="Search people" />}' : ''}\n>\n  <Dashboard />\n</AppShell>`;
+  const sidebarProps = actions ? `\n      account={{ name: 'Nazlı Güneş', subtitle: 'HR Manager', status: true }}` : '';
+  const endParts = [
+    search ? '      <Button variant="ghost" tone="secondary" icon={IconSearch} aria-label="Search" onClick={openSearch} />' : '',
+    actions ? '      <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label="Notifications" />' : '',
+  ].filter(Boolean);
+  const code = `import { AppShell, AppSidebar, PageHeader } from '@ladom/ui/pro';\n\n<AppShell\n  menuLabel="Menu"\n  sidebar={({ drawer }) => (\n    <AppSidebar\n      aria-label="Main"\n      header={<Logo />}\n      collapsedHeader={<LogoSymbol />}${sidebarProps}\n      collapsible={!drawer}\n      collapsed={!drawer && collapsed}\n      onCollapsedChange={setCollapsed}\n    >\n      …\n    </AppSidebar>\n  )}\n  headerStart={<PageHeader title="${COPY.en.pages[current]}" />}${endParts.length ? `\n  headerEnd={\n    <>\n${endParts.join('\n')}\n    </>\n  }` : ''}\n>\n  <Dashboard />\n</AppShell>`;
 
   return (
     <div className={styles.playground}>
@@ -152,7 +162,14 @@ export function AppShellPlayground() {
             closeLabel={c.close}
             sidebar={sidebar}
             headerStart={<PageHeader title={c.pages[current]} style={{ paddingInline: 0 }} />}
-            headerEnd={search ? <Input type="search" size="small" placeholder={c.searchPlaceholder} aria-label={c.searchPlaceholder} /> : undefined}
+            headerEnd={
+              search || actions ? (
+                <>
+                  {search && <Button variant="ghost" tone="secondary" icon={IconSearch} aria-label={c.searchTitle} onClick={() => setSearching(true)} />}
+                  {actions && <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label={c.notifications} />}
+                </>
+              ) : undefined
+            }
           >
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(var(--grid-column-2), 1fr))', gap: 'var(--space-medium)' }}>
               <StatCard label={c.headcount} value="48" note={c.headcountNote} />
@@ -173,6 +190,31 @@ export function AppShellPlayground() {
             </Card>
           </AppShell>
         </FullscreenStage>
+        <Modal open={searching} onClose={closeSearch} title={c.searchTitle} closeLabel={c.close}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-medium)' }}>
+            <Input type="search" autoFocus value={query} onChange={(e) => setQuery(e.target.value)} placeholder={c.searchPlaceholder} aria-label={c.searchPlaceholder} />
+            <div>
+              {found.map((p) => {
+                const Icon = p.icon;
+                return (
+                  <Cell
+                    key={p.key}
+                    size="small"
+                    iconLeft={<Icon />}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => {
+                      setCurrent(p.key);
+                      closeSearch();
+                    }}
+                  >
+                    {c.pages[p.key]}
+                  </Cell>
+                );
+              })}
+            </div>
+          </div>
+        </Modal>
       </div>
       <div className={styles.controls}>
         <ThemeRow />

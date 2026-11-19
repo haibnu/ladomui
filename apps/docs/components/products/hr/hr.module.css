@@ -75,8 +75,28 @@
   white-space: nowrap;
 }
 
-.search {
-  inline-size: var(--grid-column-2);
+.phoneActions {
+  display: none;
+}
+
+.headerTools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-atom);
+}
+
+/* Search Modal: the field, then the pages and the people found. */
+.searchBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-medium);
+}
+
+.searchGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--border-width);
+  margin-inline: calc(-1 * var(--space-small));
 }
 
 .stats {
@@ -268,9 +288,17 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* On phones the header keeps the menu button, the title and the actions; the search leaves. */
-  .search {
+  /* On phones the header keeps the menu button, the title, the search and the bell; the screen's
+     actions move to the top of the page and the subtitle leaves. */
+  .headerActions,
+  .pageHeader h1 ~ * {
     display: none;
+  }
+
+  .phoneActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-tiny);
   }
 
   .pageHeader h1 {

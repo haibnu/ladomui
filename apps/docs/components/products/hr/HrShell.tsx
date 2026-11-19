@@ -17,13 +17,14 @@ import {
   IconReportChart,
   IconTransactions,
 } from '@ladom/icons';
-import { Badge, Button, Input, ToastProvider } from '@ladom/ui';
+import { Badge, Button, ToastProvider } from '@ladom/ui';
 import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection } from '@ladom/ui/pro';
 import { href } from '@/i18n';
 import { useLocale } from '../../useLocale';
 import { Logo } from '../../Logo';
 import { HR_COPY } from './copy';
 import { HrHeaderSlots } from './HrHeader';
+import { HrSearch } from './HrSearch';
 import { LEAVES, employee } from './data';
 import styles from './hr.module.css';
 
@@ -40,8 +41,8 @@ const PAGES = [
 const SOON = [IconAnalytics, IconLead, IconTransactions];
 
 /** The HR demo app: an AppShell with an AppSidebar (a Drawer on phones) around each screen. The
- *  notifications sit beside the logo and the signed-in person at the foot of the menu; the sticky
- *  header holds the screen's title (HrHeader) on the left and its actions and the search on the right. */
+ *  signed-in person sits at the foot of the menu; the sticky header holds the screen's title (HrHeader)
+ *  on the left, and its actions, the search button (a Modal) and the notifications on the right. */
 export function HrShell({ children }: { children: ReactNode }) {
   const { lang } = useLocale();
   const c = HR_COPY[lang];
@@ -70,7 +71,6 @@ export function HrShell({ children }: { children: ReactNode }) {
         </span>
       }
       collapsedHeader={<Logo className={styles.brandLogo} symbol />}
-      headerActions={<Button variant="ghost" tone="secondary" size="small" icon={IconNotification} aria-label={c.nav.notifications} />}
       account={{ name: me.name, subtitle: me.title[lang], status: true }}
       footer={
         <>
@@ -114,7 +114,10 @@ export function HrShell({ children }: { children: ReactNode }) {
           headerEnd={
             <>
               <div ref={setActionsSlot} className={styles.headerActions} />
-              <Input className={styles.search} type="search" size="small" placeholder={c.nav.search} aria-label={c.nav.search} />
+              <span className={styles.headerTools}>
+                <HrSearch pages={PAGES.map((p) => ({ key: p.key, label: c.nav[p.key], to: base + p.path, icon: p.icon }))} employeesHref={`${base}/employees`} />
+                <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label={c.nav.notifications} />
+              </span>
             </>
           }
         >
