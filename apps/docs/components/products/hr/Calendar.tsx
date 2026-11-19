@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import { IconCheck, IconClose } from '@ladom/icons';
 import { Button, useToast } from '@ladom/ui';
-import { Agenda, PageHeader, type AgendaColor, type AgendaEvent, type AgendaLabels } from '@ladom/ui/pro';
+import { Agenda, type AgendaColor, type AgendaEvent, type AgendaLabels } from '@ladom/ui/pro';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { LEAVES, employee, type LeaveRequest, type LeaveStatus, type LeaveType } from './data';
+import { HrHeader } from './HrHeader';
 import styles from './hr.module.css';
 
 // Leave colors by type, then public holidays and company dates.
@@ -84,7 +85,7 @@ export function Calendar() {
 
   return (
     <>
-      <PageHeader className={styles.pageHeader} title={t.title} subtitle={t.subtitle} />
+      <HrHeader title={t.title} subtitle={t.subtitle} />
       <ul className={styles.legend} aria-label={t.legend}>
         {legend.map(([color, label]) => (
           <li key={label}>

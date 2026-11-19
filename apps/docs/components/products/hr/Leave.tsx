@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import { IconAdd, IconCheck, IconClose, IconDateRange } from '@ladom/icons';
 import { Avatar, Badge, Button, Cell, EmptyState, FormField, Input, Modal, Selectbox, Table, Tabs, Textarea, useToast, type BadgeTone, type TableColumn } from '@ladom/ui';
-import { Card, PageHeader, PersonCell } from '@ladom/ui/pro';
+import { Card, PersonCell } from '@ladom/ui/pro';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { EMPLOYEES, LEAVES, date, employee, type LeaveRequest, type LeaveStatus, type LeaveType } from './data';
+import { HrHeader } from './HrHeader';
 import styles from './hr.module.css';
 
 const TONE: Record<LeaveStatus, BadgeTone> = {
@@ -101,8 +102,7 @@ export function Leave() {
 
   return (
     <>
-      <PageHeader
-        className={styles.pageHeader}
+      <HrHeader
         title={t.title}
         subtitle={t.subtitle}
         actions={

@@ -3,11 +3,12 @@
 import { useRouter } from 'next/navigation';
 import { IconArrowRight, IconContacts, IconCurrencyTl, IconDateRange, IconTime } from '@ladom/icons';
 import { Avatar, Badge, Button, Cell } from '@ladom/ui';
-import { BarList, Card, Meter, PageHeader, StatCard, type StatCardProps } from '@ladom/ui/pro';
+import { BarList, Card, Meter, StatCard, type StatCardProps } from '@ladom/ui/pro';
 import { href } from '@/i18n';
 import { useLocale } from '../../useLocale';
 import { HR_COPY } from './copy';
 import { EMPLOYEES, LEAVES, checkIn, date, employee, money, payrollEmployees, payslip, type Department } from './data';
+import { HrHeader } from './HrHeader';
 import styles from './hr.module.css';
 
 export function Dashboard() {
@@ -84,7 +85,7 @@ export function Dashboard() {
 
   return (
     <>
-      <PageHeader className={styles.pageHeader} title={d.title} subtitle={d.subtitle} />
+      <HrHeader title={d.title} subtitle={d.subtitle} />
       <div className={styles.stats}>
         {stats.map((s) => {
           const { key, ...props } = s;

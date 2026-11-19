@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { IconContacts, IconCurrencyTl, IconDashboard, IconDateRange, IconNotification, IconSearch, IconSetting, IconTime } from '@ladom/icons';
-import { Avatar, Button, Cell, Input } from '@ladom/ui';
-import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection, Card, StatCard } from '@ladom/ui/pro';
+import { Button, Cell, Input, Modal } from '@ladom/ui';
+import { AppShell, AppSidebar, AppSidebarItem, AppSidebarSection, Card, PageHeader, StatCard } from '@ladom/ui/pro';
 import { CodeBlock } from '@/components/docs/CodeBlock';
 import { ControlCheck } from '@/components/docs/Controls';
+import { FullscreenStage } from '@/components/docs/FullscreenStage';
+import { Logo } from '@/components/Logo';
 import styles from '@/components/docs/docs.module.css';
 import { useLocale } from '@/components/useLocale';
 import { ThemeRow } from '@/components/customize/ThemeRow';
@@ -23,7 +25,7 @@ type PageKey = (typeof PAGES)[number]['key'];
 const COPY = {
   en: {
     search: 'Search',
-    actions: 'Header actions',
+    actions: 'Notifications and account',
     collapsed: 'Collapsed menu',
     code: 'Code',
     main: 'Main',
@@ -33,8 +35,10 @@ const COPY = {
     collapse: 'Collapse menu',
     pages: { dashboard: 'Dashboard', employees: 'Employees', leave: 'Leave', timesheet: 'Timesheet', payroll: 'Payroll' } as Record<PageKey, string>,
     settings: 'Settings',
-    searchPlaceholder: 'Search people',
+    searchPlaceholder: 'Search pages',
+    searchTitle: 'Search',
     notifications: 'Notifications',
+    role: 'HR Manager',
     headcount: 'Headcount',
     headcountNote: '+3 this month',
     onLeave: 'On leave today',
@@ -52,7 +56,7 @@ const COPY = {
   },
   tr: {
     search: 'Arama',
-    actions: 'Başlık eylemleri',
+    actions: 'Bildirimler ve hesap',
     collapsed: 'Daraltılmış menü',
     code: 'Kod',
     main: 'Ana menü',
@@ -62,8 +66,10 @@ const COPY = {
     collapse: 'Menüyü daralt',
     pages: { dashboard: 'Genel bakış', employees: 'Çalışanlar', leave: 'İzinler', timesheet: 'Puantaj', payroll: 'Bordro' } as Record<PageKey, string>,
     settings: 'Ayarlar',
-    searchPlaceholder: 'Kişi ara',
+    searchPlaceholder: 'Sayfa ara',
+    searchTitle: 'Ara',
     notifications: 'Bildirimler',
+    role: 'İK Müdürü',
     headcount: 'Çalışan sayısı',
     headcountNote: 'Bu ay +3',
     onLeave: 'Bugün izinde',
@@ -88,16 +94,30 @@ export function AppShellPlayground() {
   const [actions, setActions] = useState(true);
   const [collapsed, setCollapsed] = useState(true);
   const [current, setCurrent] = useState<PageKey>('dashboard');
+  const [searching, setSearching] = useState(false);
+  const [query, setQuery] = useState('');
+  const found = PAGES.filter((p) => c.pages[p.key].toLocaleLowerCase(lang).includes(query.trim().toLocaleLowerCase(lang)));
+  const closeSearch = () => {
+    setSearching(false);
+    setQuery('');
+  };
 
   const sidebar = ({ drawer }: { drawer: boolean }) => (
     <AppSidebar
       aria-label={c.main}
-      header={<strong>Acme HR</strong>}
+      header={
+        <span className={styles.sidebarBrand}>
+          <Logo className={styles.sidebarLogo} />
+          <strong className={styles.sidebarProduct}>HR</strong>
+        </span>
+      }
+      collapsedHeader={<Logo className={styles.sidebarLogo} symbol />}
       collapsible={!drawer}
       collapsed={drawer ? false : collapsed}
       onCollapsedChange={setCollapsed}
       expandLabel={c.expand}
       collapseLabel={c.collapse}
+      account={actions ? { name: 'Nazlı Güneş', subtitle: c.role, status: true } : undefined}
       footer={
         <AppSidebarSection>
           <AppSidebarItem icon={<IconSetting />} label={c.settings} disabled />
@@ -126,23 +146,28 @@ export function AppShellPlayground() {
     </AppSidebar>
   );
 
-  const code = `import { AppShell, AppSidebar } from '@ladom/ui/pro';\n\n<AppShell\n  offsetTop="64px"\n  menuLabel="Menu"\n  sidebar={({ drawer }) => (\n    <AppSidebar aria-label="Main" collapsible={!drawer} collapsed={!drawer && collapsed} onCollapsedChange={setCollapsed}>\n      …\n    </AppSidebar>\n  )}\n  headerStart={${search ? '<Input size="small" iconLeft={<IconSearch />} placeholder="Search people" aria-label="Search people" />' : `<strong>${COPY.en.pages[current]}</strong>`}}${actions ? `\n  headerEnd={\n    <>\n      <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label="Notifications" />\n      <Avatar size="small" name="Nazlı Güneş" />\n    </>\n  }` : ''}\n>\n  <Dashboard />\n</AppShell>`;
+  const sidebarProps = actions ? `\n      account={{ name: 'Nazlı Güneş', subtitle: 'HR Manager', status: true }}` : '';
+  const endParts = [
+    search ? '      <Button variant="ghost" tone="secondary" icon={IconSearch} aria-label="Search" onClick={openSearch} />' : '',
+    actions ? '      <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label="Notifications" />' : '',
+  ].filter(Boolean);
+  const code = `import { AppShell, AppSidebar, PageHeader } from '@ladom/ui/pro';\n\n<AppShell\n  menuLabel="Menu"\n  sidebar={({ drawer }) => (\n    <AppSidebar\n      aria-label="Main"\n      header={<Logo />}\n      collapsedHeader={<LogoSymbol />}${sidebarProps}\n      collapsible={!drawer}\n      collapsed={!drawer && collapsed}\n      onCollapsedChange={setCollapsed}\n    >\n      …\n    </AppSidebar>\n  )}\n  headerStart={<PageHeader title="${COPY.en.pages[current]}" />}${endParts.length ? `\n  headerEnd={\n    <>\n${endParts.join('\n')}\n    </>\n  }` : ''}\n>\n  <Dashboard />\n</AppShell>`;
 
   return (
     <div className={styles.playground}>
       <div className={styles.stage} style={{ placeItems: 'stretch', padding: 'var(--space-medium)' }}>
-        <div style={{ blockSize: 'calc(5 * var(--grid-column-1))', overflow: 'auto', border: 'var(--border)', borderRadius: 'var(--radius-card)' }}>
+        <FullscreenStage style={{ blockSize: 'calc(5 * var(--grid-column-1))' }}>
           <AppShell
             menuLabel={c.menu}
             closeLabel={c.close}
             sidebar={sidebar}
-            headerStart={search ? <Input size="small" iconLeft={<IconSearch />} placeholder={c.searchPlaceholder} aria-label={c.searchPlaceholder} /> : <strong>{c.pages[current]}</strong>}
+            headerStart={<PageHeader title={c.pages[current]} style={{ paddingInline: 0 }} />}
             headerEnd={
-              actions ? (
-                <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-tiny)', paddingInlineEnd: 'var(--space-container)' }}>
-                  <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label={c.notifications} />
-                  <Avatar size="small" name="Nazlı Güneş" />
-                </span>
+              search || actions ? (
+                <>
+                  {search && <Button variant="ghost" tone="secondary" icon={IconSearch} aria-label={c.searchTitle} onClick={() => setSearching(true)} />}
+                  {actions && <Button variant="ghost" tone="secondary" icon={IconNotification} aria-label={c.notifications} />}
+                </>
               ) : undefined
             }
           >
@@ -164,7 +189,32 @@ export function AppShellPlayground() {
               ))}
             </Card>
           </AppShell>
-        </div>
+        </FullscreenStage>
+        <Modal open={searching} onClose={closeSearch} title={c.searchTitle} closeLabel={c.close}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-medium)' }}>
+            <Input type="search" autoFocus value={query} onChange={(e) => setQuery(e.target.value)} placeholder={c.searchPlaceholder} aria-label={c.searchPlaceholder} />
+            <div>
+              {found.map((p) => {
+                const Icon = p.icon;
+                return (
+                  <Cell
+                    key={p.key}
+                    size="small"
+                    iconLeft={<Icon />}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => {
+                      setCurrent(p.key);
+                      closeSearch();
+                    }}
+                  >
+                    {c.pages[p.key]}
+                  </Cell>
+                );
+              })}
+            </div>
+          </div>
+        </Modal>
       </div>
       <div className={styles.controls}>
         <ThemeRow />

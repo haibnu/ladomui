@@ -135,6 +135,15 @@
   --_line: var(--color-surface-level-2);
 }
 
+/* Inside an inset AppShell (Pro) a search field is surface/level-1 with a level-3 line, as its Cards. */
+[data-app-shell='inset'] .box[data-look='search'] {
+  background: var(--color-surface-level-1);
+}
+
+[data-app-shell='inset'] .box[data-look='search']:not(:focus-within) {
+  --_line: var(--color-surface-level-3);
+}
+
 /* Number (NumberInput): the value is centered between the buttons, without the native spinner. */
 .box[data-look='number'][data-size] {
   --_pad-x: var(--layout-tiny);
