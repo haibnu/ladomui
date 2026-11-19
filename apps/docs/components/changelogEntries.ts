@@ -91,7 +91,16 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   avatar: [first()],
   badge: [TABLE_TAG, ROLES, first()],
   breadcrumb: [OPEN_MOTION({ en: 'path menu', tr: 'Yol menüsü' }), FLIP({ en: 'path menu', tr: 'yol menüsü' }), SCROLL({ en: 'path menu', tr: 'Yol menüsü' }), UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
-  button: [ROLES, first()],
+  button: [
+    {
+      date: '2026-11-19',
+      pr: 0,
+      en: 'Text buttons are at least twice as wide as they are tall (96, 80, 64 and 48px from Large to Tiny), so short labels such as OK or Delete do not look narrow. Icon-only buttons are unchanged.',
+      tr: 'Metinli butonlar en az yüksekliklerinin iki katı genişlikte (Large’dan Tiny’ye 96, 80, 64 ve 48px); OK ya da Sil gibi kısa etiketler dar görünmüyor. Yalnız ikonlu butonlar değişmedi.',
+    },
+    ROLES,
+    first(),
+  ],
   cell: [ROLES, first()],
   checkbox: [
     { date: '2026-11-19', pr: 59, en: 'Checking draws the check in from the start side; the indeterminate dash grows from the middle (motion tokens; off with reduced motion).', tr: 'İşaretleyince tik baştan çizilerek beliriyor; indeterminate çizgi ortadan büyüyor (motion tokenları; hareket azaltma açıkken yok).' },

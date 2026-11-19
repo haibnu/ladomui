@@ -48,6 +48,7 @@ const en = {
       'Tiny shows a 12px left icon but a 16px right icon in Figma. Code uses 12px for both.',
       'Success Small and Tiny loading variants use the Tertiary soft fill in Figma. Code uses Success soft.',
       'Ghost Tertiary uses tertiary/tertiary (white) for its label in Figma, which disappears on light surfaces. Code uses foreground/high-emphasis.',
+      'Figma has no minimum width. Code keeps a text button at least twice as wide as it is tall (96, 80, 64 and 48px from Large to Tiny, from the size tokens), so short labels such as OK do not look narrow. Icon-only buttons stay round.',
     ],
   },
   developer: {
@@ -138,6 +139,7 @@ const tr: ButtonCopy = {
       'Tiny’de Figma’da sol ikon 12px, sağ ikon 16px. Kodda ikisi de 12px.',
       'Figma’da Success Small ve Tiny yükleniyor varyantları Tertiary soft dolgusunu kullanıyor. Kodda Success soft.',
       'Figma’da Ghost Tertiary metni tertiary/tertiary (beyaz) renginde; açık zeminde kayboluyor. Kodda foreground/high-emphasis.',
+      'Figma’da minimum genişlik yok. Kodda metinli buton en az yüksekliğinin iki katı genişlikte (Large’dan Tiny’ye 96, 80, 64 ve 48px, boyut tokenlarından); OK gibi kısa etiketler dar görünmüyor. Yalnız ikonlu butonlar yuvarlak kalıyor.',
     ],
   },
   developer: {
