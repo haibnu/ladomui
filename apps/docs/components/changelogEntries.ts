@@ -47,6 +47,14 @@ const BOX_FOCUS: ChangelogEntry = {
   tr: 'Kutunun herhangi bir yerine (boşluk, ikon, ön/son ek, label) basınca alan focus oluyor; yalnızca metne basınca değil. Kutudaki butonlar kendi tıklamalarını koruyor.',
 };
 
+// 2026-11-19, PR #58: the size of a Chip or Badge in a Table cell.
+const TABLE_TAG: ChangelogEntry = {
+  date: '2026-11-19',
+  pr: 58,
+  en: 'Usage rule: a Chip or Badge in a Table cell is size="small"; Medium or Tiny only when the table needs it, never Micro.',
+  tr: 'Kullanım kuralı: Table hücresindeki Chip ya da Badge size="small" olur; Medium ya da Tiny yalnızca tablo gerektirirse, Micro hiçbir zaman.',
+};
+
 const DIALOG: ChangelogEntry[] = [
   {
     date: '2026-11-11',
@@ -73,12 +81,12 @@ const DIALOG: ChangelogEntry[] = [
 export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   alert: [ROLES, first()],
   avatar: [first()],
-  badge: [ROLES, first()],
+  badge: [TABLE_TAG, ROLES, first()],
   breadcrumb: [FLIP({ en: 'path menu', tr: 'yol menüsü' }), SCROLL({ en: 'path menu', tr: 'Yol menüsü' }), UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
   button: [ROLES, first()],
   cell: [ROLES, first()],
   checkbox: [ROLES, first()],
-  chips: [ROLES, first()],
+  chips: [TABLE_TAG, ROLES, first()],
   'color-input': [
     BOX_FOCUS,
     {
@@ -194,6 +202,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first(),
   ],
   table: [
+    TABLE_TAG,
     {
       date: '2026-11-18',
       en: 'The frame looks like Card: the card shadow instead of the border line. Inside a Card the shadow drops.',
