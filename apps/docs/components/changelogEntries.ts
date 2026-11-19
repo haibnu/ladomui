@@ -31,6 +31,18 @@ const SCROLL = (what: { en: string; tr: string }): ChangelogEntry => ({
   tr: `${what.tr} artık üzerine gelince ve kaydırırken görünen ince ScrollArea çubuklarıyla kayıyor.`,
 });
 
+// 2026-11-19: buttons and form fields got their own radius roles.
+const BUTTON_RADIUS: ChangelogEntry = {
+  date: '2026-11-19',
+  en: 'The corners use the --radius-button and --radius-button-small roles, so a theme can round buttons (for example into pills) without changing form fields. The default look is unchanged; Icon Button stays round.',
+  tr: 'Köşeler --radius-button ve --radius-button-small rollerini kullanıyor; bir tema butonları form alanlarından bağımsız yuvarlatabilir (örneğin oval). Varsayılan görünüm aynı; Icon Button yuvarlak kalıyor.',
+};
+const FORM_RADIUS: ChangelogEntry = {
+  date: '2026-11-19',
+  en: 'The corners use the --radius-form and --radius-form-small roles, so a theme can square (or round) form fields without changing buttons. The default look is unchanged.',
+  tr: 'Köşeler --radius-form ve --radius-form-small rollerini kullanıyor; bir tema form alanlarını butonlardan bağımsız köşeli (ya da yuvarlak) yapabilir. Varsayılan görünüm aynı.',
+};
+
 // 2026-11-19, PR #59: dropdown panels animate when they open.
 const OPEN_MOTION = (what: { en: string; tr: string }): ChangelogEntry => ({
   date: '2026-11-19',
@@ -91,7 +103,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   avatar: [first()],
   badge: [TABLE_TAG, ROLES, first()],
   breadcrumb: [OPEN_MOTION({ en: 'path menu', tr: 'Yol menüsü' }), FLIP({ en: 'path menu', tr: 'yol menüsü' }), SCROLL({ en: 'path menu', tr: 'Yol menüsü' }), UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
-  button: [ROLES, first()],
+  button: [BUTTON_RADIUS, ROLES, first()],
   cell: [ROLES, first()],
   checkbox: [
     { date: '2026-11-19', pr: 59, en: 'Checking draws the check in from the start side; the indeterminate dash grows from the middle (motion tokens; off with reduced motion).', tr: 'İşaretleyince tik baştan çizilerek beliriyor; indeterminate çizgi ortadan büyüyor (motion tokenları; hareket azaltma açıkken yok).' },
@@ -100,6 +112,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   chips: [TABLE_TAG, ROLES, first()],
   'color-input': [
+    FORM_RADIUS,
     BOX_FOCUS,
     {
       date: '2026-11-11',
@@ -109,6 +122,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first('2026-11-11'),
   ],
   'currency-input': [
+    FORM_RADIUS,
     FLIP({ en: 'currency picker list', tr: 'para birimi listesi' }),
     BOX_FOCUS,
     {
@@ -130,6 +144,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     },
   ],
   'gsm-input': [
+    FORM_RADIUS,
     FLIP({ en: 'country picker list', tr: 'ülke seçici listesi' }),
     BOX_FOCUS,
     {
@@ -142,6 +157,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   hint: [first()],
   input: [
+    FORM_RADIUS,
     BOX_FOCUS,
     {
       date: '2026-11-18',
@@ -162,7 +178,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     },
     first(),
   ],
-  'item-selector': [ROLES, first()],
+  'item-selector': [FORM_RADIUS, ROLES, first()],
   label: [first()],
   loader: [ROLES, first()],
   modal: DIALOG,
@@ -176,15 +192,16 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
       tr: 'İlk sürüm: SidebarNav ve TopNav; satır yüksekliğini değiştirmeyen Tiny badge’lerle.',
     },
   ],
-  'number-input': [BOX_FOCUS, first('2026-11-02')],
-  'otp-input': [first('2026-11-11')],
+  'number-input': [FORM_RADIUS, BOX_FOCUS, first('2026-11-02')],
+  'otp-input': [FORM_RADIUS, first('2026-11-11')],
   pagination: [first()],
   popover: [UNCLIPPED({ en: 'panel', tr: 'panel' }), first()],
   radio: [{ date: '2026-11-19', pr: 59, en: 'Choosing an option grows its dot from the center (motion tokens; off with reduced motion).', tr: 'Seçilen seçeneğin noktası merkezden büyüyor (motion tokenları; hareket azaltma açıkken yok).' }, first()],
   'text-motion': [{ ...first('2026-11-12'), en: 'First release: opt-in text animations (roll, blur, flip, wave) for button and link labels.', tr: 'İlk sürüm: buton ve link etiketleri için isteğe bağlı metin animasyonları (roll, blur, flip, wave).' }],
   'scroll-area': [{ ...first('2026-11-11'), en: 'First release: thin, rounded overlay scrollbars over native scrolling.', tr: 'İlk sürüm: yerel kaydırmanın üstünde ince, yuvarlak kaydırma çubukları.' }],
-  segment: [{ date: '2026-11-12', en: 'The chosen item’s raised pill slides to the newly chosen item, timed by the motion tokens (still with reduced motion). Items that are not chosen get a slightly darker background on hover.', tr: 'Seçili öğenin kabarık zemini yeni seçilen öğeye kayarak geçiyor; süre animasyon tokenlarından geliyor (hareket azaltma açıkken kaymıyor). Seçili olmayan öğelerin zemini üzerine gelince hafifçe koyulaşıyor.' }, ROLES, first()],
+  segment: [FORM_RADIUS, { date: '2026-11-12', en: 'The chosen item’s raised pill slides to the newly chosen item, timed by the motion tokens (still with reduced motion). Items that are not chosen get a slightly darker background on hover.', tr: 'Seçili öğenin kabarık zemini yeni seçilen öğeye kayarak geçiyor; süre animasyon tokenlarından geliyor (hareket azaltma açıkken kaymıyor). Seçili olmayan öğelerin zemini üzerine gelince hafifçe koyulaşıyor.' }, ROLES, first()],
   selectbox: [
+    FORM_RADIUS,
     OPEN_MOTION({ en: 'list', tr: 'Liste' }),
     FLIP({ en: 'list', tr: 'liste' }),
     {
@@ -230,7 +247,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     },
     first(),
   ],
-  textarea: [BOX_FOCUS, first('2026-11-02')],
+  textarea: [FORM_RADIUS, BOX_FOCUS, first('2026-11-02')],
   'time-picker': [SCROLL({ en: 'hour, minute and second columns', tr: 'Saat, dakika ve saniye sütunları' }), first()],
   toast: [
     {
@@ -257,6 +274,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     first(),
   ],
   uploader: [
+    FORM_RADIUS,
     {
       date: '2026-11-10',
       pr: 9,

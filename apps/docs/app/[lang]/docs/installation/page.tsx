@@ -23,7 +23,8 @@ Your brand (press Enter to keep the value in brackets)
   Your font must be on Google Fonts. Find it at https://fonts.google.com and copy its name (e.g. Inter, DM Sans).
   Font [Hanken Grotesk]: DM Sans`,
   initFlags: `npx ladom-ui init --brand "#2563eb" --font "DM Sans"   # no questions (CI, scripts, Claude)
-npx ladom-ui init --yes                                 # the Ladom defaults`,
+npx ladom-ui init --yes                                 # the Ladom defaults
+npx ladom-ui init --button-radius full --form-radius square   # pill buttons, square fields`,
   theme: `/* components/ladom/theme.css */
 @import "./tokens/index.css";
 

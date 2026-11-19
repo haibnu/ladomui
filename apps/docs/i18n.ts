@@ -60,6 +60,9 @@ const en = {
     preview: 'Preview',
     addedInCode: 'added in code',
     textStyles: 'Text styles',
+    radiusRoles: 'Button and form roles',
+    radiusRolesNote:
+      'Figma gives buttons and form fields one shared radius. These code-side roles point to it by default, so nothing changes, and a theme can set each one on its own: for example pill buttons with square fields. Set the role and its small step together. With the CLI: npx ladom-ui init --button-radius full --form-radius square (full, square, a number of pixels or default).',
   },
   icons: {
     title: 'Icons',
@@ -229,6 +232,9 @@ const tr: Dictionary = {
     preview: 'Önizleme',
     addedInCode: 'kodda eklendi',
     textStyles: 'Yazı stilleri',
+    radiusRoles: 'Buton ve form rolleri',
+    radiusRolesNote:
+      'Figma’da butonlar ve form alanları aynı köşe yarıçapını kullanır. Koddaki bu roller varsayılan olarak o değeri alır, yani görünüm değişmez; bir tema her birini ayrı ayarlayabilir, örneğin oval butonlar ve köşeli alanlar. Rolü ve küçük basamağını birlikte ayarlayın. CLI ile: npx ladom-ui init --button-radius full --form-radius square (full, square, piksel sayısı ya da default).',
   },
   icons: {
     title: 'İkonlar',
