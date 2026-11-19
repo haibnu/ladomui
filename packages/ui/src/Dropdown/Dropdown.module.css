@@ -26,3 +26,36 @@
 .dropdown[data-full-width] .content {
   padding-inline: 0;
 }
+
+/* Opening: the panel fades in and moves a few pixels away from its anchor (down when it opens
+   below, up when useUnclipped flips it above), timed by the motion tokens. Not in Figma, which has
+   no prototype for the Dropdown; the fade and swipe-y tokens are the system's motion. transform is
+   used, not translate, so a panel pinned in a dialog (translate: none) still moves. */
+.dropdown {
+  --_enter-y: calc(-1 * var(--space-tiny));
+  animation:
+    dropdown-fade var(--motion-fade-default),
+    dropdown-swipe var(--motion-swipe-y);
+}
+
+.dropdown[data-flip] {
+  --_enter-y: var(--space-tiny);
+}
+
+@keyframes dropdown-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes dropdown-swipe {
+  from {
+    transform: translateY(var(--_enter-y));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown {
+    animation: dropdown-fade var(--motion-fade-default);
+  }
+}

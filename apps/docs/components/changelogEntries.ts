@@ -31,6 +31,14 @@ const SCROLL = (what: { en: string; tr: string }): ChangelogEntry => ({
   tr: `${what.tr} artık üzerine gelince ve kaydırırken görünen ince ScrollArea çubuklarıyla kayıyor.`,
 });
 
+// 2026-11-19, PR #59: dropdown panels animate when they open.
+const OPEN_MOTION = (what: { en: string; tr: string }): ChangelogEntry => ({
+  date: '2026-11-19',
+  pr: 59,
+  en: `The ${what.en} fades in and slides a few pixels from its anchor when it opens (motion tokens; only the fade with reduced motion).`,
+  tr: `${what.tr} açılırken belirerek bağlı olduğu yerden birkaç piksel kayıyor (motion tokenları; hareket azaltma açıkken yalnızca belirme).`,
+});
+
 // 2026-11-18, PR #57: dropdowns open above their anchor when there is no room below.
 const FLIP = (what: { en: string; tr: string }): ChangelogEntry => ({
   date: '2026-11-18',
@@ -82,10 +90,14 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   alert: [ROLES, first()],
   avatar: [first()],
   badge: [TABLE_TAG, ROLES, first()],
-  breadcrumb: [FLIP({ en: 'path menu', tr: 'yol menüsü' }), SCROLL({ en: 'path menu', tr: 'Yol menüsü' }), UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
+  breadcrumb: [OPEN_MOTION({ en: 'path menu', tr: 'Yol menüsü' }), FLIP({ en: 'path menu', tr: 'yol menüsü' }), SCROLL({ en: 'path menu', tr: 'Yol menüsü' }), UNCLIPPED({ en: 'path menu', tr: 'yol menüsü' }), ROLES, first()],
   button: [ROLES, first()],
   cell: [ROLES, first()],
-  checkbox: [ROLES, first()],
+  checkbox: [
+    { date: '2026-11-19', pr: 59, en: 'Checking draws the check in from the start side; the indeterminate dash grows from the middle (motion tokens; off with reduced motion).', tr: 'İşaretleyince tik baştan çizilerek beliriyor; indeterminate çizgi ortadan büyüyor (motion tokenları; hareket azaltma açıkken yok).' },
+    ROLES,
+    first(),
+  ],
   chips: [TABLE_TAG, ROLES, first()],
   'color-input': [
     BOX_FOCUS,
@@ -109,7 +121,7 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   ],
   'date-picker': [ROLES, first()],
   drawer: DIALOG,
-  dropdown: [SCROLL({ en: 'panel', tr: 'Panel' }), first()],
+  dropdown: [OPEN_MOTION({ en: 'panel', tr: 'Panel' }), SCROLL({ en: 'panel', tr: 'Panel' }), first()],
   'empty-state': [
     {
       date: '2026-11-02',
@@ -168,11 +180,12 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'otp-input': [first('2026-11-11')],
   pagination: [first()],
   popover: [UNCLIPPED({ en: 'panel', tr: 'panel' }), first()],
-  radio: [first()],
+  radio: [{ date: '2026-11-19', pr: 59, en: 'Choosing an option grows its dot from the center (motion tokens; off with reduced motion).', tr: 'Seçilen seçeneğin noktası merkezden büyüyor (motion tokenları; hareket azaltma açıkken yok).' }, first()],
   'text-motion': [{ ...first('2026-11-12'), en: 'First release: opt-in text animations (roll, blur, flip, wave) for button and link labels.', tr: 'İlk sürüm: buton ve link etiketleri için isteğe bağlı metin animasyonları (roll, blur, flip, wave).' }],
   'scroll-area': [{ ...first('2026-11-11'), en: 'First release: thin, rounded overlay scrollbars over native scrolling.', tr: 'İlk sürüm: yerel kaydırmanın üstünde ince, yuvarlak kaydırma çubukları.' }],
   segment: [{ date: '2026-11-12', en: 'The chosen item’s raised pill slides to the newly chosen item, timed by the motion tokens (still with reduced motion). Items that are not chosen get a slightly darker background on hover.', tr: 'Seçili öğenin kabarık zemini yeni seçilen öğeye kayarak geçiyor; süre animasyon tokenlarından geliyor (hareket azaltma açıkken kaymıyor). Seçili olmayan öğelerin zemini üzerine gelince hafifçe koyulaşıyor.' }, ROLES, first()],
   selectbox: [
+    OPEN_MOTION({ en: 'list', tr: 'Liste' }),
     FLIP({ en: 'list', tr: 'liste' }),
     {
       date: '2026-11-18',
