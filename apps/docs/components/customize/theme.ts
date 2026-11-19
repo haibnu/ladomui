@@ -38,7 +38,7 @@ export const contrast = (a: string, b: string) => {
   const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p);
   return (x! + 0.05) / (y! + 0.05);
 };
-const primaryScale = (brand: string) => {
+export const primaryScale = (brand: string) => {
   const lightText = contrast(brand, '#ffffff') >= contrast(brand, '#1a1711');
   return {
     natural: mix(brand, 255, 0.067),
