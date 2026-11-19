@@ -124,13 +124,19 @@ const lengthUsage = (n) => {
   if (s.startsWith('space-form')) return 'Form spacing: ' + s.slice(11).replace(/-/g, ' ') + '.';
   if (s.startsWith('space-')) return `Spacing step ${s.slice(6)} for paddings and gaps.`;
   if (s.startsWith('radius-full') || s === 'badge-radius') return 'Pills and circles: badges, chips, avatars, icon buttons.';
+  if (s.startsWith('radius-button')) return 'Button corner (role; -small for small and tiny). Equals radius-form-element unless a theme sets it, e.g. to radius-full for pill buttons.';
+  if (s === 'radius-form' || s === 'radius-form-small') return 'Form field corner: Input, Selectbox, Segment, OtpInput… (role; -small for small fields). Equals radius-form-element unless a theme sets it, e.g. to 0 for square fields.';
   if (s.startsWith('radius-form-element')) return 'Corner of form elements: inputs, selects, buttons, cells.';
   if (s.startsWith('radius-card')) return 'Corner of cards and toasts.';
   if (s.startsWith('radius-checkbox')) return 'Checkbox corner.';
   if (s.startsWith('radius-layout')) return 'Corner of layout panels: dropdowns, date and time pickers.';
   return s.replace(/-/g, ' ') + '.';
 };
-const lengths = (group) => group.variables.map((v) => ({ name: v.name.slice(2), value: literal(first(v.values), 'Light'), usage: lengthUsage(v.name) }));
+const lengths = (group) => [
+  ...group.variables.map((v) => ({ name: v.name.slice(2), value: literal(first(v.values), 'Light'), usage: lengthUsage(v.name) })),
+  // Code-side roles (config/radius-roles.json) sit in group.tokens.
+  ...(group.tokens ?? []).map((t) => ({ name: t.name.slice(2), value: literal(t.value, 'Light'), usage: lengthUsage(t.name) })),
+];
 
 const shadowTokens = G.shadow.tokens.map((t) => ({
   name: t.name.slice(2),

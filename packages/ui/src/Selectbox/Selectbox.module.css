@@ -25,7 +25,7 @@
   margin: 0;
   padding: var(--_py) var(--_px);
   border: none;
-  border-radius: var(--radius-form-element-small);
+  border-radius: var(--radius-form-small);
   font: var(--_font);
   text-align: start;
   color: var(--color-foreground-high-emphasis);

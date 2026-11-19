@@ -14,6 +14,7 @@ const legacyStyles = await readJson('config/legacy-styles.json');
 const breakpoints = await readJson('config/breakpoints.json');
 const colorRoles = await readJson('config/color-roles.json');
 const chartColors = await readJson('config/chart-colors.json');
+const radiusRoles = await readJson('config/radius-roles.json');
 const darkShadows = await readJson('config/dark-shadows.json');
 const selectors = modeSelectors(breakpoints);
 
@@ -100,6 +101,14 @@ for (const [name, role] of Object.entries(colorRoles)) {
   if (name.startsWith('$')) continue;
   if (!vars.has(key('02 Theme', role.value))) errors.push(`config/color-roles.json: ${name} points to unknown theme color ${role.value}`);
   extras('color').push({ name: `--color-${name}`, value: themeVar(role.value), source: `${role.usedFor} (min contrast ${role.minContrast}:1)` });
+}
+
+// Radius roles: code-side tokens that default to a Figma radius; see config/radius-roles.json.
+for (const [name, role] of Object.entries(radiusRoles)) {
+  if (name.startsWith('$')) continue;
+  const k = key('03 Token', role.value);
+  if (!vars.has(k)) errors.push(`config/radius-roles.json: ${name} points to unknown radius ${role.value}`);
+  extras('radius').push({ name: `--radius-${name}`, value: `var(${cssName(k)})`, source: role.usedFor });
 }
 
 // Chart series colors: derived from the brand in CSS, with a Dark value; see config/chart-colors.json.

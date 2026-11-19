@@ -16,6 +16,13 @@
   text-transform: capitalize;
 }
 
+.sectionNote {
+  max-inline-size: 72ch;
+  margin-block: 0 var(--space-medium);
+  font: var(--text-ui-text-regular);
+  color: var(--color-foreground-medium-emphasis);
+}
+
 .count {
   font: var(--text-ui-text-small-regular);
   color: var(--color-foreground-low-emphasis);

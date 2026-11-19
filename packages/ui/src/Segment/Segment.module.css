@@ -13,7 +13,7 @@
 }
 
 .segment[data-size='medium'] {
-  --_radius: var(--radius-form-element);
+  --_radius: var(--radius-form);
   --_px: var(--space-small);
   --_gap: var(--layout-small);
   --_icon: var(--line-height-text-small);
@@ -22,7 +22,7 @@
 }
 
 .segment[data-size='small'] {
-  --_radius: var(--radius-form-element-small);
+  --_radius: var(--radius-form-small);
   --_px: var(--space-tiny);
   --_gap: var(--space-tiny);
   --_icon: var(--line-height-footnote);
@@ -50,7 +50,7 @@
   justify-content: center;
   gap: var(--_gap);
   padding: var(--space-micro) var(--_px);
-  border-radius: var(--radius-form-element-small);
+  border-radius: var(--radius-form-small);
   white-space: nowrap;
   color: var(--color-foreground-high-emphasis);
   cursor: pointer;
@@ -110,7 +110,7 @@
   /* offsetLeft is physical, so the pill is placed from the left in both directions. */
   left: 0;
   inline-size: var(--_pill-w);
-  border-radius: var(--radius-form-element-small);
+  border-radius: var(--radius-form-small);
   background: var(--color-surface-level-1);
   box-shadow: var(--shadow-card-style-1);
   transform: translateX(var(--_pill-x));

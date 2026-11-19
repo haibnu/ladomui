@@ -10,7 +10,7 @@
   margin: 0;
   padding: var(--space-tiny) var(--space-medium);
   border: none;
-  border-radius: var(--radius-form-element-small);
+  border-radius: var(--radius-form-small);
   font: var(--text-ui-text-regular);
   text-align: start;
   color: var(--color-foreground-medium-emphasis);

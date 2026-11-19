@@ -50,6 +50,7 @@ run `npx ladom-ui update --overwrite` once (after committing your changes).
 
 - `init --dir <path>`: where the files go (default `components/ladom`).
 - `init --brand <hex> --font <name>`: answer the brand questions up front; `--yes` keeps the defaults.
+- `init --button-radius <full|square|px|default> --form-radius <…>`: give buttons and form fields their own corner radius in theme.css (by default both use the Ladom form-element radius), e.g. pill buttons with square fields.
 - `init --overwrite`: rewrite `theme.css` even if you edited it.
 - `add --overwrite`: replace files you changed; without it they are kept and listed.
 - `LADOM_UI_REGISTRY`: another registry URL (default `https://ui.ladom.co/r`).

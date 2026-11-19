@@ -14,6 +14,8 @@ const HELP = `ladom-ui — add Ladom UI to your project
 Usage
   npx ladom-ui init [--dir components/ladom]   Set up the folder, copy the tokens and ask for
        [--brand #hex] [--font "Name"] [--yes]  your brand color and Google Fonts font (theme.css)
+       [--button-radius full|square|<px>|default]   corner radius of buttons, and of form
+       [--form-radius full|square|<px>|default]     fields (Input, Selectbox, Segment…)
   npx ladom-ui add <name...> [--overwrite]     Copy components (and what they need)
   npx ladom-ui update [name...] [--overwrite]  Bring installed components up to date
   npx ladom-ui diff <name>                     Show how your files differ from the latest
@@ -269,8 +271,26 @@ async function findGoogleFont(name) {
   return null;
 }
 
-async function askTheme(current, { brand, font, yes }) {
+// Radius roles (config/radius-roles.json in the tokens): buttons and form fields share the Figma
+// form-element radius unless the theme gives one of them its own: full (pill), square (0) or pixels.
+const parseRadius = (value) => {
+  const v = String(value).trim().toLowerCase();
+  if (v === 'full' || v === 'square' || v === 'default') return v;
+  const m = v.match(/^(\d+(?:\.\d+)?)(px)?$/);
+  return m ? `${Number(m[1])}px` : null;
+};
+const radiusValue = (radius) => (radius === 'full' ? 'var(--radius-full)' : radius === 'square' ? '0px' : radius);
+
+async function askTheme(current, { brand, font, buttonRadius, formRadius, yes }) {
   const theme = { ...current };
+  for (const [name, value, field] of [['button-radius', buttonRadius, 'buttonRadius'], ['form-radius', formRadius, 'formRadius']]) {
+    if (value === undefined) continue;
+    const radius = parseRadius(value);
+    if (radius === null) fail(`--${name} must be full, square, default or a number of pixels such as 4 (got "${value}").`);
+    if (radius === 'default') delete theme[field];
+    else theme[field] = radius;
+  }
+  const radii = { ...(theme.buttonRadius && { buttonRadius: theme.buttonRadius }), ...(theme.formRadius && { formRadius: theme.formRadius }) };
   if (typeof brand === 'string') {
     const hex = parseHex(brand);
     if (!hex) fail(`--brand must be a hex color such as #2563eb (got "${brand}").`);
@@ -285,7 +305,7 @@ async function askTheme(current, { brand, font, yes }) {
   if (!interactive) {
     if (theme.brand === undefined || theme.font === undefined)
       console.log('  Using the Ladom defaults for what was not given. Set your brand with --brand <hex> and --font "<Google Fonts name>".');
-    return { brand: theme.brand ?? DEFAULT_BRAND, font: theme.font ?? DEFAULT_FONT };
+    return { brand: theme.brand ?? DEFAULT_BRAND, font: theme.font ?? DEFAULT_FONT, ...radii };
   }
   const { createInterface } = await import('node:readline/promises');
   const rl = createInterface({ input: process.stdin, output: process.stdout });
@@ -322,7 +342,7 @@ async function askTheme(current, { brand, font, yes }) {
   } finally {
     rl.close();
   }
-  return { brand: theme.brand ?? DEFAULT_BRAND, font: theme.font ?? DEFAULT_FONT };
+  return { brand: theme.brand ?? DEFAULT_BRAND, font: theme.font ?? DEFAULT_FONT, ...radii };
 }
 
 // Text and lines in the primary color must stand out from the surfaces (config/color-roles.json in
@@ -388,7 +408,7 @@ function contrastRoles(brand, surfaces) {
   return out;
 }
 
-function themeCss({ brand, font }, surfaces) {
+function themeCss({ brand, font, buttonRadius, formRadius }, surfaces) {
   const lines = [
     '/* Your brand, written by `npx ladom-ui init` from ladom-ui.json ("theme"). Import this file once',
     '   at the root of your app: it loads the Ladom UI tokens, then sets your brand color and font.',
@@ -432,6 +452,17 @@ function themeCss({ brand, font }, surfaces) {
       else lines.push('@media (prefers-color-scheme: dark) {', '  :root:not([data-theme]) {', ...body.map((l) => `  ${l}`), '  }', '}', ':root[data-theme="dark"] {', ...body, '}');
     }
   }
+  if (buttonRadius || formRadius) {
+    const set = (role, radius) => (radius ? [`  --radius-${role}: ${radiusValue(radius)};`, `  --radius-${role}-small: ${radiusValue(radius)};`] : []);
+    lines.push(
+      '',
+      '/* Corner radius of buttons and form fields; without it both take the Ladom form-element radius. */',
+      ':root {',
+      ...set('button', buttonRadius),
+      ...set('form', formRadius),
+      '}',
+    );
+  }
   if (font !== DEFAULT_FONT) {
     lines.push(
       '',
@@ -450,10 +481,10 @@ function writeTheme(config, overwrite) {
   const surfaces = readSurfaces(dir);
   writeInto(config, dir, 'theme.css', themeCss(config.theme, surfaces), overwrite, report);
   writeConfig(config);
-  const { brand, font } = config.theme;
+  const { brand, font, buttonRadius, formRadius } = config.theme;
   if (report.skipped.length) console.log(`  Kept your changed ${report.skipped[0]}; use --overwrite to rewrite it from ladom-ui.json.`);
   else {
-    ok(`Theme: brand ${brand}${brand === DEFAULT_BRAND ? ' (Ladom default)' : ''}, font ${font}${font === DEFAULT_FONT ? ' (Ladom default)' : ''} → ${config.dir}/theme.css`);
+    ok(`Theme: brand ${brand}${brand === DEFAULT_BRAND ? ' (Ladom default)' : ''}, font ${font}${font === DEFAULT_FONT ? ' (Ladom default)' : ''}${buttonRadius ? `, button radius ${buttonRadius}` : ''}${formRadius ? `, form radius ${formRadius}` : ''} → ${config.dir}/theme.css`);
     const fix = brand === DEFAULT_BRAND ? null : contrastRoles(brand, surfaces).light;
     if (fix && Object.keys(fix).length)
       console.log(`  ${brand} is ${Object.values(fix)[0].was.toFixed(1)}:1 on light surfaces, so text and lines in the brand color use ${Object.values(fix).map((r) => `${r.color} (${r.what})`).join(' and ')}; fills keep ${brand}.`);
@@ -468,7 +499,7 @@ if (!command || command === '--help' || command === '-h' || command === 'help') 
   const dir = flag('dir');
   const registry = flag('registry');
   const config = { ...DEFAULTS, ...(readConfig() ?? {}), ...(typeof dir === 'string' ? { dir } : {}), ...(typeof registry === 'string' ? { registry } : {}), installed: readConfig()?.installed ?? {} };
-  config.theme = await askTheme(config.theme ?? {}, { brand: flag('brand'), font: flag('font'), yes: flag('yes') === true });
+  config.theme = await askTheme(config.theme ?? {}, { brand: flag('brand'), font: flag('font'), buttonRadius: flag('button-radius'), formRadius: flag('form-radius'), yes: flag('yes') === true });
   writeConfig(config);
   ok(`Wrote ${CONFIG}.`);
   await add(['tokens'], { overwrite });
