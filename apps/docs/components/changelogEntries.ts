@@ -170,8 +170,8 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     {
       date: '2026-11-24',
       pr: 64,
-      en: 'PromptModal: a small, centered Modal for questions and notices, with a round tone icon above the title in four tones (danger, warning, info, default).',
-      tr: 'PromptModal: sorular ve bildirimler için küçük, ortalı bir Modal; başlığın üstünde dört tonda (danger, warning, info, default) yuvarlak bir ikon.',
+      en: 'ConfirmModal: a small, centered Modal for questions and notices, with a round tone icon above the title in four tones (danger, warning, info, default).',
+      tr: 'ConfirmModal: sorular ve bildirimler için küçük, ortalı bir Modal; başlığın üstünde dört tonda (danger, warning, info, default) yuvarlak bir ikon.',
     },
     ...DIALOG,
   ],

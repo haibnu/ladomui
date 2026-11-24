@@ -208,37 +208,37 @@
   }
 }
 
-/* PromptModal (no Figma drawing yet): the tone icon on a round soft badge above the title, as in
+/* ConfirmModal (no Figma drawing yet): the tone icon on a round soft badge above the title, as in
    Empty State Large (64px badge, 32px icon); title, description, body and actions centered; the
    close button stays in the top end corner. */
-.dialog[data-prompt] {
+.dialog[data-confirm] {
   --_tone: var(--color-primary-foreground);
   --_tone-soft: var(--color-primary-soft);
 }
 
-.dialog[data-prompt='danger'] {
+.dialog[data-confirm='danger'] {
   --_tone: var(--color-error);
   --_tone-soft: var(--color-error-soft);
 }
 
-.dialog[data-prompt='warning'] {
+.dialog[data-confirm='warning'] {
   --_tone: var(--color-warning);
   --_tone-soft: var(--color-warning-soft);
 }
 
-.dialog[data-prompt='info'] {
+.dialog[data-confirm='info'] {
   --_tone: var(--color-info);
   --_tone-soft: var(--color-info-soft);
 }
 
-.dialog[data-prompt] .header {
+.dialog[data-confirm] .header {
   flex-direction: column;
   align-items: center;
   gap: var(--layout-default);
   text-align: center;
 }
 
-.dialog[data-prompt] .close {
+.dialog[data-confirm] .close {
   position: absolute;
   inset-block-start: var(--space-modal);
   inset-inline-end: var(--space-modal);
@@ -261,14 +261,14 @@
   block-size: var(--space-xxlarge);
 }
 
-.dialog[data-prompt] .text {
+.dialog[data-confirm] .text {
   align-self: stretch;
 }
 
-.dialog[data-prompt] .bodyContent {
+.dialog[data-confirm] .bodyContent {
   text-align: center;
 }
 
-.dialog[data-prompt] .footer {
+.dialog[data-confirm] .footer {
   justify-content: center;
 }

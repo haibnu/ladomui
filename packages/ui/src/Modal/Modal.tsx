@@ -25,7 +25,7 @@ type DialogProps = Omit<HTMLAttributes<HTMLDialogElement>, 'title'> & {
   dismissible?: boolean;
   /** Between the title and the close button, e.g. a Stepper. The title then stays on one line. */
   headerContent?: ReactNode;
-  /** PromptModal: a round icon above the title; title, text and actions are centered. */
+  /** ConfirmModal: a round icon above the title; title, text and actions are centered. */
   media?: ReactNode;
 };
 
@@ -118,21 +118,21 @@ export function Drawer({ side = 'right', ...props }: DrawerProps) {
   return <Dialog data-kind="drawer" data-side={side} {...props} />;
 }
 
-export type PromptModalTone = 'danger' | 'warning' | 'info' | 'default';
+export type ConfirmModalTone = 'danger' | 'warning' | 'info' | 'default';
 
-const PROMPT_ICONS = { danger: IconWarning, warning: IconError, info: IconInfo, default: IconQuestion };
+const CONFIRM_ICONS = { danger: IconWarning, warning: IconError, info: IconInfo, default: IconQuestion };
 
-export type PromptModalProps = Omit<DialogProps, 'headerContent' | 'media'> & {
+export type ConfirmModalProps = Omit<DialogProps, 'headerContent' | 'media'> & {
   /** danger: a serious, often irreversible step (red); warning: a sensitive step (amber); info: a
    * notice (blue); default: a general question in the brand color. */
-  tone?: PromptModalTone;
+  tone?: ConfirmModalTone;
   /** Icon element in place of the tone's icon. */
   icon?: ReactNode;
 };
 
 /** A small, centered question or notice ("Delete Project?") with a round tone icon above the title
- * and its actions under the text. Give danger prompts an error-tone main Button. No Figma drawing yet. */
-export function PromptModal({ tone = 'default', icon, ...props }: PromptModalProps) {
-  const ToneIcon = PROMPT_ICONS[tone];
-  return <Dialog data-kind="modal" data-size="small" data-prompt={tone} media={icon ?? <ToneIcon />} {...props} />;
+ * and its actions under the text. Give danger confirmations an error-tone main Button. No Figma drawing yet. */
+export function ConfirmModal({ tone = 'default', icon, ...props }: ConfirmModalProps) {
+  const ToneIcon = CONFIRM_ICONS[tone];
+  return <Dialog data-kind="modal" data-size="small" data-confirm={tone} media={icon ?? <ToneIcon />} {...props} />;
 }

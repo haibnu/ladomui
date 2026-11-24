@@ -5,7 +5,7 @@ import { ComponentToolbar, MappingTable, PropsTable, SpecTable } from '@/compone
 import { ForView, ViewProvider } from '@/components/docs/ViewSwitch';
 import { getDictionary, type Locale } from '@/i18n';
 import { ModalPlayground } from './ModalPlayground';
-import { PromptModalDemo } from './PromptModalDemo';
+import { ConfirmModalDemo } from './ConfirmModalDemo';
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -27,9 +27,9 @@ const COPY = {
       'Give the close button a translated closeLabel.',
     ],
     mapping: 'Figma to code',
-    prompt: {
-      title: 'Prompt Modal',
-      text: 'PromptModal is a small Modal for a question or a notice: a round tone icon above the title, the title, text and actions centered, and the close button in the top corner. It has no Figma drawing yet; the icon badge follows Empty State Large (64px badge, 32px icon).',
+    confirm: {
+      title: 'Confirm Modal',
+      text: 'ConfirmModal is a small Modal for a question or a notice: a round tone icon above the title, the title, text and actions centered, and the close button in the top corner. It has no Figma drawing yet; the icon badge follows Empty State Large (64px badge, 32px icon).',
       tones: [
         ['danger', 'Serious, often irreversible steps such as deleting. Red warning icon; pair it with an error-tone main Button.'],
         ['warning', 'Sensitive steps such as changing an owner or a permission. Amber icon.'],
@@ -57,9 +57,9 @@ const COPY = {
       'Kapatma butonuna çevrilmiş bir closeLabel verin.',
     ],
     mapping: 'Figma’dan koda',
-    prompt: {
-      title: 'Prompt Modal',
-      text: 'PromptModal, bir soru ya da bildirim için küçük bir Modal: başlığın üstünde tonun yuvarlak ikonu; başlık, metin ve eylemler ortalı; kapatma butonu üst köşede. Henüz Figma çizimi yok; ikon zemini Empty State Large’ı izler (64px zemin, 32px ikon).',
+    confirm: {
+      title: 'Confirm Modal',
+      text: 'ConfirmModal, bir soru ya da bildirim için küçük bir Modal: başlığın üstünde tonun yuvarlak ikonu; başlık, metin ve eylemler ortalı; kapatma butonu üst köşede. Henüz Figma çizimi yok; ikon zemini Empty State Large’ı izler (64px zemin, 32px ikon).',
       tones: [
         ['danger', 'Silme gibi ciddi, çoğu zaman geri alınamaz adımlar. Kırmızı uyarı ikonu; ana eylem için error tonunda bir Button kullanın.'],
         ['warning', 'Sahip ya da yetki değiştirmek gibi hassas adımlar. Turuncu ikon.'],
@@ -88,10 +88,10 @@ export default async function ModalPage({ params }: Props) {
         <h2 id="playground">{t.component.playground}</h2>
         <ModalPlayground />
 
-        <h2 id="prompt-modal">{c.prompt.title}</h2>
-        <p>{c.prompt.text}</p>
-        <PromptModalDemo />
-        <SpecTable head={['tone', '']} rows={c.prompt.tones.map(([tone, text]) => [<code key="t">{tone}</code>, text])} />
+        <h2 id="confirm-modal">{c.confirm.title}</h2>
+        <p>{c.confirm.text}</p>
+        <ConfirmModalDemo />
+        <SpecTable head={['tone', '']} rows={c.confirm.tones.map(([tone, text]) => [<code key="t">{tone}</code>, text])} />
         <ForView view="designer">
           <SpecTable
             head={['Part', 'Token']}
@@ -106,7 +106,7 @@ export default async function ModalPage({ params }: Props) {
         </ForView>
         <ForView view="developer">
           <CodeBlock
-            code={`<PromptModal
+            code={`<ConfirmModal
   open={open}
   onClose={() => setOpen(false)}
   tone="danger"
@@ -126,7 +126,7 @@ export default async function ModalPage({ params }: Props) {
               ['icon', 'ReactNode', '—'],
               ['…', 'ModalProps', '—'],
             ]}
-            descriptions={{ tone: c.prompt.props.tone, icon: c.prompt.props.icon, '…': c.prompt.props.rest }}
+            descriptions={{ tone: c.confirm.props.tone, icon: c.confirm.props.icon, '…': c.confirm.props.rest }}
           />
         </ForView>
 

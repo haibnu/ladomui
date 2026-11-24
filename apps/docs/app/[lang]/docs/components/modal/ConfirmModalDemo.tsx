@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, PromptModal, type PromptModalTone } from '@ladom/ui';
+import { Button, ConfirmModal, type ConfirmModalTone } from '@ladom/ui';
 import { useLocale } from '@/components/useLocale';
 import styles from '@/components/docs/docs.module.css';
 
 type Sample = { label: string; title: string; text: string; confirm: string };
 
-const COPY: Record<'en' | 'tr', { cancel: string; close: string; samples: Record<PromptModalTone, Sample> }> = {
+const COPY: Record<'en' | 'tr', { cancel: string; close: string; samples: Record<ConfirmModalTone, Sample> }> = {
   en: {
     cancel: 'Cancel',
     close: 'Close',
@@ -30,13 +30,13 @@ const COPY: Record<'en' | 'tr', { cancel: string; close: string; samples: Record
   },
 };
 
-const TONES: PromptModalTone[] = ['danger', 'warning', 'info', 'default'];
+const TONES: ConfirmModalTone[] = ['danger', 'warning', 'info', 'default'];
 const BUTTON_TONE = { danger: 'error', warning: 'warning', info: 'info', default: 'primary' } as const;
 
-export function PromptModalDemo() {
+export function ConfirmModalDemo() {
   const { lang } = useLocale();
   const c = COPY[lang];
-  const [open, setOpen] = useState<PromptModalTone | null>(null);
+  const [open, setOpen] = useState<ConfirmModalTone | null>(null);
   return (
     <div className={styles.preview}>
       {TONES.map((tone) => (
@@ -45,7 +45,7 @@ export function PromptModalDemo() {
         </Button>
       ))}
       {TONES.map((tone) => (
-        <PromptModal
+        <ConfirmModal
           key={tone}
           tone={tone}
           open={open === tone}
