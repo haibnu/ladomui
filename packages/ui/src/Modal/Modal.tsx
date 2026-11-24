@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useId, useRef, useState, type HTMLAttributes, type ReactNode } from 'react';
-import { IconClose } from '@ladom/icons';
+import { IconClose, IconError, IconInfo, IconQuestion, IconWarning } from '@ladom/icons';
 import { Button } from '../Button/Button';
 import { ScrollArea } from '../ScrollArea/ScrollArea';
 import styles from './Modal.module.css';
@@ -25,6 +25,8 @@ type DialogProps = Omit<HTMLAttributes<HTMLDialogElement>, 'title'> & {
   dismissible?: boolean;
   /** Between the title and the close button, e.g. a Stepper. The title then stays on one line. */
   headerContent?: ReactNode;
+  /** ConfirmModal: a round icon above the title; title, text and actions are centered. */
+  media?: ReactNode;
 };
 
 function Dialog({
@@ -37,6 +39,7 @@ function Dialog({
   closeLabel = 'Close',
   dismissible = true,
   headerContent,
+  media,
   className,
   ...rest
 }: DialogProps) {
@@ -68,6 +71,11 @@ function Dialog({
     >
       <div className={styles.surface}>
         <div className={styles.header} data-scrolled={scrolled || undefined} data-content={headerContent != null || undefined}>
+          {media != null && (
+            <span className={styles.media} aria-hidden="true">
+              {media}
+            </span>
+          )}
           <div className={styles.text}>
             <h2 id={`${id}-title`} className={styles.title} title={headerContent != null && typeof title === 'string' ? title : undefined}>
               {title}
@@ -79,7 +87,7 @@ function Dialog({
             )}
           </div>
           {headerContent != null && <div className={styles.headerContent}>{headerContent}</div>}
-          <Button variant="ghost" tone="tertiary" size="small" icon={IconClose} aria-label={closeLabel} onClick={onClose} />
+          <Button variant="ghost" tone="tertiary" size="small" icon={IconClose} aria-label={closeLabel} className={styles.close} onClick={onClose} />
         </div>
         {children != null && (
           <ScrollArea
@@ -108,4 +116,23 @@ export type DrawerProps = DialogProps & { side?: 'right' | 'left' };
 /** A panel that slides in from the side and fills the height of the window. */
 export function Drawer({ side = 'right', ...props }: DrawerProps) {
   return <Dialog data-kind="drawer" data-side={side} {...props} />;
+}
+
+export type ConfirmModalTone = 'danger' | 'warning' | 'info' | 'default';
+
+const CONFIRM_ICONS = { danger: IconWarning, warning: IconError, info: IconInfo, default: IconQuestion };
+
+export type ConfirmModalProps = Omit<DialogProps, 'headerContent' | 'media'> & {
+  /** danger: a serious, often irreversible step (red); warning: a sensitive step (amber); info: a
+   * notice (blue); default: a general question in the brand color. */
+  tone?: ConfirmModalTone;
+  /** Icon element in place of the tone's icon. */
+  icon?: ReactNode;
+};
+
+/** A small, centered question or notice ("Delete Project?") with a round tone icon above the title
+ * and its actions under the text. Give danger confirmations an error-tone main Button. No Figma drawing yet. */
+export function ConfirmModal({ tone = 'default', icon, ...props }: ConfirmModalProps) {
+  const ToneIcon = CONFIRM_ICONS[tone];
+  return <Dialog data-kind="modal" data-size="small" data-confirm={tone} media={icon ?? <ToneIcon />} {...props} />;
 }

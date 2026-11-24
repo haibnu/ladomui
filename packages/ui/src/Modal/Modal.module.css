@@ -207,3 +207,68 @@
     padding-block-start: var(--layout-tiny);
   }
 }
+
+/* ConfirmModal (no Figma drawing yet): the tone icon on a round soft badge above the title, as in
+   Empty State Large (64px badge, 32px icon); title, description, body and actions centered; the
+   close button stays in the top end corner. */
+.dialog[data-confirm] {
+  --_tone: var(--color-primary-foreground);
+  --_tone-soft: var(--color-primary-soft);
+}
+
+.dialog[data-confirm='danger'] {
+  --_tone: var(--color-error);
+  --_tone-soft: var(--color-error-soft);
+}
+
+.dialog[data-confirm='warning'] {
+  --_tone: var(--color-warning);
+  --_tone-soft: var(--color-warning-soft);
+}
+
+.dialog[data-confirm='info'] {
+  --_tone: var(--color-info);
+  --_tone-soft: var(--color-info-soft);
+}
+
+.dialog[data-confirm] .header {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layout-default);
+  text-align: center;
+}
+
+.dialog[data-confirm] .close {
+  position: absolute;
+  inset-block-start: var(--space-modal);
+  inset-inline-end: var(--space-modal);
+}
+
+.media {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: calc(2 * var(--space-xxlarge));
+  block-size: calc(2 * var(--space-xxlarge));
+  border-radius: var(--radius-full);
+  color: var(--_tone);
+  background: var(--_tone-soft);
+}
+
+.media > svg {
+  inline-size: var(--space-xxlarge);
+  block-size: var(--space-xxlarge);
+}
+
+.dialog[data-confirm] .text {
+  align-self: stretch;
+}
+
+.dialog[data-confirm] .bodyContent {
+  text-align: center;
+}
+
+.dialog[data-confirm] .footer {
+  justify-content: center;
+}
