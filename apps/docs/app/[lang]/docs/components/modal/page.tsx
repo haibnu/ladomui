@@ -5,6 +5,7 @@ import { ComponentToolbar, MappingTable, PropsTable, SpecTable } from '@/compone
 import { ForView, ViewProvider } from '@/components/docs/ViewSwitch';
 import { getDictionary, type Locale } from '@/i18n';
 import { ModalPlayground } from './ModalPlayground';
+import { PromptModalDemo } from './PromptModalDemo';
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -26,6 +27,17 @@ const COPY = {
       'Give the close button a translated closeLabel.',
     ],
     mapping: 'Figma to code',
+    prompt: {
+      title: 'Prompt Modal',
+      text: 'PromptModal is a small Modal for a question or a notice: a round tone icon above the title, the title, text and actions centered, and the close button in the top corner. It has no Figma drawing yet; the icon badge follows Empty State Large (64px badge, 32px icon).',
+      tones: [
+        ['danger', 'Serious, often irreversible steps such as deleting. Red warning icon; pair it with an error-tone main Button.'],
+        ['warning', 'Sensitive steps such as changing an owner or a permission. Amber icon.'],
+        ['info', 'Notices such as a new version. Blue info icon.'],
+        ['default', 'General questions such as leaving a page. A question mark in the brand color.'],
+      ] as [string, string][],
+      props: { tone: 'The tone: its icon and colors.', icon: 'An icon element in place of the tone’s icon.', rest: 'open, onClose, title, description, children, footer, dismissible and closeLabel work as on Modal; the size is always small.' },
+    },
     props: { open: 'Whether it is shown.', onClose: 'Called by the close button, Escape and the overlay.', size: 'Figma 👕 Size.', title: '.Modal Header Title.', description: '.Modal Header Description.', children: 'The body.', footer: 'Figma Footer: the actions.', dismissible: 'Escape and overlay presses close it.', headerContent: 'Between the title and the close button, e.g. a Stepper; the title then keeps one line and the description goes under them. Not in Figma.', closeLabel: 'Name of the close button.' },
   },
   tr: {
@@ -45,6 +57,17 @@ const COPY = {
       'Kapatma butonuna çevrilmiş bir closeLabel verin.',
     ],
     mapping: 'Figma’dan koda',
+    prompt: {
+      title: 'Prompt Modal',
+      text: 'PromptModal, bir soru ya da bildirim için küçük bir Modal: başlığın üstünde tonun yuvarlak ikonu; başlık, metin ve eylemler ortalı; kapatma butonu üst köşede. Henüz Figma çizimi yok; ikon zemini Empty State Large’ı izler (64px zemin, 32px ikon).',
+      tones: [
+        ['danger', 'Silme gibi ciddi, çoğu zaman geri alınamaz adımlar. Kırmızı uyarı ikonu; ana eylem için error tonunda bir Button kullanın.'],
+        ['warning', 'Sahip ya da yetki değiştirmek gibi hassas adımlar. Turuncu ikon.'],
+        ['info', 'Yeni sürüm gibi bildirimler. Mavi bilgi ikonu.'],
+        ['default', 'Sayfadan çıkmak gibi genel sorular. Marka renginde soru işareti.'],
+      ] as [string, string][],
+      props: { tone: 'Ton: ikonu ve renkleri.', icon: 'Tonun ikonu yerine bir ikon öğesi.', rest: 'open, onClose, title, description, children, footer, dismissible ve closeLabel Modal’daki gibi çalışır; boyut her zaman small.' },
+    },
     props: { open: 'Gösterilip gösterilmediği.', onClose: 'Kapatma butonu, Escape ve overlay çağırır.', size: 'Figma 👕 Size.', title: '.Modal Header Title.', description: '.Modal Header Description.', children: 'İçerik.', footer: 'Figma Footer: eylemler.', dismissible: 'Escape ve overlay onu kapatır.', headerContent: 'Başlık ile kapatma butonu arasında, örneğin bir Stepper; başlık o zaman tek satırda kalır, açıklama altlarına geçer. Figma’da yok.', closeLabel: 'Kapatma butonunun adı.' },
   },
 };
@@ -64,6 +87,48 @@ export default async function ModalPage({ params }: Props) {
 
         <h2 id="playground">{t.component.playground}</h2>
         <ModalPlayground />
+
+        <h2 id="prompt-modal">{c.prompt.title}</h2>
+        <p>{c.prompt.text}</p>
+        <PromptModalDemo />
+        <SpecTable head={['tone', '']} rows={c.prompt.tones.map(([tone, text]) => [<code key="t">{tone}</code>, text])} />
+        <ForView view="designer">
+          <SpecTable
+            head={['Part', 'Token']}
+            rows={[
+              ['Badge / Icon', 'calc(2 * --space-xxlarge) / --space-xxlarge'],
+              ['danger', '--color-error / --color-error-soft'],
+              ['warning', '--color-warning / --color-warning-soft'],
+              ['info', '--color-info / --color-info-soft'],
+              ['default', '--color-primary-foreground / --color-primary-soft'],
+            ].map((r) => r.map((cell, i) => (i ? <code key={i}>{cell}</code> : cell)))}
+          />
+        </ForView>
+        <ForView view="developer">
+          <CodeBlock
+            code={`<PromptModal
+  open={open}
+  onClose={() => setOpen(false)}
+  tone="danger"
+  title="Delete Project?"
+  description="The project and its files are removed for everyone. This cannot be undone."
+  footer={
+    <>
+      <Button variant="ghost" tone="tertiary" onClick={() => setOpen(false)}>Cancel</Button>
+      <Button tone="error" onClick={remove}>Delete</Button>
+    </>
+  }
+/>`}
+          />
+          <PropsTable
+            props={[
+              ['tone', "'danger' | 'warning' | 'info' | 'default'", "'default'"],
+              ['icon', 'ReactNode', '—'],
+              ['…', 'ModalProps', '—'],
+            ]}
+            descriptions={{ tone: c.prompt.props.tone, icon: c.prompt.props.icon, '…': c.prompt.props.rest }}
+          />
+        </ForView>
 
         <ForView view="designer">
           <h2 id="sizes">{c.sizes}</h2>

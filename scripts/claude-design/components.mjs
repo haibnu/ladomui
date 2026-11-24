@@ -427,6 +427,16 @@ return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Open modal'),
     'The report and its 12 charts will be removed for everyone.'));`,
   },
   {
+    name: 'PromptModal', group: 'Overlays', height: 380,
+    summary: 'A small, centered Modal for a question or a notice: a round tone icon above the title, the text and the actions centered, the close button in the top corner.',
+    use: ['Pick the tone by weight: `danger` (red warning icon) for serious, often irreversible steps such as Delete; `warning` (amber) for sensitive ones; `info` (blue) for notices; `default` (brand color, question icon) for general questions.', 'Match the main Button to the tone (`error` for danger) and put it last, after a ghost cancel button.', 'Use Modal for forms and longer content.'],
+    provides: '`open`, `onClose`, `title`, `tone` (danger, warning, info, default), optionally `description`, `children`, `footer`, `icon`, `closeLabel`, `dismissible`.',
+    code: `const [open, setOpen] = React.useState(true);
+return h('div', null, h(Button, { onClick: () => setOpen(true) }, 'Delete Project'),
+  h(PromptModal, { open, onClose: () => setOpen(false), tone: 'danger', title: 'Delete Project?', description: 'The project and its files are removed for everyone. This cannot be undone.',
+    footer: [h(Button, { key: 'c', variant: 'ghost', tone: 'tertiary', onClick: () => setOpen(false) }, 'Cancel'), h(Button, { key: 'd', tone: 'error', onClick: () => setOpen(false) }, 'Delete')] }));`,
+  },
+  {
     name: 'Drawer', group: 'Overlays', height: 360,
     summary: 'A panel that slides in from the right or left edge and fills the height of the window, for details and longer forms beside the page.',
     use: ['Same props as Modal; `side` picks the edge.', 'Use it when people need the page behind for context; use Modal for a short decision.'],

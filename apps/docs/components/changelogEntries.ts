@@ -166,7 +166,15 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   'item-selector': [ROLES, first()],
   label: [first()],
   loader: [ROLES, first()],
-  modal: DIALOG,
+  modal: [
+    {
+      date: '2026-11-24',
+      pr: 64,
+      en: 'PromptModal: a small, centered Modal for questions and notices, with a round tone icon above the title in four tones (danger, warning, info, default).',
+      tr: 'PromptModal: sorular ve bildirimler için küçük, ortalı bir Modal; başlığın üstünde dört tonda (danger, warning, info, default) yuvarlak bir ikon.',
+    },
+    ...DIALOG,
+  ],
   'bottom-nav': [{ ...first('2026-11-14'), en: 'First release: a bar of links at the bottom of the screen for mobile web apps. Toasts open above it.', tr: 'İlk sürüm: mobil web uygulamaları için ekranın altında bir bağlantı barı. Toast’lar onun üstünde açılır.' }],
   'nav-menu': [
     SCROLL({ en: 'SidebarNav body', tr: 'SidebarNav gövdesi' }),
