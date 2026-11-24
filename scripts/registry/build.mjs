@@ -37,6 +37,16 @@ if (!dirsIn(proSrc).length) console.warn('registry: packages/ui/src/pro is not c
 const nameOf = Object.fromEntries(folders.map((f) => [f, Object.entries(config.items).find(([, v]) => v.folder === f)?.[0] ?? kebab(f)]));
 
 // Read every folder: its files, the folders it imports and the icons it uses.
+// The public modules of each folder: the ones packages/ui/src/index.ts or the Pro index export
+// from. The CLI's generated index re-exports only these, so a folder's internals (Agenda/layout,
+// Agenda/types…) never clash with another component's names.
+const entriesOf = {};
+for (const index of [join(uiSrc, 'index.ts'), join(proSrc, 'index.ts')].filter(existsSync))
+  for (const m of readFileSync(index, 'utf8').matchAll(/from '\.\/([A-Za-z]+)\/([A-Za-z]+)'/g)) {
+    const list = (entriesOf[m[1]] ??= []);
+    if (!list.includes(`${m[1]}/${m[2]}`)) list.push(`${m[1]}/${m[2]}`);
+  }
+
 const units = {};
 for (const folder of folders) {
   const deps = new Set();
@@ -89,6 +99,7 @@ for (const folder of folders) {
     description: listed?.description ?? `Internal part (${folder}) used by other components.`,
     dependencies: ['tokens', ...u.deps.map((d) => nameOf[d])],
     icons: u.icons,
+    exports: entriesOf[folder] ?? [],
     files: u.files.map((f) => ({ path: f.path, content: withHeader(f.path, f.content, tierOf[folder]) })),
   };
 }
