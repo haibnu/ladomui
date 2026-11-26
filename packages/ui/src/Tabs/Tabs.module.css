@@ -1,9 +1,18 @@
 /* Tab, from Figma Components / Tab (99:14457) and Tab Item (99:14488). Every item is 40px tall;
    the inner part carries the hover and active look. */
 
+/* The row scrolls sideways when the tabs do not fit (thin ScrollArea scrollbar); the active tab
+   is scrolled into view. The row is at least as wide as its box, so Border Bottom spans it. */
+.scroller {
+  max-inline-size: 100%;
+}
+
 .tabs {
   position: relative;
   display: flex;
+  inline-size: max-content;
+  min-inline-size: 100%;
+  box-sizing: border-box;
 }
 
 .tabs[data-align='center'] {
@@ -125,4 +134,9 @@
 
 .panel:focus-visible {
   box-shadow: var(--shadow-focus-primary);
+}
+
+/* Tabs in tabs: the inner row sits under the outer one, its panel under both. */
+.sub {
+  padding-block-start: var(--space-small);
 }

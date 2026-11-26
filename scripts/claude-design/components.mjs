@@ -243,8 +243,8 @@ return h('div', { style: { display: 'grid', gap: 12 } },
   {
     name: 'Tabs', group: 'Navigation', height: 150,
     summary: 'Switches between views of the same page: Primary underlined tabs, Secondary pills or Button tabs, with badges and panels.',
-    use: ['Follows the WAI-ARIA tabs pattern; name the list with `aria-label`.', 'Give items `content` to render the active panel.'],
-    provides: '`items` (`{ value, label, badge?, badgeTone?, info?, disabled?, content? }`; `badgeTone` is a Badge tone, primary by default), `variant`, `align`, `border`.',
+    use: ['Follows the WAI-ARIA tabs pattern; name the list with `aria-label`.', 'Give items `content` to render the active panel.', 'Tabs in tabs: give an item its own `items`; a second row opens under it while it is active. Keep it to two rows.'],
+    provides: '`items` (`{ value, label, badge?, badgeTone?, info?, disabled?, content?, items? }`; `badgeTone` is a Badge tone, primary by default; `items` are inner tabs), `variant`, `subVariant` (inner row, one step quieter by default), `align`, `border`. `value`/`onChange` carry the inner tab.',
     code: `const items = [{ value: 'a', label: 'Overview' }, { value: 'b', label: 'Activity', badge: 3 }, { value: 'r', label: 'Review', badge: 9, badgeTone: 'warning' }, { value: 'c', label: 'Archive', disabled: true }];
 return h('div', { style: { display: 'grid', gap: 12 } },
   h(Tabs, { 'aria-label': 'Primary', items, border: true }), h(Tabs, { 'aria-label': 'Secondary', items, variant: 'secondary' }));`,
