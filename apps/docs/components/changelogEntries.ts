@@ -215,6 +215,18 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
   switch: [first()],
   tab: [
     {
+      date: '2026-11-26',
+      pr: 66,
+      en: 'Tabs in tabs: give a tab its own items and a second row of tabs opens under it while it is active (subVariant sets its type). Each parent tab remembers its inner tab.',
+      tr: 'Sekme içinde sekme: bir sekmeye kendi items’ını verince, o sekme aktifken altında ikinci bir sekme satırı açılıyor (tipini subVariant belirliyor). Her üst sekme iç sekmesini hatırlıyor.',
+    },
+    {
+      date: '2026-11-24',
+      pr: 66,
+      en: 'When the tabs do not fit, the row scrolls sideways with a thin scrollbar and the active tab is always scrolled into view.',
+      tr: 'Sekmeler sığmadığında satır ince bir kaydırma çubuğuyla yana kayıyor ve aktif sekme her zaman görünür alana kaydırılıyor.',
+    },
+    {
       date: '2026-11-10',
       pr: 7,
       en: 'Items take badgeTone for the color of their badge.',
