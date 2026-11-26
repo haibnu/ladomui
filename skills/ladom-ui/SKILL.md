@@ -43,7 +43,7 @@ Import components and icons from `@/components/ladom` (the folder in `ladom-ui.j
 ## Components
 | Need | Component |
 |---|---|
-| Actions | `Button` (variant solid/ghost, tone, size, icon, iconLeft/Right, loading) |
+| Actions | `Button` (variant solid/ghost, tone, size, icon, iconLeft/Right, loading; a text button is at least twice as wide as it is tall, so do not pad short labels like OK by hand) |
 | Form fields | `FormField` (label, hint, error) + `Input` (size large/medium/small; `floatingLabel` puts the label inside, large only), `Textarea` (showCount, maxLength), `NumberInput` (value, min, max, step), `CurrencyInput` (value, currency, currencies, locale, currencySelect), `GsmInput` (E.164 value, country, countries (every country by default), countrySelect; pasted +90/0 are dropped), `ColorInput` ("#rrggbb" value, presets; `normalizeHex` parses 3/6-digit codes), `OtpInput` (length, groups, mask, onComplete; one box per character, paste/SMS autofill fill all), `Selectbox` (searchable: typing in the box filters; `floatingLabel` on large, as on Input; the list opens above when there is no room below), `Checkbox`, `Radio` in `ChoiceGroup`, `Switch`, `Segment`, `ItemSelector`, `Uploader`, `DatePicker`/`Calendar`, `TimePicker` |
 | Labels and status | `Label`, `Hint`, `Badge`, `Chip` (in a `Table` cell: `size="small"`; medium or tiny only when the table needs it, never micro), `Avatar`/`AvatarGroup`, `Loader`, `Stepper` |
 | Lists and menus | `Dropdown` with `Cell`, `CellHelper`, `CellSearch`, `CellActions` |

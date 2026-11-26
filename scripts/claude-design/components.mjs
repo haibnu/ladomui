@@ -5,7 +5,7 @@ export const COMPONENTS = [
   {
     name: 'Button', group: 'Actions', height: 168,
     summary: 'Triggers an action: solid or ghost, seven tones, four sizes, with icons, a subtitle, a dropdown arrow or a loader.',
-    use: ['Use `tone="primary"` for the one main action of a view, `secondary` and `tertiary` for the rest; `error` only for destructive actions.', 'Icon-only buttons (`icon={Icons.IconAdd}`) need an `aria-label`.', '`loading` keeps the size and blocks clicks while work runs.'],
+    use: ['Use `tone="primary"` for the one main action of a view, `secondary` and `tertiary` for the rest; `error` only for destructive actions.', 'Icon-only buttons (`icon={Icons.IconAdd}`) need an `aria-label`.', '`loading` keeps the size and blocks clicks while work runs.', 'A text button is at least twice as wide as it is tall, so short labels (OK, Delete) need no extra padding or width.'],
     provides: '`children` (the label), `onClick` or `type="submit"`, `size` (large, medium, small, tiny); icons as components (`iconLeft={IconAdd}`).',
     code: `const row = (variant) => h('div', { style: { display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' } },
   ['primary', 'secondary', 'tertiary', 'success', 'error', 'warning'].map((tone) => h(Button, { key: tone, variant, tone }, tone)));
