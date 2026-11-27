@@ -57,3 +57,25 @@
   background: none;
   cursor: not-allowed;
 }
+
+/* Inside a DatePicker panel: no panel, shadow or column lines of its own; the columns fill the
+   height they are given. */
+.picker[data-embedded] {
+  display: flex;
+  block-size: 100%;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.picker[data-embedded] .column {
+  max-block-size: none;
+  border: none;
+}
+
+/* Beside a DatePicker month the chosen time takes the chosen day's colors. */
+.picker[data-embedded] .item[aria-selected='true'] {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+}
