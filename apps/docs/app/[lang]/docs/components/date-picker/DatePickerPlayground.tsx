@@ -11,8 +11,8 @@ import { ThemeRow } from '@/components/customize/ThemeRow';
 
 type Type = 'basic' | 'default' | 'full';
 const COPY = {
-  en: { type: 'Type', range: 'Range', events: 'Events', weekStart: 'Week starts on Monday', figma: 'Figma variant', code: 'Code', chosen: 'Chosen', none: 'nothing yet', presets: ['Today', 'Yesterday', 'Last 7 days', 'Last 30 days', 'This month', 'Last month'] },
-  tr: { type: 'Tip', range: 'Aralık', events: 'Etkinlikler', weekStart: 'Hafta pazartesi başlar', figma: 'Figma varyantı', code: 'Kod', chosen: 'Seçilen', none: 'henüz yok', presets: ['Bugün', 'Dün', 'Son 7 gün', 'Son 30 gün', 'Bu ay', 'Geçen ay'] },
+  en: { type: 'Type', range: 'Range', events: 'Events', weekStart: 'Week starts on Monday', time: 'Time', timeLabels: { title: 'Time', hours: 'Hours', minutes: 'Minutes' }, figma: 'Figma variant', code: 'Code', chosen: 'Chosen', none: 'nothing yet', presets: ['Today', 'Yesterday', 'Last 7 days', 'Last 30 days', 'This month', 'Last month'] },
+  tr: { type: 'Tip', range: 'Aralık', events: 'Etkinlikler', weekStart: 'Hafta pazartesi başlar', time: 'Saat', timeLabels: { title: 'Saat', hours: 'Saat', minutes: 'Dakika' }, figma: 'Figma varyantı', code: 'Kod', chosen: 'Seçilen', none: 'henüz yok', presets: ['Bugün', 'Dün', 'Son 7 gün', 'Son 30 gün', 'Bu ay', 'Geçen ay'] },
 };
 
 const at = (offset: number) => {
@@ -28,6 +28,7 @@ export function DatePickerPlayground() {
   const [range, setRange] = useState(false);
   const [events, setEvents] = useState(true);
   const [monday, setMonday] = useState(true);
+  const [time, setTime] = useState(false);
   const [single, setSingle] = useState<Date | null>(at(0));
   const [span, setSpan] = useState<DateRange>({ start: at(-3), end: at(3) });
   const eventDays = useMemo(() => [at(2), at(5), at(9)], []);
@@ -42,11 +43,12 @@ export function DatePickerPlayground() {
     { label: c.presets[5], range: { start: new Date(now.getFullYear(), now.getMonth() - 1, 1), end: new Date(now.getFullYear(), now.getMonth(), 0) } },
   ];
   const isRange = range || type === 'full';
-  const shared = { locale: lang === 'tr' ? 'tr-TR' : 'en-GB', weekStartsOn: (monday ? 1 : 0) as 0 | 1, events: events ? eventDays : undefined, previousLabel: lang === 'tr' ? 'Önceki ay' : 'Previous month', nextLabel: lang === 'tr' ? 'Sonraki ay' : 'Next month' };
+  const withTime = time && type === 'default' && !isRange;
+  const shared = { locale: lang === 'tr' ? 'tr-TR' : 'en-GB', weekStartsOn: (monday ? 1 : 0) as 0 | 1, events: events ? eventDays : undefined, previousLabel: lang === 'tr' ? 'Önceki ay' : 'Previous month', monthLabel: lang === 'tr' ? 'Ay' : 'Month', yearLabel: lang === 'tr' ? 'Yıl' : 'Year', nextLabel: lang === 'tr' ? 'Sonraki ay' : 'Next month' };
   const valueProps = isRange ? ({ mode: 'range', value: span, onChange: setSpan } as const) : ({ value: single, onChange: setSingle } as const);
   const picker =
-    type === 'basic' ? <Calendar {...shared} {...valueProps} /> : type === 'full' ? <DatePicker {...shared} mode="range" value={span} onChange={setSpan} months={2} presets={presets} /> : <DatePicker {...shared} {...valueProps} />;
-  const fmt = new Intl.DateTimeFormat(shared.locale, { dateStyle: 'medium' });
+    type === 'basic' ? <Calendar {...shared} {...valueProps} /> : type === 'full' ? <DatePicker {...shared} mode="range" value={span} onChange={setSpan} months={2} presets={presets} /> : <DatePicker {...shared} {...valueProps} time={withTime && { label: c.timeLabels.title, step: 5, labels: { hours: c.timeLabels.hours, minutes: c.timeLabels.minutes } }} />;
+  const fmt = new Intl.DateTimeFormat(shared.locale, withTime ? { dateStyle: 'medium', timeStyle: 'short' } : { dateStyle: 'medium' });
   const chosen = isRange ? [span.start, span.end].map((d) => (d ? fmt.format(d) : '…')).join(' – ') : single ? fmt.format(single) : c.none;
 
   const tag = type === 'basic' ? 'Calendar' : 'DatePicker';
@@ -58,6 +60,7 @@ export function DatePickerPlayground() {
     type === 'full' && 'presets={presets}',
     events && 'events={eventDays}',
     !monday && 'weekStartsOn={0}',
+    withTime && `time={{ label: '${c.timeLabels.title}', step: 5 }}`,
   ].filter(Boolean);
   const code = `import { ${tag} } from '@ladom/ui';\n\n<${tag}${props.map((p) => `\n  ${p}`).join('')}\n/>`;
   const figma = `Date Picker\n🎛 Type=${{ basic: 'Basic', default: 'Default', full: 'Full Control' }[type]}\n\nDate Day\nType=${isRange ? 'Recurring Start / Recurring / Recurring End' : 'Day'}${events ? ', Event' : ''}`;
@@ -85,6 +88,7 @@ export function DatePickerPlayground() {
         <ControlCheck label={c.range} checked={isRange} disabled={type === 'full'} onChange={setRange} />
         <ControlCheck label={c.events} checked={events} onChange={setEvents} />
         <ControlCheck label={c.weekStart} checked={monday} onChange={setMonday} />
+        <ControlCheck label={c.time} checked={withTime} disabled={type !== 'default' || isRange} onChange={setTime} />
       </div>
       <div className={styles.output}>
         <p className={styles.outputTitle}>{view === 'designer' ? c.figma : c.code}</p>
