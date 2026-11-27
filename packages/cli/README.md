@@ -30,6 +30,11 @@ Then import `@/components/ladom/theme.css` once, load your font as `--font-brand
 (init prints the next/font lines; with the default font, `--font-hanken-grotesk`), and import
 components from `@/components/ladom`.
 
+`components/ladom/index.ts` is generated: it re-exports the public modules of each installed
+component (the ones the registry lists, e.g. `Agenda/Agenda`), not its internal files, so names
+such as Agenda's internal `Segment` type never clash with the `Segment` component. Since 0.3.4;
+`update` rewrites an older index the same way.
+
 ## Pro components
 
 Pro components need a license key. Pass it in `LADOM_UI_KEY`:
