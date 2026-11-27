@@ -34,7 +34,7 @@ Ladom UI is the design system of Ladom products: quiet neutral surfaces, one bra
 - Page side padding is `space-container`. Device modes: Mobile below 768px, Tablet below 1280px, Desktop above; `data-device` forces one.
 
 ### Shape and depth
-- Radius: `radius-form-element` (12) for inputs, buttons and cells; `radius-form-element-small` (8) for small controls; `radius-card` (16) for cards and toasts; `radius-layout-base` (16) for dropdowns and pickers; `radius-full` for pills, chips, badges, avatars and icon buttons.
+- Radius: `radius-form-element` (12) for inputs, buttons and cells; `radius-form-element-small` (8) for small controls; `radius-card` (16) for cards and toasts; `radius-layout-base` (16) for dropdowns and pickers; `radius-full` for pills, chips, badges, avatars and icon buttons. Buttons take their corners from the role `radius-button` (`-small` for small and tiny) and form fields (Input, Selectbox, Segment, OtpInput…) from `radius-form` (`-small`); both equal `radius-form-element` unless a theme sets them, e.g. pill buttons with square fields.
 - Lines are 1px in `color-surface-level-4`, drawn inside the element (as an inset shadow), so sizes stay on the grid.
 - Elevation: `shadow-card-style-1` for resting cards and selects, `shadow-card-hover` for raised cards, `shadow-form-level-1` for floating panels (dropdowns, popovers, toasts), `shadow-depth-*` for general depth.
 - Focus is a 3px ring: `shadow-focus-primary` (and `shadow-focus-error` on fields in error). Every interactive component shows it on keyboard focus.

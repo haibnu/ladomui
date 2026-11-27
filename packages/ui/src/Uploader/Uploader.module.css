@@ -8,7 +8,7 @@
   gap: calc(var(--space-tiny) + var(--space-atom));
   box-sizing: border-box;
   padding: var(--layout-micro);
-  border-radius: var(--radius-form-element-small);
+  border-radius: var(--radius-form-small);
   background: var(--_bg);
   box-shadow: inset 0 0 0 var(--border-width) var(--_line);
   --_bg: var(--color-surface-level-1);
@@ -43,7 +43,7 @@
   box-sizing: border-box;
   border: var(--border-width) dashed var(--_dash);
   min-block-size: var(--space-xxlarge);
-  border-radius: calc(var(--radius-form-element-small) - var(--space-atom));
+  border-radius: calc(var(--radius-form-small) - var(--space-atom));
   cursor: pointer;
 }
 

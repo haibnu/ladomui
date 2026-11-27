@@ -42,6 +42,7 @@ function sectionOf(group: Group, row: Row, t: Dictionary): string {
   if (group.id === 'typography') return `${t.foundations.textStyles}: ${source.split('/')[0]}`;
   if (group.id === 'shadow') return source.split('/')[0] ?? 'Effects';
   if (group.id === 'grid') return `${source}`;
+  if (group.id === 'radius') return t.foundations.radiusRoles;
   return t.groups[group.id]?.title ?? group.title;
 }
 
@@ -115,6 +116,7 @@ export default async function FoundationPage({ params }: Props) {
           <h2 id={slug(section)} className={styles.sectionTitle}>
             {section} <span className={styles.count}>{list.length}</span>
           </h2>
+          {group.id === 'radius' && section === t.foundations.radiusRoles && <p className={styles.sectionNote}>{t.foundations.radiusRolesNote}</p>}
           <table className={styles.table}>
             <thead>
               <tr>
