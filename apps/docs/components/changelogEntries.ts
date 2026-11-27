@@ -119,7 +119,34 @@ export const CHANGELOG: Record<string, ChangelogEntry[]> = {
     },
     { ...first('2026-11-10'), pr: 8 },
   ],
-  'date-picker': [ROLES, first()],
+  'date-picker': [
+    {
+      date: '2026-11-27',
+      pr: 67,
+      en: 'The month and the year in the title are pickers: link-like buttons that open a list on desktop and a grid of months or years inside the calendar on phones. Double-click the year to type it.',
+      tr: 'Başlıktaki ay ve yıl artık seçici: masaüstünde liste, telefonda takvimin içinde ay ya da yıl ızgarası açan link benzeri butonlar. Yıla çift tıklayınca elle yazılabiliyor.',
+    },
+    {
+      date: '2026-11-27',
+      pr: 67,
+      en: 'More compact: day cells and the month header are 40px instead of 48px, with or without events.',
+      tr: 'Daha sıkı: gün hücreleri ve ay başlığı, etkinlik olsun olmasın 48px yerine 40px.',
+    },
+    {
+      date: '2026-11-27',
+      pr: 67,
+      en: 'Date and time in one panel: time shows hour and minute columns beside the month, the value carries the time, and min and max hold for the time as well.',
+      tr: 'Tarih ve saat tek panelde: time, ayın yanında saat ve dakika sütunları gösteriyor, value saati de taşıyor ve min ile max saate de uygulanıyor.',
+    },
+    {
+      date: '2026-11-27',
+      pr: 67,
+      en: 'Days that cannot be chosen (other months, outside min and max, isDateDisabled) are low emphasis, so they look fainter than the days you can pick.',
+      tr: 'Seçilemeyen günler (diğer aylar, min ve max dışı, isDateDisabled) low-emphasis; seçilebilen günlerden daha soluk görünüyorlar.',
+    },
+    ROLES,
+    first(),
+  ],
   drawer: DIALOG,
   dropdown: [OPEN_MOTION({ en: 'panel', tr: 'Panel' }), SCROLL({ en: 'panel', tr: 'Panel' }), first()],
   'empty-state': [

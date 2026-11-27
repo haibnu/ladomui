@@ -1,5 +1,5 @@
-/* Date Picker, from Figma Components / Date Picker (2037:6346): 48px day cells with a 32px
-   circle, a 48px month header, in a 16px padded panel with the Depth 2XL shadow. */
+/* Date Picker, from Figma Components / Date Picker (2037:6346): day cells with a 32px circle
+   (40px cells, Figma 48px), a month header as tall, in a 16px padded panel with the Depth 2XL shadow. */
 
 .picker {
   display: inline-flex;
@@ -28,7 +28,9 @@
 .month {
   display: flex;
   flex-direction: column;
-  --_cell: calc(var(--space-xxlarge) + var(--space-medium));
+  /* Not Figma: the cells are 40px instead of 48px for a more compact month; the 32px circle and
+     the event dot still fit. */
+  --_cell: calc(var(--space-xxlarge) + var(--space-tiny));
   --_circle: var(--space-xxlarge);
 }
 
@@ -42,8 +44,117 @@
 }
 
 .title {
+  display: inline-flex;
+  align-items: center;
   font: var(--text-ui-text-small-regular);
   color: var(--color-foreground-level-1);
+  white-space: pre;
+}
+
+/* Not Figma (Date Month Type=Hover has no picker behind it): the month and the year are link-like
+   buttons, surface/level-2 on hover. On desktop each opens the Selectbox list (InlinePicker); on
+   phones they turn the month into a grid of months or years. Double-click the year to type it. */
+.titlePicker {
+  position: relative;
+  display: inline-flex;
+}
+
+/* While open, the list sits above the day cells (there is no z-index token yet, as in Selectbox). */
+.titlePicker:has([aria-expanded='true']) {
+  z-index: 1;
+}
+
+.titlePicker button[role='combobox'],
+.titleButton {
+  margin: 0;
+  padding: var(--space-micro) var(--space-tiny);
+  border: none;
+  border-radius: var(--radius-form-element-small);
+  font: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  transition: background-color var(--motion-fade-default);
+}
+
+.titlePicker button[role='combobox'] > svg {
+  display: none;
+}
+
+.titlePicker button[role='combobox']:hover,
+.titlePicker button[role='combobox'][aria-expanded='true'],
+.titleButton:hover,
+.titleButton[aria-expanded='true'] {
+  background: var(--color-surface-level-2);
+}
+
+.titleButton:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+/* The year typed by hand: as wide as four digits, in the title's place. */
+.yearInput {
+  box-sizing: content-box;
+  inline-size: 4ch;
+  margin: 0;
+  padding: var(--space-micro) var(--space-tiny);
+  border: none;
+  border-radius: var(--radius-form-element-small);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+  text-align: center;
+  background: var(--color-surface-level-2);
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+/* Phones: the months or the years of the picked page, three to a row, as tall as the weeks. */
+.choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: space-evenly;
+  gap: var(--space-tiny);
+}
+
+.choice {
+  block-size: var(--_circle);
+  margin: 0;
+  padding: 0 var(--space-tiny);
+  border: none;
+  border-radius: var(--radius-full);
+  font: var(--text-ui-text-small-regular);
+  color: var(--color-foreground-level-1);
+  background: none;
+  cursor: pointer;
+}
+
+.choice[data-today] {
+  color: var(--color-primary-foreground);
+  box-shadow: inset 0 0 0 var(--border-width) var(--color-primary-line);
+}
+
+.choice:not(:disabled, [data-selected]):hover {
+  color: var(--color-on-secondary);
+  background: var(--color-secondary);
+  box-shadow: none;
+}
+
+.choice[data-selected] {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  box-shadow: none;
+}
+
+.choice:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+.choice:disabled {
+  color: var(--color-foreground-low-emphasis);
+  cursor: default;
 }
 
 .previous,
@@ -170,11 +281,28 @@
   --_ring: var(--shadow-focus-primary);
 }
 
+/* Not Figma: Date Day Disabled is medium emphasis there; code uses low emphasis so days that
+   cannot be picked (other months, min / max, isDateDisabled) stand apart from the ones that can. */
 .day:disabled {
-  --_fg: var(--color-foreground-medium-emphasis);
+  --_fg: var(--color-foreground-low-emphasis);
   cursor: default;
 }
 
 .day:disabled[data-selected] {
   --_circle-bg: var(--color-surface-level-3);
+}
+
+/* Time beside the month, on surface/level-2: a Time title in the month header's place, then the TimePicker columns,
+   which fill the height of the month grid and scroll inside it. */
+.time {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-level-2);
+  --_cell: calc(var(--space-xxlarge) + var(--space-tiny));
+}
+
+.timeBody {
+  flex: 1 1 0;
+  min-block-size: 0;
+  overflow: hidden;
 }

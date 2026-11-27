@@ -4,12 +4,18 @@ import { useEffect, useMemo, useRef, useState, type HTMLAttributes, type Keyboar
 import { IconArrowLeft, IconArrowRight } from '@ladom/icons';
 import { Button } from '../Button/Button';
 import { Cell } from '../Cell/Cell';
+import { InlinePicker } from '../Picker/InlinePicker';
+import { TimePicker, type TimePickerProps, type TimeValue } from '../TimePicker/TimePicker';
 import styles from './DatePicker.module.css';
 
 // Figma: Components / Date Picker (node 2037:6346) with Date Month (1314:2115), Date Day
 // (1313:304) and Date Filter (1314:2169). DatePicker is 🎛 Type=Default (one month in a panel);
 // with mode="range" and months={2} and presets it is Type=Full Control. Calendar is the bare
-// Type=Basic month. Day types: today ring, selected circle, event dot, range band.
+// Type=Basic month. Day types: today ring, selected circle, event dot, range band. The day cells
+// are 40px instead of Figma's 48px, for a more compact month.
+// Not in Figma as one part: with time, a single DatePicker shows the TimePicker columns beside
+// the month in the same panel, under a Time title that lines up with the month title; the value
+// then carries the time.
 export type DateRange = { start: Date | null; end: Date | null };
 
 export type DatePreset = { label: ReactNode; range: DateRange };
@@ -30,6 +36,9 @@ type CommonProps = {
   defaultMonth?: Date;
   previousLabel?: string;
   nextLabel?: string;
+  /** Accessible names of the month and year pickers in the header. */
+  monthLabel?: string;
+  yearLabel?: string;
 };
 
 type SingleProps = { mode?: 'single'; value?: Date | null; defaultValue?: Date | null; onChange?: (date: Date) => void };
@@ -42,6 +51,13 @@ export type DatePickerProps = CalendarProps & {
   months?: 1 | 2;
   /** Quick ranges listed beside the months (Figma Date Filter). */
   presets?: DatePreset[];
+  /** Single mode: shows hour and minute columns beside the month; the value then carries the time. */
+  time?: boolean | DatePickerTime;
+};
+
+export type DatePickerTime = Pick<TimePickerProps, 'showSeconds' | 'step' | 'isDisabled' | 'labels'> & {
+  /** Title over the columns, in line with the month title. */
+  label?: string;
 };
 
 const day = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -75,14 +91,57 @@ type MonthProps = CommonProps & {
   showNext: boolean;
   onPrevious: () => void;
   onNext: () => void;
+  /** Shows another month, picked in the header. */
+  onGo: (month: Date) => void;
   autoFocus: boolean;
 };
 
-function Month({ month, selected, isRange, focus, onFocus, onPick, showPrevious, showNext, onPrevious, onNext, min, max, isDateDisabled, events = [], weekStartsOn = 1, locale, previousLabel = 'Previous month', nextLabel = 'Next month', autoFocus }: MonthProps) {
+type View = 'days' | 'months' | 'years';
+
+// Phones (the Mobile breakpoint, or data-device="mobile"): the header pickers turn the month into
+// a grid of months or years instead of opening a list.
+function useMobile() {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia('(width < 768px)');
+    const update = () => setMobile(document.documentElement.dataset.device ? document.documentElement.dataset.device === 'mobile' : query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+  return mobile;
+}
+
+function Month({ month, selected, isRange, focus, onFocus, onPick, showPrevious, showNext, onPrevious, onNext, onGo, min, max, isDateDisabled, events = [], weekStartsOn = 1, locale, previousLabel = 'Previous month', nextLabel = 'Next month', monthLabel = 'Month', yearLabel = 'Year', autoFocus }: MonthProps) {
   const grid = useRef<HTMLDivElement>(null);
+  const mobile = useMobile();
+  const [view, setView] = useState<View>('days');
+  const [editing, setEditing] = useState(false);
+  const year = month.getFullYear();
+  const [page, setPage] = useState(year - 7);
+  const monthNames = useMemo(() => {
+    const f = new Intl.DateTimeFormat(locale, { month: 'long' });
+    return Array.from({ length: 12 }, (_, m) => f.format(new Date(2000, m, 1)));
+  }, [locale]);
+  // Years in the list: from min (or 100 years back) to max (or 20 years on).
+  const firstYear = min ? min.getFullYear() : Math.min(year, new Date().getFullYear()) - 100;
+  const lastYear = max ? max.getFullYear() : Math.max(year, new Date().getFullYear()) + 20;
+  const monthOff = (y: number, m: number) => (!!min && new Date(y, m + 1, 0) < day(min)) || (!!max && new Date(y, m, 1) > day(max));
+  const go = (y: number, m: number) => {
+    onGo(new Date(y, m, 1));
+    setView('days');
+  };
+  const typeYear = (text: string) => {
+    setEditing(false);
+    const y = Number(text);
+    if (Number.isInteger(y) && y >= 1000 && y <= 9999) go(Math.min(Math.max(y, firstYear), lastYear), month.getMonth());
+  };
   const today = day(new Date());
   const eventKeys = useMemo(() => new Set(events.map((e) => key(e))), [events]);
-  const title = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(month);
+  const titleFormat = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' });
+  const title = titleFormat.format(month);
+  // The title in the locale's order; its month and year parts are pickers.
+  const parts = titleFormat.formatToParts(month);
   const label = new Intl.DateTimeFormat(locale, { dateStyle: 'full' });
   const { start, end } = selected;
   const blocked = (d: Date) => (min && d < day(min)) || (max && d > day(max)) || isDateDisabled?.(d) || false;
@@ -113,13 +172,135 @@ function Month({ month, selected, isRange, focus, onFocus, onPick, showPrevious,
     <div className={styles.month}>
       <div className={styles.header}>
         {showPrevious && (
-          <Button variant="ghost" tone="tertiary" size="small" icon={IconArrowLeft} aria-label={previousLabel} className={styles.previous} onClick={onPrevious} />
+          <Button
+            variant="ghost"
+            tone="tertiary"
+            size="small"
+            icon={IconArrowLeft}
+            aria-label={previousLabel}
+            className={styles.previous}
+            onClick={() => (view === 'days' ? onPrevious() : view === 'months' ? onGo(new Date(year - 1, month.getMonth(), 1)) : setPage((p) => p - 12))}
+          />
         )}
         <span className={styles.title} aria-live="polite">
-          {title}
+          {parts.map((part, i) =>
+            part.type === 'month' ? (
+              mobile ? (
+                <button key={i} type="button" className={styles.titleButton} aria-label={`${monthLabel}: ${part.value}`} aria-expanded={view === 'months'} onClick={() => setView((v) => (v === 'months' ? 'days' : 'months'))}>
+                  {part.value}
+                </button>
+              ) : (
+                <InlinePicker
+                  key={i}
+                  className={styles.titlePicker}
+                  size="small"
+                  align="start"
+                  label={monthLabel}
+                  value={String(month.getMonth())}
+                  options={monthNames.map((name, m) => ({ value: String(m), trigger: part.value, title: name, search: name }))}
+                  onPick={(v) => go(year, Number(v))}
+                  onDone={() => {}}
+                />
+              )
+            ) : part.type === 'year' ? (
+              editing ? (
+                <input
+                  key={i}
+                  className={styles.yearInput}
+                  aria-label={yearLabel}
+                  inputMode="numeric"
+                  maxLength={4}
+                  defaultValue={year}
+                  autoFocus
+                  onFocus={(e) => e.currentTarget.select()}
+                  onBlur={(e) => typeYear(e.currentTarget.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') typeYear(e.currentTarget.value);
+                    else if (e.key === 'Escape') {
+                      e.stopPropagation();
+                      setEditing(false);
+                    }
+                  }}
+                />
+              ) : mobile ? (
+                <button
+                  key={i}
+                  type="button"
+                  className={styles.titleButton}
+                  aria-label={`${yearLabel}: ${part.value}`}
+                  aria-expanded={view === 'years'}
+                  onClick={() => {
+                    setPage(year - 7);
+                    setView((v) => (v === 'years' ? 'days' : 'years'));
+                  }}
+                  onDoubleClick={() => {
+                    setView('days');
+                    setEditing(true);
+                  }}
+                >
+                  {part.value}
+                </button>
+              ) : (
+                <span key={i} className={styles.titlePicker} onDoubleClick={() => setEditing(true)}>
+                  <InlinePicker
+                    size="small"
+                    align="start"
+                    label={yearLabel}
+                    value={String(year)}
+                    options={Array.from({ length: lastYear - firstYear + 1 }, (_, k) => String(firstYear + k)).map((y) => ({ value: y, trigger: part.value, title: y, search: y }))}
+                    onPick={(v) => go(Number(v), month.getMonth())}
+                    onDone={() => {}}
+                  />
+                </span>
+              )
+            ) : (
+              <span key={i}>{part.value}</span>
+            ),
+          )}
         </span>
-        {showNext && <Button variant="ghost" tone="tertiary" size="small" icon={IconArrowRight} aria-label={nextLabel} className={styles.next} onClick={onNext} />}
+        {showNext && (
+          <Button
+            variant="ghost"
+            tone="tertiary"
+            size="small"
+            icon={IconArrowRight}
+            aria-label={nextLabel}
+            className={styles.next}
+            onClick={() => (view === 'days' ? onNext() : view === 'months' ? onGo(new Date(year + 1, month.getMonth(), 1)) : setPage((p) => p + 12))}
+          />
+        )}
       </div>
+      {view !== 'days' ? (
+        <div className={styles.choices} style={{ blockSize: `calc(${weeks(month, weekStartsOn).length} * var(--_cell))` }}>
+          {view === 'months'
+            ? monthNames.map((name, m) => (
+                <button
+                  key={m}
+                  type="button"
+                  className={styles.choice}
+                  disabled={monthOff(year, m)}
+                  data-selected={m === month.getMonth() || undefined}
+                  data-today={(year === today.getFullYear() && m === today.getMonth()) || undefined}
+                  onClick={() => go(year, m)}
+                >
+                  {name}
+                </button>
+              ))
+            : Array.from({ length: 12 }, (_, k) => page + k).map((y) => (
+                <button
+                  key={y}
+                  type="button"
+                  className={styles.choice}
+                  disabled={y < firstYear || y > lastYear}
+                  data-selected={y === year || undefined}
+                  data-today={y === today.getFullYear() || undefined}
+                  onClick={() => go(y, month.getMonth())}
+                >
+                  {y}
+                </button>
+              ))}
+        </div>
+      ) : (
       <div ref={grid} role="grid" aria-label={title} className={styles.grid} onKeyDown={onKeyDown}>
         {weeks(month, weekStartsOn).map((row) => (
           <div role="row" key={key(row[0]!)} className={styles.row}>
@@ -156,19 +337,25 @@ function Month({ month, selected, isRange, focus, onFocus, onPick, showPrevious,
           </div>
         ))}
       </div>
+      )}
     </div>
   );
 }
 
-function useCalendar(props: CalendarProps, monthCount: number) {
+const withTime = (d: Date, t: TimeValue) => new Date(d.getFullYear(), d.getMonth(), d.getDate(), t.hours, t.minutes, t.seconds ?? 0);
+const timeOf = (d: Date): TimeValue => ({ hours: d.getHours(), minutes: d.getMinutes(), seconds: d.getSeconds() });
+
+function useCalendar(props: CalendarProps, monthCount: number, keepTime = false) {
   const isRange = props.mode === 'range';
-  const toRange = (v: Date | null | DateRange | undefined): DateRange => (v == null ? { start: null, end: null } : v instanceof Date ? { start: day(v), end: null } : v);
+  const toRange = (v: Date | null | DateRange | undefined): DateRange => (v == null ? { start: null, end: null } : v instanceof Date ? { start: keepTime ? new Date(v) : day(v), end: null } : v);
   const [inner, setInner] = useState<DateRange>(() => toRange(props.defaultValue));
   const selected = props.value !== undefined ? toRange(props.value) : inner;
   const initial = props.defaultMonth ?? selected.start ?? new Date();
   const [month, setMonth] = useState(() => new Date(initial.getFullYear(), initial.getMonth(), 1));
   const [focus, setFocus] = useState(() => day(selected.start ?? new Date()));
   const [keyboard, setKeyboard] = useState(false);
+
+  const clamp = (d: Date) => (props.min && d < props.min ? new Date(props.min) : props.max && d > props.max ? new Date(props.max) : d);
 
   const commit = (range: DateRange) => {
     if (props.value === undefined) setInner(range);
@@ -178,7 +365,8 @@ function useCalendar(props: CalendarProps, monthCount: number) {
 
   const pick = (d: Date) => {
     setFocus(d);
-    if (!isRange) return commit({ start: d, end: null });
+    // With time, a new day keeps the chosen time, moved inside min and max when it falls outside.
+    if (!isRange) return commit({ start: keepTime ? clamp(selected.start ? withTime(d, timeOf(selected.start)) : d) : d, end: null });
     const { start, end } = selected;
     if (!start || end || d < start) commit({ start: d, end: null });
     else commit({ start, end: d });
@@ -194,7 +382,10 @@ function useCalendar(props: CalendarProps, monthCount: number) {
     else if (d >= addMonths(last, 1)) setMonth(addMonths(new Date(d.getFullYear(), d.getMonth(), 1), -(monthCount - 1)));
   };
 
-  return { isRange, selected, month, setMonth, focus, keyboard, pick, moveFocus, commit };
+  // A time before any day is chosen goes on the focused day (today at first).
+  const pickTime = (t: TimeValue) => commit({ start: clamp(withTime(selected.start ?? focus, t)), end: null });
+
+  return { isRange, selected, month, setMonth, focus, keyboard, pick, moveFocus, commit, pickTime };
 }
 
 /** One month without a panel (Figma Date Picker 🎛 Type=Basic). */
@@ -208,9 +399,20 @@ export function DatePicker(props: DatePickerProps) {
 }
 
 function DatePickerView(props: DatePickerProps & { bare?: boolean }) {
-  const { months = 1, presets, bare = false, min, max, isDateDisabled, events, weekStartsOn, locale, previousLabel, nextLabel, className, mode: _mode, value: _value, defaultValue: _default, onChange: _onChange, defaultMonth: _month, ...rest } = props;
-  const cal = useCalendar(props, months);
-  const shared = { min, max, isDateDisabled, events, weekStartsOn, locale, previousLabel, nextLabel };
+  const { months = 1, presets, time, bare = false, min, max, isDateDisabled, events, weekStartsOn, locale, previousLabel, nextLabel, monthLabel, yearLabel, className, mode: _mode, value: _value, defaultValue: _default, onChange: _onChange, defaultMonth: _month, ...rest } = props;
+  const showTime = !!time && props.mode !== 'range';
+  const timeOptions = typeof time === 'object' ? time : {};
+  const cal = useCalendar(props, months, showTime);
+  // On the min and max days, the hours, minutes and seconds outside them cannot be chosen.
+  const timeBlocked = (unit: 'hours' | 'minutes' | 'seconds', v: number) => {
+    const d = cal.selected.start ?? cal.focus;
+    const t = cal.selected.start ? timeOf(cal.selected.start) : { hours: 0, minutes: 0, seconds: 0 };
+    const at = (h: number, m: number, s: number) => new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m, s);
+    const [first, last] =
+      unit === 'hours' ? [at(v, 0, 0), at(v, 59, 59)] : unit === 'minutes' ? [at(t.hours, v, 0), at(t.hours, v, 59)] : [at(t.hours, t.minutes, v), at(t.hours, t.minutes, v)];
+    return (!!min && last < min) || (!!max && first > max);
+  };
+  const shared = { min, max, isDateDisabled, events, weekStartsOn, locale, previousLabel, nextLabel, monthLabel, yearLabel };
   return (
     <div className={[bare ? styles.bare : styles.picker, className].filter(Boolean).join(' ')} {...rest}>
       {presets && presets.length > 0 && (
@@ -258,11 +460,30 @@ function DatePickerView(props: DatePickerProps & { bare?: boolean }) {
               showNext={i === months - 1}
               onPrevious={() => cal.setMonth(addMonths(cal.month, -1))}
               onNext={() => cal.setMonth(addMonths(cal.month, 1))}
+              onGo={(m) => cal.setMonth(addMonths(m, -i))}
               autoFocus={cal.keyboard && cal.focus.getMonth() === month.getMonth() && cal.focus.getFullYear() === month.getFullYear()}
             />
           </div>
         );
       })}
+      {showTime && (
+        <div className={[styles.panel, styles.time].join(' ')}>
+          <div className={styles.header}>
+            <span className={styles.title}>{timeOptions.label ?? 'Time'}</span>
+          </div>
+          <div className={styles.timeBody}>
+            <TimePicker
+              data-embedded=""
+              showSeconds={timeOptions.showSeconds ?? false}
+              step={timeOptions.step}
+              isDisabled={(unit, v) => timeBlocked(unit, v) || (timeOptions.isDisabled?.(unit, v) ?? false)}
+              labels={timeOptions.labels}
+              value={cal.selected.start ? timeOf(cal.selected.start) : null}
+              onChange={cal.pickTime}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

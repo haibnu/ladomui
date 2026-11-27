@@ -19,7 +19,7 @@ export { Selectbox, type SelectboxOption, type SelectboxProps, type SelectboxSiz
 export { Segment, type SegmentOption, type SegmentProps, type SegmentSize } from './Segment/Segment';
 export { ItemSelector, type ItemSelectorProps } from './ItemSelector/ItemSelector';
 export { Uploader, formatFileSize, type UploaderFile, type UploaderProps } from './Uploader/Uploader';
-export { Calendar, DatePicker, type CalendarProps, type DatePickerProps, type DatePreset, type DateRange } from './DatePicker/DatePicker';
+export { Calendar, DatePicker, type CalendarProps, type DatePickerProps, type DatePickerTime, type DatePreset, type DateRange } from './DatePicker/DatePicker';
 export { TimePicker, type TimePickerProps, type TimeValue } from './TimePicker/TimePicker';
 export { Tabs, type TabsItem, type TabsProps } from './Tabs/Tabs';
 export { BottomNav, BottomNavItem, type BottomNavItemProps, type BottomNavProps } from './BottomNav/BottomNav';
